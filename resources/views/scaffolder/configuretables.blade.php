@@ -12,7 +12,7 @@
 
                 @foreach($tables as $table)
 
-                    <option>{{$table[0]}}</option>
+                    <option>{{$table->$db}}</option>
                 @endforeach
             </select>
         </div>

@@ -11,10 +11,6 @@ use Illuminate\Support\Facades\DB;
 
 class ScaffolderController extends Controller
 {
-
-
-
-
     public function indexChooseDB(){
 
         $dbs = DB::select( DB::raw("SHOW DATABASES"));
@@ -24,10 +20,10 @@ class ScaffolderController extends Controller
     public function getSchemaDB(Request $request){
 
 
-
+        $db= "Tables_in_".$request->db;
         $tables = DB::select( DB::raw("show TABLES from ".$request->db));
-        dd($tables);
-        return view("scaffolder.configuretables", compact("tables"));
+
+        return view("scaffolder.configuretables", compact("tables", "db"));
     }
 
 
