@@ -10,26 +10,37 @@
         <div class="col-md-12">
 
             <div id="accordion">
-                @foreach($tables as $table)
+                <div class="card">
+                    @foreach($metadados as $table)
+                        @dd($table)
 
-                        <div class="card">
-                            <div class="card-header" id="headingOne">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link" data-toggle="collapse" data-target="#{{$table->$db}}" aria-expanded="true" aria-controls="{{$table->$db}}">
-                                        Tabela {{$table->$db}}
-                                    </button>
-                                </h5>
-                            </div>
-
-                            <div id="{{$table->$db}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#{{$field->Field}}"
+                                        aria-expanded="true" aria-controls=" {{$field->Field}}">
+                                    Tabela
+                                </button>
+                            </h5>
+                        </div>
+                        @foreach($table as $field)
+                            <div id="{{$field->Field}}" class="collapse" aria-labelledby="headingOne"
+                                 data-parent="#accordion">
                                 <div class="card-body">
-                                    {{$table->$db}}
+                                    <br>{{$field->Field}}
+                                    <br>{{$field->Type}}
+                                    <br>{{$field->Null}}
+                                    <br>{{$field->Key}}
+                                    <br>{{$field->Default}}
+                                    <br>{{$field->Extra}}
+
                                 </div>
                             </div>
-                        </div>
+                        @endforeach
+                    @endforeach
+
+                </div>
 
 
-            @endforeach
             </div>
         </div>
     </div>
