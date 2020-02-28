@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', "ScaffolderController@indexChooseDB")->name("scaffolder.indexChooseDB");
+Route::get('/getSchemaDB', "ScaffolderController@getSchemaDB")->name("scaffolder.getSchemaDB");
