@@ -52,4 +52,8 @@ class ScaffolderController extends Controller
         return view("scaffolder.configuretables", compact("metadados"));
     }
 
+    public function tablesConfigureP1Post(Request $request){
+
+    }
+
 }
