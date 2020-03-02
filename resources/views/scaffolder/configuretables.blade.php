@@ -31,6 +31,17 @@
                                 <div class="card-body">
 
                                     <table class="table">
+                                        <tr>
+                                            <th>Field</th>
+                                            <th>Type</th>
+                                            <th>Null</th>
+                                            <th>Key</th>
+                                            <th>Default</th>
+                                            <th>Extra</th>
+                                            <th>Edit Type</th>
+                                            <th>Edit length</th>
+                                        </tr>
+
                                         @foreach($table as $name=>$field)
                                             <tr>
                                                 <th>{{$field->Field}}</th>
@@ -42,9 +53,9 @@
                                                 <td>  {{$field->Extra}}</td>
                                                 <td>
                                                     <select class="form-control" name='{{$name}}-type'>
-                                                        <option value="text">Texto</option>
-                                                        <option value="number">Numero</option>
-                                                        <option value="date">Data</option>
+                                                        <option value="text">Text</option>
+                                                        <option value="int">Int</option>
+                                                        <option value="date">Date</option>
                                                     </select>
                                                 </td>
                                                 <td>

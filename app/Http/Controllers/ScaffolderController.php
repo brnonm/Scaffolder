@@ -52,8 +52,6 @@ class ScaffolderController extends Controller
         $contents = json_encode($metadados);
         Storage::delete("scaffolderConfigs.json");
         Storage::disk('local')->put("scaffolderConfigs.json", $contents);
-
-
         //ler
         $readData = Storage::get('scaffolderConfigs.json');
         $data = json_decode($readData);
