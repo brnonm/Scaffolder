@@ -27,18 +27,22 @@
                         <div id="{{$nameTable}}" class="collapse" aria-labelledby="headingOne"
                              data-parent="#accordion">
                             <div class="card-body">
-                        @foreach($table as $name=>$field)
 
-                                    {{$field->Field}}
-                                    {{$field->Type}}
-                                    {{$field->Null}}
-                                    {{$field->Key}}
-                                    {{$field->Default}}
-                                    {{$field->Extra}}
-                            <br>
+                                <table class="table">
+                        @foreach($table as $name=>$field)
+<tr>
+                                        <td>{{$field->Field}}</td>
+
+                                        <td>{{$field->Type}}</td>
+                                        <td> {{$field->Null}}</td>
+                                        <td> {{$field->Key}}</td>
+                                        <td>{{$field->Default}}</td>
+                                        <td>  {{$field->Extra}}</td>
+</tr>
 
 
                         @endforeach
+                                </table>
                             </div>
                         </div>
                     @endforeach
