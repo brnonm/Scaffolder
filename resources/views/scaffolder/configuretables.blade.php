@@ -1,10 +1,12 @@
 @extends("scaffolder.templates.main")
 @section("content")
     <div class="row">
-        <div class="col-md-12">
-            <p>Configurar tabelas</p>
+        <div class="col-md-12" style="text-align: center">
+            <p>Gerador de projetos - Parte 1 - Configuração das tabelas e metadados</p>
         </div>
     </div>
+    <hr>
+    <br>
     <div class="row">
 
         <div class="col-md-12">

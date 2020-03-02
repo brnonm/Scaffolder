@@ -11,7 +11,29 @@
     <title>Hello, world!</title>
 </head>
 <body style="padding:20px;">
+<div class="row">
+    <div class="col-md-12" style="text-align: center">
+        <h2>Laravel Scaffolder</h2>
+    </div>
+</div>
 @yield("content")
+
+<hr>
+<!-- Footer -->
+<footer class="page-footer font-small blue pt-4">
+
+    <!-- Footer Links -->
+
+    <!-- Footer Links -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+        <a href="#"> Bruno e Pedro</a>
+    </div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
