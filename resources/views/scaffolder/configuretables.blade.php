@@ -36,7 +36,17 @@
                                         <td> {{$field->Null}}</td>
                                         <td> {{$field->Key}}</td>
                                         <td>{{$field->Default}}</td>
-                                        <td>  {{$field->Extra}}</td>
+    <td>  {{$field->Extra}}</td>
+    <td>
+        <select class="form-control">
+            <option>Texto</option>
+            <option>Numero</option>
+            <option>Data</option>
+        </select>
+    </td>
+    <td>
+       <input type="number" placeholder="Tamanho">
+    </td>
 </tr>
 
 
