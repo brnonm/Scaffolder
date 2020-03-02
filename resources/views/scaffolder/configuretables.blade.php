@@ -13,8 +13,6 @@
                 <div class="card">
 
                     @foreach($metadados as $nameTable=>$table)
-                        @foreach($metadados as $table)
-
 
 
                         <div class="card-header" id="headingOne">
@@ -32,7 +30,7 @@
                                 <table class="table">
                         @foreach($table as $name=>$field)
 <tr>
-                                        <td>{{$field->Field}}</td>
+                                        <th>{{$field->Field}}</th>
 
                                         <td>{{$field->Type}}</td>
                                         <td> {{$field->Null}}</td>
