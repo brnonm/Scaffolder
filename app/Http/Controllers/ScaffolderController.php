@@ -46,7 +46,7 @@ class ScaffolderController extends Controller
 
         }
 
-        dd($metadados);
+
 
 
         return view("scaffolder.configuretables", compact("metadados"));
