@@ -13,6 +13,7 @@
                 <div class="card">
 
                     @foreach($metadados as $nameTable=>$table)
+                        @foreach($metadados as $table)
 
 
 
