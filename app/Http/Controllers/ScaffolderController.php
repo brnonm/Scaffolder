@@ -20,19 +20,33 @@ class ScaffolderController extends Controller
 
     public function getSchemaDB(Request $request)
     {
-        $metadados = array();
+
         $tables = DB::select(DB::raw("SELECT TABLE_NAME AS _table FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '$request->db'"));
 
+        foreach ($tables as $key=>$table) {
+            $t = $table->_table;
+            $columns = DB::select(DB::raw("show fields from " . $t));
 
-        foreach ($tables as $table) {
-            $columns = DB::select(DB::raw("show fields from " . $table->_table));
-            $atr = [];
-            //array_push($atr, $table->_table);
+
+            $atr=[];
             foreach ($columns as $column) {
-                array_push($atr, $column);
+                $f=$column->Field;
+
+
+                $atr[$f]=$column;
+
+
+
             }
-            array_push($metadados, $atr);
+            $metadados[$t]=$atr;
+
+
+
+
+
         }
+
+        dd($metadados);
 
 
         return view("scaffolder.configuretables", compact("metadados"));

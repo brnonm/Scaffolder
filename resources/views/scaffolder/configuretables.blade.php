@@ -11,18 +11,20 @@
 
             <div id="accordion">
                 <div class="card">
-                    @foreach($metadados as $table)
-                        @dd($table)
+{{dd($metadados)}}
+                    @foreach($metadados as $nameTable=>$table)
+
+
 
                         <div class="card-header" id="headingOne">
                             <h5 class="mb-0">
-                                <button class="btn btn-link" data-toggle="collapse" data-target="#{{$field->Field}}"
-                                        aria-expanded="true" aria-controls=" {{$field->Field}}">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#{{$table->_table}}"
+                                        aria-expanded="true" aria-controls=" {{$table->_table}}">
                                     Tabela
                                 </button>
                             </h5>
                         </div>
-                        @foreach($table as $field)
+                        @foreach($table as $name=>$field)
                             <div id="{{$field->Field}}" class="collapse" aria-labelledby="headingOne"
                                  data-parent="#accordion">
                                 <div class="card-body">
