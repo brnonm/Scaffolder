@@ -1,0 +1,258 @@
+{
+    "metadados": {
+        "appointments": {
+            "enable": "no",
+            "name": "Appointment",
+            "id": {
+                "type": "text",
+                "lenght": "10"
+            },
+            "employee_id": {
+                "type": "text",
+                "lenght": "10"
+            },
+            "user_id": {
+                "type": "text",
+                "lenght": "10"
+            },
+            "service_id": {
+                "type": "text",
+                "lenght": "10"
+            },
+            "date": {
+                "type": "text",
+                "lenght": null
+            },
+            "start_time": {
+                "type": "text",
+                "lenght": null
+            },
+            "finish_time": {
+                "type": "text",
+                "lenght": null
+            },
+            "comments": {
+                "type": "text",
+                "lenght": "255"
+            },
+            "created_at": {
+                "type": "text",
+                "lenght": null
+            },
+            "updated_at": {
+                "type": "text",
+                "lenght": null
+            }
+        },
+        "employee_services": {
+            "enable": "yes",
+            "name": "Employee_service",
+            "id": {
+                "type": "text",
+                "lenght": "10"
+            },
+            "employee_id": {
+                "type": "text",
+                "lenght": "10"
+            },
+            "service_id": {
+                "type": "text",
+                "lenght": "10"
+            },
+            "created_at": {
+                "type": "text",
+                "lenght": null
+            },
+            "updated_at": {
+                "type": "text",
+                "lenght": null
+            }
+        },
+        "employees": {
+            "enable": "no",
+            "name": "Employee",
+            "id": {
+                "type": "text",
+                "lenght": "10"
+            },
+            "first_name": {
+                "type": "text",
+                "lenght": "100"
+            },
+            "last_name": {
+                "type": "text",
+                "lenght": "100"
+            },
+            "phone": {
+                "type": "text",
+                "lenght": "100"
+            },
+            "email": {
+                "type": "text",
+                "lenght": "100"
+            },
+            "created_at": {
+                "type": "text",
+                "lenght": null
+            },
+            "updated_at": {
+                "type": "text",
+                "lenght": null
+            }
+        },
+        "migrations": {
+            "enable": "yes",
+            "name": "Migration",
+            "id": {
+                "type": "text",
+                "lenght": "10"
+            },
+            "migration": {
+                "type": "text",
+                "lenght": "255"
+            },
+            "batch": {
+                "type": "text",
+                "lenght": "11"
+            }
+        },
+        "password_resets": {
+            "enable": "no",
+            "name": "Password_reset",
+            "email": {
+                "type": "text",
+                "lenght": "100"
+            },
+            "token": {
+                "type": "text",
+                "lenght": "255"
+            },
+            "created_at": {
+                "type": "text",
+                "lenght": null
+            }
+        },
+        "roles": {
+            "enable": "yes",
+            "name": {
+                "type": "text",
+                "lenght": "255"
+            },
+            "id": {
+                "type": "text",
+                "lenght": "10"
+            },
+            "created_at": {
+                "type": "text",
+                "lenght": null
+            },
+            "updated_at": {
+                "type": "text",
+                "lenght": null
+            }
+        },
+        "services": {
+            "enable": "no",
+            "name": {
+                "type": "text",
+                "lenght": "255"
+            },
+            "id": {
+                "type": "text",
+                "lenght": "10"
+            },
+            "price": {
+                "type": "text",
+                "lenght": null
+            },
+            "created_at": {
+                "type": "text",
+                "lenght": null
+            },
+            "updated_at": {
+                "type": "text",
+                "lenght": null
+            }
+        },
+        "users": {
+            "enable": "yes",
+            "name": "User",
+            "id": {
+                "type": "text",
+                "lenght": "10"
+            },
+            "first_name": {
+                "type": "text",
+                "lenght": "100"
+            },
+            "last_name": {
+                "type": "text",
+                "lenght": "100"
+            },
+            "phone": {
+                "type": "text",
+                "lenght": "255"
+            },
+            "email": {
+                "type": "text",
+                "lenght": "100"
+            },
+            "password": {
+                "type": "text",
+                "lenght": "100"
+            },
+            "confirmed": {
+                "type": "text",
+                "lenght": "1"
+            },
+            "role_id": {
+                "type": "text",
+                "lenght": "10"
+            },
+            "remember_token": {
+                "type": "text",
+                "lenght": "100"
+            },
+            "created_at": {
+                "type": "text",
+                "lenght": null
+            },
+            "updated_at": {
+                "type": "text",
+                "lenght": null
+            }
+        },
+        "working_hours": {
+            "enable": "no",
+            "name": "Working_hour",
+            "id": {
+                "type": "text",
+                "lenght": "10"
+            },
+            "employee_id": {
+                "type": "text",
+                "lenght": "10"
+            },
+            "date": {
+                "type": "text",
+                "lenght": null
+            },
+            "start_time": {
+                "type": "text",
+                "lenght": null
+            },
+            "finish_time": {
+                "type": "text",
+                "lenght": null
+            },
+            "created_at": {
+                "type": "text",
+                "lenght": null
+            },
+            "updated_at": {
+                "type": "text",
+                "lenght": null
+            }
+        }
+    }
+}
