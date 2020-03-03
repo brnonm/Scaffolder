@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', "ScaffolderController@indexChooseDB")->name("scaffolder.indexChooseDB");
-Route::get('/getSchemaDB', "ScaffolderController@getSchemaDB")->name("scaffolder.getSchemaDB");
+Route::get('/', "Scaffolder\ScaffolderController@indexChooseDB")->name("scaffolder.indexChooseDB");
+Route::get('/getSchemaDB', "Scaffolder\ScaffolderController@getSchemaDB")->name("scaffolder.getSchemaDB");
 
 
 //rotas de administração
-Route::post("/configure/", "ScaffolderController@tablesConfigureP1Post")->name("scaffolder.tablesConfigureP1");
+Route::post("/configure/", "Scaffolder\ScaffolderController@tablesConfigureP1Post")->name("scaffolder.tablesConfigureP1");

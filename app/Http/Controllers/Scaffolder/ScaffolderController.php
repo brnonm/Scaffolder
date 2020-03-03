@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Scaffolder;
 
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 use function foo\func;
 
 
@@ -53,7 +54,9 @@ class ScaffolderController extends Controller
     }
 
     public function tablesConfigureP1Post(Request $request){
-
+        $json=json_encode($request->except('_token'), JSON_PRETTY_PRINT);
+        file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), stripslashes($json));
+        dd($json);
     }
 
 }
