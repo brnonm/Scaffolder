@@ -36,7 +36,7 @@
                                     <div class="col-md-4">
                                         Incluir no projeto:
                                         <input type="hidden" value="no" name="metadados[{{$nameTable}}][enable]">
-                                        <input type="checkbox" name="metadados[{{$nameTable}}][enable]" checked data-toggle="toggle"
+                                        <input type="checkbox" name="metadados[{{$nameTable}}][enable]"  data-toggle="toggle"
                                                value="yes" data-on="Sim" data-off="Não">
                                     </div>
                                 </div>

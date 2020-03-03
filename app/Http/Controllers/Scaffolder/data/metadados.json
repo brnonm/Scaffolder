@@ -1,7 +1,7 @@
 {
     "metadados": {
         "appointments": {
-            "enable": "no",
+            "enable": "yes",
             "name": "Appointment",
             "id": {
                 "type": "text",
@@ -45,7 +45,7 @@
             }
         },
         "employee_services": {
-            "enable": "yes",
+            "enable": "no",
             "name": "Employee_service",
             "id": {
                 "type": "text",
@@ -69,7 +69,7 @@
             }
         },
         "employees": {
-            "enable": "no",
+            "enable": "yes",
             "name": "Employee",
             "id": {
                 "type": "text",
@@ -101,7 +101,7 @@
             }
         },
         "migrations": {
-            "enable": "yes",
+            "enable": "no",
             "name": "Migration",
             "id": {
                 "type": "text",
@@ -133,7 +133,7 @@
             }
         },
         "roles": {
-            "enable": "yes",
+            "enable": "no",
             "name": {
                 "type": "text",
                 "lenght": "255"
@@ -175,7 +175,7 @@
             }
         },
         "users": {
-            "enable": "yes",
+            "enable": "no",
             "name": "User",
             "id": {
                 "type": "text",
