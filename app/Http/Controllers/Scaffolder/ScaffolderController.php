@@ -60,16 +60,16 @@ class ScaffolderController extends Controller
 
     public function tablesConfigureP1Post(Request $request){
         $json=json_encode($request->except('_token'), JSON_PRETTY_PRINT);
-        $folderModel="/app/Http/Model";
+
         file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), stripslashes($json));
 
-        //Gerar a pasta model caso nao exista
+        
 
         foreach($request->metadados as $m)
         {
             if($m["enable"]=="yes"){
                 Artisan::call('make:model '.$m["name"]);
-                
+
             }
 
 
@@ -77,14 +77,7 @@ class ScaffolderController extends Controller
 
         dd("Criado tudo");
 
-        if(!File::exists($folderModel)) {
-            // path does not exist
 
-
-
-            //mkdir($folderModel, 0755, true);
-            dd("here");
-        }
 
         dd($json);
     }
