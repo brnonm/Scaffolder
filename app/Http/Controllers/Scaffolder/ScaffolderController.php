@@ -81,12 +81,18 @@ class ScaffolderController extends Controller
         foreach($json as $m)
         {
             if($m->enable=="yes"){
-                Artisan::call('make:model '.$m->name ."  --controller");
+
+                dd($m);
+                Artisan::call("make:model $m->name   --controller --table:$m->table ");
                 Artisan::call('make:resource '.$m->name );
 
             }
 
         }
     }
+
+
+
+
 
 }

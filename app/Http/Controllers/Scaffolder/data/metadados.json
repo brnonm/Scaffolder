@@ -3,6 +3,7 @@
         "appointments": {
             "enable": "yes",
             "name": "Appointment",
+            "table": "appointments",
             "id": {
                 "type": "text",
                 "lenght": "10"
@@ -47,6 +48,7 @@
         "employee_services": {
             "enable": "no",
             "name": "Employee_service",
+            "table": "employee_services",
             "id": {
                 "type": "text",
                 "lenght": "10"
@@ -69,8 +71,9 @@
             }
         },
         "employees": {
-            "enable": "yes",
+            "enable": "no",
             "name": "Employee",
+            "table": "employees",
             "id": {
                 "type": "text",
                 "lenght": "10"
@@ -103,6 +106,7 @@
         "migrations": {
             "enable": "no",
             "name": "Migration",
+            "table": "migrations",
             "id": {
                 "type": "text",
                 "lenght": "10"
@@ -119,6 +123,7 @@
         "password_resets": {
             "enable": "no",
             "name": "Password_reset",
+            "table": "password_resets",
             "email": {
                 "type": "text",
                 "lenght": "100"
@@ -138,6 +143,7 @@
                 "type": "text",
                 "lenght": "255"
             },
+            "table": "roles",
             "id": {
                 "type": "text",
                 "lenght": "10"
@@ -157,6 +163,7 @@
                 "type": "text",
                 "lenght": "255"
             },
+            "table": "services",
             "id": {
                 "type": "text",
                 "lenght": "10"
@@ -177,6 +184,7 @@
         "users": {
             "enable": "no",
             "name": "User",
+            "table": "users",
             "id": {
                 "type": "text",
                 "lenght": "10"
@@ -225,6 +233,7 @@
         "working_hours": {
             "enable": "no",
             "name": "Working_hour",
+            "table": "working_hours",
             "id": {
                 "type": "text",
                 "lenght": "10"

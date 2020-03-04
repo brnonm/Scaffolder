@@ -64,6 +64,7 @@
                                                     <th>Ações</th>
                                                     <th></th>
                                                 </tr>
+                                                <input type="hidden" name="metadados[{{$nameTable}}][table]" value="{{$nameTable}}">
                                                 @foreach($table as $name=>$field)
                                                     <tr>
                                                         <th>{{$field->Field}}</th>
@@ -81,6 +82,7 @@
                                                             </select>
                                                         </td>
                                                         <td>
+
                                                             <input type="number" class="form-control"
                                                                    name='metadados[{{$nameTable}}][{{$name}}][lenght]'
                                                                    placeholder="Tamanho" value="{{preg_replace('/[^0-9]/', '',  $field->Type)}}">
