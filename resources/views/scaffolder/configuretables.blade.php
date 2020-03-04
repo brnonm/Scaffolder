@@ -72,7 +72,7 @@
 
 
                                                         <td>
-                                                            <select class="form-control" name='metadados[{{$nameTable}}][{{$keyy}}][type]'>
+                                                            <select class="form-control" name='metadados[{{$nameTable}}][fields][{{$keyy}}][type]'>
                                                                 <option value="text">Texto</option>
                                                                 <option value="number">Numero</option>
                                                                 <option value="date">Data</option>
@@ -81,7 +81,7 @@
                                                         <td>
 
                                                             <input type="number" class="form-control"
-                                                                   name='metadados[{{$nameTable}}][{{$keyy}}][lenght]'
+                                                                   name='metadados[{{$nameTable}}][fields][{{$keyy}}][lenght]'
                                                                    placeholder="Tamanho" value="{{preg_replace('/[^0-9]/', '',  $field->Type)}}">
                                                         </td>
                                                     </tr>

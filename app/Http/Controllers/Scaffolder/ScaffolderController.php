@@ -89,21 +89,39 @@ class ScaffolderController extends Controller
 
     private function populateFiles($m){
 
+
+
         $modelPath=base_path("app/".$m->modelName.".php");
 
+        
         $contents = File::get($modelPath);
 
         $contents=substr_replace($contents ,"",-3);
         $contents.="\n";
-        $contents.='$fields=[';
+        $contents.='protected $table = "'.$m->modelTable.'";';
+        $contents.="\n";
+        $contents.='protected $fillable=[';
+        $i =0;
+        $len = collect($m->fields)->count();
 
-            //foreach ($m-> as $)
-        $contents.="]\n";
+            foreach ($m->fields as $key=>$field){
+                $i++;
+
+                if($i==$len){
+
+
+                    $contents.='"'.$key.'"';
+                }else{
+                    $contents.='"'.$key.'",';
+                }
+
+            }
+        $contents.="];\n";
         $contents.="}";
 
+        file_put_contents($modelPath, $contents);
 
 
-        dd($contents);
 
 
 
