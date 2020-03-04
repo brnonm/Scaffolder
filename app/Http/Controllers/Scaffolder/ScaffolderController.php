@@ -18,6 +18,9 @@ class ScaffolderController extends Controller
         return view("scaffolder.choosedb", compact("dbs"));
     }
 
+    public function backofficeIndex(){
+        return view("scaffolder.views.index");
+    }
     public function getSchemaDB(Request $request)
     {
 

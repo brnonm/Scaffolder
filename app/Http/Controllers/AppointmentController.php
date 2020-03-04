@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Super\Models\GestaoMenu;
-use App\Http\Controllers\Super\Models\Multimedia;
+
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
