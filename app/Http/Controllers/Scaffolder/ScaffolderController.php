@@ -63,7 +63,7 @@ class ScaffolderController extends Controller
 
         file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), stripslashes($json));
 
-        
+
 
         foreach($request->metadados as $m)
         {
