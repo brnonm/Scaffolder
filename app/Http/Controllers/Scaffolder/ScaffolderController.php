@@ -86,9 +86,6 @@ class ScaffolderController extends Controller
     private function artisanOptimize(){
         Artisan::call("optimize");
     }
-    private function populateController($m){
-
-    }
 
     private function populateRoutes($m){
         $modelPath = base_path("routes/web.php");
@@ -100,6 +97,15 @@ class ScaffolderController extends Controller
         file_put_contents($modelPath, $contents);
 
     }
+
+    private function populateController($m){
+        $modelPath = base_path("app/Http/Controllers/" . $m->modelName . "Controller.php");
+        $contents = File::get($modelPath);
+
+
+    }
+
+
     private function populateModel($m)
     {
 
