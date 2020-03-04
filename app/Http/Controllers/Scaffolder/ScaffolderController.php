@@ -83,24 +83,62 @@ class ScaffolderController extends Controller
         }
     }
 
-    private function artisanOptimize(){
+    private function artisanOptimize()
+    {
         Artisan::call("optimize");
     }
 
-    private function populateRoutes($m){
+    private function populateRoutes($m)
+    {
         $modelPath = base_path("routes/web.php");
 
         $contents = File::get($modelPath);
-        $contents .="\n";
-        $contents .= 'Route::resource("/'.$m->modelName.'/", "'.$m->modelName.'Controller");';
+        $contents .= "\n";
+        $contents .= 'Route::resource("/' . $m->modelName . '/", "' . $m->modelName . 'Controller");';
 
         file_put_contents($modelPath, $contents);
 
     }
 
-    private function populateController($m){
-        $modelPath = base_path("app/Http/Controllers/" . $m->modelName . "Controller.php");
-        $contents = File::get($modelPath);
+    private function populateController($m)
+    {
+        $name = explode("_", $m->modelName);
+        $finalName = "";
+        foreach ($name as $part) {
+            $finalName .= ucfirst($part);
+        }
+        $modelPath = base_path("app/Http/Controllers/" . $finalName . "Controller.php");
+
+        if (File::exists($modelPath)) {
+
+            $contents = File::get($modelPath);
+            $contents = substr_replace($contents, "", -3);
+            $contents .= "\n";
+
+            $contents .= "    protected static " . '$modelName' . " = 'app/$m->modelName.php';";
+
+            $contents .= "\n";
+            $contents .= "
+        public function index()
+        {
+            " . '$items' . "=self:: " . '$modelName' . "::all();
+            return view('scaffolder.views.index', compact('items'));
+        }";
+            $contents .= "\n";
+            $contents .= "
+        public function create()
+        {
+            " . '$item' . " = new self::" . '$modelName()' . ";
+            return view('scaffolder.views.create', compact('item'));
+        }";
+
+
+            $contents .= "\n\n";
+            $contents .= "}";
+
+
+            file_put_contents($modelPath, $contents);
+        }
 
 
     }
@@ -141,7 +179,7 @@ class ScaffolderController extends Controller
 
             file_put_contents($modelPath, $contents);
 
-        }else{
+        } else {
 
             //pensar em alguma coisa
         }
