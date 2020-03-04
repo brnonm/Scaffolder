@@ -8,13 +8,13 @@
     <hr>
     <br>
     <form method="POST" action="{{route("scaffolder.tablesConfigureP1")}}">
-    <div class="row">
+        <div class="row">
 
 
-        <div class="col-md-12">
+            <div class="col-md-12">
 
-            <div id="accordion">
-                <div class="card">
+                <div id="accordion">
+                    <div class="card">
 
                         @csrf
                         @foreach($metadados as $nameTable=>$table)
@@ -54,7 +54,6 @@
                                             <table class="table">
                                                 <tr>
                                                     <th>Campo</th>
-
                                                     <th>Tipo</th>
                                                     <th> Nulo?</th>
                                                     <th> Chave</th>
@@ -66,11 +65,11 @@
                                                 @foreach($table as $keyy=>$field)
                                                     <tr>
                                                         <th>{{$field->Field}}</th>
-
                                                         <td>{{$field->Type}}</td>
                                                         <td> {{$field->Null}}</td>
                                                         <td> {{$field->Key}}</td>
                                                         <td>{{$field->Default}} / {{$field->Extra}}</td>
+
 
                                                         <td>
                                                             <select class="form-control" name='metadados[{{$nameTable}}][{{$keyy}}][type]'>
@@ -97,15 +96,15 @@
                         @endforeach
 
 
+                    </div>
+
+
                 </div>
-
-
             </div>
-        </div>
 
-    </div>
-    <br>
-    <input type="submit" value="Avançar" class="btn btn-info col-md-12">
+        </div>
+        <br>
+        <input type="submit" value="Avançar" class="btn btn-info col-md-12">
     </form>
 
 

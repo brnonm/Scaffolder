@@ -1,104 +1,47 @@
 {
     "metadados": {
-        "appointments": {
+        "categories": {
             "enable": "yes",
-            "modelName": "Appointment",
-            "modelTable": "appointments",
+            "modelName": "Categorie",
+            "modelTable": "categories",
             "id": {
                 "type": "text",
-                "lenght": "10"
+                "lenght": null
             },
-            "employee_id": {
-                "type": "text",
-                "lenght": "10"
-            },
-            "user_id": {
-                "type": "text",
-                "lenght": "10"
-            },
-            "service_id": {
-                "type": "text",
-                "lenght": "10"
-            },
-            "date": {
+            "type": {
                 "type": "text",
                 "lenght": null
             },
-            "start_time": {
-                "type": "text",
-                "lenght": null
-            },
-            "finish_time": {
-                "type": "text",
-                "lenght": null
-            },
-            "comments": {
+            "name": {
                 "type": "text",
                 "lenght": "255"
-            },
-            "created_at": {
-                "type": "text",
-                "lenght": null
-            },
-            "updated_at": {
-                "type": "text",
-                "lenght": null
             }
         },
-        "employee_services": {
+        "failed_jobs": {
             "enable": "no",
-            "modelName": "Employee_service",
-            "modelTable": "employee_services",
+            "modelName": "Failed_job",
+            "modelTable": "failed_jobs",
             "id": {
                 "type": "text",
-                "lenght": "10"
+                "lenght": null
             },
-            "employee_id": {
-                "type": "text",
-                "lenght": "10"
-            },
-            "service_id": {
-                "type": "text",
-                "lenght": "10"
-            },
-            "created_at": {
+            "connection": {
                 "type": "text",
                 "lenght": null
             },
-            "updated_at": {
-                "type": "text",
-                "lenght": null
-            }
-        },
-        "employees": {
-            "enable": "no",
-            "modelName": "Employee",
-            "modelTable": "employees",
-            "id": {
-                "type": "text",
-                "lenght": "10"
-            },
-            "first_name": {
-                "type": "text",
-                "lenght": "100"
-            },
-            "last_name": {
-                "type": "text",
-                "lenght": "100"
-            },
-            "phone": {
-                "type": "text",
-                "lenght": "100"
-            },
-            "email": {
-                "type": "text",
-                "lenght": "100"
-            },
-            "created_at": {
+            "queue": {
                 "type": "text",
                 "lenght": null
             },
-            "updated_at": {
+            "payload": {
+                "type": "text",
+                "lenght": null
+            },
+            "exception": {
+                "type": "text",
+                "lenght": null
+            },
+            "failed_at": {
                 "type": "text",
                 "lenght": null
             }
@@ -109,7 +52,7 @@
             "modelTable": "migrations",
             "id": {
                 "type": "text",
-                "lenght": "10"
+                "lenght": null
             },
             "migration": {
                 "type": "text",
@@ -117,7 +60,80 @@
             },
             "batch": {
                 "type": "text",
-                "lenght": "11"
+                "lenght": null
+            }
+        },
+        "movements": {
+            "enable": "no",
+            "modelName": "Movement",
+            "modelTable": "movements",
+            "id": {
+                "type": "text",
+                "lenght": null
+            },
+            "wallet_id": {
+                "type": "text",
+                "lenght": null
+            },
+            "type": {
+                "type": "text",
+                "lenght": null
+            },
+            "transfer": {
+                "type": "text",
+                "lenght": "1"
+            },
+            "transfer_movement_id": {
+                "type": "text",
+                "lenght": null
+            },
+            "transfer_wallet_id": {
+                "type": "text",
+                "lenght": null
+            },
+            "type_payment": {
+                "type": "text",
+                "lenght": null
+            },
+            "category_id": {
+                "type": "text",
+                "lenght": null
+            },
+            "iban": {
+                "type": "text",
+                "lenght": "25"
+            },
+            "mb_entity_code": {
+                "type": "text",
+                "lenght": "5"
+            },
+            "mb_payment_reference": {
+                "type": "text",
+                "lenght": "9"
+            },
+            "description": {
+                "type": "text",
+                "lenght": null
+            },
+            "source_description": {
+                "type": "text",
+                "lenght": null
+            },
+            "date": {
+                "type": "text",
+                "lenght": null
+            },
+            "start_balance": {
+                "type": "text",
+                "lenght": "92"
+            },
+            "end_balance": {
+                "type": "text",
+                "lenght": "92"
+            },
+            "value": {
+                "type": "text",
+                "lenght": "92"
             }
         },
         "password_resets": {
@@ -126,7 +142,7 @@
             "modelTable": "password_resets",
             "email": {
                 "type": "text",
-                "lenght": "100"
+                "lenght": "255"
             },
             "token": {
                 "type": "text",
@@ -137,87 +153,29 @@
                 "lenght": null
             }
         },
-        "roles": {
-            "enable": "no",
-            "modelName": "Role",
-            "modelTable": "roles",
-            "id": {
-                "type": "text",
-                "lenght": "10"
-            },
-            "name": {
-                "type": "text",
-                "lenght": "255"
-            },
-            "created_at": {
-                "type": "text",
-                "lenght": null
-            },
-            "updated_at": {
-                "type": "text",
-                "lenght": null
-            }
-        },
-        "services": {
-            "enable": "no",
-            "modelName": "Service",
-            "modelTable": "services",
-            "id": {
-                "type": "text",
-                "lenght": "10"
-            },
-            "name": {
-                "type": "text",
-                "lenght": "255"
-            },
-            "price": {
-                "type": "text",
-                "lenght": null
-            },
-            "created_at": {
-                "type": "text",
-                "lenght": null
-            },
-            "updated_at": {
-                "type": "text",
-                "lenght": null
-            }
-        },
         "users": {
             "enable": "no",
             "modelName": "User",
             "modelTable": "users",
             "id": {
                 "type": "text",
-                "lenght": "10"
+                "lenght": null
             },
-            "first_name": {
-                "type": "text",
-                "lenght": "100"
-            },
-            "last_name": {
-                "type": "text",
-                "lenght": "100"
-            },
-            "phone": {
+            "name": {
                 "type": "text",
                 "lenght": "255"
             },
             "email": {
                 "type": "text",
-                "lenght": "100"
+                "lenght": "255"
+            },
+            "email_verified_at": {
+                "type": "text",
+                "lenght": null
             },
             "password": {
                 "type": "text",
-                "lenght": "100"
-            },
-            "confirmed": {
-                "type": "text",
-                "lenght": "1"
-            },
-            "role_id": {
-                "type": "text",
-                "lenght": "10"
+                "lenght": "255"
             },
             "remember_token": {
                 "type": "text",
@@ -230,31 +188,39 @@
             "updated_at": {
                 "type": "text",
                 "lenght": null
+            },
+            "type": {
+                "type": "text",
+                "lenght": null
+            },
+            "active": {
+                "type": "text",
+                "lenght": "1"
+            },
+            "photo": {
+                "type": "text",
+                "lenght": "255"
+            },
+            "nif": {
+                "type": "text",
+                "lenght": "9"
             }
         },
-        "working_hours": {
+        "wallets": {
             "enable": "no",
-            "modelName": "Working_hour",
-            "modelTable": "working_hours",
+            "modelName": "Wallet",
+            "modelTable": "wallets",
             "id": {
                 "type": "text",
-                "lenght": "10"
-            },
-            "employee_id": {
-                "type": "text",
-                "lenght": "10"
-            },
-            "date": {
-                "type": "text",
                 "lenght": null
             },
-            "start_time": {
+            "email": {
                 "type": "text",
-                "lenght": null
+                "lenght": "255"
             },
-            "finish_time": {
+            "balance": {
                 "type": "text",
-                "lenght": null
+                "lenght": "92"
             },
             "created_at": {
                 "type": "text",
