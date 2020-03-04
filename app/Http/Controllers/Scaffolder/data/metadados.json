@@ -1,101 +1,44 @@
 {
     "metadados": {
-        "appointments": {
+        "categories": {
             "enable": "yes",
-            "name": "Appointment",
-            "id": {
-                "type": "text",
-                "lenght": "10"
-            },
-            "employee_id": {
-                "type": "text",
-                "lenght": "10"
-            },
-            "user_id": {
-                "type": "text",
-                "lenght": "10"
-            },
-            "service_id": {
-                "type": "text",
-                "lenght": "10"
-            },
-            "date": {
-                "type": "text",
-                "lenght": null
-            },
-            "start_time": {
-                "type": "text",
-                "lenght": null
-            },
-            "finish_time": {
-                "type": "text",
-                "lenght": null
-            },
-            "comments": {
+            "name": {
                 "type": "text",
                 "lenght": "255"
             },
-            "created_at": {
-                "type": "text",
+            "id": {
+                "type": "number",
                 "lenght": null
             },
-            "updated_at": {
+            "type": {
                 "type": "text",
                 "lenght": null
             }
         },
-        "employee_services": {
+        "failed_jobs": {
             "enable": "no",
-            "name": "Employee_service",
+            "name": "Failed_job",
             "id": {
                 "type": "text",
-                "lenght": "10"
+                "lenght": null
             },
-            "employee_id": {
-                "type": "text",
-                "lenght": "10"
-            },
-            "service_id": {
-                "type": "text",
-                "lenght": "10"
-            },
-            "created_at": {
+            "connection": {
                 "type": "text",
                 "lenght": null
             },
-            "updated_at": {
-                "type": "text",
-                "lenght": null
-            }
-        },
-        "employees": {
-            "enable": "yes",
-            "name": "Employee",
-            "id": {
-                "type": "text",
-                "lenght": "10"
-            },
-            "first_name": {
-                "type": "text",
-                "lenght": "100"
-            },
-            "last_name": {
-                "type": "text",
-                "lenght": "100"
-            },
-            "phone": {
-                "type": "text",
-                "lenght": "100"
-            },
-            "email": {
-                "type": "text",
-                "lenght": "100"
-            },
-            "created_at": {
+            "queue": {
                 "type": "text",
                 "lenght": null
             },
-            "updated_at": {
+            "payload": {
+                "type": "text",
+                "lenght": null
+            },
+            "exception": {
+                "type": "text",
+                "lenght": null
+            },
+            "failed_at": {
                 "type": "text",
                 "lenght": null
             }
@@ -105,7 +48,7 @@
             "name": "Migration",
             "id": {
                 "type": "text",
-                "lenght": "10"
+                "lenght": null
             },
             "migration": {
                 "type": "text",
@@ -113,7 +56,79 @@
             },
             "batch": {
                 "type": "text",
-                "lenght": "11"
+                "lenght": null
+            }
+        },
+        "movements": {
+            "enable": "no",
+            "name": "Movement",
+            "id": {
+                "type": "text",
+                "lenght": null
+            },
+            "wallet_id": {
+                "type": "text",
+                "lenght": null
+            },
+            "type": {
+                "type": "text",
+                "lenght": null
+            },
+            "transfer": {
+                "type": "text",
+                "lenght": "1"
+            },
+            "transfer_movement_id": {
+                "type": "text",
+                "lenght": null
+            },
+            "transfer_wallet_id": {
+                "type": "text",
+                "lenght": null
+            },
+            "type_payment": {
+                "type": "text",
+                "lenght": null
+            },
+            "category_id": {
+                "type": "text",
+                "lenght": null
+            },
+            "iban": {
+                "type": "text",
+                "lenght": "25"
+            },
+            "mb_entity_code": {
+                "type": "text",
+                "lenght": "5"
+            },
+            "mb_payment_reference": {
+                "type": "text",
+                "lenght": "9"
+            },
+            "description": {
+                "type": "text",
+                "lenght": null
+            },
+            "source_description": {
+                "type": "text",
+                "lenght": null
+            },
+            "date": {
+                "type": "text",
+                "lenght": null
+            },
+            "start_balance": {
+                "type": "text",
+                "lenght": "92"
+            },
+            "end_balance": {
+                "type": "text",
+                "lenght": "92"
+            },
+            "value": {
+                "type": "text",
+                "lenght": "92"
             }
         },
         "password_resets": {
@@ -121,7 +136,7 @@
             "name": "Password_reset",
             "email": {
                 "type": "text",
-                "lenght": "100"
+                "lenght": "255"
             },
             "token": {
                 "type": "text",
@@ -132,82 +147,27 @@
                 "lenght": null
             }
         },
-        "roles": {
-            "enable": "no",
-            "name": {
-                "type": "text",
-                "lenght": "255"
-            },
-            "id": {
-                "type": "text",
-                "lenght": "10"
-            },
-            "created_at": {
-                "type": "text",
-                "lenght": null
-            },
-            "updated_at": {
-                "type": "text",
-                "lenght": null
-            }
-        },
-        "services": {
-            "enable": "no",
-            "name": {
-                "type": "text",
-                "lenght": "255"
-            },
-            "id": {
-                "type": "text",
-                "lenght": "10"
-            },
-            "price": {
-                "type": "text",
-                "lenght": null
-            },
-            "created_at": {
-                "type": "text",
-                "lenght": null
-            },
-            "updated_at": {
-                "type": "text",
-                "lenght": null
-            }
-        },
         "users": {
             "enable": "no",
-            "name": "User",
-            "id": {
-                "type": "text",
-                "lenght": "10"
-            },
-            "first_name": {
-                "type": "text",
-                "lenght": "100"
-            },
-            "last_name": {
-                "type": "text",
-                "lenght": "100"
-            },
-            "phone": {
+            "name": {
                 "type": "text",
                 "lenght": "255"
+            },
+            "id": {
+                "type": "text",
+                "lenght": null
             },
             "email": {
                 "type": "text",
-                "lenght": "100"
+                "lenght": "255"
+            },
+            "email_verified_at": {
+                "type": "text",
+                "lenght": null
             },
             "password": {
                 "type": "text",
-                "lenght": "100"
-            },
-            "confirmed": {
-                "type": "text",
-                "lenght": "1"
-            },
-            "role_id": {
-                "type": "text",
-                "lenght": "10"
+                "lenght": "255"
             },
             "remember_token": {
                 "type": "text",
@@ -220,30 +180,38 @@
             "updated_at": {
                 "type": "text",
                 "lenght": null
+            },
+            "type": {
+                "type": "text",
+                "lenght": null
+            },
+            "active": {
+                "type": "text",
+                "lenght": "1"
+            },
+            "photo": {
+                "type": "text",
+                "lenght": "255"
+            },
+            "nif": {
+                "type": "text",
+                "lenght": "9"
             }
         },
-        "working_hours": {
+        "wallets": {
             "enable": "no",
-            "name": "Working_hour",
+            "name": "Wallet",
             "id": {
                 "type": "text",
-                "lenght": "10"
-            },
-            "employee_id": {
-                "type": "text",
-                "lenght": "10"
-            },
-            "date": {
-                "type": "text",
                 "lenght": null
             },
-            "start_time": {
+            "email": {
                 "type": "text",
-                "lenght": null
+                "lenght": "255"
             },
-            "finish_time": {
+            "balance": {
                 "type": "text",
-                "lenght": null
+                "lenght": "92"
             },
             "created_at": {
                 "type": "text",
