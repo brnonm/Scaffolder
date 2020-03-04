@@ -72,7 +72,7 @@ class ScaffolderController extends Controller
                 Artisan::call("make:model $m->modelName   --controller");
                 Artisan::call("make:resource $m->modelName ");
 
-                $this->populateFiles($m);
+                $this->populateModel($m);
             }
 
 
@@ -80,7 +80,7 @@ class ScaffolderController extends Controller
     }
 
 
-    private function populateFiles($m)
+    private function populateModel($m)
     {
 
         $modelPath = base_path("app/" . $m->modelName . ".php");
