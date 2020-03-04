@@ -18,8 +18,6 @@
 
                         @csrf
                         @foreach($metadados as $nameTable=>$table)
-
-
                             <div class="card-header" id="headingOne">
                                 <div class="row">
                                     <div class="col-md-8">

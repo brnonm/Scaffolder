@@ -38,21 +38,11 @@ class ScaffolderController extends Controller
             foreach ($columns as $column) {
                 $f=$column->Field;
 
-
                 $atr[$f]=$column;
-
-
-
             }
             $metadados[$t]=$atr;
 
-
-
-
-
         }
-
-
 
 
         return view("scaffolder.configuretables", compact("metadados"));
