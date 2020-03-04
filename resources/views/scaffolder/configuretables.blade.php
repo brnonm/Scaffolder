@@ -63,7 +63,7 @@
                                                     <th></th>
                                                 </tr>
                                                 <input type="hidden" name="metadados[{{$nameTable}}][table]" value="{{$nameTable}}">
-                                                @foreach($table as $name=>$field)
+                                                @foreach($table as $keyy=>$field)
                                                     <tr>
                                                         <th>{{$field->Field}}</th>
 
@@ -73,7 +73,7 @@
                                                         <td>{{$field->Default}} / {{$field->Extra}}</td>
 
                                                         <td>
-                                                            <select class="form-control" name='metadados[{{$nameTable}}][{{$name}}][type]'>
+                                                            <select class="form-control" name='metadados[{{$nameTable}}][{{$keyy}}][type]'>
                                                                 <option value="text">Texto</option>
                                                                 <option value="number">Numero</option>
                                                                 <option value="date">Data</option>
@@ -82,7 +82,7 @@
                                                         <td>
 
                                                             <input type="number" class="form-control"
-                                                                   name='metadados[{{$nameTable}}][{{$name}}][lenght]'
+                                                                   name='metadados[{{$nameTable}}][{{$keyy}}][lenght]'
                                                                    placeholder="Tamanho" value="{{preg_replace('/[^0-9]/', '',  $field->Type)}}">
                                                         </td>
                                                     </tr>
