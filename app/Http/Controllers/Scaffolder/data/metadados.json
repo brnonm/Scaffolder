@@ -75,7 +75,7 @@
             }
         },
         "employees": {
-            "enable": "yes",
+            "enable": "no",
             "modelName": "Employee",
             "modelTable": "employees",
             "fields": {
@@ -148,7 +148,7 @@
             }
         },
         "roles": {
-            "enable": "yes",
+            "enable": "no",
             "modelName": "Role",
             "modelTable": "roles",
             "fields": {
@@ -171,7 +171,7 @@
             }
         },
         "services": {
-            "enable": "yes",
+            "enable": "no",
             "modelName": "Service",
             "modelTable": "services",
             "fields": {
@@ -198,7 +198,7 @@
             }
         },
         "users": {
-            "enable": "yes",
+            "enable": "no",
             "modelName": "User",
             "modelTable": "users",
             "fields": {
@@ -249,7 +249,7 @@
             }
         },
         "working_hours": {
-            "enable": "yes",
+            "enable": "no",
             "modelName": "Working_hour",
             "modelTable": "working_hours",
             "fields": {

@@ -17,3 +17,5 @@ Route::get('/getSchemaDB', "Scaffolder\ScaffolderController@getSchemaDB")->name(
 
 //rotas de administração
 Route::post("/configure/", "Scaffolder\ScaffolderController@tablesConfigureP1Post")->name("scaffolder.tablesConfigureP1");
+
+Route::resource("/Appointment/", "AppointmentController");

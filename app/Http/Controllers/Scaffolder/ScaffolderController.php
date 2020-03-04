@@ -73,13 +73,33 @@ class ScaffolderController extends Controller
                 Artisan::call("make:resource $m->modelName ");
 
                 $this->populateModel($m);
+                $this->populateController($m);
+                $this->populateRoutes($m);
+
+                $this->artisanOptimize();
             }
 
 
         }
     }
 
+    private function artisanOptimize(){
+        Artisan::call("optimize");
+    }
+    private function populateController($m){
 
+    }
+
+    private function populateRoutes($m){
+        $modelPath = base_path("routes/web.php");
+
+        $contents = File::get($modelPath);
+        $contents .="\n";
+        $contents .= 'Route::resource("/'.$m->modelName.'/", "'.$m->modelName.'Controller");';
+
+        file_put_contents($modelPath, $contents);
+
+    }
     private function populateModel($m)
     {
 
