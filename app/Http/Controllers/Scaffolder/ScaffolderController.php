@@ -87,9 +87,11 @@ class ScaffolderController extends Controller
 
     private function populateFiles($m){
 
-        $modelPath="app\\$m->modelName.php";
+        $modelPath="$m->modelName.php";
 
-        
+
+
+        dd(File::append($modelPath, '123123123123'));
         dd($modelPath);
     }
 
