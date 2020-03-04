@@ -93,14 +93,14 @@ class ScaffolderController extends Controller
 
         $modelPath=base_path("app/".$m->modelName.".php");
 
-        
+
         $contents = File::get($modelPath);
 
         $contents=substr_replace($contents ,"",-3);
         $contents.="\n";
-        $contents.='protected $table = "'.$m->modelTable.'";';
+        $contents.='    protected $table = "'.$m->modelTable.'";';
         $contents.="\n";
-        $contents.='protected $fillable=[';
+        $contents.='    protected $fillable=[';
         $i =0;
         $len = collect($m->fields)->count();
 
