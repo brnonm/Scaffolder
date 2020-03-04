@@ -49,6 +49,7 @@ class ScaffolderController extends Controller
     }
 
     public function tablesConfigureP1Post(Request $request){
+
         $json=json_encode($request->except('_token'), JSON_PRETTY_PRINT);
 
         file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), stripslashes($json));
@@ -67,6 +68,7 @@ class ScaffolderController extends Controller
 
         $json=collect(json_decode($json));
         $json=$json->first();
+
 
         foreach($json as $m)
         {
@@ -87,10 +89,17 @@ class ScaffolderController extends Controller
 
     private function populateFiles($m){
 
-        $modelPath="app\\$m->modelName.php";
+        $modelPath=base_path("app/".$m->modelName.".php");
 
-        
-        dd($modelPath);
+        $contents = File::get($modelPath);
+
+        dd($contents);
+
+
+        //$contents .= str_replace('%host%', $host, $contents);
+
+
+        //File::put($path, $contents);
     }
 
 
