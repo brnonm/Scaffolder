@@ -93,13 +93,20 @@ class ScaffolderController extends Controller
 
         $contents = File::get($modelPath);
 
+        $contents=substr_replace($contents ,"",-3);
+        $contents.="\n";
+        $contents.='$fields=[';
+
+            //foreach ($m-> as $)
+        $contents.="]\n";
+        $contents.="}";
+
+
+
         dd($contents);
 
 
-        //$contents .= str_replace('%host%', $host, $contents);
 
-
-        //File::put($path, $contents);
     }
 
 
