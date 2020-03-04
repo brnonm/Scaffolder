@@ -2,8 +2,8 @@
     "metadados": {
         "appointments": {
             "enable": "yes",
-            "name": "Appointment",
-            "table": "appointments",
+            "modelName": "Appointment",
+            "modelTable": "appointments",
             "id": {
                 "type": "text",
                 "lenght": "10"
@@ -47,8 +47,8 @@
         },
         "employee_services": {
             "enable": "no",
-            "name": "Employee_service",
-            "table": "employee_services",
+            "modelName": "Employee_service",
+            "modelTable": "employee_services",
             "id": {
                 "type": "text",
                 "lenght": "10"
@@ -72,8 +72,8 @@
         },
         "employees": {
             "enable": "no",
-            "name": "Employee",
-            "table": "employees",
+            "modelName": "Employee",
+            "modelTable": "employees",
             "id": {
                 "type": "text",
                 "lenght": "10"
@@ -105,8 +105,8 @@
         },
         "migrations": {
             "enable": "no",
-            "name": "Migration",
-            "table": "migrations",
+            "modelName": "Migration",
+            "modelTable": "migrations",
             "id": {
                 "type": "text",
                 "lenght": "10"
@@ -122,8 +122,8 @@
         },
         "password_resets": {
             "enable": "no",
-            "name": "Password_reset",
-            "table": "password_resets",
+            "modelName": "Password_reset",
+            "modelTable": "password_resets",
             "email": {
                 "type": "text",
                 "lenght": "100"
@@ -139,14 +139,15 @@
         },
         "roles": {
             "enable": "no",
-            "name": {
-                "type": "text",
-                "lenght": "255"
-            },
-            "table": "roles",
+            "modelName": "Role",
+            "modelTable": "roles",
             "id": {
                 "type": "text",
                 "lenght": "10"
+            },
+            "name": {
+                "type": "text",
+                "lenght": "255"
             },
             "created_at": {
                 "type": "text",
@@ -159,14 +160,15 @@
         },
         "services": {
             "enable": "no",
-            "name": {
-                "type": "text",
-                "lenght": "255"
-            },
-            "table": "services",
+            "modelName": "Service",
+            "modelTable": "services",
             "id": {
                 "type": "text",
                 "lenght": "10"
+            },
+            "name": {
+                "type": "text",
+                "lenght": "255"
             },
             "price": {
                 "type": "text",
@@ -183,8 +185,8 @@
         },
         "users": {
             "enable": "no",
-            "name": "User",
-            "table": "users",
+            "modelName": "User",
+            "modelTable": "users",
             "id": {
                 "type": "text",
                 "lenght": "10"
@@ -232,8 +234,8 @@
         },
         "working_hours": {
             "enable": "no",
-            "name": "Working_hour",
-            "table": "working_hours",
+            "modelName": "Working_hour",
+            "modelTable": "working_hours",
             "id": {
                 "type": "text",
                 "lenght": "10"

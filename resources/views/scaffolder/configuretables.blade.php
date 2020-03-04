@@ -45,7 +45,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             Nome da classe:
-                                            <input type="text" name="metadados[{{$nameTable}}][name]" class="form-control" value="{{rtrim(ucfirst($nameTable), "s ")}}">
+                                            <input type="text" name="metadados[{{$nameTable}}][modelName]" class="form-control" value="{{rtrim(ucfirst($nameTable), "s ")}}">
                                             <br><br>
                                         </div>
                                     </div>
@@ -62,7 +62,7 @@
                                                     <th>Ações</th>
                                                     <th></th>
                                                 </tr>
-                                                <input type="hidden" name="metadados[{{$nameTable}}][table]" value="{{$nameTable}}">
+                                                <input type="hidden" name="metadados[{{$nameTable}}][modelTable]" value="{{$nameTable}}">
                                                 @foreach($table as $keyy=>$field)
                                                     <tr>
                                                         <th>{{$field->Field}}</th>

@@ -73,16 +73,22 @@ class ScaffolderController extends Controller
             if($m->enable=="yes"){
 
 
-                Artisan::call("make:model $m->name   --controller --table:$m->table ");
-                Artisan::call('make:resource '.$m->name );
+                Artisan::call("make:model $m->modelName   --controller");
+                Artisan::call("make:resource $m->modelName ");
 
+                $this->populateFiles($m);
             }
+
+
 
         }
     }
 
 
+    private function populateFiles($m){
 
+        dd($m);
+    }
 
 
 }
