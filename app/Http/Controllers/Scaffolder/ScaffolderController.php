@@ -63,23 +63,30 @@ class ScaffolderController extends Controller
 
         file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), stripslashes($json));
 
+        $this->createByJsonObject($json);
 
-
-        foreach($request->metadados as $m)
-        {
-            if($m["enable"]=="yes"){
-                Artisan::call('make:model '.$m["name"]);
-
-            }
-
-
-        }
 
         dd("Criado tudo");
 
 
 
         dd($json);
+    }
+
+    private function createByJsonObject($json){
+
+        $json=collect(json_decode($json));
+        $json=$json->first();
+
+        foreach($json as $m)
+        {
+            if($m->enable=="yes"){
+                Artisan::call('make:model '.$m->name ."  --controller");
+                Artisan::call('make:resource '.$m->name );
+
+            }
+
+        }
     }
 
 }
