@@ -6,12 +6,10 @@
             "modelTable": "categories",
             "fields": {
                 "id": {
-                    "enable": "yes",
                     "type": "text",
                     "lenght": null
                 },
                 "type": {
-                    "enable": "yes",
                     "type": "text",
                     "lenght": null
                 },

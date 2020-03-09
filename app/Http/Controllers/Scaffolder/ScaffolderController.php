@@ -92,13 +92,16 @@ class ScaffolderController extends Controller
 
     private function populateRoutes($m)
     {
+        $newRoute = 'Route::resource("/' . $m->modelName . '/", "' . $m->modelName . 'Controller");';
         $modelPath = base_path("routes/web.php");
 
         $contents = File::get($modelPath);
-        $contents .= "\n";
-        $contents .= 'Route::resource("/' . $m->modelName . '/", "' . $m->modelName . 'Controller");';
 
-        file_put_contents($modelPath, $contents);
+        if(strpos($contents, $newRoute) == false){
+            $contents .= "\n";
+            $contents .= $newRoute;
+            file_put_contents($modelPath, $contents);
+        }
 
     }
 
@@ -170,7 +173,6 @@ class ScaffolderController extends Controller
             $contents .= '    protected $fillable=[';
             $i = 0;
             $len = 0;
-            //$len = collect($m->fields)->count();
 
 
             foreach ($m->fields as $key => $field) {
@@ -178,7 +180,6 @@ class ScaffolderController extends Controller
                     $len++;
                 }
             }
-
 
             foreach ($m->fields as $key => $field) {
                 if (isset($field->enable) == "yes") {
@@ -189,7 +190,6 @@ class ScaffolderController extends Controller
                         $contents .= '"' . $key . '",';
                     }
                 }
-
 
             }
             $contents .= "];\n";
