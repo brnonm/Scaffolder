@@ -8,5 +8,5 @@ class Categorie extends Model
 {
     //
     protected $table = "categories";
-    protected $fillable=[];
+    protected $fillable=["id","type"];
 }

@@ -80,8 +80,6 @@ class ScaffolderController extends Controller
 
                 $this->artisanOptimize();
             }
-
-
         }
     }
 
@@ -97,7 +95,7 @@ class ScaffolderController extends Controller
 
         $contents = File::get($modelPath);
 
-        if(strpos($contents, $newRoute) == false){
+        if (strpos($contents, $newRoute) == false) {
             $contents .= "\n";
             $contents .= $newRoute;
             file_put_contents($modelPath, $contents);
@@ -113,42 +111,66 @@ class ScaffolderController extends Controller
             $finalName .= ucfirst($part);
         }
         $modelPath = base_path("app/Http/Controllers/" . $finalName . "Controller.php");
+        $urlFunc = base_path("app/Http/Controllers/Scaffolder/data/functions.json");
 
         if (File::exists($modelPath)) {
+
+            $functions = json_decode(File::get($urlFunc));
+
+
+            $header = "    protected static " . '$modelName' . " = 'app/$m->modelName.php';";
 
             $contents = File::get($modelPath);
             $contents = substr_replace($contents, "", -3);
             $contents .= "\n";
 
-            $contents .= "    protected static " . '$modelName' . " = 'app/$m->modelName.php';";
+            foreach ($functions->controller as $func){
+                if (strpos($contents, $func) == false) {
+                    if(strpos($func, '$m->modelName') != false){
+                        $contents.= str_replace(['$m->modelName'], [$m->modelName], $func);
+
+                    }else{
+                        $contents .= $func;
+                    }
+                }
+            }
+/*
+
+            if (strpos($contents, $header) == false) {
+                $contents .= $header;
+
+            }
 
             $contents .= "\n";
+
+
             $contents .= "
         public function index()
         {
             " . '$items' . "=self:: " . '$modelName' . "::all();
             return view('scaffolder.views.index', compact('items'));
-        }";
-            $contents .= "\n";
+        } \n";
+
             $contents .= "
         public function create()
         {
             " . '$item' . " = new self::" . '$modelName()' . ";
             return view('scaffolder.views.create', compact('item'));
-        }";
+        }\n";
 
-            $contents .= "\n";
+
             $contents .= "
         public function destroy(" . '$model' . ")
         {
             " . '$model->delete();' . "
             return redirect()->route(" . '$modelName' . " . '.index');
-        }";
+        } \n";
+*/
 
             $contents .= "\n\n";
             $contents .= "}";
-
             file_put_contents($modelPath, $contents);
+
 
         }
 
