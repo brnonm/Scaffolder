@@ -118,7 +118,7 @@ class ScaffolderController extends Controller
             $functions = json_decode(File::get($urlFunc));
 
 
-            $header = "    protected static " . '$modelName' . " = 'app/$m->modelName.php';";
+            //$header = "    protected static " . '$modelName' . " = 'app/$m->modelName.php';";
 
             $contents = File::get($modelPath);
             $contents = substr_replace($contents, "", -3);
@@ -127,8 +127,10 @@ class ScaffolderController extends Controller
             foreach ($functions->controller as $func){
                 if (strpos($contents, $func) == false) {
                     if(strpos($func, '$m->modelName') != false){
-                        $contents.= str_replace(['$m->modelName'], [$m->modelName], $func);
-
+                        $changed = str_replace(['$m->modelName'], [$m->modelName], $func);
+                        if (strpos($contents, $changed) == false) {
+                            $contents .= $changed;
+                        }
                     }else{
                         $contents .= $func;
                     }
