@@ -1,15 +1,17 @@
 {
     "metadados": {
         "categories": {
-            "enable": "no",
+            "enable": "yes",
             "modelName": "Categorie",
             "modelTable": "categories",
             "fields": {
                 "id": {
+                    "enable": "yes",
                     "type": "text",
                     "lenght": null
                 },
                 "type": {
+                    "enable": "yes",
                     "type": "text",
                     "lenght": null
                 },
@@ -20,7 +22,7 @@
             }
         },
         "failed_jobs": {
-            "enable": "yes",
+            "enable": "no",
             "modelName": "Failed_job",
             "modelTable": "failed_jobs",
             "fields": {

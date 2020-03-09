@@ -47,10 +47,11 @@ class ScaffolderController extends Controller
 
         $json = json_encode($request->except('_token'), JSON_PRETTY_PRINT);
 
+
         file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), stripslashes($json));
 
-        $this->createByJsonObject($json);
 
+        $this->createByJsonObject($json);
 
         dd("Criado tudo");
 
@@ -70,7 +71,8 @@ class ScaffolderController extends Controller
 
 
                 Artisan::call("make:model $m->modelName   --controller");
-                Artisan::call("make:resource $m->modelName ");
+
+                Artisan::call("make:resource $m->modelName");
 
                 $this->populateModel($m);
                 $this->populateController($m);
@@ -132,12 +134,19 @@ class ScaffolderController extends Controller
             return view('scaffolder.views.create', compact('item'));
         }";
 
+            $contents .= "\n";
+            $contents .= "
+        public function destroy(" . '$model' . ")
+        {
+            " . '$model->delete();' . "
+            return redirect()->route(" . '$modelName' . " . '.index');
+        }";
 
             $contents .= "\n\n";
             $contents .= "}";
 
-
             file_put_contents($modelPath, $contents);
+
         }
 
 
@@ -150,7 +159,7 @@ class ScaffolderController extends Controller
         $modelPath = base_path("app/" . $m->modelName . ".php");
 
 
-        if (!File::exists($modelPath)) {
+        if (File::exists($modelPath)) {
 
             $contents = File::get($modelPath);
 
@@ -160,18 +169,27 @@ class ScaffolderController extends Controller
             $contents .= "\n";
             $contents .= '    protected $fillable=[';
             $i = 0;
-            $len = collect($m->fields)->count();
+            $len = 0;
+            //$len = collect($m->fields)->count();
+
 
             foreach ($m->fields as $key => $field) {
-                $i++;
-
-                if ($i == $len) {
-
-
-                    $contents .= '"' . $key . '"';
-                } else {
-                    $contents .= '"' . $key . '",';
+                if (isset($field->enable) == "yes") {
+                    $len++;
                 }
+            }
+
+
+            foreach ($m->fields as $key => $field) {
+                if (isset($field->enable) == "yes") {
+                    $i++;
+                    if ($i == $len) {
+                        $contents .= '"' . $key . '"';
+                    } else {
+                        $contents .= '"' . $key . '",';
+                    }
+                }
+
 
             }
             $contents .= "];\n";

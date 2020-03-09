@@ -20,28 +20,15 @@ Route::post("/configure/", "Scaffolder\ScaffolderController@tablesConfigureP1Pos
 
 Route::resource("/Appointment/", "AppointmentController");
 Route::resource("/Categorie/", "CategorieController");
+Route::resource("/Failed_job/", "Failed_jobController");
+;
+
+Route::resource("/Failed_job/", "Failed_jobController");
 Route::resource("/Categorie/", "CategorieController");
 Route::resource("/Categorie/", "CategorieController");
-Route::resource("/Failed_job/", "Failed_jobController");
-Route::resource("/Failed_job/", "Failed_jobController");
-Route::resource("/Failed_job/", "Failed_jobController");
-Route::resource("/Failed_job/", "Failed_jobController");
-Route::resource("/Failed_job/", "Failed_jobController");
-Route::resource("/Failed_job/", "Failed_jobController");
-Route::resource("/Failed_job/", "Failed_jobController");
-Route::resource("/Failed_job/", "Failed_jobController");
-Route::resource("/Failed_job/", "Failed_jobController");
-Route::resource("/Failed_job/", "Failed_jobController");
-Route::resource("/Failed_job/", "Failed_jobController");
-Route::resource("/Failed_job/", "Failed_jobController");
-Route::resource("/Failed_job/", "Failed_jobController");
-Route::resource("/Failed_job/", "Failed_jobController");
-Route::resource("/Failed_job/", "Failed_jobController");
-Route::resource("/Failed_job/", "Failed_jobController");
-Route::resource("/Failed_job/", "Failed_jobController");
-Route::resource("/Failed_job/", "Failed_jobController");
-Route::resource("/Failed_job/", "Failed_jobController");
-Route::resource("/Failed_job/", "Failed_jobController");
-Route::resource("/Failed_job/", "Failed_jobController");
-Route::resource("/Failed_job/", "Failed_jobController");
-Route::resource("/Failed_job/", "Failed_jobController");
+Route::resource("/Categorie/", "CategorieController");
+Route::resource("/Categorie/", "CategorieController");
+Route::resource("/Categorie/", "CategorieController");
+Route::resource("/Categorie/", "CategorieController");
+Route::resource("/Categorie/", "CategorieController");
+Route::resource("/Categorie/", "CategorieController");
