@@ -8,7 +8,7 @@
     <hr>
     <br>
     <div>
-        <form method="POST" action="">
+        <form method="POST" action="{{route("scaffolder.tablesConfigureFunction")}}">
             <div class="row">
                 <div class="col-md-12">
                     <div id="accordion">

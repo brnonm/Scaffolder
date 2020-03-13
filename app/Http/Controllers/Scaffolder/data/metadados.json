@@ -51,7 +51,7 @@
             }
         },
         "migrations": {
-            "enable": "yes",
+            "enable": "no",
             "modelName": "Migration",
             "modelTable": "migrations",
             "fields": {

@@ -16,13 +16,10 @@ Route::get('/getSchemaDB', "Scaffolder\ScaffolderController@getSchemaDB")->name(
 
 
 //rotas de administração
-Route::post("/configure/", "Scaffolder\ScaffolderController@tablesConfigureP1Post")->name("scaffolder.tablesConfigureP1");
+Route::post("/configure", "Scaffolder\ScaffolderController@tablesConfigureP1Post")->name("scaffolder.tablesConfigureP1");
+Route::post("/configure/function", "Scaffolder\ScaffolderController@tablesConfigureFunctionPost")->name("scaffolder.tablesConfigureFunction");
+
 
 
 Route::resource("/Categorie/", "CategorieController");
 Route::resource("/Failed_job/", "Failed_jobController");
-Route::resource("/Migration/", "MigrationController");
-Route::resource("/Movement/", "MovementController");
-Route::resource("/Password_reset/", "Password_resetController");
-Route::resource("/User/", "UserController");
-Route::resource("/Wallet/", "WalletController");
