@@ -35,26 +35,31 @@ class ScaffolderController extends Controller
             $metadados[$t] = $atr;
 
         }
-        
+
         return view("scaffolder.configuretables", compact("metadados"));
     }
 
     public function tablesConfigureP1Post(Request $request)
     {
-
+        $urlFunctions = base_path('app/Http/Controllers/Scaffolder/data/functions.json');
         $json = json_encode($request->except('_token'), JSON_PRETTY_PRINT);
-
-
         file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), stripslashes($json));
 
-
         $this->createByJsonObject($json);
-
+        //tabelas e campos
         $metadados = collect(json_decode($json));
         $metadados = collect($metadados->first());
 
+        //ler funções pre feitas
+        if (!File::exists($urlFunctions)){
+            //retornar vista de erro
+            dd("Erro nao encontra o ficheiro");
+        }
+        $func = File::get($urlFunctions);
+        $functions = collect(json_decode($func));
 
-        return view("scaffolder.configureTableController", compact("metadados"));
+
+        return view("scaffolder.configureTableController", compact("metadados", "functions"));
         //AVANÇAR PARA ESCOLER METODOS
 
     }

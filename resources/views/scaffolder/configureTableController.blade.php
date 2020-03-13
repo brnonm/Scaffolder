@@ -8,8 +8,6 @@
     <hr>
     <br>
     <div>
-
-
         <form method="POST" action="">
             <div class="row">
                 <div class="col-md-12">
@@ -25,23 +23,42 @@
                                                     <a class="btn btn-link" style="text-decoration: underline"
                                                        data-toggle="collapse" data-target="#{{$nameTable}}"
                                                        aria-expanded="true" aria-controls=" {{$nameTable}}">
-                                                        Tabela {{$nameTable}}
+                                                        Table {{$nameTable}}
                                                     </a>
                                                 </h5>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-12">
+                                    <div id="{{$nameTable}}" class="collapse" aria-labelledby="headingOne"
+                                         data-parent="#accordion">
+                                        <div class="card-body">
                                             <table class="table">
                                                 <tr>
-                                                    <th>Function Name</th>
-
-                                                    <th></th>
-
+                                                    <th>Select</th>
+                                                    <th>Function name</th>
                                                 </tr>
 
-                                                <!-- Obter as funcoes do json -->
+                                                @foreach($functions as $funcName=>$funcs)
+                                                    @if($funcName == "controller")
+                                                        @foreach($funcs as $fname=>$func)
+                                                            @if($fname != "header")
+                                                                <tr>
+                                                                    <th>
+                                                                        <input type="checkbox" class="option"
+                                                                               name=''
+                                                                               value="yes">
+                                                                    </th>
+                                                                    <td>{{ucfirst($fname)}}</td>
+                                                                </tr>
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
+
+
+
+
+                                                @endforeach
+
                                             </table>
                                         </div>
                                     </div>
@@ -51,11 +68,10 @@
                     </div>
                 </div>
             </div>
+
             <br>
             <input type="submit" value="Avançar" class="btn btn-info col-md-12">
         </form>
-
-
     </div>
 
 @endsection
