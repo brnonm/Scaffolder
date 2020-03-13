@@ -26,8 +26,6 @@ class ScaffolderController extends Controller
         foreach ($tables as $key => $table) {
             $t = $table->_table;
             $columns = DB::select(DB::raw("show fields from " . $t));
-
-
             $atr = [];
             foreach ($columns as $column) {
                 $f = $column->Field;
@@ -37,8 +35,7 @@ class ScaffolderController extends Controller
             $metadados[$t] = $atr;
 
         }
-
-
+        
         return view("scaffolder.configuretables", compact("metadados"));
     }
 
@@ -53,10 +50,13 @@ class ScaffolderController extends Controller
 
         $this->createByJsonObject($json);
 
-        dd("Criado tudo");
+        $metadados = collect(json_decode($json));
+        $metadados = collect($metadados->first());
 
 
-        dd($json);
+        return view("scaffolder.configureTableController", compact("metadados"));
+        //AVANÇAR PARA ESCOLER METODOS
+
     }
 
     private function createByJsonObject($json)
@@ -117,57 +117,55 @@ class ScaffolderController extends Controller
 
             $functions = json_decode(File::get($urlFunc));
 
-
-            //$header = "    protected static " . '$modelName' . " = 'app/$m->modelName.php';";
-
             $contents = File::get($modelPath);
             $contents = substr_replace($contents, "", -3);
             $contents .= "\n";
 
-            foreach ($functions->controller as $func){
+            foreach ($functions->controller as $func) {
                 if (strpos($contents, $func) == false) {
-                    if(strpos($func, '$m->modelName') != false){
+                    if (strpos($func, '$m->modelName') != false) {
                         $changed = str_replace(['$m->modelName'], [$m->modelName], $func);
                         if (strpos($contents, $changed) == false) {
                             $contents .= $changed;
                         }
-                    }else{
+                    } else {
                         $contents .= $func;
                     }
                 }
             }
-/*
+            /*
+             * $header = "    protected static " . '$modelName' . " = 'app/$m->modelName.php';";
 
-            if (strpos($contents, $header) == false) {
-                $contents .= $header;
+                        if (strpos($contents, $header) == false) {
+                            $contents .= $header;
 
-            }
+                        }
 
-            $contents .= "\n";
-
-
-            $contents .= "
-        public function index()
-        {
-            " . '$items' . "=self:: " . '$modelName' . "::all();
-            return view('scaffolder.views.index', compact('items'));
-        } \n";
-
-            $contents .= "
-        public function create()
-        {
-            " . '$item' . " = new self::" . '$modelName()' . ";
-            return view('scaffolder.views.create', compact('item'));
-        }\n";
+                        $contents .= "\n";
 
 
-            $contents .= "
-        public function destroy(" . '$model' . ")
-        {
-            " . '$model->delete();' . "
-            return redirect()->route(" . '$modelName' . " . '.index');
-        } \n";
-*/
+                        $contents .= "
+                    public function index()
+                    {
+                        " . '$items' . "=self:: " . '$modelName' . "::all();
+                        return view('scaffolder.views.index', compact('items'));
+                    } \n";
+
+                        $contents .= "
+                    public function create()
+                    {
+                        " . '$item' . " = new self::" . '$modelName()' . ";
+                        return view('scaffolder.views.create', compact('item'));
+                    }\n";
+
+
+                        $contents .= "
+                    public function destroy(" . '$model' . ")
+                    {
+                        " . '$model->delete();' . "
+                        return redirect()->route(" . '$modelName' . " . '.index');
+                    } \n";
+            */
 
             $contents .= "\n\n";
             $contents .= "}";

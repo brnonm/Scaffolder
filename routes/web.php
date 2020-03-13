@@ -20,3 +20,9 @@ Route::post("/configure/", "Scaffolder\ScaffolderController@tablesConfigureP1Pos
 
 
 Route::resource("/Categorie/", "CategorieController");
+Route::resource("/Failed_job/", "Failed_jobController");
+Route::resource("/Migration/", "MigrationController");
+Route::resource("/Movement/", "MovementController");
+Route::resource("/Password_reset/", "Password_resetController");
+Route::resource("/User/", "UserController");
+Route::resource("/Wallet/", "WalletController");

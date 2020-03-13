@@ -7,15 +7,12 @@
     </div>
     <hr>
     <br>
+
     <form method="POST" action="{{route("scaffolder.tablesConfigureP1")}}">
         <div class="row">
-
-
             <div class="col-md-12">
-
                 <div id="accordion">
                     <div class="card">
-
                         @csrf
                         @foreach($metadados as $nameTable=>$table)
                             <div class="card-header" id="headingOne">
@@ -27,8 +24,6 @@
                                                aria-expanded="true" aria-controls=" {{$nameTable}}">
                                                 Tabela {{$nameTable}}
                                             </a>
-
-
                                         </h5>
                                     </div>
                                     <div class="col-md-4">
@@ -46,7 +41,8 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             Nome da classe:
-                                            <input type="text" id="checkField" name="metadados[{{$nameTable}}][modelName]"
+                                            <input type="text" id="checkField"
+                                                   name="metadados[{{$nameTable}}][modelName]"
                                                    class="form-control" value="{{rtrim(ucfirst($nameTable), "s ")}}">
                                             <br><br>
                                         </div>
@@ -70,7 +66,9 @@
                                                 @foreach($table as $keyy=>$field)
                                                     <tr>
                                                         <th>
-                                                            <input type="checkbox" class="option" name='metadados[{{$nameTable}}][fields][{{$keyy}}][enable]' value="yes">
+                                                            <input type="checkbox" class="option"
+                                                                   name='metadados[{{$nameTable}}][fields][{{$keyy}}][enable]'
+                                                                   value="yes">
                                                         </th>
                                                         <th>{{$field->Field}}</th>
                                                         <td>{{$field->Type}}</td>
@@ -95,8 +93,6 @@
                                                                    value="{{preg_replace('/[^0-9]/', '',  $field->Type)}}">
                                                         </td>
                                                     </tr>
-
-
                                                 @endforeach
                                             </table>
                                         </div>
