@@ -29,7 +29,6 @@ class ScaffolderController extends Controller
             $atr = [];
             foreach ($columns as $column) {
                 $f = $column->Field;
-
                 $atr[$f] = $column;
             }
             $metadados[$t] = $atr;
@@ -62,10 +61,10 @@ class ScaffolderController extends Controller
 
     }
 
-    public function tablesConfigureFunctionPost(Request $request)
+    public function tablesConfigureFuncPost(Request $request)
     {
-
-        dd("ola");
+        $json = json_encode($request->except('_token'), JSON_PRETTY_PRINT);
+        dd($json);
 
     }
 
