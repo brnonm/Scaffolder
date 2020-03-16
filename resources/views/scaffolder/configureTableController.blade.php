@@ -1,5 +1,5 @@
-@extends("scaffolder.templates.main")
-@section("content")
+@extends("scaffolder.views.partials.main")
+@section("container")
     <div>
         <div class="row">
             <div class="col-md-12" style="text-align: center">

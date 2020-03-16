@@ -1,13 +1,14 @@
 {
     "metadados": {
         "appointments": {
-            "enable": "yes",
+            "enable": "no",
             "modelName": "Appointment",
             "modelTable": "appointments",
             "fields": {
                 "id": {
+                    "enable": "yes",
                     "type": "text",
-                    "lenght": "11"
+                    "lenght": "10"
                 },
                 "employee_id": {
                     "type": "text",
@@ -22,7 +23,7 @@
                     "lenght": "10"
                 },
                 "date": {
-                    "type": "date",
+                    "type": "text",
                     "lenght": null
                 },
                 "start_time": {
@@ -75,7 +76,7 @@
             }
         },
         "employees": {
-            "enable": "yes",
+            "enable": "no",
             "modelName": "Employee",
             "modelTable": "employees",
             "fields": {
