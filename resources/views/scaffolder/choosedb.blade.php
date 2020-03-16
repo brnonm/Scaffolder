@@ -4,24 +4,22 @@
     <div class="row">
     <h2>Selecionar Base de Dados</h2>
     </div>
-    <div class="row">
-
-
     <form action="{{route("scaffolder.getSchemaDB")}}" method="get">
+        <div class="row">
+            <div class="col-md-4">
+                <select class="form-control" name="db">
 
+                    @foreach($dbs as $db)
+                        @if($db->Database != "sys" && $db->Database != "mysql" && $db->Database != "information_schema" && $db->Database != "performance_schema" )
+                            <option value="{{$db->Database}}">{{$db->Database}}</option>
+                        @endif
+                    @endforeach
+                </select>
+            </div>
+        </div>
 
-
-            <select class="form-control" name="db">
-                @foreach($dbs as $db)
-
-                    <option value="{{$db->Database}}">{{$db->Database}}</option>
-                @endforeach
-            </select>
-
-
-
-    <br>
-    <input type="submit" value="Avançar" class="btn btn-info">
+        <br>
+        <input type="submit" value="Avançar" class="btn btn-info">
     </form>
     </div>
     </div>
