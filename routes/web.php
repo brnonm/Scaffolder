@@ -11,22 +11,16 @@
 |
 */
 
+//rotas de administração
 Route::get('/', "Scaffolder\ScaffolderController@indexChooseDB")->name("scaffolder.indexChooseDB");
 Route::get('/getSchemaDB', "Scaffolder\ScaffolderController@getSchemaDB")->name("scaffolder.getSchemaDB");
 
-
-//rotas de administração
 Route::post("/configure", "Scaffolder\ScaffolderController@tablesConfigureP1Post")->name("scaffolder.tablesConfigureP1");
 Route::post("/configure/func", "Scaffolder\ScaffolderController@tablesConfigureFuncPost")->name("scaffolder.tablesConfigureFunction");
 
-Route::post("/configure/", "Scaffolder\ScaffolderController@tablesConfigureP1Post")->name("scaffolder.tablesConfigureP1");
+
 Route::get("/backoffice/", "Scaffolder\ScaffolderController@backofficeIndex")->name("scaffolder.backofficeIndex");
 
 
 
-
-Route::resource("/Categorie/", "CategorieController");
-Route::resource("/Appointment/", "AppointmentController");
-
-Route::resource("/Appointment/", "AppointmentController");
-Route::resource("/Employee/", "EmployeeController");
+Route::resource("Categorie", "CategorieController");

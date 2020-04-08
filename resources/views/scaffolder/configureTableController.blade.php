@@ -9,6 +9,7 @@
         <hr>
         <br>
         <div>
+
             <form method="POST" action="{{route("scaffolder.tablesConfigureFunction")}} ">
                 @csrf
                 <div class="row">
@@ -37,19 +38,23 @@
                                                     <tr>
                                                         <th>Select</th>
                                                         <th>Function name</th>
-                                                        <th>Function (para apagar??)</th>
+                                                        <th>Function</th>
                                                     </tr>
+
+
                                                     @foreach($functions as $funcName=>$funcs)
                                                         @if($funcName == "controller")
                                                             @foreach($funcs as $fname=>$func)
                                                                 @if($fname != "header")
                                                                     <tr>
                                                                         <th>
+                                                                            @dd()
                                                                             <input type="checkbox"
-                                                                                   name='metadados[{{$nameTable}}][functions][{{$fname}}][enable]'
+                                                                                   name="metadados[{{$nameTable}}][functions][{{$fname}}][enable]"
                                                                                    value="yes">
                                                                         </th>
                                                                         <td>{{ucfirst($fname)}}</td>
+                                                                        <td></td>
                                                                     </tr>
                                                                 @endif
                                                             @endforeach
@@ -60,12 +65,13 @@
                                         </div>
                                     @endif
                                 @endforeach
+
                             </div>
                         </div>
                     </div>
                 </div>
                 <br>
-                <input type="submit" value="Avançar" class="btn btn-info col-md-12">
+                <input type="submit" value="Next" class="btn btn-info col-md-12">
             </form>
         </div>
     </div>

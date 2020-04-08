@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\File;
 
 class ScaffolderController extends Controller
 {
+    public function backofficeIndex()
+    {
+        return view("scaffolder.views.index");
+    }
+
     public function indexChooseDB()
     {
         $dbs = DB::select(DB::raw("SHOW DATABASES"));
@@ -18,9 +23,7 @@ class ScaffolderController extends Controller
         return view("scaffolder.choosedb", compact("dbs"));
     }
 
-    public function backofficeIndex(){
-        return view("scaffolder.views.index");
-    }
+
     public function getSchemaDB(Request $request)
     {
 
@@ -46,29 +49,24 @@ class ScaffolderController extends Controller
         $json = json_encode($request->except('_token'), JSON_PRETTY_PRINT);
         file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), stripslashes($json));
 
-        $this->createByJsonObject($json);
-        //tabelas e campos
         $metadados = collect(json_decode($json));
         $metadados = collect($metadados->first());
 
-        //ler funções pre feitas
         if (!File::exists($urlFunctions)) {
             //retornar vista de erro
-            dd("Erro nao encontra o ficheiro");
+            ("Erro nao encontra o ficheiro");
         }
         $func = File::get($urlFunctions);
         $functions = collect(json_decode($func));
 
         return view("scaffolder.configureTableController", compact("metadados", "functions"));
-        //AVANÇAR PARA ESCOLER METODOS
-
     }
 
     public function tablesConfigureFuncPost(Request $request)
     {
         $json = json_encode($request->except('_token'), JSON_PRETTY_PRINT);
-        dd($json);
 
+        return view("scaffolder.configureFinish", compact("json"));
     }
 
     private function createByJsonObject($json)
@@ -77,19 +75,13 @@ class ScaffolderController extends Controller
         $json = collect(json_decode($json));
         $json = $json->first();
 
-
         foreach ($json as $m) {
             if ($m->enable == "yes") {
-
-
                 Artisan::call("make:model $m->modelName   --controller");
-
                 Artisan::call("make:resource $m->modelName");
-
                 $this->populateModel($m);
                 $this->populateController($m);
                 $this->populateRoutes($m);
-
                 $this->artisanOptimize();
             }
         }
@@ -102,7 +94,7 @@ class ScaffolderController extends Controller
 
     private function populateRoutes($m)
     {
-        $newRoute = 'Route::resource("/' . $m->modelName . '/", "' . $m->modelName . 'Controller");';
+        $newRoute = 'Route::resource("' . $m->modelName . '", "' . $m->modelName . 'Controller");';
         $modelPath = base_path("routes/web.php");
 
         $contents = File::get($modelPath);
@@ -166,6 +158,7 @@ class ScaffolderController extends Controller
 
             $contents = File::get($modelPath);
 
+
             $contents = substr_replace($contents, "", -3);
             $contents .= "\n";
             $contents .= '    protected $table = "' . $m->modelTable . '";';
@@ -176,24 +169,26 @@ class ScaffolderController extends Controller
 
 
             foreach ($m->fields as $key => $field) {
-                if (isset($field->enable) == "yes") {
-                    $len++;
-                }
+                //if (isset($field->enable) == "yes") {
+                $len++;
+                //}
             }
 
+
             foreach ($m->fields as $key => $field) {
-                if (isset($field->enable) == "yes") {
-                    $i++;
-                    if ($i == $len) {
-                        $contents .= '"' . $key . '"';
-                    } else {
-                        $contents .= '"' . $key . '",';
-                    }
+                //if (isset($field->enable) == "yes") {
+                $i++;
+                if ($i == $len) {
+                    $contents .= '"' . $key . '"';
+                } else {
+                    $contents .= '"' . $key . '",';
                 }
+                //}
 
             }
             $contents .= "];\n";
             $contents .= "}";
+
 
             file_put_contents($modelPath, $contents);
 
