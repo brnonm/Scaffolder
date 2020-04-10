@@ -418,104 +418,35 @@
                             </a>
                         </li>
                         <li class="app-sidebar__heading">Backoffice</li>
-                        <li
-                        >
+                        <li>
                             <a href="#">
-                                <i class="metismenu-icon pe-7s-diamond"></i>
-                                Elements
+                                <i class="metismenu-icon pe-7s-file"></i>
+                                Generated Files
                                 <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                             </a>
-                            <ul
-
-
-
-
-
-
-
-
-                            >
+                            <ul>
                                 <li>
                                     <a href="elements-buttons-standard.html">
                                         <i class="metismenu-icon"></i>
-                                        Buttons
+                                        Controllers
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="elements-dropdowns.html">
-                                        <i class="metismenu-icon">
-                                        </i>Dropdowns
+                                    <a href="elements-buttons-standard.html">
+                                        <i class="metismenu-icon"></i>
+                                        Models
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="elements-icons.html">
-                                        <i class="metismenu-icon">
-                                        </i>Icons
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="elements-badges-labels.html">
-                                        <i class="metismenu-icon">
-                                        </i>Badges
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="elements-cards.html">
-                                        <i class="metismenu-icon">
-                                        </i>Cards
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="elements-list-group.html">
-                                        <i class="metismenu-icon">
-                                        </i>List Groups
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="elements-navigation.html">
-                                        <i class="metismenu-icon">
-                                        </i>Navigation Menus
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="elements-utilities.html">
-                                        <i class="metismenu-icon">
-                                        </i>Utilities
-                                    </a>
-                                </li>
+
                             </ul>
                         </li>
-                        <li
-
-
-
-
-
-
-
-
-
-
-
-                        >
+                        <li>
                             <a href="#">
                                 <i class="metismenu-icon pe-7s-car"></i>
                                 Components
                                 <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                             </a>
-                            <ul
-
-
-
-
-
-
-
-
-
-
-
-                            >
+                            <ul>
                                 <li>
                                     <a href="components-tabs.html">
                                         <i class="metismenu-icon">

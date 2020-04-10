@@ -54,11 +54,12 @@ class ScaffolderController extends Controller
         if (!File::exists($urlFunctions)) {
             $error = "File with generic functions does not find!";
             return view("scaffolder.errorPage", compact("error"));
+        }else{
+            $func = File::get($urlFunctions);
+            $functions = collect(json_decode($func));
+            return view("scaffolder.configureTableController", compact("metadados", "functions"));
         }
-        $func = File::get($urlFunctions);
-        $functions = collect(json_decode($func));
 
-        return view("scaffolder.configureTableController", compact("metadados", "functions"));
     }
 
     public function tablesConfigureFuncPost(Request $request)
@@ -74,6 +75,8 @@ class ScaffolderController extends Controller
 
         $json = $this->joinJson($baseJson, $newJson);
 
+
+
         $this->createByJsonObject($json);
 
         file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), json_encode($baseJson, JSON_PRETTY_PRINT));
@@ -84,18 +87,27 @@ class ScaffolderController extends Controller
     {
         foreach ($baseJson as $jName => $j) {
             foreach ($newJson as $nName => $n) {
-                //dd($jName . "==" . $nName);
                 if ($jName === $nName) {
                     $baseJson->mergeRecursive([$jName => $n]);
                 }
             }
         }
+
+        $baseJson->put("generated", "no");
+
         return $baseJson;
     }
 
     private function createByJsonObject($json)
     {
-        foreach ($json as $m) {
+        //VER SE FAZ SENTIDO****************************************
+        foreach ($json as $field=>$m) {
+            if($field == "generated"){
+                $json->put($field, "yes");
+                return;$json;
+            }
+            //*******************************************************
+
             if ($m->enable == "yes") {
                 Artisan::call("make:model $m->modelName   --controller");
                 Artisan::call("make:resource $m->modelName");
@@ -124,7 +136,6 @@ class ScaffolderController extends Controller
             $contents .= $newRoute;
             file_put_contents($modelPath, $contents);
         }
-
     }
 
     private function populateController($m)
@@ -154,8 +165,6 @@ class ScaffolderController extends Controller
                             $contents .= $changed;
                         }
                     } else {
-                        //adicionar as funcoes
-
                         foreach ($m->functions as $fName => $f) {
                             if ($fName === $funcName) {
                                 if ($f->enable == "yes") {
@@ -166,7 +175,6 @@ class ScaffolderController extends Controller
                     }
                 }
             }
-
             $contents .= "\n\n";
             $contents .= "}";
             file_put_contents($modelPath, $contents);
@@ -178,18 +186,22 @@ class ScaffolderController extends Controller
     {
 
         $modelPath = base_path("app/" . $m->modelName . ".php");
-
-
         if (File::exists($modelPath)) {
 
             $contents = File::get($modelPath);
-
-
             $contents = substr_replace($contents, "", -3);
             $contents .= "\n";
-            $contents .= '    protected $table = "' . $m->modelTable . '";';
+
+
+            $initTable = '    protected $table = "' . $m->modelTable . '";';
+            if (strpos($contents, $initTable) == false) {
+                $contents.= $initTable;
+            }
+
+
             $contents .= "\n";
-            $contents .= '    protected $fillable=[';
+
+            $initFillable = '    protected $fillable=[';
             $i = 0;
             $len = 0;
 
@@ -197,22 +209,21 @@ class ScaffolderController extends Controller
             foreach ($m->fields as $key => $field) {
                 $len++;
             }
-
-
             foreach ($m->fields as $key => $field) {
-                //if (isset($field->enable) == "yes") {
                 $i++;
                 if ($i == $len) {
-                    $contents .= '"' . $key . '"';
+                    $initFillable .= '"' . $key . '"';
+                    $initFillable .= "];";
                 } else {
-                    $contents .= '"' . $key . '",';
+                    $initFillable .= '"' . $key . '",';
                 }
-                //}
-
             }
-            $contents .= "];\n";
-            $contents .= "}";
 
+
+            if (strpos($contents, $initFillable) == false) {
+                $contents.= $initFillable;
+                $contents .= "\n}";
+            }
 
             file_put_contents($modelPath, $contents);
 
