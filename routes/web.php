@@ -17,7 +17,8 @@ Route::get('/getSchemaDB', "Scaffolder\ScaffolderController@getSchemaDB")->name(
 Route::post("/error", "Scaffolder\ScaffolderController@errorPage")->name("scaffolder.error");
 Route::post("/configure", "Scaffolder\ScaffolderController@tablesConfigureP1Post")->name("scaffolder.tablesConfigureP1");
 Route::post("/configure/func", "Scaffolder\ScaffolderController@tablesConfigureFuncPost")->name("scaffolder.tablesConfigureFunction");
-Route::get("/backoffice/", "Scaffolder\ScaffolderController@backofficeIndex")->name("scaffolder.backofficeIndex");
+//backOffice
+Route::get("/backoffice/controller", "Scaffolder\ScaffolderController@backofficeController")->name("scaffolder.backofficeController");
 
 
 

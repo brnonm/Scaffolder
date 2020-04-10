@@ -417,6 +417,8 @@
                                 Install
                             </a>
                         </li>
+
+
                         <li class="app-sidebar__heading">Backoffice</li>
                         <li>
                             <a href="#">
@@ -426,7 +428,7 @@
                             </a>
                             <ul>
                                 <li>
-                                    <a href="elements-buttons-standard.html">
+                                    <a href="{{route('scaffolder.backofficeController')}}">
                                         <i class="metismenu-icon"></i>
                                         Controllers
                                     </a>

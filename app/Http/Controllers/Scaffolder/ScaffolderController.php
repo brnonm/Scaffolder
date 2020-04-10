@@ -11,9 +11,10 @@ use Illuminate\Support\Facades\File;
 
 class ScaffolderController extends Controller
 {
-    public function backofficeIndex()
+    public function backofficeController()
     {
-        return view("scaffolder.views.index");
+        $json = collect(json_decode(File::get(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'))));
+        return view("scaffolder.back.controllers", compact("json"));
     }
 
     public function indexChooseDB()
