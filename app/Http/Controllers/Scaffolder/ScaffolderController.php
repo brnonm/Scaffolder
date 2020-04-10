@@ -23,7 +23,6 @@ class ScaffolderController extends Controller
         return view("scaffolder.choosedb", compact("dbs"));
     }
 
-
     public function getSchemaDB(Request $request)
     {
 
@@ -53,8 +52,8 @@ class ScaffolderController extends Controller
         $metadados = collect($metadados->first());
 
         if (!File::exists($urlFunctions)) {
-            //retornar vista de erro
-            ("Erro nao encontra o ficheiro");
+            $error = "File with generic functions does not find!";
+            return view("scaffolder.errorPage", compact("error"));
         }
         $func = File::get($urlFunctions);
         $functions = collect(json_decode($func));
@@ -83,27 +82,19 @@ class ScaffolderController extends Controller
 
     private function joinJson($baseJson, $newJson)
     {
-
-
         foreach ($baseJson as $jName => $j) {
             foreach ($newJson as $nName => $n) {
                 //dd($jName . "==" . $nName);
                 if ($jName === $nName) {
                     $baseJson->mergeRecursive([$jName => $n]);
-                    //dd($jName . "==" . $nName);
                 }
             }
         }
-
         return $baseJson;
-
     }
 
     private function createByJsonObject($json)
     {
-        //$json = collect(json_decode($json));
-        //$json = $json->first();
-
         foreach ($json as $m) {
             if ($m->enable == "yes") {
                 Artisan::call("make:model $m->modelName   --controller");
@@ -204,9 +195,7 @@ class ScaffolderController extends Controller
 
 
             foreach ($m->fields as $key => $field) {
-                //if (isset($field->enable) == "yes") {
                 $len++;
-                //}
             }
 
 
@@ -228,8 +217,8 @@ class ScaffolderController extends Controller
             file_put_contents($modelPath, $contents);
 
         } else {
-
-            //pensar em alguma coisa
+            $error = "File".$m->modelName. "does not find!";
+            return view("scaffolder.errorPage", compact("error"));
         }
 
 
