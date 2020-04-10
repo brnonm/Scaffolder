@@ -70,21 +70,11 @@
 
                                                         @foreach($table as $keyy=>$field)
                                                             <tr>
-                                                            <!--
-                                                        <th>
-
-                                                            <input type="checkbox" class="option"
-                                                                   name='metadados[{{$nameTable}}][fields][{{$keyy}}][enable]'
-                                                                   value="yes">
-                                                        </th>
-                                                        -->
                                                                 <th>{{$field->Field}}</th>
                                                                 <td>{{$field->Type}}</td>
                                                                 <td> {{$field->Null}}</td>
                                                                 <td> {{$field->Key}}</td>
                                                                 <td>{{$field->Default}} / {{$field->Extra}}</td>
-
-
                                                                 <td>
                                                                     <select class="form-control"
                                                                             name='metadados[{{$nameTable}}][fields][{{$keyy}}][type]'>
@@ -94,6 +84,7 @@
                                                                     </select>
                                                                 </td>
                                                                 <td>
+
 
                                                                     <input type="number" class="form-control"
                                                                            name='metadados[{{$nameTable}}][fields][{{$keyy}}][lenght]'

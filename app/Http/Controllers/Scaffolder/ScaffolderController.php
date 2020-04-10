@@ -64,16 +64,45 @@ class ScaffolderController extends Controller
 
     public function tablesConfigureFuncPost(Request $request)
     {
-        $json = json_encode($request->except('_token'), JSON_PRETTY_PRINT);
+        $baseJson = File::get(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'));
+        $baseJson = collect(json_decode($baseJson));
+        $baseJson = collect($baseJson->first());
 
+        $newJson = json_encode($request->except('_token'), JSON_PRETTY_PRINT);
+        $newJson = collect(json_decode($newJson));
+        $newJson = collect($newJson->first());
+
+
+        $json = $this->joinJson($baseJson, $newJson);
+
+        $this->createByJsonObject($json);
+
+        file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), json_encode($baseJson, JSON_PRETTY_PRINT));
         return view("scaffolder.configureFinish", compact("json"));
+    }
+
+    private function joinJson($baseJson, $newJson)
+    {
+
+
+        foreach ($baseJson as $jName => $j) {
+            foreach ($newJson as $nName => $n) {
+                //dd($jName . "==" . $nName);
+                if ($jName === $nName) {
+                    $baseJson->mergeRecursive([$jName => $n]);
+                    //dd($jName . "==" . $nName);
+                }
+            }
+        }
+
+        return $baseJson;
+
     }
 
     private function createByJsonObject($json)
     {
-
-        $json = collect(json_decode($json));
-        $json = $json->first();
+        //$json = collect(json_decode($json));
+        //$json = $json->first();
 
         foreach ($json as $m) {
             if ($m->enable == "yes") {
@@ -125,26 +154,32 @@ class ScaffolderController extends Controller
             $contents = substr_replace($contents, "", -3);
             $contents .= "\n";
 
-            foreach ($functions->controller as $func) {
+            foreach ($functions->controller as $funcName => $func) {
                 if (strpos($contents, $func) == false) {
                     if (strpos($func, '$m->modelName') != false) {
                         $changed = str_replace(['$m->modelName'], [$m->modelName], $func);
+
                         if (strpos($contents, $changed) == false) {
                             $contents .= $changed;
                         }
                     } else {
-                        $contents .= $func;
+                        //adicionar as funcoes
+
+                        foreach ($m->functions as $fName => $f) {
+                            if ($fName === $funcName) {
+                                if ($f->enable == "yes") {
+                                    $contents .= $func;
+                                }
+                            }
+                        }
                     }
                 }
             }
+
             $contents .= "\n\n";
             $contents .= "}";
             file_put_contents($modelPath, $contents);
-
-
         }
-
-
     }
 
 

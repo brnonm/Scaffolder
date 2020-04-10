@@ -8,72 +8,71 @@
         </div>
         <hr>
         <br>
-        <div>
+        <form method="POST" action="{{route("scaffolder.tablesConfigureFunction")}} ">
+            @csrf
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="accordion">
+                        <div class="card">
+                            @foreach($metadados as $nameTable=>$table)
+                                @if($table->enable == "yes")
 
-            <form method="POST" action="{{route("scaffolder.tablesConfigureFunction")}} ">
-                @csrf
-                <div class="row">
-                    <div class="col-md-12">
-                        <div id="accordion">
-                            <div class="card">
-                                @foreach($metadados as $nameTable=>$table)
-                                    @if($table->enable == "yes")
-                                        <div class="card-header" id="headingOne">
-                                            <div class="row">
-                                                <div class="col-md-8">
-                                                    <h5 class="mb-0">
-                                                        <a class="btn btn-link" style="text-decoration: underline"
-                                                           data-toggle="collapse" data-target="#{{$nameTable}}"
-                                                           aria-expanded="true" aria-controls=" {{$nameTable}}">
-                                                            Table {{$nameTable}}
-                                                        </a>
-                                                    </h5>
-                                                </div>
+                                    <div class="card-header" id="headingOne">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <h5 class="mb-0">
+                                                    <a class="btn btn-link" style="text-decoration: underline"
+                                                       data-toggle="collapse" data-target="#{{$nameTable}}"
+                                                       aria-expanded="true" aria-controls=" {{$nameTable}}">
+                                                        Table {{$nameTable}}
+                                                    </a>
+                                                </h5>
                                             </div>
                                         </div>
-                                        <div id="{{$nameTable}}" class="collapse" aria-labelledby="headingOne"
-                                             data-parent="#accordion">
-                                            <div class="card-body">
-                                                <table class="table">
-                                                    <tr>
-                                                        <th>Select</th>
-                                                        <th>Function name</th>
-                                                        <th>Function</th>
-                                                    </tr>
+                                    </div>
+                                    <div id="{{$nameTable}}" class="collapse" aria-labelledby="headingOne"
+                                         data-parent="#accordion">
+                                        <div class="card-body">
+                                            <table class="table">
+                                                <tr>
+                                                    <th>Select</th>
+                                                    <th>Function name</th>
+                                                    <th>Function</th>
+                                                </tr>
 
 
-                                                    @foreach($functions as $funcName=>$funcs)
-                                                        @if($funcName == "controller")
-                                                            @foreach($funcs as $fname=>$func)
-                                                                @if($fname != "header")
-                                                                    <tr>
-                                                                        <th>
-                                                                            @dd()
-                                                                            <input type="checkbox"
-                                                                                   name="metadados[{{$nameTable}}][functions][{{$fname}}][enable]"
-                                                                                   value="yes">
-                                                                        </th>
-                                                                        <td>{{ucfirst($fname)}}</td>
-                                                                        <td></td>
-                                                                    </tr>
-                                                                @endif
-                                                            @endforeach
-                                                        @endif
-                                                    @endforeach
-                                                </table>
-                                            </div>
+                                                @foreach($functions as $funcName=>$funcs)
+                                                    @if($funcName == "controller")
+                                                        @foreach($funcs as $fname=>$func)
+                                                            @if($fname != "header")
+                                                                <tr>
+                                                                    <th>
+                                                                        <input type="hidden"
+                                                                               name="metadados[{{$nameTable}}][functions][{{$fname}}][enable]"
+                                                                               value="no">
+                                                                        <input type="checkbox"
+                                                                               name="metadados[{{$nameTable}}][functions][{{$fname}}][enable]"
+                                                                               value="yes">
+                                                                    </th>
+                                                                    <td>{{ucfirst($fname)}}</td>
+                                                                    <td></td>
+                                                                </tr>
+                                                            @endif
+                                                        @endforeach
+                                                    @endif
+                                                @endforeach
+                                            </table>
                                         </div>
-                                    @endif
-                                @endforeach
-
-                            </div>
+                                    </div>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                 </div>
-                <br>
-                <input type="submit" value="Next" class="btn btn-info col-md-12">
-            </form>
-        </div>
+            </div>
+            <input type="submit" value="Next" class="btn btn-info col-md-12">
+        </form>
+
     </div>
 @endsection
 

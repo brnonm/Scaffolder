@@ -20,7 +20,7 @@
             }
         },
         "failed_jobs": {
-            "enable": "no",
+            "enable": "yes",
             "modelName": "Failed_job",
             "modelTable": "failed_jobs",
             "fields": {

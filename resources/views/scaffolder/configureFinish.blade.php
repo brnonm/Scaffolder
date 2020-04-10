@@ -1,8 +1,9 @@
 @extends("scaffolder.views.partials.main")
 @section("container")
 
+    @csrf
     <div>
-        @dd($json)
+       GENERATED!!
     </div>
 
 @endsection

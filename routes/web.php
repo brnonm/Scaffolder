@@ -24,3 +24,5 @@ Route::get("/backoffice/", "Scaffolder\ScaffolderController@backofficeIndex")->n
 
 
 Route::resource("Categorie", "CategorieController");
+
+Route::resource("Failed_job", "Failed_jobController");
