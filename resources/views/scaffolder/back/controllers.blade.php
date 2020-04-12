@@ -12,12 +12,13 @@
                 <div id="accordion">
                     <div class="card">
 
-                        @foreach($json as $field=>$jsOB)
-                            @if(isset($jsOB->enable) == 'yes')
 
 
+                        @foreach($metadados as $nameTable=>$table)
 
-                                <div id="{{$field}}" class="collapse" aria-labelledby="headingOne"
+
+                            @if($table["enable"] == "yes")
+                                <div id="{{$table->modelName}}" class="collapse" aria-labelledby="headingOne"
                                      data-parent="#accordion">
                                     <div class="card-body">
                                         <div class="row">
@@ -28,28 +29,21 @@
                                                 <th>Function(s) name</th>
                                                 </tr>
                                                 <tr>
-                                                    <th>{{$jsOB->modelName}}</th>
-                                                    <th>{{$jsOB->modelTable}}</th>
-                                                    <th>{{$jsOB->modelName}}</th>
-                                                    <th>{{$jsOB->modelName}}</th>
+                                                    <th>{{$table->modelName}}</th>
+                                                    <th>{{$table->modelTable}}</th>
+                                                    <th>{{$table->modelName}}</th>
+                                                    <th>{{$table->modelName}}</th>
                                                 </tr>
-
-
                                             </table>
                                         </div>
                                     </div>
                                 </div>
-
-
                             @endif
                         @endforeach
-
                     </div>
                 </div>
             </div>
         </div>
-
-
     </div>
 
 @endsection

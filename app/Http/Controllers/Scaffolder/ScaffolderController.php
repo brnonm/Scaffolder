@@ -13,8 +13,9 @@ class ScaffolderController extends Controller
 {
     public function backofficeController()
     {
-        $json = collect(json_decode(File::get(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'))));
-        return view("scaffolder.back.controllers", compact("json"));
+        $json = File::get(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'));
+        $metadados = collect(json_decode($json));
+        return view("scaffolder.back.controllers", compact("metadados"));
     }
 
     public function indexChooseDB()
@@ -205,6 +206,8 @@ class ScaffolderController extends Controller
             $initFillable = '    protected $fillable=[';
             $i = 0;
             $len = 0;
+
+
 
 
             foreach ($m->fields as $key => $field) {
