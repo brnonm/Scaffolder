@@ -13,11 +13,10 @@
                     <div class="card">
 
 
-
                         @foreach($metadados as $nameTable=>$table)
                             @if(isset($table["enable"]))
 
-                            @if($table["enable"] == "yes")
+                                @if($table["enable"] == "yes")
 
                                     <div class="card-header" id="headingOne">
                                         <div class="row">
@@ -33,27 +32,43 @@
                                         </div>
                                     </div>
 
-                                <div id="{{$table["modelName"]}}" class="collapse" aria-labelledby="headingOne"
-                                     data-parent="#accordion">
-                                    <div class="card-body">
+                                    <div id="{{$table["modelName"]}}" class="collapse" aria-labelledby="headingOne"
+                                         data-parent="#accordion">
+                                        <div class="card-body">
 
-                                        <div class="row">
-                                            <table class="table">
-                                                <th>Model Name</th>
-                                                <th>Model Table</th>
-                                                <th>Fields</th>
-                                                <th>Function(s) name</th>
-                                                </tr>
-                                                <tr>
-                                                    <th>{{$table["modelName"]}}</th>
-                                                    <th>{{$table["modelTable"]}}</th>
-                                                    <th>{{$table["modelName"]}}</th>
+                                            <div class="row">
+                                                <table class="table">
+                                                    <th>Model Name</th>
+                                                    <th>Model Table</th>
+                                                    <th>Fields</th>
+                                                    <th>Function(s) name</th>
+                                                    </tr>
+                                                    <tr>
                                                         <th>{{$table["modelName"]}}</th>
-                                                </tr>
-                                            </table>
+                                                        <th>{{$table["modelTable"]}}</th>
+
+                                                        <th>
+                                                            @foreach($table["fields"] as $name=>$field)
+                                                                {{$name}}
+                                                                @if(!$loop->last)
+                                                                    {{","}}
+                                                                @endif
+                                                            @endforeach
+                                                        </th>
+                                                        <th>
+                                                            @foreach($table["functions"] as $name=>$function)
+                                                                {{$name}}
+                                                                @if(!$loop->last)
+                                                                    {{","}}
+                                                                @endif
+                                                            @endforeach
+                                                        </th>
+                                                        
+                                                    </tr>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                 @endif
                             @endif
                         @endforeach
