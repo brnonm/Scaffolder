@@ -17,7 +17,7 @@
 <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 </div>
 </div>
-<script type="text/javascript" src="./assets/scripts/main.js"></script></body>
+<script type="text/javascript" src="/./assets/scripts/main.js"></script></body>
 
 <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 </html>

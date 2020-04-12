@@ -15,12 +15,28 @@
 
 
                         @foreach($metadados as $nameTable=>$table)
-
+                            @if(isset($table["enable"]))
 
                             @if($table["enable"] == "yes")
-                                <div id="{{$table->modelName}}" class="collapse" aria-labelledby="headingOne"
+
+                                    <div class="card-header" id="headingOne">
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <h5 class="mb-0">
+                                                    <a class="btn btn-link" style="text-decoration: underline"
+                                                       data-toggle="collapse" data-target="#{{$table["modelName"]}}"
+                                                       aria-expanded="true" aria-controls=" {{$table["modelName"]}}">
+                                                        Table {{$table["modelName"]}}
+                                                    </a>
+                                                </h5>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                <div id="{{$table["modelName"]}}" class="collapse" aria-labelledby="headingOne"
                                      data-parent="#accordion">
                                     <div class="card-body">
+
                                         <div class="row">
                                             <table class="table">
                                                 <th>Model Name</th>
@@ -29,15 +45,16 @@
                                                 <th>Function(s) name</th>
                                                 </tr>
                                                 <tr>
-                                                    <th>{{$table->modelName}}</th>
-                                                    <th>{{$table->modelTable}}</th>
-                                                    <th>{{$table->modelName}}</th>
-                                                    <th>{{$table->modelName}}</th>
+                                                    <th>{{$table["modelName"]}}</th>
+                                                    <th>{{$table["modelTable"]}}</th>
+                                                    <th>{{$table["modelName"]}}</th>
+                                                        <th>{{$table["modelName"]}}</th>
                                                 </tr>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
+                                @endif
                             @endif
                         @endforeach
                     </div>

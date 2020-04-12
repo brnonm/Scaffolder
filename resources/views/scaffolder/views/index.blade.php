@@ -2,11 +2,18 @@
 @section("container")
 
     <div class="row">
-        <h2>Selecionar Base de Dados</h2>
+        <h2></h2>
     </div>
     <div class="row">
 
-        {{dd($items)}}
+        <table>
+            @foreach($items as $i)
+                <tr>
+                    @foreach($i::$fill)
+            <td>{{$i->user_id}}</td>
+                </tr>
+            @endforeach
+        </table>
     </div>
     </div>
 

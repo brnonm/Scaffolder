@@ -14,7 +14,9 @@ class ScaffolderController extends Controller
     public function backofficeController()
     {
         $json = File::get(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'));
-        $metadados = collect(json_decode($json));
+        $metadados = collect(json_decode($json, true));
+
+
         return view("scaffolder.back.controllers", compact("metadados"));
     }
 
