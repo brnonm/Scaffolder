@@ -32,11 +32,12 @@
                                         </div>
                                     </div>
 
-                                    <div id="{{$table["modelName"]}}" class="collapse" aria-labelledby="headingOne"
+                                    <div id="{{$table["modelName"]}}" class="collapse show" aria-labelledby="headingOne"
                                          data-parent="#accordion">
                                         <div class="card-body">
 
                                             <div class="row">
+<<<<<<< HEAD
                                                 <div class="col-md-12">
                                                     <table class="table">
                                                         <th>Model Name</th>
@@ -70,6 +71,37 @@
                                                         </tr>
                                                     </table>
                                                 </div>
+=======
+                                                <table class="table">
+                                                    <th>Model Name</th>
+                                                    <th>Database Table</th>
+                                                    <th>Fields</th>
+                                                    <th>Function(s) name</th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>{{$table["modelName"]}}</td>
+                                                        <td>{{$table["modelTable"]}}</td>
+
+                                                        <td>
+                                                            @foreach($table["fields"] as $name=>$field)
+                                                                {{$name}}
+                                                                @if(!$loop->last)
+                                                                    {{","}}
+                                                                @endif
+                                                            @endforeach
+                                                        </td>
+                                                        <td>
+                                                            @foreach($table["functions"] as $name=>$function)
+                                                                {{$name}}
+                                                                @if(!$loop->last)
+                                                                    {{","}}
+                                                                @endif
+                                                            @endforeach
+                                                        </td>
+
+                                                    </tr>
+                                                </table>
+>>>>>>> master
                                             </div>
                                         </div>
                                     </div>

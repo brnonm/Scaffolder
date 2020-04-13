@@ -428,7 +428,7 @@
                             </a>
                             <ul>
                                 <li>
-                                    <a href="{{route('scaffolder.backofficeController')}}">
+                                    <a href="{{route('scaffolder.backoffice.controller')}}">
                                         <i class="metismenu-icon"></i>
                                         Controllers
                                     </a>
@@ -443,86 +443,17 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="#" class="mm-active" aria-expanded="true">
                                 <i class="metismenu-icon pe-7s-car"></i>
-                                Components
+                                Backoffice
                                 <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                             </a>
-                            <ul>
-                                <li>
-                                    <a href="components-tabs.html">
-                                        <i class="metismenu-icon">
-                                        </i>Tabs
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="components-accordions.html">
-                                        <i class="metismenu-icon">
-                                        </i>Accordions
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="components-notifications.html">
-                                        <i class="metismenu-icon">
-                                        </i>Notifications
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="components-modals.html">
-                                        <i class="metismenu-icon">
-                                        </i>Modals
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="components-progress-bar.html">
-                                        <i class="metismenu-icon">
-                                        </i>Progress Bar
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="components-tooltips-popovers.html">
-                                        <i class="metismenu-icon">
-                                        </i>Tooltips &amp; Popovers
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="components-carousel.html">
-                                        <i class="metismenu-icon">
-                                        </i>Carousel
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="components-calendar.html">
-                                        <i class="metismenu-icon">
-                                        </i>Calendar
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="components-pagination.html">
-                                        <i class="metismenu-icon">
-                                        </i>Pagination
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="components-scrollable-elements.html">
-                                        <i class="metismenu-icon">
-                                        </i>Scrollable
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="components-maps.html">
-                                        <i class="metismenu-icon">
-                                        </i>Maps
-                                    </a>
-                                </li>
+                            <ul class="mm-show">
+                                @include("scaffolder.views.partials.menujson")
+
                             </ul>
                         </li>
-                        <li  >
-                            <a href="tables-regular.html">
-                                <i class="metismenu-icon pe-7s-display2"></i>
-                                Tables
-                            </a>
-                        </li>
+
 
                     </ul>
                 </div>

@@ -1,43 +1,49 @@
 @extends("scaffolder.views.partials.main")
 @section("container")
-    <div>
+
         <div class="row">
             <div class="col-md-12" style="text-align: center">
                 <p>Gerador de projetos - Parte 2 - Escolher metodos para os controladores</p>
             </div>
         </div>
         <hr>
-        <br>
+
+        <div class="row">
+            <div class="col-2">
+                @foreach($metadados as $nameTable=>$table)
+                    @if($table->enable == "yes")
+                    <button style="width: 100%" class="btn btn-sm btn-light" onclick="show({{$nameTable}})">{{$nameTable}}</button><hr style="margin: 5px;" >
+                    @endif
+                @endforeach
+            </div>
+            <script>
+                function show(text){
+                    var qwe = document.getElementsByClassName("ableToClose");
+                    Array.prototype.forEach.call(qwe, function(el) {
+                        el.style.display="none";
+                    });
+
+                    text.style.display = "block";
+                }
+
+            </script>
+            <div class="col-10" >
+
         <form method="POST" action="{{route("scaffolder.tablesConfigureFunction")}} ">
             @csrf
-            <div class="row">
-                <div class="col-md-12">
-                    <div id="accordion">
-                        <div class="card">
                             @foreach($metadados as $nameTable=>$table)
                                 @if($table->enable == "yes")
 
-                                    <div class="card-header" id="headingOne">
-                                        <div class="row">
-                                            <div class="col-md-8">
-                                                <h5 class="mb-0">
-                                                    <a class="btn btn-link" style="text-decoration: underline"
-                                                       data-toggle="collapse" data-target="#{{$nameTable}}"
-                                                       aria-expanded="true" aria-controls=" {{$nameTable}}">
-                                                        Table {{$nameTable}}
-                                                    </a>
-                                                </h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div id="{{$nameTable}}" class="collapse" aria-labelledby="headingOne"
-                                         data-parent="#accordion">
-                                        <div class="card-body">
-                                            <table class="table">
+                                <div id="{{$nameTable}}" class="ableToClose" style="display: none">
+                                    <div class="form-group row">
+                                        <label for="inputPassword" class="col-sm-2 col-form-label">{{$nameTable}}</label>
+                                        <div class="col-sm-10">
+
+                                    <table class="table">
                                                 <tr>
                                                     <th>Select</th>
                                                     <th>Function name</th>
-                                                    <th>Function</th>
+
                                                 </tr>
 
 
@@ -56,7 +62,7 @@
                                                                                value="yes">
                                                                     </th>
                                                                     <td>{{ucfirst($fname)}}</td>
-                                                                    <td></td>
+
                                                                 </tr>
                                                             @endif
                                                         @endforeach
@@ -65,15 +71,16 @@
                                             </table>
                                         </div>
                                     </div>
+                                </div>
                                 @endif
                             @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+
             <input type="submit" value="Next" class="btn btn-info col-md-12">
         </form>
 
     </div>
+        </div>
+
 @endsection
 

@@ -18,6 +18,7 @@ Route::post("/error", "Scaffolder\ScaffolderController@errorPage")->name("scaffo
 Route::post("/configure", "Scaffolder\ScaffolderController@tablesConfigureP1Post")->name("scaffolder.tablesConfigureP1");
 Route::post("/configure/func", "Scaffolder\ScaffolderController@tablesConfigureFuncPost")->name("scaffolder.tablesConfigureFunction");
 //backOffice
+<<<<<<< HEAD
 Route::get(" ", "Scaffolder\ScaffolderController@backofficeController")->name("scaffolder.backofficeController");
 
 
@@ -30,3 +31,10 @@ Route::resource("Contact", "ContactController");
 Route::resource("Migration", "MigrationController");
 Route::resource("Movement", "MovementController");
 Route::resource("Password_reset", "Password_resetController");
+=======
+Route::get("/backoffice/controller", "Scaffolder\ScaffolderController@backofficeController")->name("scaffolder.backoffice.controller");
+
+
+Route::resource("clientes", "ClienteController");
+Route::resource("contacts", "ContactController");
+>>>>>>> master
