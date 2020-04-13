@@ -79,12 +79,13 @@ class ScaffolderController extends Controller
 
         $json = $this->joinJson($baseJson, $newJson);
 
-
-
+        $this->createMenuJson($json);
         $this->createByJsonObject($json);
 
         file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), json_encode($baseJson, JSON_PRETTY_PRINT));
-        return view("scaffolder.configureFinish", compact("json"));
+
+
+        return redirect()->route("scaffolder.backoffice.controller");
     }
 
     private function joinJson($baseJson, $newJson)
@@ -102,6 +103,58 @@ class ScaffolderController extends Controller
         return $baseJson;
     }
 
+    private function createMenuJson($json){
+
+        $modelPath = base_path("resources/views/scaffolder/views/partials/menujson.blade.php");
+        $urlFunc = base_path("app/Http/Controllers/Scaffolder/data/menuTemplate.json");
+
+        if (File::exists($modelPath)) {
+
+            $functions = json_decode(File::get($urlFunc), true);
+
+            $contents = File::get($modelPath);
+
+        foreach ($json as $key=>$value){
+            if(isset($value->enable)){
+            if($value->enable=="yes") {
+
+                $name = $key;
+                $finalName = "";
+
+
+
+
+                $contents .= "\n";
+
+                    foreach ($functions as $funcName => $func) {
+                        if (strpos($func, '$name') != false) {
+
+                            $changed = str_replace(['$name', '$route'], [$name, $name], $func);
+
+
+                            if (!(strpos($contents, $changed)>0)) {
+
+                                $contents .= $changed;
+                                $contents .= "\n";
+
+
+                            }
+                            file_put_contents($modelPath, $contents);
+                        }
+
+                    }
+
+
+
+
+                }
+
+            }}
+
+        }
+
+
+    }
     private function createByJsonObject($json)
     {
         //VER SE FAZ SENTIDO****************************************
@@ -130,7 +183,8 @@ class ScaffolderController extends Controller
 
     private function populateRoutes($m)
     {
-        $newRoute = 'Route::resource("' . $m->modelName . '", "' . $m->modelName . 'Controller");';
+
+        $newRoute = 'Route::resource("' . $m->modelTable . '", "' . $m->modelName . 'Controller");';
         $modelPath = base_path("routes/web.php");
 
         $contents = File::get($modelPath);

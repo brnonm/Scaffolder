@@ -38,5 +38,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     protected $table = "users";
-    protected $fillable=[];
+    protected $fillable=[]
+
+    protected $fillable=["id","name","email","password","remember_token","created_at","updated_at"];
 }

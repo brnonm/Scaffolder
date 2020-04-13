@@ -9,8 +9,7 @@
         <table>
             @foreach($items as $i)
                 <tr>
-                    @foreach($i::$fill)
-            <td>{{$i->user_id}}</td>
+                    <td>{{$i->user_id}}</td>
                 </tr>
             @endforeach
         </table>

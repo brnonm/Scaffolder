@@ -1,0 +1,4 @@
+{
+    "nome" :"<li>  <a href=\"/$route\"> <i class=\"metismenu-icon\"></i>  $name </a> </li>"
+
+}
