@@ -47,6 +47,7 @@
                                                             @if($fname != "header")
                                                                 <tr>
                                                                     <th>
+
                                                                         <input type="hidden"
                                                                                name="metadados[{{$nameTable}}][functions][{{$fname}}][enable]"
                                                                                value="no">

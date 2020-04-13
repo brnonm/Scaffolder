@@ -20,20 +20,11 @@
         "functions": {
             "index": {
                 "enable": "yes"
-            },
-            "create": {
-                "enable": "yes"
-            },
-            "destroy": {
-                "enable": "yes"
-            },
-            "update": {
-                "enable": "yes"
             }
         }
     },
     "failed_jobs": {
-        "enable": "no",
+        "enable": "yes",
         "modelName": "Failed_job",
         "modelTable": "failed_jobs",
         "fields": {
@@ -61,10 +52,18 @@
                 "type": "text",
                 "lenght": null
             }
+        },
+        "functions": {
+            "create": {
+                "enable": "yes"
+            },
+            "destroy": {
+                "enable": "yes"
+            }
         }
     },
     "migrations": {
-        "enable": "no",
+        "enable": "yes",
         "modelName": "Migration",
         "modelTable": "migrations",
         "fields": {
@@ -80,10 +79,18 @@
                 "type": "text",
                 "lenght": null
             }
+        },
+        "functions": {
+            "index": {
+                "enable": "yes"
+            },
+            "create": {
+                "enable": "yes"
+            }
         }
     },
     "movements": {
-        "enable": "no",
+        "enable": "yes",
         "modelName": "Movement",
         "modelTable": "movements",
         "fields": {
@@ -154,6 +161,14 @@
             "value": {
                 "type": "text",
                 "lenght": "92"
+            }
+        },
+        "functions": {
+            "index": {
+                "enable": "yes"
+            },
+            "update": {
+                "enable": "yes"
             }
         }
     },

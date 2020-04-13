@@ -37,35 +37,39 @@
                                         <div class="card-body">
 
                                             <div class="row">
-                                                <table class="table">
-                                                    <th>Model Name</th>
-                                                    <th>Model Table</th>
-                                                    <th>Fields</th>
-                                                    <th>Function(s) name</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>{{$table["modelName"]}}</th>
-                                                        <th>{{$table["modelTable"]}}</th>
+                                                <div class="col-md-12">
+                                                    <table class="table">
+                                                        <th>Model Name</th>
+                                                        <th>Model Table</th>
+                                                        <th>Fields</th>
+                                                        <th>Function(s) name</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>{{$table["modelName"]}}</th>
+                                                            <th>{{$table["modelTable"]}}</th>
 
-                                                        <th>
-                                                            @foreach($table["fields"] as $name=>$field)
-                                                                {{$name}}
-                                                                @if(!$loop->last)
-                                                                    {{","}}
-                                                                @endif
-                                                            @endforeach
-                                                        </th>
-                                                        <th>
-                                                            @foreach($table["functions"] as $name=>$function)
-                                                                {{$name}}
-                                                                @if(!$loop->last)
-                                                                    {{","}}
-                                                                @endif
-                                                            @endforeach
-                                                        </th>
-                                                        
-                                                    </tr>
-                                                </table>
+                                                            <th>
+                                                                @foreach($table["fields"] as $name=>$field)
+                                                                    {{$name}}
+                                                                    @if(!$loop->last)
+                                                                        {{","}}
+                                                                    @endif
+                                                                @endforeach
+                                                            </th>
+                                                            <th>
+                                                                @foreach($table["functions"] as $name=>$function)
+                                                                    @if($function["enable"] == "yes")
+                                                                        {{$name}}
+                                                                        @if(!$loop->last)
+                                                                            {{","}}
+                                                                        @endif
+                                                                    @endif
+                                                                @endforeach
+                                                            </th>
+
+                                                        </tr>
+                                                    </table>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
