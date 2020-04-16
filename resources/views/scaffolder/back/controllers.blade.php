@@ -37,7 +37,6 @@
                                         <div class="card-body">
 
                                             <div class="row">
-<<<<<<< HEAD
                                                 <div class="col-md-12">
                                                     <table class="table">
                                                         <th>Model Name</th>
@@ -71,7 +70,6 @@
                                                         </tr>
                                                     </table>
                                                 </div>
-=======
                                                 <table class="table">
                                                     <th>Model Name</th>
                                                     <th>Database Table</th>
@@ -101,7 +99,6 @@
 
                                                     </tr>
                                                 </table>
->>>>>>> master
                                             </div>
                                         </div>
                                     </div>

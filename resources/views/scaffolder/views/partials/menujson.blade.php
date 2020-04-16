@@ -16,3 +16,8 @@
 
 
 
+
+<li>  <a href="/categories"> <i class="metismenu-icon"></i>  categories </a> </li>
+
+
+<li>  <a href="/password_resets"> <i class="metismenu-icon"></i>  password_resets </a> </li>

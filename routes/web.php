@@ -21,9 +21,6 @@ Route::group([ 'prefix' => 'install', 'as' => 'install.'], function () {
     Route::post("/configure", "Scaffolder\ScaffolderController@tablesConfigureP1Post")->name("tablesConfigureP1");
     Route::post("/configure/func", "Scaffolder\ScaffolderController@tablesConfigureFuncPost")->name("tablesConfigureFunction");
 
-
-
-
 });
 Route::group([ 'prefix' => 'scaffolder', 'as' => 'scaffolder.'], function () {
     Route::get("/controller", "Scaffolder\ScaffolderController@backofficeController")->name("controller");
@@ -31,9 +28,7 @@ Route::group([ 'prefix' => 'scaffolder', 'as' => 'scaffolder.'], function () {
 });
 
 
-
-
-
-
-
 Route::resource("clientes", "ClienteController");
+
+Route::resource("categories", "CategorieController");
+Route::resource("password_resets", "Password_resetController");
