@@ -85,7 +85,7 @@ class ScaffolderController extends Controller
         file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), json_encode($baseJson, JSON_PRETTY_PRINT));
 
 
-        return redirect()->route("scaffolder.backoffice.controller");
+        return redirect()->route("scaffolder.controller");
     }
 
     private function joinJson($baseJson, $newJson)
