@@ -12,29 +12,28 @@
 */
 
 //rotas de administração
-Route::get('/', "Scaffolder\ScaffolderController@indexChooseDB")->name("scaffolder.indexChooseDB");
-Route::get('/getSchemaDB', "Scaffolder\ScaffolderController@getSchemaDB")->name("scaffolder.getSchemaDB");
-Route::post("/error", "Scaffolder\ScaffolderController@errorPage")->name("scaffolder.error");
-Route::post("/configure", "Scaffolder\ScaffolderController@tablesConfigureP1Post")->name("scaffolder.tablesConfigureP1");
-Route::post("/configure/func", "Scaffolder\ScaffolderController@tablesConfigureFuncPost")->name("scaffolder.tablesConfigureFunction");
-//backOffice
-<<<<<<< HEAD
-Route::get(" ", "Scaffolder\ScaffolderController@backofficeController")->name("scaffolder.backofficeController");
+
+
+Route::group([ 'prefix' => 'install', 'as' => 'install.'], function () {
+    Route::get('/', "Scaffolder\ScaffolderController@indexChooseDB")->name("indexChooseDB");
+    Route::get('/getSchemaDB', "Scaffolder\ScaffolderController@getSchemaDB")->name("getSchemaDB");
+    Route::post("/error", "Scaffolder\ScaffolderController@errorPage")->name("error");
+    Route::post("/configure", "Scaffolder\ScaffolderController@tablesConfigureP1Post")->name("tablesConfigureP1");
+    Route::post("/configure/func", "Scaffolder\ScaffolderController@tablesConfigureFuncPost")->name("tablesConfigureFunction");
 
 
 
-Route::resource("Categorie", "CategorieController");
-Route::resource("Failed_job", "Failed_jobController");
 
-Route::resource("Cliente", "ClienteController");
-Route::resource("Contact", "ContactController");
-Route::resource("Migration", "MigrationController");
-Route::resource("Movement", "MovementController");
-Route::resource("Password_reset", "Password_resetController");
-=======
-Route::get("/backoffice/controller", "Scaffolder\ScaffolderController@backofficeController")->name("scaffolder.backoffice.controller");
+});
+Route::group([ 'prefix' => 'scaffolder', 'as' => 'scaffolder.'], function () {
+    Route::get("/controller", "Scaffolder\ScaffolderController@backofficeController")->name("controller");
+
+});
+
+
+
+
+
 
 
 Route::resource("clientes", "ClienteController");
-Route::resource("contacts", "ContactController");
->>>>>>> master

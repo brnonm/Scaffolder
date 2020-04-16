@@ -412,7 +412,7 @@
                     <ul class="vertical-nav-menu">
                         <li class="app-sidebar__heading">Scaffolder</li>
                         <li>
-                            <a href="{{route("scaffolder.indexChooseDB")}}" class="mm-active">
+                            <a href="{{route("install.indexChooseDB")}}" class="mm-active">
                                 <i class="metismenu-icon pe-7s-rocket"></i>
                                 Install
                             </a>
@@ -428,7 +428,7 @@
                             </a>
                             <ul>
                                 <li>
-                                    <a href="{{route('scaffolder.backoffice.controller')}}">
+                                    <a href="{{route('scaffolder.controller')}}">
                                         <i class="metismenu-icon"></i>
                                         Controllers
                                     </a>
@@ -448,7 +448,7 @@
                                 Backoffice
                                 <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                             </a>
-                            <ul class="mm-show">
+                                <ul class="mm-show">
                                 @include("scaffolder.views.partials.menujson")
 
                             </ul>

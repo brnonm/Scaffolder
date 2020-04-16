@@ -6,68 +6,98 @@
         "fields": {
             "id": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Id",
+                "display": "yes"
             },
             "nome": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Nome",
+                "display": "yes"
             },
             "tipocliente": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Tipocliente",
+                "display": "yes"
             },
             "contacto": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Contacto",
+                "display": "yes"
             },
             "morada": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Morada",
+                "display": "yes"
             },
             "ncontrib": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Ncontrib",
+                "display": "yes"
             },
             "codigo": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Codigo",
+                "display": "yes"
             },
             "cdpostal": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Cdpostal",
+                "display": "yes"
             },
             "local": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Local",
+                "display": "yes"
             },
             "email": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Email",
+                "display": "yes"
             },
             "ncabecas": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Ncabeca",
+                "display": "yes"
             },
             "datacri": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Datacri",
+                "display": "yes"
             },
             "created_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Created_at",
+                "display": "yes"
             },
             "updated_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Updated_at",
+                "display": "yes"
             },
             "deleted_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Deleted_at",
+                "display": "yes"
             }
         },
         "functions": {
             "index": {
-                "enable": "no"
+                "enable": "yes"
             },
             "create": {
                 "enable": "no"
@@ -82,64 +112,56 @@
     },
     "contacts": {
         "modelName": "Contact",
-        "enable": "yes",
+        "enable": "no",
         "modelTable": "contacts",
         "fields": {
             "id": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Id",
+                "display": "yes"
             },
             "name": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Name",
+                "display": "yes"
             },
             "subject": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Subject",
+                "display": "yes"
             },
             "email": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Email",
+                "display": "yes"
             },
             "message": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Message",
+                "display": "yes"
             },
             "created_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Created_at",
+                "display": "yes"
             },
             "updated_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Updated_at",
+                "display": "yes"
             },
             "deleted_at": {
                 "type": "text",
-                "lenght": null
-            }
-        },
-        "functions": {
-            "index": {
-<<<<<<< HEAD
-                "enable": "yes"
-            }
-        }
-    },
-    "failed_jobs": {
-        "enable": "yes",
-        "modelName": "Failed_job",
-        "modelTable": "failed_jobs",
-=======
-                "enable": "no"
-            },
-            "create": {
-                "enable": "no"
-            },
-            "destroy": {
-                "enable": "no"
-            },
-            "update": {
-                "enable": "no"
+                "lenght": null,
+                "name": "Deleted_at",
+                "display": "yes"
             }
         }
     },
@@ -147,131 +169,140 @@
         "modelName": "Criterio_valor",
         "enable": "no",
         "modelTable": "criterio_valors",
->>>>>>> master
         "fields": {
             "id": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Id",
+                "display": "yes"
             },
             "cliente_id": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Cliente_id",
+                "display": "yes"
             },
             "criterio": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Criterio",
+                "display": "yes"
             },
             "valor": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Valor",
+                "display": "yes"
             },
             "created_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Created_at",
+                "display": "yes"
             },
             "updated_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Updated_at",
+                "display": "yes"
             },
             "deleted_at": {
                 "type": "text",
-                "lenght": null
-            }
-        },
-        "functions": {
-            "create": {
-                "enable": "yes"
-            },
-            "destroy": {
-                "enable": "yes"
+                "lenght": null,
+                "name": "Deleted_at",
+                "display": "yes"
             }
         }
     },
-<<<<<<< HEAD
-    "migrations": {
-        "enable": "yes",
-        "modelName": "Migration",
-        "modelTable": "migrations",
-=======
     "criterios": {
         "modelName": "Criterio",
         "enable": "no",
         "modelTable": "criterios",
->>>>>>> master
         "fields": {
             "id": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Id",
+                "display": "yes"
             },
             "title": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Title",
+                "display": "yes"
             },
             "created_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Created_at",
+                "display": "yes"
             },
             "updated_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Updated_at",
+                "display": "yes"
             },
             "deleted_at": {
                 "type": "text",
-                "lenght": null
-            }
-        },
-        "functions": {
-            "index": {
-                "enable": "yes"
-            },
-            "create": {
-                "enable": "yes"
+                "lenght": null,
+                "name": "Deleted_at",
+                "display": "yes"
             }
         }
     },
-<<<<<<< HEAD
-    "movements": {
-        "enable": "yes",
-        "modelName": "Movement",
-        "modelTable": "movements",
-=======
     "gestao_menus": {
         "modelName": "Gestao_menu",
         "enable": "no",
         "modelTable": "gestao_menus",
->>>>>>> master
         "fields": {
             "id": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Id",
+                "display": "yes"
             },
             "class": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Cla",
+                "display": "yes"
             },
             "active": {
                 "type": "text",
-                "lenght": "50"
+                "lenght": "50",
+                "name": "Active",
+                "display": "yes"
             },
             "link": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Link",
+                "display": "yes"
             },
             "texto": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Texto",
+                "display": "yes"
             },
             "created_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Created_at",
+                "display": "yes"
             },
             "updated_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Updated_at",
+                "display": "yes"
             },
             "deleted_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Deleted_at",
+                "display": "yes"
             }
         }
     },
@@ -282,47 +313,69 @@
         "fields": {
             "id": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Id",
+                "display": "yes"
             },
             "cliente_id": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Cliente_id",
+                "display": "yes"
             },
             "tipohistorico": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Tipohistorico",
+                "display": "yes"
             },
             "data": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Data",
+                "display": "yes"
             },
             "hora": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Hora",
+                "display": "yes"
             },
             "duracao": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Duracao",
+                "display": "yes"
             },
             "assunto": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Assunto",
+                "display": "yes"
             },
             "resumo": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Resumo",
+                "display": "yes"
             },
             "created_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Created_at",
+                "display": "yes"
             },
             "updated_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Updated_at",
+                "display": "yes"
             },
             "deleted_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Deleted_at",
+                "display": "yes"
             }
         }
     },
@@ -333,15 +386,21 @@
         "fields": {
             "id": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Id",
+                "display": "yes"
             },
             "migration": {
                 "type": "text",
-                "lenght": "191"
+                "lenght": "191",
+                "name": "Migration",
+                "display": "yes"
             },
             "batch": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Batch",
+                "display": "yes"
             }
         }
     },
@@ -352,15 +411,21 @@
         "fields": {
             "permission_id": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Permission_id",
+                "display": "yes"
             },
             "model_type": {
                 "type": "text",
-                "lenght": "191"
+                "lenght": "191",
+                "name": "Model_type",
+                "display": "yes"
             },
             "model_id": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Model_id",
+                "display": "yes"
             }
         }
     },
@@ -371,15 +436,21 @@
         "fields": {
             "role_id": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Role_id",
+                "display": "yes"
             },
             "model_type": {
                 "type": "text",
-                "lenght": "191"
+                "lenght": "191",
+                "name": "Model_type",
+                "display": "yes"
             },
             "model_id": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Model_id",
+                "display": "yes"
             }
         }
     },
@@ -390,39 +461,45 @@
         "fields": {
             "id": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Id",
+                "display": "yes"
             },
             "class": {
                 "type": "text",
-                "lenght": "100"
+                "lenght": "100",
+                "name": "Cla",
+                "display": "yes"
             },
             "class_id": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Class_id",
+                "display": "yes"
             },
             "file": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "File",
+                "display": "yes"
             },
             "created_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Created_at",
+                "display": "yes"
             },
             "deleted_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Deleted_at",
+                "display": "yes"
             },
             "updated_at": {
                 "type": "text",
-                "lenght": null
-            }
-        },
-        "functions": {
-            "index": {
-                "enable": "yes"
-            },
-            "update": {
-                "enable": "yes"
+                "lenght": null,
+                "name": "Updated_at",
+                "display": "yes"
             }
         }
     },
@@ -433,15 +510,21 @@
         "fields": {
             "email": {
                 "type": "text",
-                "lenght": "191"
+                "lenght": "191",
+                "name": "Email",
+                "display": "yes"
             },
             "token": {
                 "type": "text",
-                "lenght": "191"
+                "lenght": "191",
+                "name": "Token",
+                "display": "yes"
             },
             "created_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Created_at",
+                "display": "yes"
             }
         }
     },
@@ -452,43 +535,63 @@
         "fields": {
             "id": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Id",
+                "display": "yes"
             },
             "imagem": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Imagem",
+                "display": "yes"
             },
             "marca_id": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Marca_id",
+                "display": "yes"
             },
             "modelo": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Modelo",
+                "display": "yes"
             },
             "valor": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Valor",
+                "display": "yes"
             },
             "estado": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Estado",
+                "display": "yes"
             },
             "texto": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Texto",
+                "display": "yes"
             },
             "created_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Created_at",
+                "display": "yes"
             },
             "updated_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Updated_at",
+                "display": "yes"
             },
             "deleted_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Deleted_at",
+                "display": "yes"
             }
         }
     },
@@ -499,23 +602,33 @@
         "fields": {
             "id": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Id",
+                "display": "yes"
             },
             "name": {
                 "type": "text",
-                "lenght": "191"
+                "lenght": "191",
+                "name": "Name",
+                "display": "yes"
             },
             "guard_name": {
                 "type": "text",
-                "lenght": "191"
+                "lenght": "191",
+                "name": "Guard_name",
+                "display": "yes"
             },
             "created_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Created_at",
+                "display": "yes"
             },
             "updated_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Updated_at",
+                "display": "yes"
             }
         }
     },
@@ -526,11 +639,15 @@
         "fields": {
             "permission_id": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Permission_id",
+                "display": "yes"
             },
             "role_id": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Role_id",
+                "display": "yes"
             }
         }
     },
@@ -541,23 +658,33 @@
         "fields": {
             "id": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Id",
+                "display": "yes"
             },
             "name": {
                 "type": "text",
-                "lenght": "191"
+                "lenght": "191",
+                "name": "Name",
+                "display": "yes"
             },
             "guard_name": {
                 "type": "text",
-                "lenght": "191"
+                "lenght": "191",
+                "name": "Guard_name",
+                "display": "yes"
             },
             "created_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Created_at",
+                "display": "yes"
             },
             "updated_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Updated_at",
+                "display": "yes"
             }
         }
     },
@@ -568,23 +695,33 @@
         "fields": {
             "id": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Id",
+                "display": "yes"
             },
             "title": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Title",
+                "display": "yes"
             },
             "created_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Created_at",
+                "display": "yes"
             },
             "updated_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Updated_at",
+                "display": "yes"
             },
             "deleted_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Deleted_at",
+                "display": "yes"
             }
         }
     },
@@ -595,23 +732,33 @@
         "fields": {
             "id": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Id",
+                "display": "yes"
             },
             "title": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Title",
+                "display": "yes"
             },
             "created_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Created_at",
+                "display": "yes"
             },
             "updated_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Updated_at",
+                "display": "yes"
             },
             "deleted_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Deleted_at",
+                "display": "yes"
             }
         }
     },
@@ -622,55 +769,81 @@
         "fields": {
             "id": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Id",
+                "display": "yes"
             },
             "imagem": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Imagem",
+                "display": "yes"
             },
             "marca_id": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Marca_id",
+                "display": "yes"
             },
             "modelo": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Modelo",
+                "display": "yes"
             },
             "km": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Km",
+                "display": "yes"
             },
             "estado": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Estado",
+                "display": "yes"
             },
             "mes": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Me",
+                "display": "yes"
             },
             "ano": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Ano",
+                "display": "yes"
             },
             "texto": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Texto",
+                "display": "yes"
             },
             "valor": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Valor",
+                "display": "yes"
             },
             "created_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Created_at",
+                "display": "yes"
             },
             "updated_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Updated_at",
+                "display": "yes"
             },
             "deleted_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Deleted_at",
+                "display": "yes"
             }
         }
     },
@@ -681,31 +854,45 @@
         "fields": {
             "id": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Id",
+                "display": "yes"
             },
             "name": {
                 "type": "text",
-                "lenght": "191"
+                "lenght": "191",
+                "name": "Name",
+                "display": "yes"
             },
             "email": {
                 "type": "text",
-                "lenght": "191"
+                "lenght": "191",
+                "name": "Email",
+                "display": "yes"
             },
             "password": {
                 "type": "text",
-                "lenght": "191"
+                "lenght": "191",
+                "name": "Password",
+                "display": "yes"
             },
             "remember_token": {
                 "type": "text",
-                "lenght": "191"
+                "lenght": "191",
+                "name": "Remember_token",
+                "display": "yes"
             },
             "created_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Created_at",
+                "display": "yes"
             },
             "updated_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Updated_at",
+                "display": "yes"
             }
         }
     },
@@ -716,43 +903,63 @@
         "fields": {
             "id": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Id",
+                "display": "yes"
             },
             "tpdoc": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Tpdoc",
+                "display": "yes"
             },
             "terceiro": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Terceiro",
+                "display": "yes"
             },
             "data": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Data",
+                "display": "yes"
             },
             "totdoc": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Totdoc",
+                "display": "yes"
             },
             "totmerc": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Totmerc",
+                "display": "yes"
             },
             "quant": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Quant",
+                "display": "yes"
             },
             "created_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Created_at",
+                "display": "yes"
             },
             "updated_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Updated_at",
+                "display": "yes"
             },
             "deleted_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Deleted_at",
+                "display": "yes"
             }
         }
     },
@@ -763,35 +970,51 @@
         "fields": {
             "id": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Id",
+                "display": "yes"
             },
             "title": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Title",
+                "display": "yes"
             },
             "text": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Text",
+                "display": "yes"
             },
             "image": {
                 "type": "text",
-                "lenght": "255"
+                "lenght": "255",
+                "name": "Image",
+                "display": "yes"
             },
             "category": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Category",
+                "display": "yes"
             },
             "created_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Created_at",
+                "display": "yes"
             },
             "updated_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Updated_at",
+                "display": "yes"
             },
             "deleted_at": {
                 "type": "text",
-                "lenght": null
+                "lenght": null,
+                "name": "Deleted_at",
+                "display": "yes"
             }
         }
     },

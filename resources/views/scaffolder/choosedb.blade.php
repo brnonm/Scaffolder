@@ -4,7 +4,7 @@
     <div class="row">
     <h2>Selecionar Base de Dados</h2>
     </div>
-    <form action="{{route("scaffolder.getSchemaDB")}}" method="get">
+    <form action="{{route("install.getSchemaDB")}}" method="get">
         <div class="row">
             <div class="col-md-4">
                 <select class="form-control" name="db">

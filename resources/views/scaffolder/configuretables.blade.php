@@ -25,7 +25,7 @@
         </script>
         <div class="col-10" >
 
-            <form method="POST" action="{{route("scaffolder.tablesConfigureP1")}}">
+            <form method="POST" action="{{route("install.tablesConfigureP1")}}">
                 <div class="row">
 
                                 @csrf
@@ -74,8 +74,9 @@
                                                                 <th>Null</th>
                                                                 <th>Key</th>
                                                                 <th>Other</th>
-                                                                <th>Actions</th>
-                                                                <th></th>
+                                                                <th>Type</th>
+                                                                <th>Lenght</th>
+                                                                <th>Name</th>
                                                             </tr>
 
                                                             <input type="hidden"
@@ -105,6 +106,21 @@
                                                                                name='metadados[{{$nameTable}}][fields][{{$keyy}}][lenght]'
                                                                                placeholder="Tamanho"
                                                                                value="{{preg_replace('/[^0-9]/', '',  $field->Type)}}">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="text" class="form-control"
+                                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][name]'
+                                                                               placeholder="Nome"
+                                                                               value="{{rtrim(ucfirst($field->Field), "s ")}}">
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <input type="hidden" class="form-control"
+                                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][display]'
+                                                                               value="no">
+                                                                        <input type="checkbox"
+                                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][display]'
+                                                                               value="yes" checked>
                                                                     </td>
                                                                 </tr>
                                                             @endforeach

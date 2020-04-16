@@ -29,7 +29,7 @@
             </script>
             <div class="col-10" >
 
-        <form method="POST" action="{{route("scaffolder.tablesConfigureFunction")}} ">
+        <form method="POST" action="{{route("install.tablesConfigureFunction")}} ">
             @csrf
                             @foreach($metadados as $nameTable=>$table)
                                 @if($table->enable == "yes")
