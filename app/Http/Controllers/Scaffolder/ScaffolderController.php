@@ -83,8 +83,7 @@ class ScaffolderController extends Controller
         $this->createByJsonObject($json);
 
         file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), json_encode($baseJson, JSON_PRETTY_PRINT));
-
-
+        
         return redirect()->route("scaffolder.controller");
     }
 
