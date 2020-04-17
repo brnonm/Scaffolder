@@ -31,7 +31,7 @@
                 "enable": "no"
             },
             "destroy": {
-                "enable": "no"
+                "enable": "yes"
             },
             "update": {
                 "enable": "no"
@@ -242,7 +242,7 @@
     },
     "users": {
         "modelName": "User",
-        "enable": "yes",
+        "enable": "no",
         "modelTable": "users",
         "fields": {
             "id": {
@@ -316,20 +316,6 @@
                 "lenght": "9",
                 "name": "Nif",
                 "display": "yes"
-            }
-        },
-        "functions": {
-            "index": {
-                "enable": "yes"
-            },
-            "create": {
-                "enable": "no"
-            },
-            "destroy": {
-                "enable": "no"
-            },
-            "update": {
-                "enable": "no"
             }
         }
     },

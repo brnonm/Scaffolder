@@ -135,6 +135,24 @@ class ScaffolderController extends Controller
                         $colum .= "<th> $f->name </th>\n";
                     }
 
+                    $actions="";
+                    foreach ($value->functions as $name=>$f){
+
+                        if($f->enable =="yes"){
+                            switch ($name) {
+                                case "update":
+                                    $actions .="<button>Update</button>";
+                                    break;
+
+                                case "destroy":
+                                    $actions .="<button>Delete</button>";
+                                    break;
+
+                            }
+                        }
+                    }
+
+
 
                     $generateTable = "
                     <table class=\"table\">
@@ -153,12 +171,11 @@ class ScaffolderController extends Controller
                                     @foreach(" . '$item->getFillable()' . " as " . '$field' . ")
                                         <th>{{" . '$item->$field' . "}}</th>
                                     @endforeach
-                                    <th><button>Editar</button></th>
+                                    <th>$actions</th>
                                 </tr>
                                 @endforeach
                     </table>
                     ";
-
 
                     $contentView = str_replace(['$generateTable'], $generateTable, $contentView);
 
