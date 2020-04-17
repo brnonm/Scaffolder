@@ -139,15 +139,23 @@ class ScaffolderController extends Controller
                     $generateTable = "
                     <table class=\"table\">
                         <tr>
-
                             $colum
                             <th>Actions</th>
                         </tr>
                         <tr>
-                            @foreach(".'$items'." as ".'$item'.")
+                            @foreach(" . '$items' . " as " . '$item' . ")
                                 <th></th>
                             @endforeach
                         </tr>
+
+                         @foreach(" . '$items' . " as " . '$item' . ")
+                                <tr>
+                                    @foreach(" . '$item->getFillable()' . " as " . '$field' . ")
+                                        <th>{{" . '$item->$field' . "}}</th>
+                                    @endforeach
+                                    <th><button>Editar</button></th>
+                                </tr>
+                                @endforeach
                     </table>
                     ";
 
@@ -178,7 +186,8 @@ class ScaffolderController extends Controller
         if (File::exists($modelPath)) {
 
             $functions = json_decode(File::get($urlFunc), true);
-            $contents = File::get($modelPath);
+            //$contents = File::get($modelPath);
+            $contents = "";
 
             foreach ($json as $key => $value) {
                 if (isset($value->enable)) {

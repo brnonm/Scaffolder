@@ -12,11 +12,9 @@
             <div class="col-md-12">
                 <div id="accordion">
                     <div class="card">
-
                         
                     <table class="table">
                         <tr>
-
                             <th> Id </th>
 <th> Name </th>
 <th> Email </th>
@@ -37,13 +35,20 @@
                                 <th></th>
                             @endforeach
                         </tr>
+
+                         @foreach($items as $item)
+                                <tr>
+                                    @foreach($item->getFillable() as $field)
+                                        <th>{{$item->$field}}</th>
+                                    @endforeach
+                                    <th><button>Editar</button></th>
+                                </tr>
+                                @endforeach
                     </table>
                     
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
 @endsection

@@ -242,7 +242,7 @@
     },
     "users": {
         "modelName": "User",
-        "enable": "no",
+        "enable": "yes",
         "modelTable": "users",
         "fields": {
             "id": {
@@ -316,6 +316,20 @@
                 "lenght": "9",
                 "name": "Nif",
                 "display": "yes"
+            }
+        },
+        "functions": {
+            "index": {
+                "enable": "yes"
+            },
+            "create": {
+                "enable": "no"
+            },
+            "destroy": {
+                "enable": "no"
+            },
+            "update": {
+                "enable": "no"
             }
         }
     },

@@ -8,6 +8,9 @@
         "update": "\n           public function update($model)       {\n     }"
     },
     "views": {
-        "index": "@extends(\"scaffolder.views.partials.main\")\n@section(\"container\")\n\n    <div>\n        @csrf\n        <div class=\"row\">\n            <div class=\"col-md-12\" style=\"text-align: center\">\n                <p>$modelName</p>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-md-12\">\n                <div id=\"accordion\">\n                    <div class=\"card\">\n\n                        $generateTable\n\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n    \n@endsection"
+        "index": "@extends(\"scaffolder.views.partials.main\")\n@section(\"container\")\n\n    <div>\n        @csrf\n        <div class=\"row\">\n            <div class=\"col-md-12\" style=\"text-align: center\">\n                <p>$modelName</p>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-md-12\">\n                <div id=\"accordion\">\n                    <div class=\"card\">\n                        $generateTable\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n@endsection\n"
     }
 }
+
+
+
