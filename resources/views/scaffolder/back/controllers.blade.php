@@ -59,10 +59,7 @@
                                                             <th>
                                                                 @foreach($table["functions"] as $name=>$function)
                                                                     @if($function["enable"] == "yes")
-                                                                        {{$name}}
-                                                                        @if(!$loop->last)
-                                                                            {{","}}
-                                                                        @endif
+                                                                        {{"-". $name. " "}}
                                                                     @endif
                                                                 @endforeach
                                                             </th>
@@ -70,35 +67,6 @@
                                                         </tr>
                                                     </table>
                                                 </div>
-                                                <table class="table">
-                                                    <th>Model Name</th>
-                                                    <th>Database Table</th>
-                                                    <th>Fields</th>
-                                                    <th>Function(s) name</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>{{$table["modelName"]}}</td>
-                                                        <td>{{$table["modelTable"]}}</td>
-
-                                                        <td>
-                                                            @foreach($table["fields"] as $name=>$field)
-                                                                {{$name}}
-                                                                @if(!$loop->last)
-                                                                    {{","}}
-                                                                @endif
-                                                            @endforeach
-                                                        </td>
-                                                        <td>
-                                                            @foreach($table["functions"] as $name=>$function)
-                                                                {{$name}}
-                                                                @if(!$loop->last)
-                                                                    {{","}}
-                                                                @endif
-                                                            @endforeach
-                                                        </td>
-
-                                                    </tr>
-                                                </table>
                                             </div>
                                         </div>
                                     </div>

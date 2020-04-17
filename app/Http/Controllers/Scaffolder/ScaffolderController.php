@@ -16,7 +16,6 @@ class ScaffolderController extends Controller
         $json = File::get(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'));
         $metadados = collect(json_decode($json, true));
 
-
         return view("scaffolder.back.controllers", compact("metadados"));
     }
 
@@ -58,7 +57,7 @@ class ScaffolderController extends Controller
         if (!File::exists($urlFunctions)) {
             $error = "File with generic functions does not find!";
             return view("scaffolder.errorPage", compact("error"));
-        }else{
+        } else {
             $func = File::get($urlFunctions);
             $functions = collect(json_decode($func));
             return view("scaffolder.configureTableController", compact("metadados", "functions"));
@@ -78,12 +77,15 @@ class ScaffolderController extends Controller
 
 
         $json = $this->joinJson($baseJson, $newJson);
-
-        $this->createMenuJson($json);
         $this->createByJsonObject($json);
 
+        $this->createMenuBackOffice($json);
+
+
+        $this->generateView($json);
+
         file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), json_encode($baseJson, JSON_PRETTY_PRINT));
-        
+
         return redirect()->route("scaffolder.controller");
     }
 
@@ -102,7 +104,73 @@ class ScaffolderController extends Controller
         return $baseJson;
     }
 
-    private function createMenuJson($json){
+    private function generateView($json)
+    {
+        $urlFunc = base_path("app/Http/Controllers/Scaffolder/data/functions.json");
+        $baseViews = base_path("resources/views/");
+
+        if (!File::exists($urlFunc)) {
+            $error = "File Functions does not find!";
+            return view("scaffolder.errorPage", compact("error"));
+        }
+
+        $functions = json_decode(File::get($urlFunc));
+
+        foreach ($json as $key => $value) {
+            if (isset($value->enable)) {
+                if ($value->enable == "yes") {
+                    $basedirectory = $baseViews . $key;
+                    $directoryPartials = $basedirectory . "/partials";
+
+                    $this->createDir($basedirectory);
+                    $this->createDir($directoryPartials);
+
+                    $view = fopen($basedirectory . "/index.blade.php", "w") or die("Unable to open file!");
+                    $contentView = $functions->views->index;
+                    $contentView = str_replace(['$modelName'], [$value->modelName], $contentView);
+
+
+                    $colum = "";
+                    foreach ($value->fields as $name => $f) {
+                        $colum .= "<th> $f->name </th>\n";
+                    }
+
+
+                    $generateTable = "
+                    <table class=\"table\">
+                        <tr>
+
+                            $colum
+                            <th>Actions</th>
+                        </tr>
+                        <tr>
+                            @foreach(".'$items'." as ".'$item'.")
+                                <th></th>
+                            @endforeach
+                        </tr>
+                    </table>
+                    ";
+
+
+                    $contentView = str_replace(['$generateTable'], $generateTable, $contentView);
+
+                    fwrite($view, $contentView);
+                    fclose($view);
+                }
+            }
+        }
+    }
+
+    private function createDir($dir)
+    {
+        if (!is_dir($dir)) {
+            mkdir($dir, 0755, true);
+        }
+
+    }
+
+    private function createMenuBackOffice($json)
+    {
 
         $modelPath = base_path("resources/views/scaffolder/views/partials/menujson.blade.php");
         $urlFunc = base_path("app/Http/Controllers/Scaffolder/data/menuTemplate.json");
@@ -110,60 +178,44 @@ class ScaffolderController extends Controller
         if (File::exists($modelPath)) {
 
             $functions = json_decode(File::get($urlFunc), true);
-
             $contents = File::get($modelPath);
 
-        foreach ($json as $key=>$value){
-            if(isset($value->enable)){
-            if($value->enable=="yes") {
+            foreach ($json as $key => $value) {
+                if (isset($value->enable)) {
+                    if ($value->enable == "yes") {
 
-                $name = $key;
-                $finalName = "";
+                        $name = $key;
+                        $finalName = "";
+                        $contents .= "\n";
 
+                        foreach ($functions as $funcName => $func) {
+                            if (strpos($func, '$name') != false) {
+                                $changed = str_replace(['$name', '$route'], [$name, $name], $func);
 
+                                if (!(strpos($contents, $changed) > 0)) {
 
-
-                $contents .= "\n";
-
-                    foreach ($functions as $funcName => $func) {
-                        if (strpos($func, '$name') != false) {
-
-                            $changed = str_replace(['$name', '$route'], [$name, $name], $func);
-
-
-                            if (!(strpos($contents, $changed)>0)) {
-
-                                $contents .= $changed;
-                                $contents .= "\n";
-
-
+                                    $contents .= $changed;
+                                    $contents .= "\n";
+                                }
+                                file_put_contents($modelPath, $contents);
                             }
-                            file_put_contents($modelPath, $contents);
+
                         }
-
                     }
-
-
-
-
                 }
-
-            }}
-
+            }
         }
-
-
     }
+
     private function createByJsonObject($json)
     {
-        //VER SE FAZ SENTIDO****************************************
-        foreach ($json as $field=>$m) {
-            if($field == "generated"){
-                $json->put($field, "yes");
-                return;$json;
-            }
-            //*******************************************************
 
+        foreach ($json as $field => $m) {
+            if ($field == "generated") {
+                $json->put($field, "yes");
+                return;
+                $json;
+            }
             if ($m->enable == "yes") {
                 Artisan::call("make:model $m->modelName   --controller");
                 Artisan::call("make:resource $m->modelName");
@@ -225,7 +277,8 @@ class ScaffolderController extends Controller
                         foreach ($m->functions as $fName => $f) {
                             if ($fName === $funcName) {
                                 if ($f->enable == "yes") {
-                                    $contents .= $func;
+                                    $changed = str_replace(['$modelTable'], [$m->modelTable], $func);
+                                    $contents .= $changed;
                                 }
                             }
                         }
@@ -252,7 +305,7 @@ class ScaffolderController extends Controller
 
             $initTable = '    protected $table = "' . $m->modelTable . '";';
             if (strpos($contents, $initTable) == false) {
-                $contents.= $initTable;
+                $contents .= $initTable;
             }
 
 
@@ -261,8 +314,6 @@ class ScaffolderController extends Controller
             $initFillable = '    protected $fillable=[';
             $i = 0;
             $len = 0;
-
-
 
 
             foreach ($m->fields as $key => $field) {
@@ -280,14 +331,14 @@ class ScaffolderController extends Controller
 
 
             if (strpos($contents, $initFillable) == false) {
-                $contents.= $initFillable;
+                $contents .= $initFillable;
                 $contents .= "\n}";
             }
 
             file_put_contents($modelPath, $contents);
 
         } else {
-            $error = "File".$m->modelName. "does not find!";
+            $error = "File" . $m->modelName . "does not find!";
             return view("scaffolder.errorPage", compact("error"));
         }
 

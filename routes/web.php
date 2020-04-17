@@ -27,8 +27,7 @@ Route::group([ 'prefix' => 'scaffolder', 'as' => 'scaffolder.'], function () {
 
 });
 
-
-Route::resource("clientes", "ClienteController");
-
 Route::resource("categories", "CategorieController");
-Route::resource("password_resets", "Password_resetController");
+
+Route::resource("wallets", "WalletController");
+Route::resource("users", "UserController");

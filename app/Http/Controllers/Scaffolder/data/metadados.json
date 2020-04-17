@@ -28,7 +28,7 @@
                 "enable": "yes"
             },
             "create": {
-                "enable": "yes"
+                "enable": "no"
             },
             "destroy": {
                 "enable": "no"
@@ -217,7 +217,7 @@
     },
     "password_resets": {
         "modelName": "Password_reset",
-        "enable": "yes",
+        "enable": "no",
         "modelTable": "password_resets",
         "fields": {
             "email": {
@@ -237,20 +237,6 @@
                 "lenght": null,
                 "name": "Created_at",
                 "display": "yes"
-            }
-        },
-        "functions": {
-            "index": {
-                "enable": "no"
-            },
-            "create": {
-                "enable": "no"
-            },
-            "destroy": {
-                "enable": "no"
-            },
-            "update": {
-                "enable": "no"
             }
         }
     },

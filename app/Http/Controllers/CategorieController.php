@@ -11,17 +11,8 @@ class CategorieController extends Controller
         public function index()
         {
              $items=self::$modelName::all();
-            return view('scaffolder.views.index', compact('items'));
+            return view('categories.index', compact('items'));
         }
-
-        public function create()
-        {
-            $item= new self::$modelName();
-            return view('scaffolder.views.create', compact('item'));
-        }
-
-           public function update($model)       {
-     }
 
 
 }
