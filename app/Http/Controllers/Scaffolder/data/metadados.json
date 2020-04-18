@@ -8,7 +8,7 @@
                 "type": "text",
                 "lenght": null,
                 "name": "Id",
-                "display": "yes"
+                "display": "no"
             },
             "type": {
                 "type": "text",
@@ -28,13 +28,16 @@
                 "enable": "yes"
             },
             "create": {
-                "enable": "no"
+                "enable": "yes"
             },
             "destroy": {
                 "enable": "yes"
             },
             "update": {
-                "enable": "no"
+                "enable": "yes"
+            },
+            "show": {
+                "enable": "yes"
             }
         }
     },

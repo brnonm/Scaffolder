@@ -119,33 +119,52 @@ class ScaffolderController extends Controller
         foreach ($json as $key => $value) {
             if (isset($value->enable)) {
                 if ($value->enable == "yes") {
+
+
+                    //FAZER UM IF SE EXISTE O INDEX QUE E A TABELA
+
                     $basedirectory = $baseViews . $key;
                     $directoryPartials = $basedirectory . "/partials";
 
                     $this->createDir($basedirectory);
                     $this->createDir($directoryPartials);
 
+
                     $view = fopen($basedirectory . "/index.blade.php", "w") or die("Unable to open file!");
                     $contentView = $functions->views->index;
                     $contentView = str_replace(['$modelName'], [$value->modelName], $contentView);
 
 
-                    $colum = "";
-                    foreach ($value->fields as $name => $f) {
-                        $colum .= "<th> $f->name </th>\n";
-                    }
-
-                    $actions="";
-                    foreach ($value->functions as $name=>$f){
-
-                        if($f->enable =="yes"){
+                    $actions = "";
+                    foreach ($value->functions as $name => $f) {
+                        if ($f->enable == "yes") {
                             switch ($name) {
+                                case "show":
+                                    $actions .= "<button>Show</button>";
+                                    $contentPartial = $this->generateViewPartial($name);
+                                    $viewPartial = fopen($directoryPartials . "/show.blade.php", "w") or die("Unable to open file!");
+                                    fwrite($viewPartial, $contentPartial);
+                                    fclose($viewPartial);
+                                    break;
+
                                 case "update":
-                                    $actions .="<button>Update</button>";
+                                    $actions .= "<button>Update</button>";
+                                    $contentPartial = $this->generateViewPartial($name);
+                                    $viewPartial = fopen($directoryPartials . "/update.blade.php", "w") or die("Unable to open file!");
+                                    fwrite($viewPartial, $contentPartial);
+                                    fclose($viewPartial);
                                     break;
 
                                 case "destroy":
-                                    $actions .="<button>Delete</button>";
+                                    $actions .= "<button>Delete</button>";
+
+                                    break;
+
+                                case "create":
+                                    $contentPartial = $this->generateViewPartial($name);
+                                    $viewPartial = fopen($directoryPartials . "/create.blade.php", "w") or die("Unable to open file!");
+                                    fwrite($viewPartial, $contentPartial);
+                                    fclose($viewPartial);
                                     break;
 
                             }
@@ -153,6 +172,12 @@ class ScaffolderController extends Controller
                     }
 
 
+                    $colum = "";
+                    foreach ($value->fields as $name => $f) {
+                        if($f->display == "yes"){
+                            $colum .= "<th> $f->name </th>\n";
+                        }
+                    }
 
                     $generateTable = "
                     <table class=\"table\">
@@ -161,6 +186,7 @@ class ScaffolderController extends Controller
                             <th>Actions</th>
                         </tr>
                         <tr>
+                        Resolver problema se nao mandar reprsentar o id por exemplo, vista tem de ter um if caso isso aconteca
                             @foreach(" . '$items' . " as " . '$item' . ")
                                 <th></th>
                             @endforeach
@@ -176,14 +202,35 @@ class ScaffolderController extends Controller
                                 @endforeach
                     </table>
                     ";
-
                     $contentView = str_replace(['$generateTable'], $generateTable, $contentView);
-
                     fwrite($view, $contentView);
                     fclose($view);
+
+
                 }
             }
         }
+    }
+
+    private function generateViewPartial($name){
+
+        switch ($name){
+            case "show":
+                $content = "teste show";
+                return $content;
+                break;
+
+            case "update":
+                $content = "teste update";
+                return $content;
+                break;
+
+            case "create":
+                $content = "teste create";
+                return $content;
+                break;
+        }
+        return "";
     }
 
     private function createDir($dir)
