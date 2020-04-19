@@ -8,7 +8,7 @@
                 "type": "text",
                 "lenght": null,
                 "name": "Id",
-                "display": "no"
+                "display": "yes"
             },
             "type": {
                 "type": "text",

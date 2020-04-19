@@ -138,6 +138,8 @@ class ScaffolderController extends Controller
                     $actions = "";
                     foreach ($value->functions as $name => $f) {
                         if ($f->enable == "yes") {
+
+
                             switch ($name) {
                                 case "show":
                                     $actions .= "<button>Show</button>";
@@ -156,8 +158,12 @@ class ScaffolderController extends Controller
                                     break;
 
                                 case "destroy":
-                                    $actions .= "<button>Delete</button>";
-
+                                    $actions .= "
+                                    <form action=\"{{ route('categories.destroy', ".'$item->id'.") }}\" method=\"POST\" onsubmit=\"return confirm('Confirm delete');\" style=\"display: inline-block;\">
+                                        <input type=\"hidden\" name=\"_method\" value=\"DELETE\">
+                                        <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token() }}\">
+                                        <input type=\"submit\" class=\"btn btn-xs btn-danger\" value=\"Delete\">
+                                    </form>";
                                     break;
 
                                 case "create":
@@ -174,24 +180,17 @@ class ScaffolderController extends Controller
 
                     $colum = "";
                     foreach ($value->fields as $name => $f) {
-                        if($f->display == "yes"){
-                            $colum .= "<th> $f->name </th>\n";
+                        if ($f->display == "yes") {
+                            $colum .= " <th> $f->name </th> \n";
                         }
                     }
 
                     $generateTable = "
-                    <table class=\"table\">
+                                <table class=\"table\">
                         <tr>
                             $colum
                             <th>Actions</th>
                         </tr>
-                        <tr>
-                        Resolver problema se nao mandar reprsentar o id por exemplo, vista tem de ter um if caso isso aconteca
-                            @foreach(" . '$items' . " as " . '$item' . ")
-                                <th></th>
-                            @endforeach
-                        </tr>
-
                          @foreach(" . '$items' . " as " . '$item' . ")
                                 <tr>
                                     @foreach(" . '$item->getFillable()' . " as " . '$field' . ")
@@ -212,9 +211,11 @@ class ScaffolderController extends Controller
         }
     }
 
-    private function generateViewPartial($name){
+    private
+    function generateViewPartial($name)
+    {
 
-        switch ($name){
+        switch ($name) {
             case "show":
                 $content = "teste show";
                 return $content;
@@ -233,7 +234,8 @@ class ScaffolderController extends Controller
         return "";
     }
 
-    private function createDir($dir)
+    private
+    function createDir($dir)
     {
         if (!is_dir($dir)) {
             mkdir($dir, 0755, true);
@@ -241,7 +243,8 @@ class ScaffolderController extends Controller
 
     }
 
-    private function createMenuBackOffice($json)
+    private
+    function createMenuBackOffice($json)
     {
 
         $modelPath = base_path("resources/views/scaffolder/views/partials/menujson.blade.php");
@@ -280,7 +283,8 @@ class ScaffolderController extends Controller
         }
     }
 
-    private function createByJsonObject($json)
+    private
+    function createByJsonObject($json)
     {
 
         foreach ($json as $field => $m) {
@@ -300,12 +304,14 @@ class ScaffolderController extends Controller
         }
     }
 
-    private function artisanOptimize()
+    private
+    function artisanOptimize()
     {
         Artisan::call("optimize");
     }
 
-    private function populateRoutes($m)
+    private
+    function populateRoutes($m)
     {
 
         $newRoute = 'Route::resource("' . $m->modelTable . '", "' . $m->modelName . 'Controller");';
@@ -320,7 +326,8 @@ class ScaffolderController extends Controller
         }
     }
 
-    private function populateController($m)
+    private
+    function populateController($m)
     {
         $name = explode("_", $m->modelName);
         $finalName = "";
@@ -365,7 +372,8 @@ class ScaffolderController extends Controller
     }
 
 
-    private function populateModel($m)
+    private
+    function populateModel($m)
     {
 
         $modelPath = base_path("app/" . $m->modelName . ".php");
