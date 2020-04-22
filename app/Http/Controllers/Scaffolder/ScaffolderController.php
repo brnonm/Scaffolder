@@ -107,7 +107,7 @@ class ScaffolderController extends Controller
     private function generateView($json)
     {
         $urlFunc = base_path("app/Http/Controllers/Scaffolder/data/functions.json");
-        $baseViews = base_path("resources/views/");
+        $baseViews = base_path("resources/views/admin/");
 
         if (!File::exists($urlFunc)) {
             $error = "File Functions does not find!";
@@ -124,10 +124,10 @@ class ScaffolderController extends Controller
                     //FAZER UM IF SE EXISTE O INDEX QUE E A TABELA
 
                     $basedirectory = $baseViews . $key;
-                    $directoryPartials = $basedirectory . "/partials";
+
 
                     $this->createDir($basedirectory);
-                    $this->createDir($directoryPartials);
+
 
 
                     $view = fopen($basedirectory . "/index.blade.php", "w") or die("Unable to open file!");
@@ -144,7 +144,7 @@ class ScaffolderController extends Controller
                                 case "show":
                                     $actions .= "<button>Show</button>";
                                     $contentPartial = $this->generateViewPartial($name);
-                                    $viewPartial = fopen($directoryPartials . "/show.blade.php", "w") or die("Unable to open file!");
+                                    $viewPartial = fopen($basedirectory . "/show.blade.php", "w") or die("Unable to open file!");
                                     fwrite($viewPartial, $contentPartial);
                                     fclose($viewPartial);
                                     break;
@@ -152,7 +152,7 @@ class ScaffolderController extends Controller
                                 case "update":
                                     $actions .= "<button>Update</button>";
                                     $contentPartial = $this->generateViewPartial($name);
-                                    $viewPartial = fopen($directoryPartials . "/update.blade.php", "w") or die("Unable to open file!");
+                                    $viewPartial = fopen($basedirectory . "/update.blade.php", "w") or die("Unable to open file!");
                                     fwrite($viewPartial, $contentPartial);
                                     fclose($viewPartial);
                                     break;
@@ -168,7 +168,7 @@ class ScaffolderController extends Controller
 
                                 case "create":
                                     $contentPartial = $this->generateViewPartial($name);
-                                    $viewPartial = fopen($directoryPartials . "/create.blade.php", "w") or die("Unable to open file!");
+                                    $viewPartial = fopen($basedirectory . "/create.blade.php", "w") or die("Unable to open file!");
                                     fwrite($viewPartial, $contentPartial);
                                     fclose($viewPartial);
                                     break;

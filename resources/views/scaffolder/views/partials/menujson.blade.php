@@ -1,2 +1,2 @@
 
-<li>  <a href="/categories"> <i class="metismenu-icon"></i>  categories </a> </li>
+<li>  <a href="/clientes"> <i class="metismenu-icon"></i>  clientes </a> </li>
