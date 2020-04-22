@@ -30,13 +30,13 @@
             "create": {
                 "enable": "yes"
             },
-            "destroy": {
+            "show": {
                 "enable": "yes"
             },
             "update": {
                 "enable": "yes"
             },
-            "show": {
+            "destroy": {
                 "enable": "yes"
             }
         }

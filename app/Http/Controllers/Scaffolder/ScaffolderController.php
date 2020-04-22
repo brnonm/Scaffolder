@@ -134,7 +134,7 @@ class ScaffolderController extends Controller
                                     break;
 
                                 case "update":
-                                    $actions .= "<button>Update</button>";
+                                    $actions .= "<a type=" . '"submit"' . " class=" . '"btn btn-xs btn-info"' . " href=\"{{ route('$value->modelTable.edit', " . '$item->id' . ") }}\">Update</a>";
                                     $contentPartial = $this->generateViewActions($name, $value);
                                     $viewPartial = fopen($basedirectory . "/update.blade.php", "w") or die("Unable to open file!");
                                     fwrite($viewPartial, $contentPartial);
@@ -236,10 +236,9 @@ class ScaffolderController extends Controller
                     $generateShow .= "
                     <tr>
                                 <th> $m->name</th>
-                                <td> ".'{{$item->'."$name}}</td>
+                                <td> " . '{{$item->' . "$name}}</td>
                             </tr>";
                 }
-
                 $generateShow .= "</table>";
 
                 if (strpos($content, '$generateShow') != false) {
@@ -253,7 +252,49 @@ class ScaffolderController extends Controller
                 break;
 
             case "update":
-                $content .= "teste update";
+
+               $generateUpdate="<form method=\"PUT\" action=\"{{route(\"$model->modelTable.update\", \$item->id)}} \">
+                            <table class=\"table\">";
+
+                foreach ($model->fields as $name => $m) {
+                    $generateUpdate .= "
+                    <tr>
+                                <th> $m->name</th>";
+
+                    switch ($m->type){
+                        case "text":
+                            $generateUpdate .= "<td><input type=\"text\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                            break;
+                        case "number":
+                            $generateUpdate .= "<td><input type=\"number\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                            break;
+                        case "image":
+                            $generateUpdate .= "<td><input type=\"image\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                            break;
+                        case "date":
+                            $generateUpdate .= "<td><input type=\"date\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                            break;
+
+                    }
+
+
+                }
+
+
+               $generateUpdate.="</table>
+                            <input type=\"submit\" value=\"Update\" class=\"btn btn-info col-md-12\">
+                        </form>";
+
+
+
+
+                if (strpos($content, '$generateUpdate') != false) {
+                    $changed = str_replace(['$generateUpdate'], [$generateUpdate], $content);
+                    if (strpos($content, $changed) == false) {
+                        $content = $changed;
+                    }
+                }
+
                 return $content;
                 break;
 
