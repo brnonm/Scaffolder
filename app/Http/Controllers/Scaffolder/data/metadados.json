@@ -100,10 +100,10 @@
                 "enable": "yes"
             },
             "create": {
-                "enable": "yes"
+                "enable": "no"
             },
             "destroy": {
-                "enable": "no"
+                "enable": "yes"
             },
             "update": {
                 "enable": "no"

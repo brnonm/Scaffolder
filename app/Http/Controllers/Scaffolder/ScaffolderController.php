@@ -159,7 +159,7 @@ class ScaffolderController extends Controller
 
                                 case "destroy":
                                     $actions .= "
-                                    <form action=\"{{ route('categories.destroy', ".'$item->id'.") }}\" method=\"POST\" onsubmit=\"return confirm('Confirm delete');\" style=\"display: inline-block;\">
+                                    <form action=\"{{ route('$value->modelTable.destroy', ".'$item->id'.") }}\" method=\"POST\" onsubmit=\"return confirm('Confirm delete');\" style=\"display: inline-block;\">
                                         <input type=\"hidden\" name=\"_method\" value=\"DELETE\">
                                         <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token() }}\">
                                         <input type=\"submit\" class=\"btn btn-xs btn-danger\" value=\"Delete\">
@@ -179,9 +179,18 @@ class ScaffolderController extends Controller
 
 
                     $colum = "";
+
                     foreach ($value->fields as $name => $f) {
                         if ($f->display == "yes") {
                             $colum .= " <th> $f->name </th> \n";
+                        }
+                    }
+
+                    $rows = "";
+
+                    foreach($value->fields as $name => $f){
+                        if ($f->display == "yes"){
+                            $rows.='<td>{{$item->'.$name."}}</td> \n";
                         }
                     }
 
@@ -191,16 +200,19 @@ class ScaffolderController extends Controller
                             $colum
                             <th>Actions</th>
                         </tr>
+
+
                          @foreach(" . '$items' . " as " . '$item' . ")
                                 <tr>
-                                    @foreach(" . '$item->getFillable()' . " as " . '$field' . ")
-                                        <th>{{" . '$item->$field' . "}}</th>
-                                    @endforeach
-                                    <th>$actions</th>
+                                    $rows
+                                    <td>$actions</td>
                                 </tr>
                                 @endforeach
                     </table>
                     ";
+
+
+
                     $contentView = str_replace(['$generateTable'], $generateTable, $contentView);
                     fwrite($view, $contentView);
                     fclose($view);
