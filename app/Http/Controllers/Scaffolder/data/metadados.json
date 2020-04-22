@@ -1,8 +1,8 @@
 {
-    "clientes": {
-        "modelName": "Cliente",
+    "categories": {
+        "modelName": "Categorie",
         "enable": "yes",
-        "modelTable": "clientes",
+        "modelTable": "categories",
         "fields": {
             "id": {
                 "type": "text",
@@ -10,6 +10,7 @@
                 "name": "Id",
                 "display": "yes"
             },
+<<<<<<< Updated upstream
             "nome": {
                 "type": "text",
                 "lenght": "255",
@@ -475,33 +476,212 @@
                 "display": "yes"
             },
             "class_id": {
+=======
+            "type": {
+>>>>>>> Stashed changes
                 "type": "text",
                 "lenght": null,
-                "name": "Class_id",
+                "name": "Type",
                 "display": "yes"
             },
-            "file": {
+            "name": {
                 "type": "text",
                 "lenght": "255",
-                "name": "File",
+                "name": "Name",
                 "display": "yes"
+            }
+        },
+        "functions": {
+            "index": {
+                "enable": "yes"
             },
-            "created_at": {
+            "create": {
+                "enable": "no"
+            },
+            "destroy": {
+                "enable": "no"
+            },
+            "update": {
+                "enable": "no"
+            },
+            "show": {
+                "enable": "no"
+            }
+        }
+    },
+    "failed_jobs": {
+        "modelName": "Failed_job",
+        "enable": "no",
+        "modelTable": "failed_jobs",
+        "fields": {
+            "id": {
                 "type": "text",
                 "lenght": null,
-                "name": "Created_at",
+                "name": "Id",
                 "display": "yes"
             },
-            "deleted_at": {
+            "connection": {
                 "type": "text",
                 "lenght": null,
-                "name": "Deleted_at",
+                "name": "Connection",
                 "display": "yes"
             },
-            "updated_at": {
+            "queue": {
                 "type": "text",
                 "lenght": null,
-                "name": "Updated_at",
+                "name": "Queue",
+                "display": "yes"
+            },
+            "payload": {
+                "type": "text",
+                "lenght": null,
+                "name": "Payload",
+                "display": "yes"
+            },
+            "exception": {
+                "type": "text",
+                "lenght": null,
+                "name": "Exception",
+                "display": "yes"
+            },
+            "failed_at": {
+                "type": "text",
+                "lenght": null,
+                "name": "Failed_at",
+                "display": "yes"
+            }
+        }
+    },
+    "migrations": {
+        "modelName": "Migration",
+        "enable": "no",
+        "modelTable": "migrations",
+        "fields": {
+            "id": {
+                "type": "text",
+                "lenght": null,
+                "name": "Id",
+                "display": "yes"
+            },
+            "migration": {
+                "type": "text",
+                "lenght": "255",
+                "name": "Migration",
+                "display": "yes"
+            },
+            "batch": {
+                "type": "text",
+                "lenght": null,
+                "name": "Batch",
+                "display": "yes"
+            }
+        }
+    },
+    "movements": {
+        "modelName": "Movement",
+        "enable": "no",
+        "modelTable": "movements",
+        "fields": {
+            "id": {
+                "type": "text",
+                "lenght": null,
+                "name": "Id",
+                "display": "yes"
+            },
+            "wallet_id": {
+                "type": "text",
+                "lenght": null,
+                "name": "Wallet_id",
+                "display": "yes"
+            },
+            "type": {
+                "type": "text",
+                "lenght": null,
+                "name": "Type",
+                "display": "yes"
+            },
+            "transfer": {
+                "type": "text",
+                "lenght": "1",
+                "name": "Transfer",
+                "display": "yes"
+            },
+            "transfer_movement_id": {
+                "type": "text",
+                "lenght": null,
+                "name": "Transfer_movement_id",
+                "display": "yes"
+            },
+            "transfer_wallet_id": {
+                "type": "text",
+                "lenght": null,
+                "name": "Transfer_wallet_id",
+                "display": "yes"
+            },
+            "type_payment": {
+                "type": "text",
+                "lenght": null,
+                "name": "Type_payment",
+                "display": "yes"
+            },
+            "category_id": {
+                "type": "text",
+                "lenght": null,
+                "name": "Category_id",
+                "display": "yes"
+            },
+            "iban": {
+                "type": "text",
+                "lenght": "25",
+                "name": "Iban",
+                "display": "yes"
+            },
+            "mb_entity_code": {
+                "type": "text",
+                "lenght": "5",
+                "name": "Mb_entity_code",
+                "display": "yes"
+            },
+            "mb_payment_reference": {
+                "type": "text",
+                "lenght": "9",
+                "name": "Mb_payment_reference",
+                "display": "yes"
+            },
+            "description": {
+                "type": "text",
+                "lenght": null,
+                "name": "Description",
+                "display": "yes"
+            },
+            "source_description": {
+                "type": "text",
+                "lenght": null,
+                "name": "Source_description",
+                "display": "yes"
+            },
+            "date": {
+                "type": "text",
+                "lenght": null,
+                "name": "Date",
+                "display": "yes"
+            },
+            "start_balance": {
+                "type": "text",
+                "lenght": "92",
+                "name": "Start_balance",
+                "display": "yes"
+            },
+            "end_balance": {
+                "type": "text",
+                "lenght": "92",
+                "name": "End_balance",
+                "display": "yes"
+            },
+            "value": {
+                "type": "text",
+                "lenght": "92",
+                "name": "Value",
                 "display": "yes"
             }
         }
@@ -513,13 +693,13 @@
         "fields": {
             "email": {
                 "type": "text",
-                "lenght": "191",
+                "lenght": "255",
                 "name": "Email",
                 "display": "yes"
             },
             "token": {
                 "type": "text",
-                "lenght": "191",
+                "lenght": "255",
                 "name": "Token",
                 "display": "yes"
             },
@@ -527,325 +707,6 @@
                 "type": "text",
                 "lenght": null,
                 "name": "Created_at",
-                "display": "yes"
-            }
-        }
-    },
-    "pecas": {
-        "modelName": "Peca",
-        "enable": "no",
-        "modelTable": "pecas",
-        "fields": {
-            "id": {
-                "type": "text",
-                "lenght": null,
-                "name": "Id",
-                "display": "yes"
-            },
-            "imagem": {
-                "type": "text",
-                "lenght": "255",
-                "name": "Imagem",
-                "display": "yes"
-            },
-            "marca_id": {
-                "type": "text",
-                "lenght": null,
-                "name": "Marca_id",
-                "display": "yes"
-            },
-            "modelo": {
-                "type": "text",
-                "lenght": "255",
-                "name": "Modelo",
-                "display": "yes"
-            },
-            "valor": {
-                "type": "text",
-                "lenght": "255",
-                "name": "Valor",
-                "display": "yes"
-            },
-            "estado": {
-                "type": "text",
-                "lenght": "255",
-                "name": "Estado",
-                "display": "yes"
-            },
-            "texto": {
-                "type": "text",
-                "lenght": null,
-                "name": "Texto",
-                "display": "yes"
-            },
-            "created_at": {
-                "type": "text",
-                "lenght": null,
-                "name": "Created_at",
-                "display": "yes"
-            },
-            "updated_at": {
-                "type": "text",
-                "lenght": null,
-                "name": "Updated_at",
-                "display": "yes"
-            },
-            "deleted_at": {
-                "type": "text",
-                "lenght": null,
-                "name": "Deleted_at",
-                "display": "yes"
-            }
-        }
-    },
-    "permissions": {
-        "modelName": "Permission",
-        "enable": "no",
-        "modelTable": "permissions",
-        "fields": {
-            "id": {
-                "type": "text",
-                "lenght": null,
-                "name": "Id",
-                "display": "yes"
-            },
-            "name": {
-                "type": "text",
-                "lenght": "191",
-                "name": "Name",
-                "display": "yes"
-            },
-            "guard_name": {
-                "type": "text",
-                "lenght": "191",
-                "name": "Guard_name",
-                "display": "yes"
-            },
-            "created_at": {
-                "type": "text",
-                "lenght": null,
-                "name": "Created_at",
-                "display": "yes"
-            },
-            "updated_at": {
-                "type": "text",
-                "lenght": null,
-                "name": "Updated_at",
-                "display": "yes"
-            }
-        }
-    },
-    "role_has_permissions": {
-        "modelName": "Role_has_permission",
-        "enable": "no",
-        "modelTable": "role_has_permissions",
-        "fields": {
-            "permission_id": {
-                "type": "text",
-                "lenght": null,
-                "name": "Permission_id",
-                "display": "yes"
-            },
-            "role_id": {
-                "type": "text",
-                "lenght": null,
-                "name": "Role_id",
-                "display": "yes"
-            }
-        }
-    },
-    "roles": {
-        "modelName": "Role",
-        "enable": "no",
-        "modelTable": "roles",
-        "fields": {
-            "id": {
-                "type": "text",
-                "lenght": null,
-                "name": "Id",
-                "display": "yes"
-            },
-            "name": {
-                "type": "text",
-                "lenght": "191",
-                "name": "Name",
-                "display": "yes"
-            },
-            "guard_name": {
-                "type": "text",
-                "lenght": "191",
-                "name": "Guard_name",
-                "display": "yes"
-            },
-            "created_at": {
-                "type": "text",
-                "lenght": null,
-                "name": "Created_at",
-                "display": "yes"
-            },
-            "updated_at": {
-                "type": "text",
-                "lenght": null,
-                "name": "Updated_at",
-                "display": "yes"
-            }
-        }
-    },
-    "tipo_clientes": {
-        "modelName": "Tipo_cliente",
-        "enable": "no",
-        "modelTable": "tipo_clientes",
-        "fields": {
-            "id": {
-                "type": "text",
-                "lenght": null,
-                "name": "Id",
-                "display": "yes"
-            },
-            "title": {
-                "type": "text",
-                "lenght": "255",
-                "name": "Title",
-                "display": "yes"
-            },
-            "created_at": {
-                "type": "text",
-                "lenght": null,
-                "name": "Created_at",
-                "display": "yes"
-            },
-            "updated_at": {
-                "type": "text",
-                "lenght": null,
-                "name": "Updated_at",
-                "display": "yes"
-            },
-            "deleted_at": {
-                "type": "text",
-                "lenght": null,
-                "name": "Deleted_at",
-                "display": "yes"
-            }
-        }
-    },
-    "tipo_historicos": {
-        "modelName": "Tipo_historico",
-        "enable": "no",
-        "modelTable": "tipo_historicos",
-        "fields": {
-            "id": {
-                "type": "text",
-                "lenght": null,
-                "name": "Id",
-                "display": "yes"
-            },
-            "title": {
-                "type": "text",
-                "lenght": "255",
-                "name": "Title",
-                "display": "yes"
-            },
-            "created_at": {
-                "type": "text",
-                "lenght": null,
-                "name": "Created_at",
-                "display": "yes"
-            },
-            "updated_at": {
-                "type": "text",
-                "lenght": null,
-                "name": "Updated_at",
-                "display": "yes"
-            },
-            "deleted_at": {
-                "type": "text",
-                "lenght": null,
-                "name": "Deleted_at",
-                "display": "yes"
-            }
-        }
-    },
-    "trucks": {
-        "modelName": "Truck",
-        "enable": "no",
-        "modelTable": "trucks",
-        "fields": {
-            "id": {
-                "type": "text",
-                "lenght": null,
-                "name": "Id",
-                "display": "yes"
-            },
-            "imagem": {
-                "type": "text",
-                "lenght": "255",
-                "name": "Imagem",
-                "display": "yes"
-            },
-            "marca_id": {
-                "type": "text",
-                "lenght": null,
-                "name": "Marca_id",
-                "display": "yes"
-            },
-            "modelo": {
-                "type": "text",
-                "lenght": "255",
-                "name": "Modelo",
-                "display": "yes"
-            },
-            "km": {
-                "type": "text",
-                "lenght": "255",
-                "name": "Km",
-                "display": "yes"
-            },
-            "estado": {
-                "type": "text",
-                "lenght": null,
-                "name": "Estado",
-                "display": "yes"
-            },
-            "mes": {
-                "type": "text",
-                "lenght": "255",
-                "name": "Me",
-                "display": "yes"
-            },
-            "ano": {
-                "type": "text",
-                "lenght": "255",
-                "name": "Ano",
-                "display": "yes"
-            },
-            "texto": {
-                "type": "text",
-                "lenght": null,
-                "name": "Texto",
-                "display": "yes"
-            },
-            "valor": {
-                "type": "text",
-                "lenght": "255",
-                "name": "Valor",
-                "display": "yes"
-            },
-            "created_at": {
-                "type": "text",
-                "lenght": null,
-                "name": "Created_at",
-                "display": "yes"
-            },
-            "updated_at": {
-                "type": "text",
-                "lenght": null,
-                "name": "Updated_at",
-                "display": "yes"
-            },
-            "deleted_at": {
-                "type": "text",
-                "lenght": null,
-                "name": "Deleted_at",
                 "display": "yes"
             }
         }
@@ -863,25 +724,31 @@
             },
             "name": {
                 "type": "text",
-                "lenght": "191",
+                "lenght": "255",
                 "name": "Name",
                 "display": "yes"
             },
             "email": {
                 "type": "text",
-                "lenght": "191",
+                "lenght": "255",
                 "name": "Email",
+                "display": "yes"
+            },
+            "email_verified_at": {
+                "type": "text",
+                "lenght": null,
+                "name": "Email_verified_at",
                 "display": "yes"
             },
             "password": {
                 "type": "text",
-                "lenght": "191",
+                "lenght": "255",
                 "name": "Password",
                 "display": "yes"
             },
             "remember_token": {
                 "type": "text",
-                "lenght": "191",
+                "lenght": "100",
                 "name": "Remember_token",
                 "display": "yes"
             },
@@ -896,13 +763,37 @@
                 "lenght": null,
                 "name": "Updated_at",
                 "display": "yes"
+            },
+            "type": {
+                "type": "text",
+                "lenght": null,
+                "name": "Type",
+                "display": "yes"
+            },
+            "active": {
+                "type": "text",
+                "lenght": "1",
+                "name": "Active",
+                "display": "yes"
+            },
+            "photo": {
+                "type": "text",
+                "lenght": "255",
+                "name": "Photo",
+                "display": "yes"
+            },
+            "nif": {
+                "type": "text",
+                "lenght": "9",
+                "name": "Nif",
+                "display": "yes"
             }
         }
     },
-    "vendas": {
-        "modelName": "Venda",
+    "wallets": {
+        "modelName": "Wallet",
         "enable": "no",
-        "modelTable": "vendas",
+        "modelTable": "wallets",
         "fields": {
             "id": {
                 "type": "text",
@@ -910,40 +801,16 @@
                 "name": "Id",
                 "display": "yes"
             },
-            "tpdoc": {
+            "email": {
                 "type": "text",
                 "lenght": "255",
-                "name": "Tpdoc",
+                "name": "Email",
                 "display": "yes"
             },
-            "terceiro": {
+            "balance": {
                 "type": "text",
-                "lenght": "255",
-                "name": "Terceiro",
-                "display": "yes"
-            },
-            "data": {
-                "type": "text",
-                "lenght": "255",
-                "name": "Data",
-                "display": "yes"
-            },
-            "totdoc": {
-                "type": "text",
-                "lenght": "255",
-                "name": "Totdoc",
-                "display": "yes"
-            },
-            "totmerc": {
-                "type": "text",
-                "lenght": "255",
-                "name": "Totmerc",
-                "display": "yes"
-            },
-            "quant": {
-                "type": "text",
-                "lenght": "255",
-                "name": "Quant",
+                "lenght": "92",
+                "name": "Balance",
                 "display": "yes"
             },
             "created_at": {
@@ -956,67 +823,6 @@
                 "type": "text",
                 "lenght": null,
                 "name": "Updated_at",
-                "display": "yes"
-            },
-            "deleted_at": {
-                "type": "text",
-                "lenght": null,
-                "name": "Deleted_at",
-                "display": "yes"
-            }
-        }
-    },
-    "works": {
-        "modelName": "Work",
-        "enable": "no",
-        "modelTable": "works",
-        "fields": {
-            "id": {
-                "type": "text",
-                "lenght": null,
-                "name": "Id",
-                "display": "yes"
-            },
-            "title": {
-                "type": "text",
-                "lenght": "255",
-                "name": "Title",
-                "display": "yes"
-            },
-            "text": {
-                "type": "text",
-                "lenght": null,
-                "name": "Text",
-                "display": "yes"
-            },
-            "image": {
-                "type": "text",
-                "lenght": "255",
-                "name": "Image",
-                "display": "yes"
-            },
-            "category": {
-                "type": "text",
-                "lenght": null,
-                "name": "Category",
-                "display": "yes"
-            },
-            "created_at": {
-                "type": "text",
-                "lenght": null,
-                "name": "Created_at",
-                "display": "yes"
-            },
-            "updated_at": {
-                "type": "text",
-                "lenght": null,
-                "name": "Updated_at",
-                "display": "yes"
-            },
-            "deleted_at": {
-                "type": "text",
-                "lenght": null,
-                "name": "Deleted_at",
                 "display": "yes"
             }
         }

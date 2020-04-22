@@ -216,8 +216,6 @@ class ScaffolderController extends Controller
                     $contentView = str_replace(['$generateTable'], $generateTable, $contentView);
                     fwrite($view, $contentView);
                     fclose($view);
-
-
                 }
             }
         }
