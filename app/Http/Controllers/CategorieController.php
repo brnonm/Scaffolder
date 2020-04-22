@@ -14,5 +14,24 @@ class CategorieController extends Controller
             return view('admin.categories.index', compact('items'));
         }
 
+        public function create()
+        {
+            $item= new self::$modelName();
+            return view('admin.categories.create', compact('item'));
+        }
+
+        public function destroy($model)
+        {
+          $model=self::$modelName::findOrFail($model);   $model->delete();
+            return redirect()->route('categories.index');
+        }
+
+           public function update($model)       {
+     }
+public function show($id)
+    {
+        $item = self::$modelName::findOrFail($id);
+        return view('admin.categories.show', compact('item'));
+    }
 
 }

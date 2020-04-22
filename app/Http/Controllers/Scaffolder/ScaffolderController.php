@@ -106,30 +106,14 @@ class ScaffolderController extends Controller
 
     private function generateView($json)
     {
-        $urlFunc = base_path("app/Http/Controllers/Scaffolder/data/functions.json");
         $baseViews = base_path("resources/views/admin/");
-
-        if (!File::exists($urlFunc)) {
-            $error = "File Functions does not find!";
-            return view("scaffolder.errorPage", compact("error"));
-        }
-
-        $functions = json_decode(File::get($urlFunc));
+        $functions = $this->readFunctions();
 
         foreach ($json as $key => $value) {
             if (isset($value->enable)) {
                 if ($value->enable == "yes") {
-
-
-                    //FAZER UM IF SE EXISTE O INDEX QUE E A TABELA
-
                     $basedirectory = $baseViews . $key;
-
-
                     $this->createDir($basedirectory);
-
-
-
                     $view = fopen($basedirectory . "/index.blade.php", "w") or die("Unable to open file!");
                     $contentView = $functions->views->index;
                     $contentView = str_replace(['$modelName'], [$value->modelName], $contentView);
@@ -139,11 +123,11 @@ class ScaffolderController extends Controller
                     foreach ($value->functions as $name => $f) {
                         if ($f->enable == "yes") {
 
-
                             switch ($name) {
                                 case "show":
-                                    $actions .= "<button>Show</button>";
-                                    $contentPartial = $this->generateViewPartial($name);
+
+                                    $actions .= "<a type=" . '"submit"' . " class=" . '"btn btn-xs btn-info"' . " href=\"{{ route('$value->modelTable.show', " . '$item->id' . ") }}\">Show</a>";
+                                    $contentPartial = $this->generateViewActions($name, $value);
                                     $viewPartial = fopen($basedirectory . "/show.blade.php", "w") or die("Unable to open file!");
                                     fwrite($viewPartial, $contentPartial);
                                     fclose($viewPartial);
@@ -151,7 +135,7 @@ class ScaffolderController extends Controller
 
                                 case "update":
                                     $actions .= "<button>Update</button>";
-                                    $contentPartial = $this->generateViewPartial($name);
+                                    $contentPartial = $this->generateViewActions($name, $value);
                                     $viewPartial = fopen($basedirectory . "/update.blade.php", "w") or die("Unable to open file!");
                                     fwrite($viewPartial, $contentPartial);
                                     fclose($viewPartial);
@@ -159,7 +143,7 @@ class ScaffolderController extends Controller
 
                                 case "destroy":
                                     $actions .= "
-                                    <form action=\"{{ route('$value->modelTable.destroy', ".'$item->id'.") }}\" method=\"POST\" onsubmit=\"return confirm('Confirm delete');\" style=\"display: inline-block;\">
+                                    <form action=\"{{ route('$value->modelTable.destroy', " . '$item->id' . ") }}\" method=\"POST\" onsubmit=\"return confirm('Confirm delete');\" style=\"display: inline-block;\">
                                         <input type=\"hidden\" name=\"_method\" value=\"DELETE\">
                                         <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token() }}\">
                                         <input type=\"submit\" class=\"btn btn-xs btn-danger\" value=\"Delete\">
@@ -167,7 +151,7 @@ class ScaffolderController extends Controller
                                     break;
 
                                 case "create":
-                                    $contentPartial = $this->generateViewPartial($name);
+                                    $contentPartial = $this->generateViewActions($name, $value);
                                     $viewPartial = fopen($basedirectory . "/create.blade.php", "w") or die("Unable to open file!");
                                     fwrite($viewPartial, $contentPartial);
                                     fclose($viewPartial);
@@ -188,9 +172,9 @@ class ScaffolderController extends Controller
 
                     $rows = "";
 
-                    foreach($value->fields as $name => $f){
-                        if ($f->display == "yes"){
-                            $rows.='<td>{{$item->'.$name."}}</td> \n";
+                    foreach ($value->fields as $name => $f) {
+                        if ($f->display == "yes") {
+                            $rows .= '<td>{{$item->' . $name . "}}</td> \n";
                         }
                     }
 
@@ -212,7 +196,6 @@ class ScaffolderController extends Controller
                     ";
 
 
-
                     $contentView = str_replace(['$generateTable'], $generateTable, $contentView);
                     fwrite($view, $contentView);
                     fclose($view);
@@ -221,27 +204,65 @@ class ScaffolderController extends Controller
         }
     }
 
-    private
-    function generateViewPartial($name)
+    private function readFunctions()
     {
+        $urlFunc = base_path("app/Http/Controllers/Scaffolder/data/functions.json");
+
+        if (!File::exists($urlFunc)) {
+            $error = "File Functions does not find!";
+            return view("scaffolder.errorPage", compact("error"));
+        }
+        return json_decode(File::get($urlFunc));
+
+    }
+
+    private
+    function generateViewActions($name, $model)
+    {
+        $funcs = $this->readFunctions();
+        $content = "";
+
+        foreach ($funcs->views as $fName => $f) {
+            if ($fName == $name) {
+                $content = $f;
+            }
+        }
 
         switch ($name) {
             case "show":
-                $content = "teste show";
+
+                $generateShow = "<table class=\"table\"><tr>";
+                foreach ($model->fields as $name => $m) {
+                    $generateShow .= "
+                    <tr>
+                                <th> $m->name</th>
+                                <td> ".'{{$item->'."$name}}</td>
+                            </tr>";
+                }
+
+                $generateShow .= "</table>";
+
+                if (strpos($content, '$generateShow') != false) {
+                    $changed = str_replace(['$generateShow'], [$generateShow], $content);
+                    if (strpos($content, $changed) == false) {
+                        $content = $changed;
+                    }
+                }
+
                 return $content;
                 break;
 
             case "update":
-                $content = "teste update";
+                $content .= "teste update";
                 return $content;
                 break;
 
             case "create":
-                $content = "teste create";
+                $content .= "teste create";
                 return $content;
                 break;
         }
-        return "";
+
     }
 
     private
@@ -334,6 +355,22 @@ class ScaffolderController extends Controller
             $contents .= $newRoute;
             file_put_contents($modelPath, $contents);
         }
+    }
+
+    private function createRouteView($modelTable, $view, $modelName)
+    {
+        $newRoute = 'Route::get("' . $modelTable . '/' . $view . '", "' . ucfirst($modelName) . 'Controller@view' . $view . '")->name("' . $modelName . ucfirst($view) . '");';
+        $modelPath = base_path("routes/web.php");
+
+        $contents = File::get($modelPath);
+        if (strpos($contents, $newRoute) == false) {
+            $contents .= "\n";
+            $contents .= $newRoute;
+            file_put_contents($modelPath, $contents);
+        }
+
+
+        return $modelName . ucfirst($view);
     }
 
     private

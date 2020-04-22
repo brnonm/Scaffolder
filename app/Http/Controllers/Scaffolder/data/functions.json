@@ -1,19 +1,18 @@
 {
     "controller": {
-
         "header": "    protected static $modelName  = 'App\\$m->modelName';",
         "index": "\n        public function index()\n        {\n             $items=self::$modelName::all();\n            return view('admin.$modelTable.index', compact('items'));\n        }\n",
         "create": "\n        public function create()\n        {\n            $item= new self::$modelName();\n            return view('admin.$modelTable.create', compact('item'));\n        }\n",
         "destroy": "\n        public function destroy($model)\n        {\n          $model=self::$modelName::findOrFail($model);   $model->delete();\n            return redirect()->route('$modelTable.index');\n        }\n",
         "update": "\n           public function update($model)       {\n     }",
-        "show": "\n           public function show($id)       {\n     }"
+        "show": "\npublic function show($id)\n    {\n        $item = self::$modelName::findOrFail($id);\n        return view('admin.categories.show', compact('item'));\n    }"
     },
     "views": {
         "index": "@extends(\"scaffolder.views.partials.main\")\n@section(\"container\")\n\n    <div>\n        @csrf\n        <div class=\"row\">\n            <div class=\"col-md-12\" style=\"text-align: center\">\n                <p>Model: $modelName</p>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-md-12\">\n                <div id=\"accordion\">\n                    <div class=\"card\">\n                        $generateTable\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n@endsection\n",
-        "create": "",
-        "delete": "",
-        "update": "",
-        "show": ""
+        "create": "@extends(\"scaffolder.views.partials.main\")\n@section(\"container\")\n\n    <div>\n        @csrf\n        <div class=\"row\">\n            <div class=\"col-md-12\" style=\"text-align: center\">\n                <p>Model: Categorie</p>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-md-12\">\n                <div id=\"accordion\">\n                    <div class=\"card\">\n\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n@endsection\n",
+        "delete": "@extends(\\\"scaffolder.views.partials.main\\\")\\n@section(\\\"container\\\")\\n\\n    <div>\\n        @csrf\\n        <div class=\\\"row\\\">\\n            <div class=\\\"col-md-12\\\" style=\\\"text-align: center\\\">\\n                <p>Model: Categorie</p>\\n            </div>\\n        </div>\\n        <div class=\\\"row\\\">\\n            <div class=\\\"col-md-12\\\">\\n                <div id=\\\"accordion\\\">\\n                    <div class=\\\"card\\\">\\n\\n                    </div>\\n                </div>\\n            </div>\\n        </div>\\n    </div>\\n@endsection\\n",
+        "update": "@extends(\\\"scaffolder.views.partials.main\\\")\\n@section(\\\"container\\\")\\n\\n    <div>\\n        @csrf\\n        <div class=\\\"row\\\">\\n            <div class=\\\"col-md-12\\\" style=\\\"text-align: center\\\">\\n                <p>Model: Categorie</p>\\n            </div>\\n        </div>\\n        <div class=\\\"row\\\">\\n            <div class=\\\"col-md-12\\\">\\n                <div id=\\\"accordion\\\">\\n                    <div class=\\\"card\\\">\\n\\n                    </div>\\n                </div>\\n            </div>\\n        </div>\\n    </div>\\n@endsection\\n",
+        "show": "@extends(\"scaffolder.views.partials.main\")\n@section(\"container\")\n\n    <div>\n        @csrf\n        <div class=\"row\">\n            <div class=\"col-md-12\" style=\"text-align: center\">\n                <p>Show</p>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-md-12\">\n                <div id=\"accordion\">\n                    <div class=\"card\">\n                        $generateShow\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n@endsection"
     }
 }
 

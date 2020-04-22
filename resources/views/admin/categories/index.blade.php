@@ -21,12 +21,20 @@
 
                             <th>Actions</th>
                         </tr>
+
+
                          @foreach($items as $item)
                                 <tr>
-                                    @foreach($item->getFillable() as $field)
-                                        <th>{{$item->$field}}</th>
-                                    @endforeach
-                                    <th></th>
+                                    <td>{{$item->id}}</td> 
+<td>{{$item->type}}</td> 
+<td>{{$item->name}}</td> 
+
+                                    <td>
+                                    <form action="{{ route('categories.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Confirm delete');" style="display: inline-block;">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                        <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                    </form><button>Update</button><a type="submit" class="btn btn-xs btn-info" href="{{ route('categories.show', $item->id) }}">Show</a></td>
                                 </tr>
                                 @endforeach
                     </table>

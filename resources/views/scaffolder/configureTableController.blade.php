@@ -55,7 +55,7 @@
                                                     @if($fname != "header")
                                                         <tr>
                                                             <th>
-                                                                
+
                                                                 @if($fname =="index")
                                                                     <input type="checkbox"
                                                                            name="metadados[{{$nameTable}}][functions][{{$fname}}][enable]"

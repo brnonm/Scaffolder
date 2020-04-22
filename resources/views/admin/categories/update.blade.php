@@ -1,1 +1,1 @@
-teste update
+@extends(\"scaffolder.views.partials.main\")\n@section(\"container\")\n\n    <div>\n        @csrf\n        <div class=\"row\">\n            <div class=\"col-md-12\" style=\"text-align: center\">\n                <p>Model: Categorie</p>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-md-12\">\n                <div id=\"accordion\">\n                    <div class=\"card\">\n\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n@endsection\nteste update
