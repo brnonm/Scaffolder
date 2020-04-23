@@ -12,12 +12,14 @@
             <div class="col-md-12">
                 <div id="accordion">
                     <div class="card">
-                        <form method="PUT" action="{{route("categories.update", $item->id)}} ">
+                        <form action="{{route("categories.update", $item->id)}} " method="POST" enctype="multipart/form-data">
                             <table class="table">
+                            @csrf
+                            @method('PUT')
                     <tr>
                                 <th> Id</th><td><input disabled  type="number" name="id" value="{{$item->id}}"></td>
                     <tr>
-                                <th> Type</th><td><input   type="number" name="type" value="{{$item->type}}"></td>
+                                <th> Type</th><td>(listar opcoes)<input  type="radio" name="type" value="{{$item->type}}"></td>
                     <tr>
                                 <th> Name</th><td><input  type="text" name="name" value="{{$item->name}}"></td></table>
                             <input type="submit" value="Update" class="btn btn-info col-md-12">

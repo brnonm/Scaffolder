@@ -32,11 +32,11 @@ public function show($id)
         return view('admin.categories.update', compact('item'));
     }
 
-    public function update($id)
+        public function update($id, Request $request)
     {
         $item = self::$modelName::findOrFail($id);
-        //fazer alteracoes
-        return view('admin.categories.index');
+        $item->update($request->all());
+        return redirect()->route('categories.index');
     }
         public function destroy($model)
         {

@@ -112,6 +112,7 @@ class ScaffolderController extends Controller
         foreach ($json as $key => $value) {
             if (isset($value->enable)) {
                 if ($value->enable == "yes") {
+                    $generateTable="";
                     $basedirectory = $baseViews . $key;
                     $this->createDir($basedirectory);
                     $view = fopen($basedirectory . "/index.blade.php", "w") or die("Unable to open file!");
@@ -125,8 +126,7 @@ class ScaffolderController extends Controller
 
                             switch ($name) {
                                 case "show":
-
-                                    $actions .= "<a type=" . '"submit"' . " class=" . '"btn btn-xs btn-info"' . " href=\"{{ route('$value->modelTable.show', " . '$item->id' . ") }}\">Show</a>";
+                                    $actions .= "<a type=" . '"submit"' . " class=" . '"btn btn-xs btn-info"' . " href=\"{{ route('$value->modelTable.show', " . '$item->id' . ") }}\">Show</a> ";
                                     $contentPartial = $this->generateViewActions($name, $value);
                                     $viewPartial = fopen($basedirectory . "/show.blade.php", "w") or die("Unable to open file!");
                                     fwrite($viewPartial, $contentPartial);
@@ -134,7 +134,7 @@ class ScaffolderController extends Controller
                                     break;
 
                                 case "update":
-                                    $actions .= "<a type=" . '"submit"' . " class=" . '"btn btn-xs btn-info"' . " href=\"{{ route('$value->modelTable.edit', " . '$item->id' . ") }}\">Update</a>";
+                                    $actions .= "<a type=" . '"submit"' . " class=" . '"btn btn-xs btn-info"' . " href=\"{{ route('$value->modelTable.edit', " . '$item->id' . ") }}\">Update</a> ";
                                     $contentPartial = $this->generateViewActions($name, $value);
                                     $viewPartial = fopen($basedirectory . "/update.blade.php", "w") or die("Unable to open file!");
                                     fwrite($viewPartial, $contentPartial);
@@ -142,8 +142,7 @@ class ScaffolderController extends Controller
                                     break;
 
                                 case "destroy":
-                                    $actions .= "
-                                    <form action=\"{{ route('$value->modelTable.destroy', " . '$item->id' . ") }}\" method=\"POST\" onsubmit=\"return confirm('Confirm delete');\" style=\"display: inline-block;\">
+                                    $actions .= "<form action=\"{{ route('$value->modelTable.destroy', " . '$item->id' . ") }}\" method=\"POST\" onsubmit=\"return confirm('Confirm delete');\" style=\"display: inline-block;\">
                                         <input type=\"hidden\" name=\"_method\" value=\"DELETE\">
                                         <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token() }}\">
                                         <input type=\"submit\" class=\"btn btn-xs btn-danger\" value=\"Delete\">
@@ -151,6 +150,7 @@ class ScaffolderController extends Controller
                                     break;
 
                                 case "create":
+                                    $generateTable.="<a type=" . '"submit"' . " class=" . '"btn btn-xs btn-success"' . " href=\"{{ route('$value->modelTable.create') }}\">Create</a> ";
                                     $contentPartial = $this->generateViewActions($name, $value);
                                     $viewPartial = fopen($basedirectory . "/create.blade.php", "w") or die("Unable to open file!");
                                     fwrite($viewPartial, $contentPartial);
@@ -178,7 +178,8 @@ class ScaffolderController extends Controller
                         }
                     }
 
-                    $generateTable = "
+
+                    $generateTable.= "
                                 <table class=\"table\">
                         <tr>
                             $colum
@@ -253,8 +254,10 @@ class ScaffolderController extends Controller
 
             case "update":
 
-               $generateUpdate="<form method=\"PUT\" action=\"{{route(\"$model->modelTable.update\", \$item->id)}} \">
-                            <table class=\"table\">";
+               $generateUpdate="<form action=\"{{route(\"$model->modelTable.update\", \$item->id)}} \" method=\"POST\" enctype=\"multipart/form-data\">
+                            <table class=\"table\">
+                            @csrf
+                            @method('PUT')";
 
                 foreach ($model->fields as $name => $m) {
                     $generateUpdate .= "
@@ -272,8 +275,7 @@ class ScaffolderController extends Controller
                         case "text":
                             $generateUpdate .= "<td><input $showOP type=\"text\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
                             break;
-                        case "int" || "decimal":
-
+                        case "int":
                             $generateUpdate .= "<td><input $showOP  type=\"number\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
                             break;
                         case "image":
@@ -283,15 +285,10 @@ class ScaffolderController extends Controller
                             $generateUpdate .= "<td><input $showOP type=\"date\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
                             break;
                         case "enum":
-                            $generateUpdate .= "<td><input $showOP type=\"radio\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                            $generateUpdate .= "<td>(listar opcoes)<input $showOP type=\"radio\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
                             break;
-
                     }
-
-
                 }
-
-
                $generateUpdate.="</table>
                             <input type=\"submit\" value=\"Update\" class=\"btn btn-info col-md-12\">
                         </form>";

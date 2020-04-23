@@ -2,9 +2,9 @@
     "controller": {
         "header": "    protected static $modelName  = 'App\\$m->modelName';",
         "index": "\n        public function index()\n        {\n             $items=self::$modelName::all();\n            return view('admin.$modelTable.index', compact('items'));\n        }\n",
-        "create": "public function create()\n    {\n        $item = new self::$modelName();\n        return view('admin.categories.create', compact('item'));\n    }\n    \n    public function store(){\n        \n    }",
-        "show": "\npublic function show($id)\n    {\n        $item = self::$modelName::findOrFail($id);\n        return view('admin.categories.show', compact('item'));\n    }",
-        "update": " public function edit($id)\n    {\n        $item = self::$modelName::findOrFail($id);\n        return view('admin.categories.update', compact('item'));\n    }\n\n    public function update($id)\n    {\n        $item = self::$modelName::findOrFail($id);\n        //fazer alteracoes\n        return view('admin.categories.index');\n    }",
+        "create": "public function create()\n    {\n        $item = new self::$modelName();\n        return view('admin.$modelTable.create', compact('item'));\n    }\n    \n    public function store(){\n        \n    }",
+        "show": "\npublic function show($id)\n    {\n        $item = self::$modelName::findOrFail($id);\n        return view('admin.$modelTable.show', compact('item'));\n    }",
+        "update": " public function edit($id)\n    {\n        $item = self::$modelName::findOrFail($id);\n        return view('admin.$modelTable.update', compact('item'));\n    }\n\n        public function update($id, Request $request)\n    {\n        $item = self::$modelName::findOrFail($id);\n        $item->update($request->all());\n        return redirect()->route('$modelTable.index');\n    }",
         "destroy": "\n        public function destroy($model)\n        {\n          $model=self::$modelName::findOrFail($model);   $model->delete();\n            return redirect()->route('$modelTable.index');\n        }\n"
     },
     "views": {
