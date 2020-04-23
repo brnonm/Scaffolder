@@ -5,22 +5,25 @@
         "modelTable": "categories",
         "fields": {
             "id": {
-                "type": "text",
+                "type": "int",
                 "lenght": null,
                 "name": "Id",
-                "display": "yes"
+                "display": "yes",
+                "Key": "PRI"
             },
             "type": {
-                "type": "text",
+                "type": "enum",
                 "lenght": null,
                 "name": "Type",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "name": {
                 "type": "text",
                 "lenght": "255",
                 "name": "Name",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             }
         },
         "functions": {
@@ -50,37 +53,43 @@
                 "type": "text",
                 "lenght": null,
                 "name": "Id",
-                "display": "yes"
+                "display": "yes",
+                "Key": "PRI"
             },
             "connection": {
                 "type": "text",
                 "lenght": null,
                 "name": "Connection",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "queue": {
                 "type": "text",
                 "lenght": null,
                 "name": "Queue",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "payload": {
                 "type": "text",
                 "lenght": null,
                 "name": "Payload",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "exception": {
                 "type": "text",
                 "lenght": null,
                 "name": "Exception",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "failed_at": {
-                "type": "text",
+                "type": "timestamp",
                 "lenght": null,
                 "name": "Failed_at",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             }
         }
     },
@@ -90,22 +99,25 @@
         "modelTable": "migrations",
         "fields": {
             "id": {
-                "type": "text",
+                "type": "int",
                 "lenght": null,
                 "name": "Id",
-                "display": "yes"
+                "display": "yes",
+                "Key": "PRI"
             },
             "migration": {
                 "type": "text",
                 "lenght": "255",
                 "name": "Migration",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "batch": {
-                "type": "text",
+                "type": "int",
                 "lenght": null,
                 "name": "Batch",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             }
         }
     },
@@ -118,103 +130,120 @@
                 "type": "text",
                 "lenght": null,
                 "name": "Id",
-                "display": "yes"
+                "display": "yes",
+                "Key": "PRI"
             },
             "wallet_id": {
                 "type": "text",
                 "lenght": null,
                 "name": "Wallet_id",
-                "display": "yes"
+                "display": "yes",
+                "Key": "MUL"
             },
             "type": {
-                "type": "text",
+                "type": "enum",
                 "lenght": null,
                 "name": "Type",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "transfer": {
                 "type": "text",
                 "lenght": "1",
                 "name": "Transfer",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "transfer_movement_id": {
                 "type": "text",
                 "lenght": null,
                 "name": "Transfer_movement_id",
-                "display": "yes"
+                "display": "yes",
+                "Key": "MUL"
             },
             "transfer_wallet_id": {
                 "type": "text",
                 "lenght": null,
                 "name": "Transfer_wallet_id",
-                "display": "yes"
+                "display": "yes",
+                "Key": "MUL"
             },
             "type_payment": {
-                "type": "text",
+                "type": "enum",
                 "lenght": null,
                 "name": "Type_payment",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "category_id": {
-                "type": "text",
+                "type": "int",
                 "lenght": null,
                 "name": "Category_id",
-                "display": "yes"
+                "display": "yes",
+                "Key": "MUL"
             },
             "iban": {
                 "type": "text",
                 "lenght": "25",
                 "name": "Iban",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "mb_entity_code": {
                 "type": "text",
                 "lenght": "5",
                 "name": "Mb_entity_code",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "mb_payment_reference": {
                 "type": "text",
                 "lenght": "9",
                 "name": "Mb_payment_reference",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "description": {
                 "type": "text",
                 "lenght": null,
                 "name": "Description",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "source_description": {
                 "type": "text",
                 "lenght": null,
                 "name": "Source_description",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "date": {
                 "type": "text",
                 "lenght": null,
                 "name": "Date",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "start_balance": {
-                "type": "text",
+                "type": "decimal",
                 "lenght": "92",
                 "name": "Start_balance",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "end_balance": {
-                "type": "text",
+                "type": "decimal",
                 "lenght": "92",
                 "name": "End_balance",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "value": {
-                "type": "text",
+                "type": "decimal",
                 "lenght": "92",
                 "name": "Value",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             }
         }
     },
@@ -227,19 +256,22 @@
                 "type": "text",
                 "lenght": "255",
                 "name": "Email",
-                "display": "yes"
+                "display": "yes",
+                "Key": "MUL"
             },
             "token": {
                 "type": "text",
                 "lenght": "255",
                 "name": "Token",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "created_at": {
-                "type": "text",
+                "type": "timestamp",
                 "lenght": null,
                 "name": "Created_at",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             }
         }
     },
@@ -252,73 +284,85 @@
                 "type": "text",
                 "lenght": null,
                 "name": "Id",
-                "display": "yes"
+                "display": "yes",
+                "Key": "PRI"
             },
             "name": {
                 "type": "text",
                 "lenght": "255",
                 "name": "Name",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "email": {
                 "type": "text",
                 "lenght": "255",
                 "name": "Email",
-                "display": "yes"
+                "display": "yes",
+                "Key": "UNI"
             },
             "email_verified_at": {
-                "type": "text",
+                "type": "timestamp",
                 "lenght": null,
                 "name": "Email_verified_at",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "password": {
                 "type": "text",
                 "lenght": "255",
                 "name": "Password",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "remember_token": {
                 "type": "text",
                 "lenght": "100",
                 "name": "Remember_token",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "created_at": {
-                "type": "text",
+                "type": "timestamp",
                 "lenght": null,
                 "name": "Created_at",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "updated_at": {
-                "type": "text",
+                "type": "timestamp",
                 "lenght": null,
                 "name": "Updated_at",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "type": {
-                "type": "text",
+                "type": "enum",
                 "lenght": null,
                 "name": "Type",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "active": {
                 "type": "text",
                 "lenght": "1",
                 "name": "Active",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "photo": {
                 "type": "text",
                 "lenght": "255",
                 "name": "Photo",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "nif": {
                 "type": "text",
                 "lenght": "9",
                 "name": "Nif",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             }
         }
     },
@@ -331,31 +375,36 @@
                 "type": "text",
                 "lenght": null,
                 "name": "Id",
-                "display": "yes"
+                "display": "yes",
+                "Key": "PRI"
             },
             "email": {
                 "type": "text",
                 "lenght": "255",
                 "name": "Email",
-                "display": "yes"
+                "display": "yes",
+                "Key": "UNI"
             },
             "balance": {
-                "type": "text",
+                "type": "decimal",
                 "lenght": "92",
                 "name": "Balance",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "created_at": {
-                "type": "text",
+                "type": "timestamp",
                 "lenght": null,
                 "name": "Created_at",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             },
             "updated_at": {
-                "type": "text",
+                "type": "timestamp",
                 "lenght": null,
                 "name": "Updated_at",
-                "display": "yes"
+                "display": "yes",
+                "Key": "no"
             }
         }
     },

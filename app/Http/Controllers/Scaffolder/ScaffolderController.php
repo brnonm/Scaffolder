@@ -261,18 +261,29 @@ class ScaffolderController extends Controller
                     <tr>
                                 <th> $m->name</th>";
 
+
+                    if($m->Key != 'no'){
+                        $showOP = 'disabled';
+                    }else{
+                        $showOP = '';
+                    }
+
                     switch ($m->type){
                         case "text":
-                            $generateUpdate .= "<td><input type=\"text\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                            $generateUpdate .= "<td><input $showOP type=\"text\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
                             break;
-                        case "number":
-                            $generateUpdate .= "<td><input type=\"number\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                        case "int" || "decimal":
+
+                            $generateUpdate .= "<td><input $showOP  type=\"number\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
                             break;
                         case "image":
-                            $generateUpdate .= "<td><input type=\"image\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                            $generateUpdate .= "<td><input $showOP type=\"image\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
                             break;
                         case "date":
-                            $generateUpdate .= "<td><input type=\"date\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                            $generateUpdate .= "<td><input $showOP type=\"date\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                            break;
+                        case "enum":
+                            $generateUpdate .= "<td><input $showOP type=\"radio\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
                             break;
 
                     }

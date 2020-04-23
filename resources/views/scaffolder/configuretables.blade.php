@@ -92,9 +92,28 @@
                                                 <td>
                                                     <select class="form-control"
                                                             name='metadados[{{$nameTable}}][fields][{{$keyy}}][type]'>
-                                                        <option value="text">Texto</option>
-                                                        <option value="number">Numero</option>
-                                                        <option value="date">Data</option>
+                                                        <option
+                                                            {{ (explode( '(' ,$field->Type)[0] == 'varchar')? 'selected': '' }} value="text">
+                                                            Text
+                                                        </option>
+                                                        <option
+                                                            {{ (explode( ' ' ,$field->Type)[0] == 'int')? 'selected': '' }} value="int">
+                                                            Integer
+                                                        </option>
+                                                        <option
+                                                            {{ (explode('(',$field->Type)[0] == 'enum')? 'selected': '' }} value="enum">
+                                                            Enum
+                                                        </option>
+                                                        <option
+                                                            {{ (explode(' ',$field->Type)[0] == 'timestamp')? 'selected': '' }} value="timestamp">
+                                                            Timestamp
+                                                        </option>
+                                                        <option
+                                                            {{ (explode('(',$field->Type)[0] == 'decimal')? 'selected': '' }} value="decimal">
+                                                            Decimal
+                                                        </option>
+
+
                                                     </select>
                                                 </td>
                                                 <td>
@@ -119,8 +138,20 @@
                                                     <input type="checkbox"
                                                            name='metadados[{{$nameTable}}][fields][{{$keyy}}][display]'
                                                            value="yes" checked>
+
+
+                                                    @if($field->Key != null || $field->Key != '')
+                                                        <input type="hidden" class="form-control"
+                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][Key]'
+                                                               value="{{$field->Key}}">
+                                                    @else
+                                                        <input type="hidden" class="form-control"
+                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][Key]'
+                                                               value="no">
+                                                    @endif
                                                 </td>
                                             </tr>
+
                                         @endforeach
                                     </table>
 
