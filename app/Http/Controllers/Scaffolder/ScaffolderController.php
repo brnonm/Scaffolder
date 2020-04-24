@@ -104,19 +104,26 @@ class ScaffolderController extends Controller
         return $baseJson;
     }
 
-    private function generateView($json)
+    private function generateView($metadadosModel)
     {
         $baseViews = base_path("resources/views/admin/");
         $functions = $this->readFunctions();
 
-        foreach ($json as $key => $value) {
+
+        foreach ($metadadosModel as $key => $value) {
             if (isset($value->enable)) {
                 if ($value->enable == "yes") {
-                    $generateTable="";
+
+
+                    //cria o index por omissao
+                    $generateBody = "";
+
+
                     $basedirectory = $baseViews . $key;
                     $this->createDir($basedirectory);
                     $view = fopen($basedirectory . "/index.blade.php", "w") or die("Unable to open file!");
-                    $contentView = $functions->views->index;
+
+                    $contentView = File::get(base_path("app/Http/Controllers/Scaffolder/data/template/index.php"));
                     $contentView = str_replace(['$modelName'], [$value->modelName], $contentView);
 
 
@@ -127,6 +134,7 @@ class ScaffolderController extends Controller
                             switch ($name) {
                                 case "show":
                                     $actions .= "<a type=" . '"submit"' . " class=" . '"btn btn-xs btn-info"' . " href=\"{{ route('$value->modelTable.show', " . '$item->id' . ") }}\">Show</a> ";
+
                                     $contentPartial = $this->generateViewActions($name, $value);
                                     $viewPartial = fopen($basedirectory . "/show.blade.php", "w") or die("Unable to open file!");
                                     fwrite($viewPartial, $contentPartial);
@@ -150,7 +158,7 @@ class ScaffolderController extends Controller
                                     break;
 
                                 case "create":
-                                    $generateTable.="<a type=" . '"submit"' . " class=" . '"btn btn-xs btn-success"' . " href=\"{{ route('$value->modelTable.create') }}\">Create</a> ";
+                                    $generateBody .= "<a type=" . '"submit"' . " class=" . '"btn btn-xs btn-success"' . " href=\"{{ route('$value->modelTable.create') }}\">Create</a> ";
                                     $contentPartial = $this->generateViewActions($name, $value);
                                     $viewPartial = fopen($basedirectory . "/create.blade.php", "w") or die("Unable to open file!");
                                     fwrite($viewPartial, $contentPartial);
@@ -179,7 +187,7 @@ class ScaffolderController extends Controller
                     }
 
 
-                    $generateTable.= "
+                    $generateBody .= "
                                 <table class=\"table\">
                         <tr>
                             $colum
@@ -197,12 +205,44 @@ class ScaffolderController extends Controller
                     ";
 
 
-                    $contentView = str_replace(['$generateTable'], $generateTable, $contentView);
+                    $contentView = str_replace(['$generateBody'], $generateBody, $contentView);
                     fwrite($view, $contentView);
                     fclose($view);
                 }
             }
         }
+    }
+
+    private function readTemplates()
+    {
+
+        $urlFolder = base_path("app/Http/Controllers/Scaffolder/data/template");
+
+        if (!File::exists($urlFolder)) {
+            $error = "Folder with view templates does not find!";
+            return view("scaffolder.errorPage", compact("error"));
+        }
+
+        $filesInFolder = File::files($urlFolder);
+        $viewTemplates = array();
+        foreach ($filesInFolder as $path) {
+            $file = pathinfo($path);
+            array_push($viewTemplates, $file);
+        }
+        return $viewTemplates;
+    }
+
+    private function getTemplate($name)
+    {
+        $urlTemplate = base_path("app/Http/Controllers/Scaffolder/data/template/" . $name . ".php");
+
+        if (!File::exists($urlTemplate)) {
+            $error = "File Functions does not find!";
+            return view("scaffolder.errorPage", compact("error"));
+        }
+
+        return File::get($urlTemplate);;
+
     }
 
     private function readFunctions()
@@ -220,30 +260,32 @@ class ScaffolderController extends Controller
     private
     function generateViewActions($name, $model)
     {
-        $funcs = $this->readFunctions();
+        //$funcs = $this->readFunctions();
+        $templates = $this->readTemplates();
         $content = "";
 
-        foreach ($funcs->views as $fName => $f) {
-            if ($fName == $name) {
-                $content = $f;
+
+        foreach ($templates as $template) {
+            if ($template['filename'] == $name) {
+                $content = $this->getTemplate($template['filename']);
             }
         }
 
         switch ($name) {
             case "show":
 
-                $generateShow = "<table class=\"table\"><tr>";
+                $generateBody = "<table class=\"table\"><tr>";
                 foreach ($model->fields as $name => $m) {
-                    $generateShow .= "
+                    $generateBody .= "
                     <tr>
                                 <th> $m->name</th>
                                 <td> " . '{{$item->' . "$name}}</td>
                             </tr>";
                 }
-                $generateShow .= "</table>";
+                $generateBody .= "</table>";
 
-                if (strpos($content, '$generateShow') != false) {
-                    $changed = str_replace(['$generateShow'], [$generateShow], $content);
+                if (strpos($content, '$generateBody') != false) {
+                    $changed = str_replace(['$generateBody'], [$generateBody], $content);
                     if (strpos($content, $changed) == false) {
                         $content = $changed;
                     }
@@ -254,50 +296,46 @@ class ScaffolderController extends Controller
 
             case "update":
 
-               $generateUpdate="<form action=\"{{route(\"$model->modelTable.update\", \$item->id)}} \" method=\"POST\" enctype=\"multipart/form-data\">
+                $generateBody = "<form action=\"{{route(\"$model->modelTable.update\", \$item->id)}} \" method=\"POST\" enctype=\"multipart/form-data\">
                             <table class=\"table\">
                             @csrf
                             @method('PUT')";
 
                 foreach ($model->fields as $name => $m) {
-                    $generateUpdate .= "
+                    $generateBody .= "
                     <tr>
                                 <th> $m->name</th>";
 
-
-                    if($m->Key != 'no'){
+                    if ($m->Key != 'no') {
                         $showOP = 'disabled';
-                    }else{
+                    } else {
                         $showOP = '';
                     }
 
-                    switch ($m->type){
+                    switch ($m->type) {
                         case "text":
-                            $generateUpdate .= "<td><input $showOP type=\"text\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                            $generateBody .= "<td><input $showOP type=\"text\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
                             break;
                         case "int":
-                            $generateUpdate .= "<td><input $showOP  type=\"number\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                            $generateBody .= "<td><input $showOP  type=\"number\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
                             break;
                         case "image":
-                            $generateUpdate .= "<td><input $showOP type=\"image\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                            $generateBody .= "<td><input $showOP type=\"image\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
                             break;
                         case "date":
-                            $generateUpdate .= "<td><input $showOP type=\"date\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                            $generateBody .= "<td><input $showOP type=\"date\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
                             break;
                         case "enum":
-                            $generateUpdate .= "<td>(listar opcoes)<input $showOP type=\"radio\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                            $generateBody .= "<td>(listar opcoes)<input $showOP type=\"radio\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
                             break;
                     }
                 }
-               $generateUpdate.="</table>
+                $generateBody .= "</table>
                             <input type=\"submit\" value=\"Update\" class=\"btn btn-info col-md-12\">
                         </form>";
 
-
-
-
-                if (strpos($content, '$generateUpdate') != false) {
-                    $changed = str_replace(['$generateUpdate'], [$generateUpdate], $content);
+                if (strpos($content, '$generateBody') != false) {
+                    $changed = str_replace(['$generateBody'], [$generateBody], $content);
                     if (strpos($content, $changed) == false) {
                         $content = $changed;
                     }
@@ -307,7 +345,50 @@ class ScaffolderController extends Controller
                 break;
 
             case "create":
-                $content .= "teste create";
+                $generateBody = "<form action=\"{{route(\"$model->modelTable.store\")}} \" method=\"POST\" enctype=\"multipart/form-data\">
+                            <table class=\"table\">
+                            @csrf";
+
+                foreach ($model->fields as $name => $m) {
+
+
+                    if ($m->Key == 'PRI') {
+                        continue;
+                    }
+
+                    $generateBody .= "
+                    <tr>
+                                <th> $m->name</th>";
+
+                    switch ($m->type) {
+                        case "text":
+                            $generateBody .= "<td><input  type=\"text\" name=\"$name\"></td>";
+                            break;
+                        case "int":
+                            $generateBody .= "<td><input   type=\"number\" name=\"$name\" ></td>";
+                            break;
+                        case "image":
+                            $generateBody .= "<td><input  type=\"image\" name=\"$name\" ></td>";
+                            break;
+                        case "date":
+                            $generateBody .= "<td><input  type=\"date\" name=\"$name\" ></td>";
+                            break;
+                        case "enum":
+                            $generateBody .= "<td>(listar opcoes)<input  type=\"radio\" name=\"$name\" ></td>";
+                            break;
+                    }
+                }
+                $generateBody .= "</table>
+                            <input type=\"submit\" value=\"Create\" class=\"btn btn-info col-md-12\">
+                        </form>";
+
+                if (strpos($content, '$generateBody') != false) {
+                    $changed = str_replace(['$generateBody'], [$generateBody], $content);
+                    if (strpos($content, $changed) == false) {
+                        $content = $changed;
+                    }
+                }
+
                 return $content;
                 break;
         }

@@ -6,15 +6,12 @@
         "show": "\npublic function show($id)\n    {\n        $item = self::$modelName::findOrFail($id);\n        return view('admin.$modelTable.show', compact('item'));\n    }",
         "update": " public function edit($id)\n    {\n        $item = self::$modelName::findOrFail($id);\n        return view('admin.$modelTable.update', compact('item'));\n    }\n\n        public function update($id, Request $request)\n    {\n        $item = self::$modelName::findOrFail($id);\n        $item->update($request->all());\n        return redirect()->route('$modelTable.index');\n    }",
         "destroy": "\n        public function destroy($model)\n        {\n          $model=self::$modelName::findOrFail($model);   $model->delete();\n            return redirect()->route('$modelTable.index');\n        }\n"
-    },
-    "views": {
-        "index": "@extends(\"scaffolder.views.partials.main\")\n@section(\"container\")\n\n    <div>\n        @csrf\n        <div class=\"row\">\n            <div class=\"col-md-12\" style=\"text-align: center\">\n                <p>Model: $modelName</p>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-md-12\">\n                <div id=\"accordion\">\n                    <div class=\"card\">\n                        $generateTable\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n@endsection\n",
-        "create": "@extends(\"scaffolder.views.partials.main\")\n@section(\"container\")\n\n    <div>\n        @csrf\n        <div class=\"row\">\n            <div class=\"col-md-12\" style=\"text-align: center\">\n                <p>Model: Categorie</p>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-md-12\">\n                <div id=\"accordion\">\n                    <div class=\"card\">\n\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n@endsection\n",
-        "delete": "@extends(\\\"scaffolder.views.partials.main\\\")\\n@section(\\\"container\\\")\\n\\n    <div>\\n        @csrf\\n        <div class=\\\"row\\\">\\n            <div class=\\\"col-md-12\\\" style=\\\"text-align: center\\\">\\n                <p>Model: Categorie</p>\\n            </div>\\n        </div>\\n        <div class=\\\"row\\\">\\n            <div class=\\\"col-md-12\\\">\\n                <div id=\\\"accordion\\\">\\n                    <div class=\\\"card\\\">\\n\\n                    </div>\\n                </div>\\n            </div>\\n        </div>\\n    </div>\\n@endsection\\n",
-        "update": "@extends(\"scaffolder.views.partials.main\")\n@section(\"container\")\n\n    <div>\n        @csrf\n        <div class=\"row\">\n            <div class=\"col-md-12\" style=\"text-align: center\">\n                <p>Update</p>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-md-12\">\n                <div id=\"accordion\">\n                    <div class=\"card\">\n                        $generateUpdate\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n@endsection",
-        "show": "@extends(\"scaffolder.views.partials.main\")\n@section(\"container\")\n\n    <div>\n        @csrf\n        <div class=\"row\">\n            <div class=\"col-md-12\" style=\"text-align: center\">\n                <p>Show</p>\n            </div>\n        </div>\n        <div class=\"row\">\n            <div class=\"col-md-12\">\n                <div id=\"accordion\">\n                    <div class=\"card\">\n                        $generateShow\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n@endsection"
     }
+
+
+
 }
+
 
 
 
