@@ -27,19 +27,19 @@
             }
         },
         "functions": {
-            "index": {
+            "create": {
                 "enable": "yes"
             },
-            "create": {
+            "destroy": {
+                "enable": "yes"
+            },
+            "index": {
                 "enable": "yes"
             },
             "show": {
                 "enable": "yes"
             },
             "update": {
-                "enable": "yes"
-            },
-            "destroy": {
                 "enable": "yes"
             }
         }

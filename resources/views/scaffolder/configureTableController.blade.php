@@ -1,6 +1,7 @@
 @extends("scaffolder.views.partials.main")
 @section("container")
 
+
     <div class="row">
         <div class="col-md-12" style="text-align: center">
             <p>Gerador de projetos - Parte 2 - Escolher metodos para os controladores</p>
@@ -48,38 +49,35 @@
 
                                         </tr>
 
+                                        @foreach($functions as $func)
+                                            @if($func['filename'] != "header")
 
-                                        @foreach($functions as $funcName=>$funcs)
-                                            @if($funcName == "controller")
-                                                @foreach($funcs as $fname=>$func)
-                                                    @if($fname != "header")
-                                                        <tr>
-                                                            <th>
+                                                <tr>
+                                                    <th>
 
-                                                                @if($fname =="index")
-                                                                    <input type="checkbox"
-                                                                           name="metadados[{{$nameTable}}][functions][{{$fname}}][enable]"
-                                                                           value="yes" checked disabled>
-                                                                    <input type="hidden"
-                                                                           name="metadados[{{$nameTable}}][functions][{{$fname}}][enable]"
-                                                                           value="yes">
-                                                                @else
+                                                        @if($func['filename'] =="index")
+                                                            <input type="checkbox"
+                                                                   name="metadados[{{$nameTable}}][functions][{{$func['filename']}}][enable]"
+                                                                   value="yes" checked disabled>
+                                                            <input type="hidden"
+                                                                   name="metadados[{{$nameTable}}][functions][{{$func['filename']}}][enable]"
+                                                                   value="yes">
+                                                        @else
 
-                                                                    <input type="hidden"
-                                                                           name="metadados[{{$nameTable}}][functions][{{$fname}}][enable]"
-                                                                           value="no">
-                                                                    <input type="checkbox"
-                                                                           name="metadados[{{$nameTable}}][functions][{{$fname}}][enable]"
-                                                                           value="yes" checked>
-                                                                @endif
-                                                            </th>
-                                                            <td>{{ucfirst($fname)}}</td>
+                                                            <input type="hidden"
+                                                                   name="metadados[{{$nameTable}}][functions][{{$func['filename']}}][enable]"
+                                                                   value="no">
+                                                            <input type="checkbox"
+                                                                   name="metadados[{{$nameTable}}][functions][{{$func['filename']}}][enable]"
+                                                                   value="yes" checked>
+                                                        @endif
+                                                    </th>
+                                                    <td>{{ucfirst($func['filename'])}}</td>
 
-                                                        </tr>
-                                                    @endif
-                                                @endforeach
+                                                </tr>
                                             @endif
                                         @endforeach
+
                                     </table>
                                 </div>
                             </div>

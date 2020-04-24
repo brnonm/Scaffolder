@@ -47,19 +47,24 @@ class ScaffolderController extends Controller
 
     public function tablesConfigureP1Post(Request $request)
     {
-        $urlFunctions = base_path('app/Http/Controllers/Scaffolder/data/functions.json');
+        //$urlFunctions = base_path('app/Http/Controllers/Scaffolder/data/functions.json');
+
+        $urlFolder = base_path('app/Http/Controllers/Scaffolder/data/templates/function');
+
+
         $json = json_encode($request->except('_token'), JSON_PRETTY_PRINT);
         file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), stripslashes($json));
-
         $metadados = collect(json_decode($json));
         $metadados = collect($metadados->first());
 
-        if (!File::exists($urlFunctions)) {
+        if (!File::exists($urlFolder)) {
             $error = "File with generic functions does not find!";
             return view("scaffolder.errorPage", compact("error"));
         } else {
-            $func = File::get($urlFunctions);
-            $functions = collect(json_decode($func));
+
+            $functions = $this->readTemplatesFunction();
+
+            //$functions = collect(json_decode($func));
             return view("scaffolder.configureTableController", compact("metadados", "functions"));
         }
 
@@ -77,13 +82,10 @@ class ScaffolderController extends Controller
 
 
         $json = $this->joinJson($baseJson, $newJson);
+
         $this->createByJsonObject($json);
-
         $this->createMenuBackOffice($json);
-
-
         $this->generateView($json);
-
         file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), json_encode($baseJson, JSON_PRETTY_PRINT));
 
         return redirect()->route("scaffolder.controller");
@@ -107,23 +109,18 @@ class ScaffolderController extends Controller
     private function generateView($metadadosModel)
     {
         $baseViews = base_path("resources/views/admin/");
-        $functions = $this->readFunctions();
-
 
         foreach ($metadadosModel as $key => $value) {
             if (isset($value->enable)) {
                 if ($value->enable == "yes") {
 
-
-                    //cria o index por omissao
+                    //cria o index por omissao para alterar
                     $generateBody = "";
-
-
                     $basedirectory = $baseViews . $key;
                     $this->createDir($basedirectory);
                     $view = fopen($basedirectory . "/index.blade.php", "w") or die("Unable to open file!");
 
-                    $contentView = File::get(base_path("app/Http/Controllers/Scaffolder/data/template/index.php"));
+                    $contentView = File::get(base_path("app/Http/Controllers/Scaffolder/data/templates/view/index.php"));
                     $contentView = str_replace(['$modelName'], [$value->modelName], $contentView);
 
 
@@ -134,7 +131,6 @@ class ScaffolderController extends Controller
                             switch ($name) {
                                 case "show":
                                     $actions .= "<a type=" . '"submit"' . " class=" . '"btn btn-xs btn-info"' . " href=\"{{ route('$value->modelTable.show', " . '$item->id' . ") }}\">Show</a> ";
-
                                     $contentPartial = $this->generateViewActions($name, $value);
                                     $viewPartial = fopen($basedirectory . "/show.blade.php", "w") or die("Unable to open file!");
                                     fwrite($viewPartial, $contentPartial);
@@ -213,13 +209,13 @@ class ScaffolderController extends Controller
         }
     }
 
-    private function readTemplates()
+    private function readTemplatesView()
     {
 
-        $urlFolder = base_path("app/Http/Controllers/Scaffolder/data/template");
+        $urlFolder = base_path("app/Http/Controllers/Scaffolder/data/templates/view");
 
         if (!File::exists($urlFolder)) {
-            $error = "Folder with view templates does not find!";
+            $error = "Folder with view template View does not find!";
             return view("scaffolder.errorPage", compact("error"));
         }
 
@@ -232,9 +228,9 @@ class ScaffolderController extends Controller
         return $viewTemplates;
     }
 
-    private function getTemplate($name)
+    private function getTemplateView($name)
     {
-        $urlTemplate = base_path("app/Http/Controllers/Scaffolder/data/template/" . $name . ".php");
+        $urlTemplate = base_path("app/Http/Controllers/Scaffolder/data/templates/view/" . $name . ".php");
 
         if (!File::exists($urlTemplate)) {
             $error = "File Functions does not find!";
@@ -245,29 +241,62 @@ class ScaffolderController extends Controller
 
     }
 
-    private function readFunctions()
+    private function readTemplatesFunction()
     {
-        $urlFunc = base_path("app/Http/Controllers/Scaffolder/data/functions.json");
 
-        if (!File::exists($urlFunc)) {
+        $urlFolder = base_path("app/Http/Controllers/Scaffolder/data/templates/function");
+
+        if (!File::exists($urlFolder)) {
+            $error = "Folder with view template functions does not find!";
+            return view("scaffolder.errorPage", compact("error"));
+        }
+
+        $filesInFolder = File::files($urlFolder);
+        $viewTemplates = array();
+        foreach ($filesInFolder as $path) {
+            $file = pathinfo($path);
+            array_push($viewTemplates, $file);
+        }
+        return $viewTemplates;
+    }
+
+    private function getTemplatefunction($name)
+    {
+        $urlTemplate = base_path("app/Http/Controllers/Scaffolder/data/templates/function/" . $name . ".php");
+
+        if (!File::exists($urlTemplate)) {
             $error = "File Functions does not find!";
             return view("scaffolder.errorPage", compact("error"));
         }
-        return json_decode(File::get($urlFunc));
+
+        return File::get($urlTemplate);;
 
     }
 
+    /*
+        private function readFunctions()
+        {
+            $urlFunc = base_path("app/Http/Controllers/Scaffolder/data/functions.json");
+
+            if (!File::exists($urlFunc)) {
+                $error = "File Functions does not find!";
+                return view("scaffolder.errorPage", compact("error"));
+            }
+            return json_decode(File::get($urlFunc));
+
+        }
+    */
     private
     function generateViewActions($name, $model)
     {
         //$funcs = $this->readFunctions();
-        $templates = $this->readTemplates();
+        $templates = $this->readTemplatesView();
         $content = "";
 
 
         foreach ($templates as $template) {
             if ($template['filename'] == $name) {
-                $content = $this->getTemplate($template['filename']);
+                $content = $this->getTemplateView($template['filename']);
             }
         }
 
@@ -504,46 +533,54 @@ class ScaffolderController extends Controller
     }
 
     private
-    function populateController($m)
+    function populateController($model)
     {
-        $name = explode("_", $m->modelName);
+
+
+        $name = explode("_", $model->modelName);
         $finalName = "";
         foreach ($name as $part) {
             $finalName .= ucfirst($part);
         }
         $modelPath = base_path("app/Http/Controllers/" . $finalName . "Controller.php");
-        $urlFunc = base_path("app/Http/Controllers/Scaffolder/data/functions.json");
+
+        $availableFunctions = $this->readTemplatesFunction();
+
 
         if (File::exists($modelPath)) {
-
-            $functions = json_decode(File::get($urlFunc));
 
             $contents = File::get($modelPath);
             $contents = substr_replace($contents, "", -3);
             $contents .= "\n";
 
-            foreach ($functions->controller as $funcName => $func) {
-                if (strpos($contents, $func) == false) {
-                    if (strpos($func, '$m->modelName') != false) {
-                        $changed = str_replace(['$m->modelName'], [$m->modelName], $func);
+            $header = str_replace(['$modelName'], [$model->modelName], $this->getTemplatefunction('header'));
+            if (strpos($contents, $header) == false) {
+                $contents .= $header;
+                $contents .= "\n";
+            }
 
-                        if (strpos($contents, $changed) == false) {
-                            $contents .= $changed;
-                        }
-                    } else {
-                        foreach ($m->functions as $fName => $f) {
-                            if ($fName === $funcName) {
-                                if ($f->enable == "yes") {
-                                    $changed = str_replace(['$modelTable'], [$m->modelTable], $func);
-                                    $contents .= $changed;
-                                }
+
+            $contents .= "\n";
+
+            foreach ($model->functions as $fname => $f) {
+                if ($f->enable == "yes") {
+                    foreach ($availableFunctions as $ava) {
+                        if ($fname == $ava['filename']) {
+                            $newFunc = $this->getTemplatefunction($ava['filename']);
+                            $changed = str_replace(['$modelName', '$modelTable'], [$model->modelName, $model->modelTable], $newFunc);
+                            if (strpos($contents, $changed) == false) {
+                                $contents .= $changed;
+                                $contents .= "\n";
                             }
+
                         }
                     }
                 }
             }
             $contents .= "\n\n";
             $contents .= "}";
+
+
             file_put_contents($modelPath, $contents);
         }
     }

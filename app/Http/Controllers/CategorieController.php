@@ -7,42 +7,55 @@ use Illuminate\Http\Request;
 class CategorieController extends Controller
 {
     //
-    protected static $modelName  = 'App\Categorie';
-        public function index()
-        {
-             $items=self::$modelName::all();
-            return view('admin.categories.index', compact('items'));
-        }
-public function create()
+    protected static $model = 'App\Categorie';
+
+
+    public
+    function create()
     {
-        $item = new self::$modelName();
+        $item = new self::$model();
         return view('admin.categories.create', compact('item'));
     }
-    
-    public function store(){
-        
+
+    public
+    function store()
+    {
+
     }
-public function show($id)
+
+    public function destroy($model)
     {
-        $item = self::$modelName::findOrFail($id);
+        $model = self::$model::findOrFail($model);
+        $model->delete();
+        return redirect()->route('categories.index');
+    }
+
+    public
+    function index()
+    {
+        $items = self::$model::all();
+        return view('admin.categories.index', compact('items'));
+    }
+
+
+    public function show($id)
+    {
+        $item = self::$model::findOrFail($id);
         return view('admin.categories.show', compact('item'));
-    } public function edit($id)
+    }
+
+    public function edit($id)
     {
-        $item = self::$modelName::findOrFail($id);
+        $item = self::$model::findOrFail($id);
         return view('admin.categories.update', compact('item'));
     }
 
-        public function update($id, Request $request)
+    public function update($id, Request $request)
     {
-        $item = self::$modelName::findOrFail($id);
+        $item = self::$model::findOrFail($id);
         $item->update($request->all());
         return redirect()->route('categories.index');
     }
-        public function destroy($model)
-        {
-          $model=self::$modelName::findOrFail($model);   $model->delete();
-            return redirect()->route('categories.index');
-        }
 
 
 }
