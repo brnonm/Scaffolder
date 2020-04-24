@@ -1,5 +1,5 @@
 public function show($id)
 {
-$item = self::$modelName::findOrFail($id);
+$item = self::$model::findOrFail($id);
 return view('admin.$modelTable.show', compact('item'));
 }

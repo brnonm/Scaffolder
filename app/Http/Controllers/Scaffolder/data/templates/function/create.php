@@ -1,7 +1,7 @@
 public
 function create()
 {
-$item = new self::$modelName();
+$item = new self::$model();
 return view('admin.$modelTable.create', compact('item'));
 }
 

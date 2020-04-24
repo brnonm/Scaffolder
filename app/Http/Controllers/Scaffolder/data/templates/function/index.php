@@ -1,7 +1,7 @@
 public
 function index()
 {
-$items = self::$modelName::all();
+$items = self::$model::all();
 return view('admin.$modelTable.index', compact('items'));
 }
 

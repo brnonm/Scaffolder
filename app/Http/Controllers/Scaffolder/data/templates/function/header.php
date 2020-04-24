@@ -1,1 +1,1 @@
-protected static $modelName  = 'App\$m->modelName';
+protected static $model  = 'App\$modelName';

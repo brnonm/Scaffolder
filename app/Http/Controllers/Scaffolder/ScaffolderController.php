@@ -28,9 +28,7 @@ class ScaffolderController extends Controller
 
     public function getSchemaDB(Request $request)
     {
-
         $tables = DB::select(DB::raw("SELECT TABLE_NAME AS _table FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '$request->db'"));
-
         foreach ($tables as $key => $table) {
             $t = $table->_table;
             $columns = DB::select(DB::raw("show fields from " . $t));
@@ -41,16 +39,12 @@ class ScaffolderController extends Controller
             }
             $metadados[$t] = $atr;
         }
-
         return view("scaffolder.configuretables", compact("metadados"));
     }
 
     public function tablesConfigureP1Post(Request $request)
     {
-        //$urlFunctions = base_path('app/Http/Controllers/Scaffolder/data/functions.json');
-
         $urlFolder = base_path('app/Http/Controllers/Scaffolder/data/templates/function');
-
 
         $json = json_encode($request->except('_token'), JSON_PRETTY_PRINT);
         file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), stripslashes($json));
@@ -63,8 +57,6 @@ class ScaffolderController extends Controller
         } else {
 
             $functions = $this->readTemplatesFunction();
-
-            //$functions = collect(json_decode($func));
             return view("scaffolder.configureTableController", compact("metadados", "functions"));
         }
 
@@ -164,7 +156,6 @@ class ScaffolderController extends Controller
                             }
                         }
                     }
-
 
                     $colum = "";
 
@@ -273,26 +264,12 @@ class ScaffolderController extends Controller
 
     }
 
-    /*
-        private function readFunctions()
-        {
-            $urlFunc = base_path("app/Http/Controllers/Scaffolder/data/functions.json");
-
-            if (!File::exists($urlFunc)) {
-                $error = "File Functions does not find!";
-                return view("scaffolder.errorPage", compact("error"));
-            }
-            return json_decode(File::get($urlFunc));
-
-        }
-    */
     private
     function generateViewActions($name, $model)
     {
-        //$funcs = $this->readFunctions();
+
         $templates = $this->readTemplatesView();
         $content = "";
-
 
         foreach ($templates as $template) {
             if ($template['filename'] == $name) {
@@ -443,7 +420,6 @@ class ScaffolderController extends Controller
         if (File::exists($modelPath)) {
 
             $functions = json_decode(File::get($urlFunc), true);
-            //$contents = File::get($modelPath);
             $contents = "";
 
             foreach ($json as $key => $value) {
@@ -580,8 +556,10 @@ class ScaffolderController extends Controller
             $contents .= "\n\n";
             $contents .= "}";
 
-
             file_put_contents($modelPath, $contents);
+        }else {
+            $error = "File" . $finalName . "Controller.php does not find!";
+            return view("scaffolder.errorPage", compact("error"));
         }
     }
 
@@ -618,18 +596,19 @@ class ScaffolderController extends Controller
                 $i++;
                 if ($i == $len) {
                     $initFillable .= '"' . $key . '"';
-                    $initFillable .= "];";
+                    $initFillable .= "];\n";
                 } else {
                     $initFillable .= '"' . $key . '",';
                 }
             }
 
 
+
             if (strpos($contents, $initFillable) == false) {
                 $contents .= $initFillable;
-                $contents .= "\n}";
             }
 
+            $contents .= "\n}";
             file_put_contents($modelPath, $contents);
 
         } else {
