@@ -557,7 +557,7 @@ class ScaffolderController extends Controller
             $contents .= "}";
 
             file_put_contents($modelPath, $contents);
-        }else {
+        } else {
             $error = "File" . $finalName . "Controller.php does not find!";
             return view("scaffolder.errorPage", compact("error"));
         }
@@ -570,25 +570,17 @@ class ScaffolderController extends Controller
 
         $modelPath = base_path("app/" . $m->modelName . ".php");
         if (File::exists($modelPath)) {
-
             $contents = File::get($modelPath);
             $contents = substr_replace($contents, "", -3);
             $contents .= "\n";
-
-
             $initTable = '    protected $table = "' . $m->modelTable . '";';
             if (strpos($contents, $initTable) == false) {
                 $contents .= $initTable;
             }
-
-
             $contents .= "\n";
-
             $initFillable = '    protected $fillable=[';
             $i = 0;
             $len = 0;
-
-
             foreach ($m->fields as $key => $field) {
                 $len++;
             }
@@ -601,16 +593,11 @@ class ScaffolderController extends Controller
                     $initFillable .= '"' . $key . '",';
                 }
             }
-
-
-
             if (strpos($contents, $initFillable) == false) {
                 $contents .= $initFillable;
             }
-
             $contents .= "\n}";
             file_put_contents($modelPath, $contents);
-
         } else {
             $error = "File" . $m->modelName . "does not find!";
             return view("scaffolder.errorPage", compact("error"));

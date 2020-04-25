@@ -6,7 +6,8 @@ return view('admin.$modelTable.create', compact('item'));
 }
 
 public
-function store()
+function store(Request $request)
 {
-
+self::$model::create($request->all());
+return redirect()->route('$modelTable.index');
 }
