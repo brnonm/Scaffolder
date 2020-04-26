@@ -20,7 +20,7 @@
                                 <th> Id</th><td><input disabled  type="number" name="id" value="{{$item->id}}"></td>
                     <tr>
                                 <th> Options</th><td><input type=radio name="type"  value=e {{( $item->type == 'e')? 'checked': '' }}>    <label>este</label><br>
-<input type=radio name="type"  value=i {{( $item->type == 'i')? 'checked': '' }}>    <label>is</label><br>
+<input type=radio name="type"  value=i {{( $item->type == 'i')? 'checked': '' }}>    <label>isto</label><br>
 </td>
                     <tr>
                                 <th> Name</th><td><input  type="text" name="name" value="{{$item->name}}"></td></table>

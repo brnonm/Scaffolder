@@ -16,11 +16,11 @@
                     <tr>
                                 <th> Id</th>
                                 <td> {{$item->id}}</td>
-                            </tr>
-                    <tr>
-                                <th> Options</th>
-                                <td> {{$item->type}}</td>
-                            </tr>
+                            </tr><th> Options</th><td>
+{{( $item->type == 'e')? 'este': '' }}
+{{( $item->type == 'i')? 'isto': '' }}
+</td> 
+
                     <tr>
                                 <th> Name</th>
                                 <td> {{$item->name}}</td>

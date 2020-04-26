@@ -190,9 +190,24 @@ class ScaffolderController extends Controller
                     $rows = "";
 
                     foreach ($value->fields as $name => $f) {
+
+
                         if ($f->display == "yes") {
-                            dd($f);
-                            $rows .= '<td>{{$item->' . $name . "}}</td> \n";
+                            if (isset($f->options)) {
+
+                                $rows .= "<td>\n";
+                                foreach ($f->options as $index => $option) {
+                                    if ($index != "type") {
+
+                                        $rows .= "{{( \$item->$name == '$index')? '$option': '' }}";
+                                        $rows .= "\n";
+                                    }
+                                }
+                                $rows .= "</td> \n";
+                            } else {
+                                $rows .= '<td>{{$item->' . $name . "}}</td> \n";
+                            }
+
                         }
                     }
 
@@ -305,12 +320,31 @@ class ScaffolderController extends Controller
 
                 $generateBody = "<table class=\"table\"><tr>";
                 foreach ($model->fields as $name => $m) {
-                    $generateBody .= "
+
+                    if (isset($m->options)) {
+                        $generateBody.="<th> $m->name</th>";
+                        $generateBody .= "<td>\n";
+                        foreach ($m->options as $index => $option) {
+                            if ($index != "type") {
+
+                                $generateBody .= "{{( \$item->$name == '$index')? '$option': '' }}";
+                                $generateBody .= "\n";
+                            }
+                        }
+                        $generateBody .= "</td> \n";
+                    } else {
+
+                        $generateBody .= "
                     <tr>
                                 <th> $m->name</th>
                                 <td> " . '{{$item->' . "$name}}</td>
                             </tr>";
+                    }
+
+
                 }
+
+
                 $generateBody .= "</table>";
 
                 if (strpos($content, '$generateBody') != false) {
@@ -359,7 +393,7 @@ class ScaffolderController extends Controller
                                 $generateBody .= "<td>";
                                 foreach ($m->options as $key => $value) {
                                     if ($key != "type") {
-                                        $generateBody .= "<input type=" . $m->options->type . " name=\"$name\"  value=".$key." {{( \$item->$name == '$key')? 'checked': '' }}>";
+                                        $generateBody .= "<input type=" . $m->options->type . " name=\"$name\"  value=" . $key . " {{( \$item->$name == '$key')? 'checked': '' }}>";
                                         $generateBody .= "    <label>$value</label>";
                                         $generateBody .= "<br>";
                                         $generateBody .= "\n";
@@ -423,7 +457,7 @@ class ScaffolderController extends Controller
                                 $generateBody .= "<td>";
                                 foreach ($m->options as $key => $value) {
                                     if ($key != "type") {
-                                        $generateBody .= "<input  type=" . $m->options->type . " name=\"$name\"  value=".$key.">";
+                                        $generateBody .= "<input  type=" . $m->options->type . " name=\"$name\"  value=" . $key . ">";
                                         $generateBody .= "    <label>$value</label>";
                                         $generateBody .= "<br>";
                                         $generateBody .= "\n";
