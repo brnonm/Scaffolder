@@ -17,8 +17,8 @@
                 "type": "enum",
                 "options": {
                     "type": "radio",
-                    "e": "este",
-                    "i": "isto"
+                    "e": "e",
+                    "i": "i"
                 },
                 "name": "Options"
             },

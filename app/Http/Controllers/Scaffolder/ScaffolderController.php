@@ -315,6 +315,10 @@ class ScaffolderController extends Controller
             }
         }
 
+
+        $content = str_replace(['$modelName'], [$model->modelName], $content);
+
+
         switch ($name) {
             case "show":
 
