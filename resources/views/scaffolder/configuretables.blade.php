@@ -66,14 +66,14 @@
 
                                     <table class="table">
                                         <tr>
-                                            <!--<th>Select</th>-->
+                                            <th>Select</th>
                                             <th>Label</th>
                                             <th>Type</th>
                                             <th>Null</th>
                                             <th>Key</th>
                                             <th>Other</th>
                                             <th>Type</th>
-                                            <th>Lenght</th>
+                                            <th>Options</th>
                                             <th>Name</th>
                                         </tr>
 
@@ -84,6 +84,24 @@
 
                                         @foreach($table as $keyy=>$field)
                                             <tr>
+                                                <td>
+                                                    <input type="hidden" class="form-control"
+                                                           name='metadados[{{$nameTable}}][fields][{{$keyy}}][display]'
+                                                           value="no">
+                                                    <input type="checkbox"
+                                                           name='metadados[{{$nameTable}}][fields][{{$keyy}}][display]'
+                                                           value="yes" checked>
+
+                                                    @if($field->Key != null || $field->Key != "")
+                                                        <input type="hidden" class="form-control"
+                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][Key]'
+                                                               value="{{$field->Key}}">
+                                                    @else
+                                                        <input type="hidden" class="form-control"
+                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][Key]'
+                                                               value="no">
+                                                    @endif
+                                                </td>
                                                 <th>{{$field->Field}}</th>
                                                 <td>{{$field->Type}}</td>
                                                 <td> {{$field->Null}}</td>
@@ -116,58 +134,55 @@
 
                                                     </select>
                                                 </td>
-                                                <td>
+                                                @if(isset($field->options))
+                                                    <td>
+                                                        <label>View: (adicionar mais)</label>
+                                                        <select class="form-control"
+                                                                name='metadados[{{$nameTable}}][fields][{{$keyy}}][options][type]'>
+                                                            <option value="radio" selected> Radio button</option>
+
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <label>Enum name:</label>
+                                                        <input type="text" class="form-control"
+                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][name]'
+                                                               placeholder="Enum name"
+                                                               value="Options">
+
+                                                        @foreach($field->options as $Key =>$value)
+                                                            <label>Option: {{$Key}}</label>
+                                                            <input type="text" class="form-control"
+                                                                   name='metadados[{{$nameTable}}][fields][{{$keyy}}][options][{{$Key}}]'
+                                                                   placeholder="{{$value}}"
+                                                                   value="{{$value}}">
+                                                        @endforeach
+                                                    </td>
+
+                                                @else
+                                                    <td>
 
 
-                                                    <input type="number" class="form-control"
-                                                           name='metadados[{{$nameTable}}][fields][{{$keyy}}][lenght]'
-                                                           placeholder="Tamanho"
-                                                           value="{{preg_replace('/[^0-9]/', '',  $field->Type)}}">
-                                                </td>
-                                                <td>
-                                                    <input type="text" class="form-control"
-                                                           name='metadados[{{$nameTable}}][fields][{{$keyy}}][name]'
-                                                           placeholder="Nome"
-                                                           value="{{rtrim(ucfirst($field->Field), "s ")}}">
-                                                </td>
+                                                        <input type="number" class="form-control"
+                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][lenght]'
+                                                               placeholder="Tamanho"
+                                                               value="{{preg_replace('/[^0-9]/', '',  $field->Type)}}">
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control"
+                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][name]'
+                                                               placeholder="Nome"
+                                                               value="{{rtrim(ucfirst($field->Field), "s ")}}">
+                                                    </td>
+                                                @endif
 
-                                                <td>
-                                                    <input type="hidden" class="form-control"
-                                                           name='metadados[{{$nameTable}}][fields][{{$keyy}}][display]'
-                                                           value="no">
-                                                    <input type="checkbox"
-                                                           name='metadados[{{$nameTable}}][fields][{{$keyy}}][display]'
-                                                           value="yes" checked>
-
-
-                                                    @if($field->Key != null || $field->Key != '')
-                                                        <input type="hidden" class="form-control"
-                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][Key]'
-                                                               value="{{$field->Key}}">
-                                                    @else
-                                                        <input type="hidden" class="form-control"
-                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][Key]'
-                                                               value="no">
-                                                    @endif
-                                                </td>
                                             </tr>
-
                                         @endforeach
                                     </table>
-
-
                                 </div>
                             </div>
-
                         </div>
-
-
-
-
-
                     @endforeach
-
-
                 </div>
                 <br>
                 <input type="submit" value="Avançar" class="btn btn-info col-md-12">

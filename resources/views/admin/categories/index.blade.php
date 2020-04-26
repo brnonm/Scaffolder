@@ -16,7 +16,7 @@
                                 <table class="table">
                         <tr>
                              <th> Id </th> 
- <th> Type </th> 
+ <th> ola </th> 
  <th> Name </th> 
 
                             <th>Actions</th>

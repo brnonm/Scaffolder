@@ -39,6 +39,28 @@ class ScaffolderController extends Controller
             }
             $metadados[$t] = $atr;
         }
+
+        //se for um enum
+        foreach ($metadados as $modelName => $models) {
+            foreach ($models as $fieldName => $field) {
+                if (strstr($field->Type, 'enum')) {
+                    $str = $field->Type;
+                    $str = explode("'", $str);
+                    $values = array();
+
+                    for ($i = 1; $i < sizeof($str); $i = $i + 2) {
+                        $values[$str[$i]] = $str[$i];
+
+                    }
+
+                    $metadados[$modelName][$fieldName] = (object)array_merge(
+                        (array)$metadados[$modelName][$fieldName], (array)['options' => $values]);
+
+                }
+            }
+        }
+
+
         return view("scaffolder.configuretables", compact("metadados"));
     }
 
@@ -362,9 +384,12 @@ class ScaffolderController extends Controller
                         continue;
                     }
 
-                    $generateBody .= "
+
+                    if (isset($m->name)) {
+                        $generateBody .= "
                     <tr>
                                 <th> $m->name</th>";
+                    }
 
                     switch ($m->type) {
                         case "text":
@@ -380,7 +405,21 @@ class ScaffolderController extends Controller
                             $generateBody .= "<td><input  type=\"date\" name=\"$name\" ></td>";
                             break;
                         case "enum":
-                            $generateBody .= "<td>(listar opcoes)<input  type=\"radio\" name=\"$name\" ></td>";
+
+                            if (isset($m->options)) {
+                                $generateBody .= "<td>";
+                                foreach ($m->options as $key => $value) {
+                                    if ($key != "type") {
+                                        $generateBody .= "<input  type=" . $m->options->type . " name=\"$name\"  value=".$key.">";
+                                        $generateBody .= "    <label>$value</label>";
+                                        $generateBody .= "<br>";
+                                        $generateBody .= "\n";
+                                    }
+                                }
+                                $generateBody .= "</td>";
+                            }
+
+
                             break;
                     }
                 }
@@ -561,6 +600,12 @@ class ScaffolderController extends Controller
             $error = "File" . $finalName . "Controller.php does not find!";
             return view("scaffolder.errorPage", compact("error"));
         }
+    }
+
+    private function populateRequest($model)
+    {
+        //php artisan make:request CategorieStoreRequest
+
     }
 
 

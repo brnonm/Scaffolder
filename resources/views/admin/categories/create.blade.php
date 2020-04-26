@@ -16,7 +16,9 @@
                             <table class="table">
                             @csrf
                     <tr>
-                                <th> Type</th><td>(listar opcoes)<input  type="radio" name="type" ></td>
+                                <th> ola</th><td><input  type=radio name="type"  value=e>    <label>este</label><br>
+<input  type=radio name="type"  value=i>    <label>isto</label><br>
+</td>
                     <tr>
                                 <th> Name</th><td><input  type="text" name="name"></td></table>
                             <input type="submit" value="Create" class="btn btn-info col-md-12">

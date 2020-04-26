@@ -19,7 +19,7 @@
                     <tr>
                                 <th> Id</th><td><input disabled  type="number" name="id" value="{{$item->id}}"></td>
                     <tr>
-                                <th> Type</th><td>(listar opcoes)<input  type="radio" name="type" value="{{$item->type}}"></td>
+                                <th> ola</th><td>(listar opcoes)<input  type="radio" name="type" value="{{$item->type}}"></td>
                     <tr>
                                 <th> Name</th><td><input  type="text" name="name" value="{{$item->name}}"></td></table>
                             <input type="submit" value="Update" class="btn btn-info col-md-12">
