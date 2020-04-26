@@ -18,7 +18,7 @@
                                 <td> {{$item->id}}</td>
                             </tr>
                     <tr>
-                                <th> ola</th>
+                                <th> Options</th>
                                 <td> {{$item->type}}</td>
                             </tr>
                     <tr>

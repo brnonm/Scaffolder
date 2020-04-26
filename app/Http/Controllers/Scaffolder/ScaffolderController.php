@@ -191,6 +191,7 @@ class ScaffolderController extends Controller
 
                     foreach ($value->fields as $name => $f) {
                         if ($f->display == "yes") {
+                            dd($f);
                             $rows .= '<td>{{$item->' . $name . "}}</td> \n";
                         }
                     }
@@ -354,7 +355,19 @@ class ScaffolderController extends Controller
                             $generateBody .= "<td><input $showOP type=\"date\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
                             break;
                         case "enum":
-                            $generateBody .= "<td>(listar opcoes)<input $showOP type=\"radio\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                            if (isset($m->options)) {
+                                $generateBody .= "<td>";
+                                foreach ($m->options as $key => $value) {
+                                    if ($key != "type") {
+                                        $generateBody .= "<input type=" . $m->options->type . " name=\"$name\"  value=".$key." {{( \$item->$name == '$key')? 'checked': '' }}>";
+                                        $generateBody .= "    <label>$value</label>";
+                                        $generateBody .= "<br>";
+                                        $generateBody .= "\n";
+                                    }
+                                }
+                                $generateBody .= "</td>";
+                            }
+
                             break;
                     }
                 }

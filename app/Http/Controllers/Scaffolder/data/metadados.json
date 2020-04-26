@@ -18,9 +18,9 @@
                 "options": {
                     "type": "radio",
                     "e": "este",
-                    "i": "isto"
+                    "i": "is"
                 },
-                "name": "ola"
+                "name": "Options"
             },
             "name": {
                 "display": "yes",

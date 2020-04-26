@@ -16,8 +16,8 @@
                             <table class="table">
                             @csrf
                     <tr>
-                                <th> ola</th><td><input  type=radio name="type"  value=e>    <label>este</label><br>
-<input  type=radio name="type"  value=i>    <label>isto</label><br>
+                                <th> Options</th><td><input  type=radio name="type"  value=e>    <label>este</label><br>
+<input  type=radio name="type"  value=i>    <label>is</label><br>
 </td>
                     <tr>
                                 <th> Name</th><td><input  type="text" name="name"></td></table>
