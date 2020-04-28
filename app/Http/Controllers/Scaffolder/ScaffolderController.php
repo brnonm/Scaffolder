@@ -205,12 +205,16 @@ class ScaffolderController extends Controller
                                 }
                                 $rows .= "</td> \n";
                             } else {
-                                $rows .= '<td>{{$item->' . $name . "}}</td> \n";
+                                if ($f->type == "photo") {
+                                    $rows .="<td><img src=\"/storage/fotos/{{ \$item->$name}}\" height=\"70px\" width=\"70px\" /></td>\n";
+                                }else{
+                                    $rows .= '<td>{{$item->' . $name . "}}</td> \n";
+                                }
+
                             }
 
                         }
                     }
-
 
                     $generateBody .= "
                                 <table class=\"table\">
@@ -327,7 +331,7 @@ class ScaffolderController extends Controller
                 foreach ($model->fields as $name => $m) {
 
                     if (isset($m->options)) {
-                        $generateBody.="<th> $m->name</th>";
+                        $generateBody .= "<th> $m->name</th>";
                         $generateBody .= "<td>\n";
                         foreach ($m->options as $index => $option) {
                             if ($index != "type") {

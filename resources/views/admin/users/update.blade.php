@@ -38,9 +38,9 @@
 <input type=radio name="type"  value=a {{( $item->type == 'a')? 'checked': '' }}>    <label>a</label><br>
 </td>
                     <tr>
-                                <th> Active</th><td><input  type="text" name="active" value="{{$item->active}}"></td>
+                                <th> Active</th>
                     <tr>
-                                <th> Photo</th><td><input  type="text" name="photo" value="{{$item->photo}}"></td>
+                                <th> Photo</th>
                     <tr>
                                 <th> Nif</th><td><input  type="text" name="nif" value="{{$item->nif}}"></td></table>
                             <input type="submit" value="Update" class="btn btn-info col-md-12">

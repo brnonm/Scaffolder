@@ -35,9 +35,9 @@
 <input  type=radio name="type"  value=a>    <label>a</label><br>
 </td>
                     <tr>
-                                <th> Active</th><td><input  type="text" name="active"></td>
+                                <th> Active</th>
                     <tr>
-                                <th> Photo</th><td><input  type="text" name="photo"></td>
+                                <th> Photo</th>
                     <tr>
                                 <th> Nif</th><td><input  type="text" name="nif"></td></table>
                             <input type="submit" value="Create" class="btn btn-info col-md-12">

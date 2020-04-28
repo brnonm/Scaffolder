@@ -130,6 +130,14 @@
                                                             {{ (explode('(',$field->Type)[0] == 'decimal')? 'selected': '' }} value="decimal">
                                                             Decimal
                                                         </option>
+                                                        <option
+                                                            {{ (explode('(',$field->Type)[0] == 'tinyint')? 'selected': '' }} value="tinyint">
+                                                            Tinyint
+                                                        </option>
+                                                        <option
+                                                             value="photo">
+                                                            Photo
+                                                        </option>
 
 
                                                     </select>

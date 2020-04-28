@@ -48,7 +48,7 @@
 {{( $item->type == 'a')? 'a': '' }}
 </td> 
 <td>{{$item->active}}</td> 
-<td>{{$item->photo}}</td> 
+<td><img src="/storage/fotos/{{ $item->photo}}" height="70px" width="70px" /></td>
 <td>{{$item->nif}}</td> 
 
                                     <td><form action="{{ route('users.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Confirm delete');" style="display: inline-block;">
