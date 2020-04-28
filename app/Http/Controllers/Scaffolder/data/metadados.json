@@ -290,7 +290,7 @@
     },
     "users": {
         "modelName": "User",
-        "enable": "no",
+        "enable": "yes",
         "modelTable": "users",
         "fields": {
             "id": {
@@ -382,11 +382,28 @@
                 "lenght": "9",
                 "name": "Nif"
             }
+        },
+        "functions": {
+            "create": {
+                "enable": "yes"
+            },
+            "destroy": {
+                "enable": "yes"
+            },
+            "index": {
+                "enable": "yes"
+            },
+            "show": {
+                "enable": "yes"
+            },
+            "update": {
+                "enable": "yes"
+            }
         }
     },
     "wallets": {
         "modelName": "Wallet",
-        "enable": "no",
+        "enable": "yes",
         "modelTable": "wallets",
         "fields": {
             "id": {
@@ -423,6 +440,23 @@
                 "type": "timestamp",
                 "lenght": null,
                 "name": "Updated_at"
+            }
+        },
+        "functions": {
+            "create": {
+                "enable": "yes"
+            },
+            "destroy": {
+                "enable": "yes"
+            },
+            "index": {
+                "enable": "yes"
+            },
+            "show": {
+                "enable": "yes"
+            },
+            "update": {
+                "enable": "yes"
             }
         }
     },
