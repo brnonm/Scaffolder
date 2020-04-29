@@ -13,10 +13,15 @@ class ScaffolderController extends Controller
 {
     public function backofficeController()
     {
-        $json = File::get(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'));
-        $metadados = collect(json_decode($json, true));
+        $url = base_path('app/Http/Controllers/Scaffolder/data/metadados.json');
+        if (File::exists($url)) {
+            $json = File::get($url);
+            $metadados = collect(json_decode($json, true));
+            return view("scaffolder.back.controllers", compact("metadados"));
+        } else {
+            $this->errorPage("metadados.jsomn does not find!");
+        }
 
-        return view("scaffolder.back.controllers", compact("metadados"));
     }
 
     public function indexChooseDB()
@@ -74,8 +79,7 @@ class ScaffolderController extends Controller
         $metadados = collect($metadados->first());
 
         if (!File::exists($urlFolder)) {
-            $error = "File with generic functions does not find!";
-            return view("scaffolder.errorPage", compact("error"));
+            $this->errorPage("File with generic functions does not find!");
         } else {
 
             $functions = $this->readTemplatesFunction();
@@ -206,8 +210,8 @@ class ScaffolderController extends Controller
                                 $rows .= "</td> \n";
                             } else {
                                 if ($f->type == "photo") {
-                                    $rows .="<td><img src=\"/storage/fotos/{{ \$item->$name}}\" height=\"70px\" width=\"70px\" /></td>\n";
-                                }else{
+                                    $rows .= "<td><img src=\"/storage/fotos/{{ \$item->$name}}\" height=\"70px\" width=\"70px\" /></td>\n";
+                                } else {
                                     $rows .= '<td>{{$item->' . $name . "}}</td> \n";
                                 }
 
@@ -251,8 +255,7 @@ class ScaffolderController extends Controller
         $urlFolder = base_path("app/Http/Controllers/Scaffolder/data/templates/view");
 
         if (!File::exists($urlFolder)) {
-            $error = "Folder with view template View does not find!";
-            return view("scaffolder.errorPage", compact("error"));
+            $this->errorPage("Folder with view template View does not find!");
         }
 
         $filesInFolder = File::files($urlFolder);
@@ -269,8 +272,7 @@ class ScaffolderController extends Controller
         $urlTemplate = base_path("app/Http/Controllers/Scaffolder/data/templates/view/" . $name . ".php");
 
         if (!File::exists($urlTemplate)) {
-            $error = "File Functions does not find!";
-            return view("scaffolder.errorPage", compact("error"));
+            $this->errorPage("File Functions does not find!");
         }
 
         return File::get($urlTemplate);;
@@ -283,8 +285,7 @@ class ScaffolderController extends Controller
         $urlFolder = base_path("app/Http/Controllers/Scaffolder/data/templates/function");
 
         if (!File::exists($urlFolder)) {
-            $error = "Folder with view template functions does not find!";
-            return view("scaffolder.errorPage", compact("error"));
+            $this->errorPage("Folder with view template functions does not find!");
         }
 
         $filesInFolder = File::files($urlFolder);
@@ -301,8 +302,7 @@ class ScaffolderController extends Controller
         $urlTemplate = base_path("app/Http/Controllers/Scaffolder/data/templates/function/" . $name . ".php");
 
         if (!File::exists($urlTemplate)) {
-            $error = "File Functions does not find!";
-            return view("scaffolder.errorPage", compact("error"));
+            $this->errorPage("File Functions does not find!");
         }
 
         return File::get($urlTemplate);;
@@ -558,12 +558,75 @@ class ScaffolderController extends Controller
                 Artisan::call("make:model $m->modelName   --controller");
                 Artisan::call("make:resource $m->modelName");
                 $this->populateModel($m);
+                $this->populateRequest($m);
                 $this->populateController($m);
                 $this->populateRoutes($m);
                 $this->artisanOptimize();
+
             }
         }
     }
+
+    private function populateRequest($model)
+    {
+        $url = base_path("app/Http/Requests/");
+
+        foreach ($model->functions as $fName => $func) {
+            if ($func->enable == "yes") {
+                $name = "";
+                switch ($fName) {
+                    case "create":
+                        $name .= "Store";
+                        $name .= ucfirst($model->modelTable);
+                        $name .= "Request";
+                        $url .= $name . ".php";
+                        Artisan::call("make:request $name");
+                        break;
+                    case "update":
+                        $name .= "Update";
+                        $name .= ucfirst($model->modelTable);
+                        $name .= "Request";
+                        $url .= $name . ".php";
+                        Artisan::call("make:request $name");
+                        break;
+                }
+
+                if (File::exists($url)) {
+                    $content = File::get($url);
+                    $content = str_replace(['false'], "true", $content);
+
+                    $old = "//";
+                    $new = "";
+                    $i = 0;
+                    $count = 0;
+
+                    foreach ($model->fields as $f) {
+
+                        if ($f->Key == "no") {
+                            $i++;
+                        }
+                    }
+
+                    foreach ($model->fields as $fName => $f) {
+                        if ($f->Key == "no") {
+                            $count++;
+                            if ($count == $i) {
+                                $new .= "'$fName' => 'required'";
+                            } else {
+                                $new .= "'$fName' => 'required',\n";
+                            }
+                        }
+                    }
+
+                    $content = str_replace([$old], $new, $content);
+                    file_put_contents($url, $content);
+                } else {
+                    $this->errorPage("File" . $name . " does not find!");
+                }
+            }
+        }
+    }
+
 
     private
     function artisanOptimize()
@@ -585,22 +648,6 @@ class ScaffolderController extends Controller
             $contents .= $newRoute;
             file_put_contents($modelPath, $contents);
         }
-    }
-
-    private function createRouteView($modelTable, $view, $modelName)
-    {
-        $newRoute = 'Route::get("' . $modelTable . '/' . $view . '", "' . ucfirst($modelName) . 'Controller@view' . $view . '")->name("' . $modelName . ucfirst($view) . '");';
-        $modelPath = base_path("routes/web.php");
-
-        $contents = File::get($modelPath);
-        if (strpos($contents, $newRoute) == false) {
-            $contents .= "\n";
-            $contents .= $newRoute;
-            file_put_contents($modelPath, $contents);
-        }
-
-
-        return $modelName . ucfirst($view);
     }
 
     private
@@ -653,15 +700,13 @@ class ScaffolderController extends Controller
 
             file_put_contents($modelPath, $contents);
         } else {
-            $error = "File" . $finalName . "Controller.php does not find!";
-            return view("scaffolder.errorPage", compact("error"));
+            $this->errorPage("File" . $finalName . "Controller.php does not find!");
         }
     }
 
-    private function populateRequest($model)
+    private function errorPage($error)
     {
-        //php artisan make:request CategorieStoreRequest
-
+        return view("scaffolder.errorPage", compact("error"));
     }
 
 
@@ -700,8 +745,7 @@ class ScaffolderController extends Controller
             $contents .= "\n}";
             file_put_contents($modelPath, $contents);
         } else {
-            $error = "File" . $m->modelName . "does not find!";
-            return view("scaffolder.errorPage", compact("error"));
+            $this->errorPage("File" . $m->modelName . "does not find!");
         }
 
 

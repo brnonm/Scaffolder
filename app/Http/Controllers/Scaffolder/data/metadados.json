@@ -1,7 +1,7 @@
 {
     "categories": {
         "modelName": "Categorie",
-        "enable": "no",
+        "enable": "yes",
         "modelTable": "categories",
         "fields": {
             "id": {
@@ -28,6 +28,23 @@
                 "type": "text",
                 "lenght": "255",
                 "name": "Name"
+            }
+        },
+        "functions": {
+            "create": {
+                "enable": "yes"
+            },
+            "destroy": {
+                "enable": "yes"
+            },
+            "index": {
+                "enable": "yes"
+            },
+            "show": {
+                "enable": "yes"
+            },
+            "update": {
+                "enable": "yes"
             }
         }
     },
@@ -273,7 +290,7 @@
     },
     "users": {
         "modelName": "User",
-        "enable": "yes",
+        "enable": "no",
         "modelTable": "users",
         "fields": {
             "id": {
@@ -354,7 +371,7 @@
             "photo": {
                 "display": "yes",
                 "Key": "no",
-                "type": "photo",
+                "type": "text",
                 "lenght": "255",
                 "name": "Photo"
             },
@@ -364,23 +381,6 @@
                 "type": "text",
                 "lenght": "9",
                 "name": "Nif"
-            }
-        },
-        "functions": {
-            "create": {
-                "enable": "yes"
-            },
-            "destroy": {
-                "enable": "yes"
-            },
-            "index": {
-                "enable": "yes"
-            },
-            "show": {
-                "enable": "yes"
-            },
-            "update": {
-                "enable": "yes"
             }
         }
     },
