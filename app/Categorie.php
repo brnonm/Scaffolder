@@ -11,4 +11,6 @@ class Categorie extends Model
     protected $fillable=["id","type","name"];
 
 
+
+
 }

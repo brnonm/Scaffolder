@@ -11,6 +11,21 @@ use Illuminate\Support\Facades\File;
 
 class ScaffolderController extends Controller
 {
+    public function selectView(){
+        $url = base_path('app/Http/Controllers/Scaffolder/data/metadados.json');
+        if(!File::exists($url)){
+            return redirect()->route("install.indexChooseDB");
+        }else{
+            $metadados = File::get($url);
+            if(strpos($metadados, '"generated": "yes"') == true){
+                return redirect()->route("scaffolder.controller");
+            }else{
+                return redirect()->route("install.indexChooseDB");
+            }
+        }
+    }
+
+
     public function backofficeController()
     {
         $url = base_path('app/Http/Controllers/Scaffolder/data/metadados.json');
@@ -72,8 +87,9 @@ class ScaffolderController extends Controller
     public function tablesConfigureP1Post(Request $request)
     {
         $urlFolder = base_path('app/Http/Controllers/Scaffolder/data/templates/function');
-
         $json = json_encode($request->except('_token'), JSON_PRETTY_PRINT);
+
+
         file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), stripslashes($json));
         $metadados = collect(json_decode($json));
         $metadados = collect($metadados->first());
@@ -118,7 +134,6 @@ class ScaffolderController extends Controller
                 }
             }
         }
-
         $baseJson->put("generated", "no");
 
         return $baseJson;
@@ -131,8 +146,6 @@ class ScaffolderController extends Controller
         foreach ($metadadosModel as $key => $value) {
             if (isset($value->enable)) {
                 if ($value->enable == "yes") {
-
-                    //cria o index por omissao para alterar
                     $generateBody = "";
                     $basedirectory = $baseViews . $key;
                     $this->createDir($basedirectory);
@@ -304,9 +317,7 @@ class ScaffolderController extends Controller
         if (!File::exists($urlTemplate)) {
             $this->errorPage("File Functions does not find!");
         }
-
         return File::get($urlTemplate);;
-
     }
 
     private
@@ -349,10 +360,7 @@ class ScaffolderController extends Controller
                                 <td> " . '{{$item->' . "$name}}</td>
                             </tr>";
                     }
-
-
                 }
-
 
                 $generateBody .= "</table>";
 
@@ -601,7 +609,6 @@ class ScaffolderController extends Controller
                     $count = 0;
 
                     foreach ($model->fields as $f) {
-
                         if ($f->Key == "no") {
                             $i++;
                         }
@@ -610,6 +617,8 @@ class ScaffolderController extends Controller
                     foreach ($model->fields as $fName => $f) {
                         if ($f->Key == "no") {
                             $count++;
+
+
                             if ($count == $i) {
                                 $new .= "'$fName' => 'required'";
                             } else {

@@ -13,6 +13,7 @@
 
 //rotas de administração
 
+Route::get('/', "Scaffolder\ScaffolderController@selectView")->name("selectView");
 
 Route::group([ 'prefix' => 'install', 'as' => 'install.'], function () {
     Route::get('/', "Scaffolder\ScaffolderController@indexChooseDB")->name("indexChooseDB");
