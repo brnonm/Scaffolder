@@ -17,8 +17,8 @@
                                 <th> Id</th>
                                 <td> {{$item->id}}</td>
                             </tr><th> Options</th><td>
-{{( $item->type == 'e')? 'e': '' }}
-{{( $item->type == 'i')? 'i': '' }}
+{{( $item->type == 'e')? 'este': '' }}
+{{( $item->type == 'i')? 'isto': '' }}
 </td> 
 
                     <tr>

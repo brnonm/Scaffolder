@@ -17,8 +17,8 @@
                 "type": "enum",
                 "options": {
                     "type": "radio",
-                    "e": "e",
-                    "i": "i"
+                    "e": "este",
+                    "i": "isto"
                 },
                 "name": "Options"
             },
@@ -290,7 +290,7 @@
     },
     "users": {
         "modelName": "User",
-        "enable": "no",
+        "enable": "yes",
         "modelTable": "users",
         "fields": {
             "id": {
@@ -371,7 +371,7 @@
             "photo": {
                 "display": "yes",
                 "Key": "no",
-                "type": "text",
+                "type": "photo",
                 "lenght": "255",
                 "name": "Photo"
             },
@@ -381,6 +381,23 @@
                 "type": "text",
                 "lenght": "9",
                 "name": "Nif"
+            }
+        },
+        "functions": {
+            "create": {
+                "enable": "yes"
+            },
+            "destroy": {
+                "enable": "yes"
+            },
+            "index": {
+                "enable": "yes"
+            },
+            "show": {
+                "enable": "yes"
+            },
+            "update": {
+                "enable": "yes"
             }
         }
     },

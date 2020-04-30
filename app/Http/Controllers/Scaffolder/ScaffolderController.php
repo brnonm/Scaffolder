@@ -227,20 +227,15 @@ class ScaffolderController extends Controller
                                 } else {
                                     $rows .= '<td>{{$item->' . $name . "}}</td> \n";
                                 }
-
                             }
-
                         }
                     }
-
                     $generateBody .= "
                                 <table class=\"table\">
                         <tr>
                             $colum
                             <th>Actions</th>
                         </tr>
-
-
                          @foreach(" . '$items' . " as " . '$item' . ")
                                 <tr>
                                     $rows
@@ -252,8 +247,6 @@ class ScaffolderController extends Controller
                         {{\$items->links()}}
                     </div>
                     ";
-
-
                     $contentView = str_replace(['$generateBody'], $generateBody, $contentView);
                     fwrite($view, $contentView);
                     fclose($view);
@@ -443,12 +436,9 @@ class ScaffolderController extends Controller
 
                 foreach ($model->fields as $name => $m) {
 
-
                     if ($m->Key == 'PRI') {
                         continue;
                     }
-
-
                     if (isset($m->name)) {
                         $generateBody .= "
                     <tr>
@@ -521,10 +511,8 @@ class ScaffolderController extends Controller
         $urlFunc = base_path("app/Http/Controllers/Scaffolder/data/menuTemplate.json");
 
         if (File::exists($modelPath)) {
-
             $functions = json_decode(File::get($urlFunc), true);
             $contents = "";
-
             foreach ($json as $key => $value) {
                 if (isset($value->enable)) {
                     if ($value->enable == "yes") {
@@ -555,7 +543,6 @@ class ScaffolderController extends Controller
     private
     function createByJsonObject($json)
     {
-
         foreach ($json as $field => $m) {
             if ($field == "generated") {
                 $json->put($field, "yes");
@@ -570,7 +557,6 @@ class ScaffolderController extends Controller
                 $this->populateController($m);
                 $this->populateRoutes($m);
                 $this->artisanOptimize();
-
             }
         }
     }
@@ -617,8 +603,6 @@ class ScaffolderController extends Controller
                     foreach ($model->fields as $fName => $f) {
                         if ($f->Key == "no") {
                             $count++;
-
-
                             if ($count == $i) {
                                 $new .= "'$fName' => 'required'";
                             } else {
@@ -640,13 +624,13 @@ class ScaffolderController extends Controller
     private
     function artisanOptimize()
     {
+        Artisan::call("storage:link");
         Artisan::call("optimize");
     }
 
     private
     function populateRoutes($m)
     {
-
         $newRoute = 'Route::resource("' . $m->modelTable . '", "' . $m->modelName . 'Controller");';
         $modelPath = base_path("routes/web.php");
 
@@ -662,17 +646,13 @@ class ScaffolderController extends Controller
     private
     function populateController($model)
     {
-
-
         $name = explode("_", $model->modelName);
         $finalName = "";
         foreach ($name as $part) {
             $finalName .= ucfirst($part);
         }
         $modelPath = base_path("app/Http/Controllers/" . $finalName . "Controller.php");
-
         $availableFunctions = $this->readTemplatesFunction();
-
 
         if (File::exists($modelPath)) {
 
@@ -722,7 +702,6 @@ class ScaffolderController extends Controller
     private
     function populateModel($m)
     {
-
         $modelPath = base_path("app/" . $m->modelName . ".php");
         if (File::exists($modelPath)) {
             $contents = File::get($modelPath);
@@ -756,9 +735,5 @@ class ScaffolderController extends Controller
         } else {
             $this->errorPage("File" . $m->modelName . "does not find!");
         }
-
-
     }
-
-
 }
