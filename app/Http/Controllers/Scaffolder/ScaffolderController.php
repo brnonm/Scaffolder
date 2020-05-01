@@ -11,15 +11,16 @@ use Illuminate\Support\Facades\File;
 
 class ScaffolderController extends Controller
 {
-    public function selectView(){
+    public function selectView()
+    {
         $url = base_path('app/Http/Controllers/Scaffolder/data/metadados.json');
-        if(!File::exists($url)){
+        if (!File::exists($url)) {
             return redirect()->route("install.indexChooseDB");
-        }else{
+        } else {
             $metadados = File::get($url);
-            if(strpos($metadados, '"generated": "yes"') == true){
+            if (strpos($metadados, '"generated": "yes"') == true) {
                 return redirect()->route("scaffolder.controller");
-            }else{
+            } else {
                 return redirect()->route("install.indexChooseDB");
             }
         }
@@ -553,7 +554,7 @@ class ScaffolderController extends Controller
                 Artisan::call("make:model $m->modelName   --controller");
                 Artisan::call("make:resource $m->modelName");
                 $this->populateModel($m);
-                $this->populateRequest($m);
+                $this->createRequest($m);
                 $this->populateController($m);
                 $this->populateRoutes($m);
                 $this->artisanOptimize();
@@ -561,12 +562,11 @@ class ScaffolderController extends Controller
         }
     }
 
-    private function populateRequest($model)
+    private function createRequest($model)
     {
-        $url = base_path("app/Http/Requests/");
-
         foreach ($model->functions as $fName => $func) {
             if ($func->enable == "yes") {
+                $url = base_path("app/Http/Requests/");
                 $name = "";
                 switch ($fName) {
                     case "create":
@@ -575,6 +575,7 @@ class ScaffolderController extends Controller
                         $name .= "Request";
                         $url .= $name . ".php";
                         Artisan::call("make:request $name");
+                        $this->populateRequest($url,$model);
                         break;
                     case "update":
                         $name .= "Update";
@@ -582,41 +583,56 @@ class ScaffolderController extends Controller
                         $name .= "Request";
                         $url .= $name . ".php";
                         Artisan::call("make:request $name");
+                        $this->populateRequest($url,$model);
                         break;
                 }
+            }
+        }
+    }
 
-                if (File::exists($url)) {
-                    $content = File::get($url);
-                    $content = str_replace(['false'], "true", $content);
 
-                    $old = "//";
-                    $new = "";
-                    $i = 0;
-                    $count = 0;
+    private function populateRequest($url, $model)
+    {
+        if (File::exists($url)) {
+            $content = File::get($url);
+            $content = str_replace(['false'], "true", $content);
+            $old = "//";
+            $new = "";
 
-                    foreach ($model->fields as $f) {
-                        if ($f->Key == "no") {
-                            $i++;
-                        }
-                    }
 
-                    foreach ($model->fields as $fName => $f) {
-                        if ($f->Key == "no") {
-                            $count++;
-                            if ($count == $i) {
-                                $new .= "'$fName' => 'required'";
-                            } else {
-                                $new .= "'$fName' => 'required',\n";
-                            }
-                        }
-                    }
-
-                    $content = str_replace([$old], $new, $content);
-                    file_put_contents($url, $content);
+            foreach ($model->fields as $field => $option) {
+                if ($option->Key == "PRI") {
+                    continue;
                 } else {
-                    $this->errorPage("File" . $name . " does not find!");
+                    $i = 0;
+                    $rules = [];
+                    if ($option->Null == "NO") {
+                        $rules[$i] = "required";
+                        $i++;
+                    }
+                    if (isset($option->lenght) && $option->lenght != null) {
+                        $rules[$i] = "max:$option->lenght";
+                        $i++;
+                    }
+                }
+
+                for ($f = 0; $f < $i; $f++) {
+                    if ($f == 0) {
+                        $new .= "            '$field' => '";
+                    }
+                    $new .= $rules[$f];
+                    if ($f == $i - 1) {
+                        $new .= "',\n";
+                    } else {
+                        $new .= "|";
+                    }
                 }
             }
+
+            $content = str_replace([$old], $new, $content);
+            file_put_contents($url, $content);
+        } else {
+            $this->errorPage("Directory: $url does not exists.");
         }
     }
 
@@ -674,7 +690,21 @@ class ScaffolderController extends Controller
                     foreach ($availableFunctions as $ava) {
                         if ($fname == $ava['filename']) {
                             $newFunc = $this->getTemplatefunction($ava['filename']);
-                            $changed = str_replace(['$modelName', '$modelTable'], [$model->modelName, $model->modelTable], $newFunc);
+                            //$changed = str_replace(['$modelName', '$modelTable'], [$model->modelName, $model->modelTable], $newFunc);
+
+                            switch ($ava['filename']){
+                                case "create":
+                                    $formRequestName = "Store".$model->modelTable."Request";
+                                    break;
+                                case "update":
+                                    $formRequestName = "Update".$model->modelTable."Request";
+                                    break;
+                                default:
+                                    $formRequestName ="Request";
+                                    break;
+                            }
+                            $changed = str_replace(['$modelName', '$modelTable', '$formRequest'], [$model->modelName, $model->modelTable,$formRequestName], $newFunc);
+
                             if (strpos($contents, $changed) == false) {
                                 $contents .= $changed;
                                 $contents .= "\n";

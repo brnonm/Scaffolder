@@ -86,6 +86,10 @@
                                             <tr>
                                                 <td>
                                                     <input type="hidden" class="form-control"
+                                                           name='metadados[{{$nameTable}}][fields][{{$keyy}}][Null]'
+                                                           value="{{$field->Null}}">
+
+                                                    <input type="hidden" class="form-control"
                                                            name='metadados[{{$nameTable}}][fields][{{$keyy}}][display]'
                                                            value="no">
                                                     <input type="checkbox"
