@@ -31,3 +31,7 @@ Route::group([ 'prefix' => 'scaffolder', 'as' => 'scaffolder.'], function () {
 Route::resource("categories", "CategorieController");
 Route::resource("users", "UserController");
 Route::resource("wallets", "WalletController");
+
+Route::resource("movimentos", "MovimentoController");
+Route::resource("categorias", "CategoriaController");
+Route::resource("contas", "ContaController");
