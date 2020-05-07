@@ -1,15 +1,16 @@
 @extends("scaffolder.views.partials.main")
 @section("container")
 
-
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <div class="row">
-        <p>Gerador de projetos - Parte 1 - Configuração das tabelas e metadados</p>
+        <p>Project Generator - Part 1  - Configuration of tables and metadata</p>
+        
     </div>
     <div class="row">
         <div class="col-2">
             @foreach($metadados as $nameTable=>$table)
-                <button style="width: 100%" class="btn btn-sm btn-light"
-                        onclick="show({{$nameTable}})">{{$nameTable}}</button>
+                <button style="width: 100%" class="btn btn-sm  @if($loop->index==0) btn-info  @else btn-light @endif"
+                        onclick="show({{$nameTable}})" id="{{$nameTable}}_btn">{{$nameTable}}</button>
                 <hr style="margin: 5px;">
 
             @endforeach
@@ -20,8 +21,15 @@
                 Array.prototype.forEach.call(qwe, function (el) {
                     el.style.display = "none";
                 });
-
+                var btn = document.getElementById(text.id+"_btn");
+                btn.classList.remove("btn-light");
+                btn.classList.add("btn-info");
                 text.style.display = "block";
+            }
+
+            function changecolor(btn) {
+                btn.classList.remove("btn-light");
+                btn.classList.add("btn-info");
             }
 
         </script>
@@ -36,10 +44,13 @@
 
 
 
-                        <div class="col-md-10 offset-1 ableToClose" id="{{$nameTable}}" style="display: none">
+                        <div class="col-md-10 offset-1 ableToClose" id="{{$nameTable}}" @if($loop->index!=0) style="display: none;" @endif>
+
 
 
                             <div class="form-group row">
+
+
                                 <label for="inputPassword" class="col-sm-2 col-form-label">Name of Class</label>
                                 <div class="col-sm-10">
                                     <input type="text" id="checkField"
@@ -55,8 +66,8 @@
                                     <input type="hidden" value="no"
                                            name="metadados[{{$nameTable}}][enable]">
                                     <input type="checkbox" name="metadados[{{$nameTable}}][enable]"
-                                           data-toggle="toggle"
-                                           value="yes" data-on="Sim" data-off="Não">
+                                           data-toggle="toggle" style="border:  border: 5px solid red;"
+                                           value="yes" data-on="Yes" data-off="No">
                                 </div>
                             </div>
 
@@ -66,15 +77,15 @@
 
                                     <table class="table">
                                         <tr>
-                                            <th>Select</th>
+                                            <!--<th>Select</th>-->
                                             <th>Label</th>
                                             <th>Type</th>
                                             <th>Null</th>
                                             <th>Key</th>
                                             <th>Other</th>
                                             <th>Type</th>
-                                            <th>Options</th>
-                                            <th>Name</th>
+                                            <th></th>
+
                                         </tr>
 
                                         <input type="hidden"
@@ -84,28 +95,6 @@
 
                                         @foreach($table as $keyy=>$field)
                                             <tr>
-                                                <td>
-                                                    <input type="hidden" class="form-control"
-                                                           name='metadados[{{$nameTable}}][fields][{{$keyy}}][Null]'
-                                                           value="{{$field->Null}}">
-
-                                                    <input type="hidden" class="form-control"
-                                                           name='metadados[{{$nameTable}}][fields][{{$keyy}}][display]'
-                                                           value="no">
-                                                    <input type="checkbox"
-                                                           name='metadados[{{$nameTable}}][fields][{{$keyy}}][display]'
-                                                           value="yes" checked>
-
-                                                    @if($field->Key != null || $field->Key != "")
-                                                        <input type="hidden" class="form-control"
-                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][Key]'
-                                                               value="{{$field->Key}}">
-                                                    @else
-                                                        <input type="hidden" class="form-control"
-                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][Key]'
-                                                               value="no">
-                                                    @endif
-                                                </td>
                                                 <th>{{$field->Field}}</th>
                                                 <td>{{$field->Type}}</td>
                                                 <td> {{$field->Null}}</td>
@@ -134,72 +123,128 @@
                                                             {{ (explode('(',$field->Type)[0] == 'decimal')? 'selected': '' }} value="decimal">
                                                             Decimal
                                                         </option>
-                                                        <option
-                                                            {{ (explode('(',$field->Type)[0] == 'tinyint')? 'selected': '' }} value="tinyint">
-                                                            Tinyint
-                                                        </option>
-                                                        <option
-                                                             value="photo">
-                                                            Photo
-                                                        </option>
 
 
                                                     </select>
                                                 </td>
-                                                @if(isset($field->options))
-                                                    <td>
-                                                        <label>View: (adicionar mais)</label>
-                                                        <select class="form-control"
-                                                                name='metadados[{{$nameTable}}][fields][{{$keyy}}][options][type]'>
-                                                            <option value="radio" selected> Radio button</option>
 
-                                                        </select>
-                                                    </td>
-                                                    <td>
-                                                        <label>Enum name:</label>
-                                                        <input type="text" class="form-control"
-                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][name]'
-                                                               placeholder="Enum name"
-                                                               value="Options">
-
-                                                        @foreach($field->options as $Key =>$value)
-                                                            <label>Option: {{$Key}}</label>
-                                                            <input type="text" class="form-control"
-                                                                   name='metadados[{{$nameTable}}][fields][{{$keyy}}][options][{{$Key}}]'
-                                                                   placeholder="{{$value}}"
-                                                                   value="{{$value}}">
-                                                        @endforeach
-                                                    </td>
-
-                                                @else
-                                                    <td>
-
-
-                                                        <input type="number" class="form-control"
-                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][lenght]'
-                                                               placeholder="Tamanho"
-                                                               value="{{preg_replace('/[^0-9]/', '',  $field->Type)}}">
-                                                    </td>
-                                                    <td>
-                                                        <input type="text" class="form-control"
-                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][name]'
-                                                               placeholder="Nome"
-                                                               value="{{rtrim(ucfirst($field->Field), "s ")}}">
-                                                    </td>
-                                                @endif
-
+                                                <td class="changecolor">
+                                                    <button type="button"  class="btn btn-sm btn-light" onclick="changecolor(this)"  data-toggle="modal" data-target="#{{$nameTable.$keyy}}">Configure</button>
+                                                </td>
                                             </tr>
+
+                                            <div class="modal fade" id="{{$nameTable.$keyy}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="top: 20%; border-right: 20%;" >
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">{{$keyy}} - Configuration</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+
+
+                                                            <div class="row">
+
+                                                                <div class="col-md-12">
+
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1">Field Name</label>
+                                                                        <input type="text" class="form-control"
+                                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][name]'
+                                                                               placeholder="Nome"
+                                                                               value="{{rtrim(ucfirst($field->Field), "s ")}}">
+                                                                    </div>
+
+
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1">Lenght</label>
+                                                                        <input type="number" class="form-control"
+                                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][lenght]'
+                                                                               placeholder="255"
+                                                                               value="{{preg_replace('/[^0-9]/', '',  $field->Type)}}">
+                                                                    </div>
+
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1">Show in project</label>
+                                                                        <input type="hidden" class="form-control"
+                                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][display]'
+                                                                               value="no">
+                                                                        <input type="checkbox"
+                                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][display]'
+                                                                               value="yes" checked>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="exampleInputEmail1">Required</label>
+                                                                        <input type="hidden" class="form-control"
+                                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][required]'
+                                                                               value="no">
+                                                                        <input type="checkbox"
+                                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][required]'
+                                                                               value="yes" checked>
+                                                                    </div>
+
+
+
+
+
+                                                                </div>
+
+
+
+
+                                                                @if($field->Key != null || $field->Key != '')
+                                                                    <input type="hidden" class="form-control"
+                                                                           name='metadados[{{$nameTable}}][fields][{{$keyy}}][Key]'
+                                                                           value="{{$field->Key}}">
+                                                                @else
+                                                                    <input type="hidden" class="form-control"
+                                                                           name='metadados[{{$nameTable}}][fields][{{$keyy}}][Key]'
+                                                                           value="no">
+                                                                @endif
+
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Save and Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
                                         @endforeach
                                     </table>
+
+
                                 </div>
                             </div>
+
                         </div>
+
+
+
+
+
                     @endforeach
+
+
                 </div>
                 <br>
                 <input type="submit" value="Avançar" class="btn btn-info col-md-12">
             </form>
         </div>
     </div>
+    <style>
+        .modal-backdrop{
+            display: none;
+        }
+        .toggle-off.btn {
+            border: 1px solid grey;
+        }
+
+    </style>
 @endsection
 

@@ -13,6 +13,7 @@ class ScaffolderController extends Controller
 {
     public function selectView()
     {
+
         $url = base_path('app/Http/Controllers/Scaffolder/data/metadados.json');
         if (!File::exists($url)) {
             return redirect()->route("install.indexChooseDB");
