@@ -61,10 +61,11 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="inputPassword" class="col-sm-2 col-form-label">Include in Project</label>
+                                <label class="col-sm-2 col-form-label">Include in Project</label>
                                 <div class="col-sm-10">
                                     <input type="hidden" value="no"
                                            name="metadados[{{$nameTable}}][enable]">
+
                                     <input type="checkbox" name="metadados[{{$nameTable}}][enable]"
                                            data-toggle="toggle" style="border:  border: 5px solid red;"
                                            value="yes" data-on="Yes" data-off="No">

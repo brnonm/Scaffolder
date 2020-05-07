@@ -91,10 +91,10 @@ class ScaffolderController extends Controller
         $urlFolder = base_path('app/Http/Controllers/Scaffolder/data/templates/function');
         $json = json_encode($request->except('_token'), JSON_PRETTY_PRINT);
 
-
         file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), stripslashes($json));
         $metadados = collect(json_decode($json));
         $metadados = collect($metadados->first());
+
 
         if (!File::exists($urlFolder)) {
             $this->errorPage("File with generic functions does not find!");

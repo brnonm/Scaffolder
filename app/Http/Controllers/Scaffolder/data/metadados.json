@@ -1,453 +1,437 @@
 {
-    "autorizacoes_contas": {
-        "modelName": "Autorizacoes_conta",
-        "enable": "no",
-        "modelTable": "autorizacoes_contas",
-        "fields": {
-            "user_id": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "PRI",
-                "type": "text",
-                "lenght": null,
-                "name": "User_id"
-            },
-            "conta_id": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "PRI",
-                "type": "text",
-                "lenght": null,
-                "name": "Conta_id"
-            },
-            "so_leitura": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "no",
-                "type": "tinyint",
-                "lenght": "1",
-                "name": "So_leitura"
-            }
-        }
-    },
-    "categorias": {
-        "modelName": "Categoria",
-        "enable": "no",
-        "modelTable": "categorias",
-        "fields": {
-            "id": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "PRI",
-                "type": "text",
-                "lenght": null,
-                "name": "Id"
-            },
-            "nome": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "no",
-                "type": "text",
-                "lenght": "255",
-                "name": "Nome"
-            },
-            "tipo": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "no",
-                "type": "enum",
-                "options": {
-                    "type": "radio",
-                    "D": "D",
-                    "R": "R"
+    "metadados": {
+        "autorizacoes_contas": {
+            "modelName": "Autorizacoes_conta",
+            "enable": "no",
+            "modelTable": "autorizacoes_contas",
+            "fields": {
+                "user_id": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "PRI",
+                    "type": "text",
+                    "lenght": null,
+                    "name": "User_id"
                 },
-                "name": "Options"
-            }
-        }
-    },
-    "contas": {
-        "modelName": "Conta",
-        "enable": "yes",
-        "modelTable": "contas",
-        "fields": {
-            "id": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "PRI",
-                "type": "text",
-                "lenght": null,
-                "name": "Id"
-            },
-            "user_id": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "MUL",
-                "type": "text",
-                "lenght": null,
-                "name": "User_id"
-            },
-            "nome": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "no",
-                "type": "text",
-                "lenght": "30",
-                "name": "Nome"
-            },
-            "descricao": {
-                "Null": "YES",
-                "display": "yes",
-                "Key": "no",
-                "type": "text",
-                "lenght": "255",
-                "name": "Descricao"
-            },
-            "saldo_abertura": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "no",
-                "type": "decimal",
-                "lenght": "112",
-                "name": "Saldo_abertura"
-            },
-            "saldo_atual": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "no",
-                "type": "decimal",
-                "lenght": "112",
-                "name": "Saldo_atual"
-            },
-            "data_ultimo_movimento": {
-                "Null": "YES",
-                "display": "yes",
-                "Key": "no",
-                "type": "text",
-                "lenght": null,
-                "name": "Data_ultimo_movimento"
-            },
-            "deleted_at": {
-                "Null": "YES",
-                "display": "yes",
-                "Key": "no",
-                "type": "timestamp",
-                "lenght": null,
-                "name": "Deleted_at"
+                "conta_id": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "PRI",
+                    "type": "text",
+                    "lenght": null,
+                    "name": "Conta_id"
+                },
+                "so_leitura": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "tinyint",
+                    "lenght": "1",
+                    "name": "So_leitura"
+                }
             }
         },
-        "functions": {
-            "create": {
-                "enable": "yes"
-            },
-            "destroy": {
-                "enable": "yes"
-            },
-            "index": {
-                "enable": "yes"
-            },
-            "show": {
-                "enable": "yes"
-            },
-            "update": {
-                "enable": "yes"
-            }
-        }
-    },
-    "failed_jobs": {
-        "modelName": "Failed_job",
-        "enable": "no",
-        "modelTable": "failed_jobs",
-        "fields": {
-            "id": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "PRI",
-                "type": "text",
-                "lenght": null,
-                "name": "Id"
-            },
-            "connection": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "no",
-                "type": "text",
-                "lenght": null,
-                "name": "Connection"
-            },
-            "queue": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "no",
-                "type": "text",
-                "lenght": null,
-                "name": "Queue"
-            },
-            "payload": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "no",
-                "type": "text",
-                "lenght": null,
-                "name": "Payload"
-            },
-            "exception": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "no",
-                "type": "text",
-                "lenght": null,
-                "name": "Exception"
-            },
-            "failed_at": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "no",
-                "type": "timestamp",
-                "lenght": null,
-                "name": "Failed_at"
-            }
-        }
-    },
-    "migrations": {
-        "modelName": "Migration",
-        "enable": "no",
-        "modelTable": "migrations",
-        "fields": {
-            "id": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "PRI",
-                "type": "int",
-                "lenght": null,
-                "name": "Id"
-            },
-            "migration": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "no",
-                "type": "text",
-                "lenght": "255",
-                "name": "Migration"
-            },
-            "batch": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "no",
-                "type": "int",
-                "lenght": null,
-                "name": "Batch"
-            }
-        }
-    },
-    "movimentos": {
-        "modelName": "Movimento",
-        "enable": "no",
-        "modelTable": "movimentos",
-        "fields": {
-            "id": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "PRI",
-                "type": "text",
-                "lenght": null,
-                "name": "Id"
-            },
-            "conta_id": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "MUL",
-                "type": "text",
-                "lenght": null,
-                "name": "Conta_id"
-            },
-            "data": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "no",
-                "type": "text",
-                "lenght": null,
-                "name": "Data"
-            },
-            "valor": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "no",
-                "type": "decimal",
-                "lenght": "112",
-                "name": "Valor"
-            },
-            "saldo_inicial": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "no",
-                "type": "decimal",
-                "lenght": "112",
-                "name": "Saldo_inicial"
-            },
-            "saldo_final": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "no",
-                "type": "decimal",
-                "lenght": "112",
-                "name": "Saldo_final"
-            },
-            "tipo": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "no",
-                "type": "enum",
-                "options": {
-                    "type": "radio",
-                    "D": "D",
-                    "R": "R"
+        "categorias": {
+            "modelName": "Categoria",
+            "enable": "yes",
+            "modelTable": "categorias",
+            "fields": {
+                "id": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "PRI",
+                    "type": "text",
+                    "lenght": null,
+                    "name": "Id"
                 },
-                "name": "Options"
-            },
-            "categoria_id": {
-                "Null": "YES",
-                "display": "yes",
-                "Key": "MUL",
-                "type": "text",
-                "lenght": null,
-                "name": "Categoria_id"
-            },
-            "descricao": {
-                "Null": "YES",
-                "display": "yes",
-                "Key": "no",
-                "type": "text",
-                "lenght": "255",
-                "name": "Descricao"
-            },
-            "imagem_doc": {
-                "Null": "YES",
-                "display": "yes",
-                "Key": "no",
-                "type": "text",
-                "lenght": "255",
-                "name": "Imagem_doc"
-            },
-            "deleted_at": {
-                "Null": "YES",
-                "display": "yes",
-                "Key": "no",
-                "type": "timestamp",
-                "lenght": null,
-                "name": "Deleted_at"
+                "nome": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "text",
+                    "lenght": "255",
+                    "name": "Nome"
+                },
+                "tipo": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "enum",
+                    "options": {
+                        "type": "radio",
+                        "D": "D",
+                        "R": "R"
+                    },
+                    "name": "Options"
+                }
+            }
+        },
+        "contas": {
+            "modelName": "Conta",
+            "enable": "no",
+            "modelTable": "contas",
+            "fields": {
+                "id": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "PRI",
+                    "type": "text",
+                    "lenght": null,
+                    "name": "Id"
+                },
+                "user_id": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "MUL",
+                    "type": "text",
+                    "lenght": null,
+                    "name": "User_id"
+                },
+                "nome": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "text",
+                    "lenght": "30",
+                    "name": "Nome"
+                },
+                "descricao": {
+                    "Null": "YES",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "text",
+                    "lenght": "255",
+                    "name": "Descricao"
+                },
+                "saldo_abertura": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "decimal",
+                    "lenght": "112",
+                    "name": "Saldo_abertura"
+                },
+                "saldo_atual": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "decimal",
+                    "lenght": "112",
+                    "name": "Saldo_atual"
+                },
+                "data_ultimo_movimento": {
+                    "Null": "YES",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "text",
+                    "lenght": null,
+                    "name": "Data_ultimo_movimento"
+                },
+                "deleted_at": {
+                    "Null": "YES",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "timestamp",
+                    "lenght": null,
+                    "name": "Deleted_at"
+                }
+            }
+        },
+        "failed_jobs": {
+            "modelName": "Failed_job",
+            "enable": "no",
+            "modelTable": "failed_jobs",
+            "fields": {
+                "id": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "PRI",
+                    "type": "text",
+                    "lenght": null,
+                    "name": "Id"
+                },
+                "connection": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "text",
+                    "lenght": null,
+                    "name": "Connection"
+                },
+                "queue": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "text",
+                    "lenght": null,
+                    "name": "Queue"
+                },
+                "payload": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "text",
+                    "lenght": null,
+                    "name": "Payload"
+                },
+                "exception": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "text",
+                    "lenght": null,
+                    "name": "Exception"
+                },
+                "failed_at": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "timestamp",
+                    "lenght": null,
+                    "name": "Failed_at"
+                }
+            }
+        },
+        "migrations": {
+            "modelName": "Migration",
+            "enable": "no",
+            "modelTable": "migrations",
+            "fields": {
+                "id": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "PRI",
+                    "type": "int",
+                    "lenght": null,
+                    "name": "Id"
+                },
+                "migration": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "text",
+                    "lenght": "255",
+                    "name": "Migration"
+                },
+                "batch": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "int",
+                    "lenght": null,
+                    "name": "Batch"
+                }
+            }
+        },
+        "movimentos": {
+            "modelName": "Movimento",
+            "enable": "no",
+            "modelTable": "movimentos",
+            "fields": {
+                "id": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "PRI",
+                    "type": "text",
+                    "lenght": null,
+                    "name": "Id"
+                },
+                "conta_id": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "MUL",
+                    "type": "text",
+                    "lenght": null,
+                    "name": "Conta_id"
+                },
+                "data": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "text",
+                    "lenght": null,
+                    "name": "Data"
+                },
+                "valor": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "decimal",
+                    "lenght": "112",
+                    "name": "Valor"
+                },
+                "saldo_inicial": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "decimal",
+                    "lenght": "112",
+                    "name": "Saldo_inicial"
+                },
+                "saldo_final": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "decimal",
+                    "lenght": "112",
+                    "name": "Saldo_final"
+                },
+                "tipo": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "enum",
+                    "options": {
+                        "type": "radio",
+                        "D": "D",
+                        "R": "R"
+                    },
+                    "name": "Options"
+                },
+                "categoria_id": {
+                    "Null": "YES",
+                    "display": "yes",
+                    "Key": "MUL",
+                    "type": "text",
+                    "lenght": null,
+                    "name": "Categoria_id"
+                },
+                "descricao": {
+                    "Null": "YES",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "text",
+                    "lenght": "255",
+                    "name": "Descricao"
+                },
+                "imagem_doc": {
+                    "Null": "YES",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "text",
+                    "lenght": "255",
+                    "name": "Imagem_doc"
+                },
+                "deleted_at": {
+                    "Null": "YES",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "timestamp",
+                    "lenght": null,
+                    "name": "Deleted_at"
+                }
+            }
+        },
+        "users": {
+            "modelName": "User",
+            "enable": "no",
+            "modelTable": "users",
+            "fields": {
+                "id": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "PRI",
+                    "type": "text",
+                    "lenght": null,
+                    "name": "Id"
+                },
+                "name": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "text",
+                    "lenght": "255",
+                    "name": "Name"
+                },
+                "email": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "UNI",
+                    "type": "text",
+                    "lenght": "255",
+                    "name": "Email"
+                },
+                "email_verified_at": {
+                    "Null": "YES",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "timestamp",
+                    "lenght": null,
+                    "name": "Email_verified_at"
+                },
+                "password": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "text",
+                    "lenght": "255",
+                    "name": "Password"
+                },
+                "remember_token": {
+                    "Null": "YES",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "text",
+                    "lenght": "100",
+                    "name": "Remember_token"
+                },
+                "created_at": {
+                    "Null": "YES",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "timestamp",
+                    "lenght": null,
+                    "name": "Created_at"
+                },
+                "updated_at": {
+                    "Null": "YES",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "timestamp",
+                    "lenght": null,
+                    "name": "Updated_at"
+                },
+                "adm": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "tinyint",
+                    "lenght": "1",
+                    "name": "Adm"
+                },
+                "bloqueado": {
+                    "Null": "NO",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "tinyint",
+                    "lenght": "1",
+                    "name": "Bloqueado"
+                },
+                "NIF": {
+                    "Null": "YES",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "text",
+                    "lenght": "9",
+                    "name": "NIF"
+                },
+                "telefone": {
+                    "Null": "YES",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "text",
+                    "lenght": "255",
+                    "name": "Telefone"
+                },
+                "foto": {
+                    "Null": "YES",
+                    "display": "yes",
+                    "Key": "no",
+                    "type": "text",
+                    "lenght": "255",
+                    "name": "Foto"
+                }
             }
         }
-    },
-    "users": {
-        "modelName": "User",
-        "enable": "no",
-        "modelTable": "users",
-        "fields": {
-            "id": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "PRI",
-                "type": "text",
-                "lenght": null,
-                "name": "Id"
-            },
-            "name": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "no",
-                "type": "text",
-                "lenght": "255",
-                "name": "Name"
-            },
-            "email": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "UNI",
-                "type": "text",
-                "lenght": "255",
-                "name": "Email"
-            },
-            "email_verified_at": {
-                "Null": "YES",
-                "display": "yes",
-                "Key": "no",
-                "type": "timestamp",
-                "lenght": null,
-                "name": "Email_verified_at"
-            },
-            "password": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "no",
-                "type": "text",
-                "lenght": "255",
-                "name": "Password"
-            },
-            "remember_token": {
-                "Null": "YES",
-                "display": "yes",
-                "Key": "no",
-                "type": "text",
-                "lenght": "100",
-                "name": "Remember_token"
-            },
-            "created_at": {
-                "Null": "YES",
-                "display": "yes",
-                "Key": "no",
-                "type": "timestamp",
-                "lenght": null,
-                "name": "Created_at"
-            },
-            "updated_at": {
-                "Null": "YES",
-                "display": "yes",
-                "Key": "no",
-                "type": "timestamp",
-                "lenght": null,
-                "name": "Updated_at"
-            },
-            "adm": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "no",
-                "type": "tinyint",
-                "lenght": "1",
-                "name": "Adm"
-            },
-            "bloqueado": {
-                "Null": "NO",
-                "display": "yes",
-                "Key": "no",
-                "type": "tinyint",
-                "lenght": "1",
-                "name": "Bloqueado"
-            },
-            "NIF": {
-                "Null": "YES",
-                "display": "yes",
-                "Key": "no",
-                "type": "text",
-                "lenght": "9",
-                "name": "NIF"
-            },
-            "telefone": {
-                "Null": "YES",
-                "display": "yes",
-                "Key": "no",
-                "type": "text",
-                "lenght": "255",
-                "name": "Telefone"
-            },
-            "foto": {
-                "Null": "YES",
-                "display": "yes",
-                "Key": "no",
-                "type": "text",
-                "lenght": "255",
-                "name": "Foto"
-            }
-        }
-    },
-    "generated": "yes"
+    }
 }
