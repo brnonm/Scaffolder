@@ -4,7 +4,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <div class="row">
         <p>Project Generator - Part 1  - Configuration of tables and metadata</p>
-        
+
     </div>
     <div class="row">
         <div class="col-2">
@@ -22,14 +22,31 @@
                     el.style.display = "none";
                 });
                 var btn = document.getElementById(text.id+"_btn");
-                btn.classList.remove("btn-light");
-                btn.classList.add("btn-info");
+                if(!(btn.classList.contains("btn-success"))){
+                    btn.classList.remove("btn-light");
+                    btn.classList.add("btn-info");
+                }
                 text.style.display = "block";
             }
 
             function changecolor(btn) {
-                btn.classList.remove("btn-light");
-                btn.classList.add("btn-info");
+                    btn.classList.remove("btn-light");
+                    btn.classList.add("btn-success");
+
+            }
+
+            function changeColorGreen(name) {
+
+                var btn = document.getElementById(name.id+"_btn");
+                if(!(btn.classList.contains("btn-success"))){
+                    btn.classList.remove("btn-info");
+                    btn.classList.add("btn-success");
+                }else{
+                    btn.classList.add("btn-info");
+                    btn.classList.remove("btn-success");
+                }
+
+
             }
 
         </script>
@@ -66,7 +83,7 @@
                                     <input type="hidden" value="no"
                                            name="metadados[{{$nameTable}}][enable]">
                                     <input type="checkbox" name="metadados[{{$nameTable}}][enable]"
-                                           data-toggle="toggle" style="border:  border: 5px solid red;"
+                                           data-toggle="toggle" style="border:  border: 5px solid red;" onchange="changeColorGreen({{$nameTable}})"
                                            value="yes" data-on="Yes" data-off="No">
                                 </div>
                             </div>
@@ -129,7 +146,7 @@
                                                 </td>
 
                                                 <td class="changecolor">
-                                                    <button type="button"  class="btn btn-sm btn-light" onclick="changecolor(this)"  data-toggle="modal" data-target="#{{$nameTable.$keyy}}">Configure</button>
+                                                    <button type="button"  class="btn btn-sm btn-light" onclick="changecolor(this)" id="{{$nameTable.$keyy}}_btn" data-toggle="modal" data-target="#{{$nameTable.$keyy}}">Configure</button>
                                                 </td>
                                             </tr>
 
@@ -181,7 +198,7 @@
                                                                                name='metadados[{{$nameTable}}][fields][{{$keyy}}][required]'
                                                                                value="no">
                                                                         <input type="checkbox"
-                                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][required]'
+                                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][required]' onchange="changeColorGreen({{$nameTable.$keyy}})"
                                                                                value="yes" checked>
                                                                     </div>
 
