@@ -29,9 +29,35 @@
                 text.style.display = "block";
             }
 
-            function changecolor(btn) {
+            function configureClick(name) {
+                    var btn = document.getElementById(name.id+"_btn");
                     btn.classList.remove("btn-light");
                     btn.classList.add("btn-success");
+                    var type = document.getElementById(name.id+"_type");
+                    switch (type.value) {
+                        case "int":
+                        case "text":
+                            var btn = document.getElementById(name.id+"_text");
+                            btn.style.display="block";
+                            var btn = document.getElementById(name.id+"_select");
+                            btn.style.display="none";
+                            break;
+                        case "select":
+                            var btn = document.getElementById(name.id+"_text");
+                            btn.style.display="none";
+                            var btn = document.getElementById(name.id+"_select");
+                            btn.style.display="block";
+                            break;
+                        default:
+                            var btn = document.getElementById(name.id+"_text");
+                            btn.style.display="none";
+                            var btn = document.getElementById(name.id+"_select");
+                            btn.style.display="none";
+                        break;
+                    }
+
+
+
 
             }
 
@@ -119,7 +145,7 @@
                                                 <td>{{$field->Default}} / {{$field->Extra}}</td>
                                                 <td>
                                                     <select class="form-control"
-                                                            name='metadados[{{$nameTable}}][fields][{{$keyy}}][type]'>
+                                                            name='metadados[{{$nameTable}}][fields][{{$keyy}}][type]' id="{{$nameTable}}{{$keyy}}_type">
                                                         <option
                                                             {{ (explode( '(' ,$field->Type)[0] == 'varchar')? 'selected': '' }} value="text">
                                                             Text
@@ -129,8 +155,8 @@
                                                             Integer
                                                         </option>
                                                         <option
-                                                            {{ (explode('(',$field->Type)[0] == 'enum')? 'selected': '' }} value="enum">
-                                                            Enum
+                                                            {{ (explode('(',$field->Type)[0] == 'enum')? 'selected': '' }} value="select">
+                                                            Select
                                                         </option>
                                                         <option
                                                             {{ (explode(' ',$field->Type)[0] == 'timestamp')? 'selected': '' }} value="timestamp">
@@ -146,7 +172,7 @@
                                                 </td>
 
                                                 <td class="changecolor">
-                                                    <button type="button"  class="btn btn-sm btn-light" onclick="changecolor(this)" id="{{$nameTable.$keyy}}_btn" data-toggle="modal" data-target="#{{$nameTable.$keyy}}">Configure</button>
+                                                    <button type="button"  class="btn btn-sm btn-light" onclick="configureClick({{$nameTable.$keyy}})" id="{{$nameTable.$keyy}}_btn" data-toggle="modal" data-target="#{{$nameTable.$keyy}}">Configure</button>
                                                 </td>
                                             </tr>
 
@@ -166,6 +192,8 @@
 
                                                                 <div class="col-md-12">
 
+
+                                                                    <div id="{{$nameTable.$keyy}}_text" style="display: none;">
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Field Name</label>
                                                                         <input type="text" class="form-control"
@@ -203,7 +231,23 @@
                                                                     </div>
 
 
+                                                                    </div>
+                                                                    <div id="{{$nameTable.$keyy}}_select" style="display: none;">
+                                                                        <select class="form-control"
+                                                                                name='metadados[{{$nameTable}}][fields][{{$keyy}}][select][type]'>
+                                                                            <option value="select">
+                                                                                Enum (DB)
+                                                                            </option>
+                                                                            <option value="custom">
+                                                                                Custom Select
+                                                                            </option>
+                                                                            <option value="relation">
+                                                                                Relation
+                                                                            </option>
 
+
+                                                                        </select>
+                                                                    </div>
 
 
                                                                 </div>
