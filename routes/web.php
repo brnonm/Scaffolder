@@ -28,3 +28,10 @@ Route::group([ 'prefix' => 'scaffolder', 'as' => 'scaffolder.'], function () {
 
 });
 
+
+Route::resource("autorizacoes_contas", "Autorizacoes_contaController");
+Route::resource("categorias", "CategoriaController");
+Route::resource("contas", "ContaController");
+Route::resource("users", "UserController");
+Route::resource("movimentos", "MovimentoController");
+Route::resource("migrations", "MigrationController");

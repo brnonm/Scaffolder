@@ -19,7 +19,7 @@ class ScaffolderController extends Controller
             return redirect()->route("install.indexChooseDB");
         } else {
             $metadados = File::get($url);
-            if (strpos($metadados, '"generated": "yes"') == true) {
+            if (strposstrpos($metadados, '"generated": "yes"') == true) {
                 return redirect()->route("scaffolder.controller");
             } else {
                 return redirect()->route("install.indexChooseDB");
@@ -121,7 +121,10 @@ class ScaffolderController extends Controller
 
         $this->createByJsonObject($json);
         $this->createMenuBackOffice($json);
+        //$this->generateView1($json);
+
         $this->generateView($json);
+
         file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), json_encode($baseJson, JSON_PRETTY_PRINT));
 
         return redirect()->route("scaffolder.controller");
@@ -142,6 +145,299 @@ class ScaffolderController extends Controller
     }
 
     private function generateView($metadadosModel)
+    {
+        $baseViews = base_path("resources/views/admin/");
+
+        foreach ($metadadosModel as $key => $value) {
+            if (isset($value->enable)) {
+                if ($value->enable == "yes") {
+                    foreach ($value->functions as $name => $func) {
+                        if (isset($func->enable) && $func->enable == "yes") {
+                            $basedirectory = $baseViews . $key;
+                            switch ($name) {
+                                case "create":
+                                    $contentView = File::get(base_path("app/Http/Controllers/Scaffolder/data/templates/view/create1.php"));
+                                    $this->createDir($basedirectory);
+                                    $view = fopen($basedirectory . "/create.blade.php", "w") or die("Unable to open file!");
+                                    $contentView = $this->changeView($contentView, $value);
+                                    fwrite($view, $contentView);
+                                    fclose($view);
+                                    break;
+                                case "index":
+                                    $contentView = File::get(base_path("app/Http/Controllers/Scaffolder/data/templates/view/index1.php"));
+                                    $this->createDir($basedirectory);
+                                    $view = fopen($basedirectory . "/index.blade.php", "w") or die("Unable to open file!");
+
+                                    $contentView = $this->changeView($contentView, $value);
+
+                                    fwrite($view, $contentView);
+                                    fclose($view);
+                                    break;
+                                case "show":
+                                    $contentView = File::get(base_path("app/Http/Controllers/Scaffolder/data/templates/view/show1.php"));
+                                    $this->createDir($basedirectory);
+                                    $view = fopen($basedirectory . "/show.blade.php", "w") or die("Unable to open file!");
+                                    $contentView = $this->changeView($contentView, $value);
+                                    fwrite($view, $contentView);
+                                    fclose($view);
+                                    break;
+                                case "update":
+                                    $contentView = File::get(base_path("app/Http/Controllers/Scaffolder/data/templates/view/update1.php"));
+                                    $this->createDir($basedirectory);
+                                    $view = fopen($basedirectory . "/update.blade.php", "w") or die("Unable to open file!");
+                                    $contentView = $this->changeView($contentView, $value);
+                                    fwrite($view, $contentView);
+                                    fclose($view);
+                                    break;
+                                default:
+                                    $this->errorPage("View dont exist.");
+                                    break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private function changeView($contentView, $value)
+    {
+        //Views
+        $contentView = str_replace([':$modelName'], $value->modelName, $contentView);
+
+
+        //table
+        $contentView = str_replace([':$fieldName'], $this->getFieldName($value), $contentView);
+        $contentView = str_replace([':$fieldButton'], "<td>Actions</td>", $contentView);
+        $contentView = str_replace([':$fieldObject'], $this->getFieldNameObject($value), $contentView);
+        $contentView = str_replace([':$ButtonAction'], $this->getButtonAction($value), $contentView);
+        $contentView = str_replace([':$navLink'], "{{ \$items->links()}}", $contentView);
+
+
+        //Routes
+        $contentView = str_replace([':$routeCreate'], "\"{{ route('$value->modelTable.create') }}\"", $contentView);
+        $contentView = str_replace([':$routeUpdate'], "\"{{ route('$value->modelTable.update', " . '$item->id' . ") }}\"", $contentView);
+        $contentView = str_replace([':$routeShow'], "\"{{ route('$value->modelTable.show', " . '$item->id' . ") }}\"", $contentView);
+        $contentView = str_replace([':$routeDestroy'], "\"{{ route('$value->modelTable.destroy', " . '$item->id' . ") }}\"", $contentView);
+        $contentView = str_replace([':$routeStore'], "\"{{ route('$value->modelTable.store') }}\"", $contentView);
+
+        //Fields manipulation
+
+        $contentView = str_replace([':$fieldInput'], $this->getFieldInput($value), $contentView);
+        $contentView = str_replace([':$fieldShow'], $this->getFieldShow($value), $contentView);
+        $contentView = str_replace([':$fieldUpdate'], $this->getFieldUpdate($value), $contentView);
+
+        return $contentView;
+    }
+
+    private function getFieldUpdate($value)
+    {
+        $content = "";
+
+        foreach ($value->fields as $name => $m) {
+            $content .= "
+                    <tr>
+                                <th> $m->name</th>";
+
+            if ($m->Key != 'no') {
+                $showOP = 'disabled';
+            } else {
+                $showOP = '';
+            }
+
+            switch ($m->type) {
+                case "text":
+                    $content .= "<td><input $showOP type=\"text\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                    break;
+                case "int":
+                    $content .= "<td><input $showOP  type=\"number\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                    break;
+                case "image":
+                    $content .= "<td><input $showOP type=\"image\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                    break;
+                case "date":
+                    $content .= "<td><input $showOP type=\"date\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                    break;
+                case "enum":
+                    if (isset($m->options)) {
+                        $content .= "<td>";
+                        foreach ($m->options as $key => $value) {
+                            if ($key != "type") {
+                                $content .= "<input type=" . $m->options->type . " name=\"$name\"  value=" . $key . " {{( \$item->$name == '$key')? 'checked': '' }}>";
+                                $content .= "    <label>$value</label>";
+                                $content .= "<br>";
+                                $content .= "\n";
+                            }
+                        }
+                        $content .= "</td>";
+                    }
+
+                    break;
+            }
+        }
+
+        return $content;
+    }
+
+    private function getFieldShow($value)
+    {
+        $content = "";
+        foreach ($value->fields as $name => $m) {
+
+            if (isset($m->options)) {
+                $content .= "<th> $m->name</th>";
+                $content .= "<td>\n";
+                foreach ($m->options as $index => $option) {
+                    if ($index != "type") {
+
+                        $content .= "{{( \$item->$name == '$index')? '$option': '' }}";
+                        $content .= "\n";
+                    }
+                }
+                $content .= "</td> \n";
+            } else {
+
+                $content .= "
+                    <tr>
+                                <th> $m->name</th>
+                                <td> " . '{{$item->' . "$name}}</td>
+                            </tr>";
+            }
+        }
+
+        return $content;
+    }
+
+    private function getFieldInput($value)
+    {
+        $content = "";
+
+        foreach ($value->fields as $name => $m) {
+
+            if ($m->Key == 'PRI') {
+                continue;
+            }
+            if ($m->Key == 'MUL') {
+                //meter relaçao aqui
+                continue;
+            }
+            if (isset($m->name)) {
+                $content .= "
+                    <tr>
+                                <th> $m->name</th>";
+            }
+
+            switch ($m->type) {
+                case "text":
+                    $content .= "<td><input  type=\"text\" name=\"$name\"></td>";
+                    break;
+                case "int":
+                    $content .= "<td><input   type=\"number\" name=\"$name\" ></td>";
+                    break;
+                case "image":
+                    $content .= "<td><input  type=\"image\" name=\"$name\" ></td>";
+                    break;
+                case "date":
+                    $content .= "<td><input  type=\"date\" name=\"$name\" ></td>";
+                    break;
+                case "decimal":
+                    $content .= "<td><input  type=\"number\" name=\"$name\" ></td>";
+                    break;
+                case "enum":
+
+                    if (isset($m->options)) {
+                        $content .= "<td>";
+                        foreach ($m->options as $key => $value) {
+                            if ($key != "type") {
+                                $content .= "<input  type=" . $m->options->type . " name=\"$name\"  value=" . $key . ">";
+                                $content .= "    <label>$value</label>";
+                                $content .= "<br>";
+                                $content .= "\n";
+                            }
+                        }
+                        $content .= "</td>";
+                    }
+            }
+        }
+
+        return $content;
+
+    }
+
+    private function getButtonAction($value)
+    {
+        $actions = "<td>";
+        foreach ($value->functions as $name => $f) {
+            if ($f->enable == "yes") {
+                switch ($name) {
+                    case "show":
+                        $actions .= "<a type=" . '"submit"' . " class=" . '"btn btn-xs btn-info"' . " href=\"{{ route('$value->modelTable.show', " . '$item->id' . ") }}\">Show</a> ";
+                        break;
+
+                    case "update":
+                        $actions .= "<a type=" . '"submit"' . " class=" . '"btn btn-xs btn-info"' . " href=\"{{ route('$value->modelTable.edit', " . '$item->id' . ") }}\">Update</a> ";
+                        break;
+
+                    case "destroy":
+                        $actions .= "<form action=\"{{ route('$value->modelTable.destroy', " . '$item->id' . ") }}\" method=\"POST\" onsubmit=\"return confirm('Confirm delete');\" style=\"display: inline-block;\">
+                                        <input type=\"hidden\" name=\"_method\" value=\"DELETE\">
+                                        <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token() }}\">
+                                        <input type=\"submit\" class=\"btn btn-xs btn-danger\" value=\"Delete\">
+                                    </form>";
+                        break;
+
+                }
+            }
+        }
+        $actions .= "</td>";
+        return $actions;
+    }
+
+    private function getFieldNameObject($value)
+    {
+        $rows = "";
+
+        foreach ($value->fields as $name => $f) {
+
+
+            if ($f->display == "yes") {
+                if (isset($f->options)) {
+
+                    $rows .= "<td>\n";
+                    foreach ($f->options as $index => $option) {
+                        if ($index != "type") {
+
+                            $rows .= "{{( \$item->$name == '$index')? '$option': '' }}";
+                            $rows .= "\n";
+                        }
+                    }
+                    $rows .= "</td> \n";
+                } else {
+                    if ($f->type == "photo") {
+                        $rows .= "<td><img src=\"/storage/fotos/{{ \$item->$name}}\" height=\"70px\" width=\"70px\" /></td>\n";
+                    } else {
+                        $rows .= '<td>{{$item->' . $name . "}}</td> \n";
+                    }
+                }
+            }
+        }
+        return $rows;
+    }
+
+    private function getFieldName($value)
+    {
+        $colum = "";
+        foreach ($value->fields as $name => $f) {
+            if ($f->display == "yes") {
+                $colum .= " <th> $f->name </th> \n";
+            }
+        }
+
+        return $colum;
+    }
+
+
+    private function generateView1($metadadosModel)
     {
         $baseViews = base_path("resources/views/admin/");
 
@@ -315,6 +611,7 @@ class ScaffolderController extends Controller
         return File::get($urlTemplate);;
     }
 
+    /*
     private
     function generateViewActions($name, $model)
     {
@@ -495,7 +792,7 @@ class ScaffolderController extends Controller
         }
 
     }
-
+*/
     private
     function createDir($dir)
     {
@@ -576,7 +873,7 @@ class ScaffolderController extends Controller
                         $name .= "Request";
                         $url .= $name . ".php";
                         Artisan::call("make:request $name");
-                        $this->populateRequest($url,$model);
+                        $this->populateRequest($url, $model);
                         break;
                     case "update":
                         $name .= "Update";
@@ -584,7 +881,7 @@ class ScaffolderController extends Controller
                         $name .= "Request";
                         $url .= $name . ".php";
                         Artisan::call("make:request $name");
-                        $this->populateRequest($url,$model);
+                        $this->populateRequest($url, $model);
                         break;
                 }
             }
@@ -602,12 +899,14 @@ class ScaffolderController extends Controller
 
 
             foreach ($model->fields as $field => $option) {
+
                 if ($option->Key == "PRI") {
                     continue;
                 } else {
                     $i = 0;
                     $rules = [];
-                    if ($option->Null == "NO") {
+
+                    if (isset($option->required) && $option->required == "yes") {
                         $rules[$i] = "required";
                         $i++;
                     }
@@ -673,54 +972,59 @@ class ScaffolderController extends Controller
 
         if (File::exists($modelPath)) {
 
-            $contents = File::get($modelPath);
-            $contents = substr_replace($contents, "", -3);
-            $contents .= "\n";
+            $content = File::get($modelPath);
+            $content = substr_replace($content, "", -3);
+            $content .= "\n";
 
             $header = str_replace(['$modelName'], [$model->modelName], $this->getTemplatefunction('header'));
-            if (strpos($contents, $header) == false) {
-                $contents .= $header;
-                $contents .= "\n";
+            if (strpos($content, $header) == false) {
+                $content .= $header;
+                $content .= "\n";
             }
 
-
-            $contents .= "\n";
+            $content .= "\n";
+            $imports = "namespace App\Http\Controllers;\n";
 
             foreach ($model->functions as $fname => $f) {
                 if ($f->enable == "yes") {
                     foreach ($availableFunctions as $ava) {
                         if ($fname == $ava['filename']) {
                             $newFunc = $this->getTemplatefunction($ava['filename']);
-                            //$changed = str_replace(['$modelName', '$modelTable'], [$model->modelName, $model->modelTable], $newFunc);
 
-                            switch ($ava['filename']){
+                            switch ($ava['filename']) {
                                 case "create":
-                                    $formRequestName = "Store".$model->modelTable."Request";
+                                    $formRequestName = "Store" . ucfirst($model->modelTable) . "Request";
+                                    $imports .= "use App\Http\Requests\\$formRequestName;\n";
                                     break;
                                 case "update":
-                                    $formRequestName = "Update".$model->modelTable."Request";
+                                    $formRequestName = "Update" . ucfirst($model->modelTable) . "Request";
+                                    $imports .= "use App\Http\Requests\\$formRequestName;\n";
                                     break;
                                 default:
-                                    $formRequestName ="Request";
+                                    $formRequestName = "Request";
                                     break;
                             }
-                            $changed = str_replace(['$modelName', '$modelTable', '$formRequest'], [$model->modelName, $model->modelTable,$formRequestName], $newFunc);
 
-                            if (strpos($contents, $changed) == false) {
-                                $contents .= $changed;
-                                $contents .= "\n";
+
+                            $changed = str_replace(['$modelName', '$modelTable', '$formRequest'], [$model->modelName, $model->modelTable, $formRequestName], $newFunc);
+
+                            if (strpos($content, $changed) == false) {
+                                $content .= $changed;
+                                $content .= "\n";
                             }
 
                         }
                     }
                 }
             }
-            $contents .= "\n\n";
-            $contents .= "}";
+            $content .= "\n\n}";
 
-            file_put_contents($modelPath, $contents);
+
+            $content = str_replace(['namespace App\Http\Controllers;'], [$imports], $content);
+
+            file_put_contents($modelPath, $content);
         } else {
-            $this->errorPage("File" . $finalName . "Controller.php does not find!");
+            $this->errorPage("File" . $finalName . "Controller.php does not found!");
         }
     }
 
