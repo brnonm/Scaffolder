@@ -28,3 +28,5 @@ Route::group([ 'prefix' => 'scaffolder', 'as' => 'scaffolder.'], function () {
 
 });
 
+
+Route::resource("clientes", "ClienteController");

@@ -88,9 +88,10 @@ class ScaffolderController extends Controller
 
     public function tablesConfigureP1Post(Request $request)
     {
+
         $urlFolder = base_path('app/Http/Controllers/Scaffolder/data/templates/function');
         $json = json_encode($request->except('_token'), JSON_PRETTY_PRINT);
-
+        dd($json);
 
         file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), stripslashes($json));
         $metadados = collect(json_decode($json));
@@ -607,9 +608,12 @@ class ScaffolderController extends Controller
                 } else {
                     $i = 0;
                     $rules = [];
+                    if (isset($option->Null)) {
+
                     if ($option->Null == "NO") {
                         $rules[$i] = "required";
                         $i++;
+                    }
                     }
                     if (isset($option->lenght) && $option->lenght != null) {
                         $rules[$i] = "max:$option->lenght";

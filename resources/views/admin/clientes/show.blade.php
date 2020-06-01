@@ -1,18 +1,18 @@
 @extends("scaffolder.views.partials.main")
 @section("container")
 
-    <div>
-        @csrf
-        <div class="row">
-            <div class="col-md-12" style="text-align: center">
-                <p>Show</p>
-            </div>
+<div>
+    @csrf
+    <div class="row">
+        <div class="col-md-12" style="text-align: center">
+            <p>Show Cliente</p>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div id="accordion">
-                    <div class="card">
-                        <table class="table"><tr>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="accordion">
+                <div class="card">
+                    <table class="table"><tr>
                     <tr>
                                 <th> Id</th>
                                 <td> {{$item->id}}</td>
@@ -73,9 +73,9 @@
                                 <th> Deleted_at</th>
                                 <td> {{$item->deleted_at}}</td>
                             </tr></table>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 @endsection
