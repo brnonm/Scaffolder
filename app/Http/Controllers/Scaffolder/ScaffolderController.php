@@ -88,8 +88,10 @@ class ScaffolderController extends Controller
 
     public function tablesConfigureP1Post(Request $request)
     {
+
         $urlFolder = base_path('app/Http/Controllers/Scaffolder/data/templates/function');
         $json = json_encode($request->except('_token'), JSON_PRETTY_PRINT);
+        dd($json);
 
         file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), stripslashes($json));
         $metadados = collect(json_decode($json));
@@ -1046,8 +1048,42 @@ class ScaffolderController extends Controller
 
         $urlFolder = base_path("app/Http/Controllers/Scaffolder/data/templates/view");
 
-        if (!File::exists($urlFolder)) {
-            $this->errorPage("Folder with view template View does not find!");
+            foreach ($model->fields as $field => $option) {
+                if ($option->Key == "PRI") {
+                    continue;
+                } else {
+                    $i = 0;
+                    $rules = [];
+                    if (isset($option->Null)) {
+
+                    if ($option->Null == "NO") {
+                        $rules[$i] = "required";
+                        $i++;
+                    }
+                    }
+                    if (isset($option->lenght) && $option->lenght != null) {
+                        $rules[$i] = "max:$option->lenght";
+                        $i++;
+                    }
+                }
+
+                for ($f = 0; $f < $i; $f++) {
+                    if ($f == 0) {
+                        $new .= "            '$field' => '";
+                    }
+                    $new .= $rules[$f];
+                    if ($f == $i - 1) {
+                        $new .= "',\n";
+                    } else {
+                        $new .= "|";
+                    }
+                }
+            }
+
+            $content = str_replace([$old], $new, $content);
+            file_put_contents($url, $content);
+        } else {
+            $this->errorPage("Directory: $url does not exists.");
         }
 
         $filesInFolder = File::files($urlFolder);

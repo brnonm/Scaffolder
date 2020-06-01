@@ -75,6 +75,49 @@
 
             }
 
+            function changeSelectDiv(inp,name) {
+                var qwe = document.getElementsByClassName("selectDivHidden");
+                Array.prototype.forEach.call(qwe, function (el) {
+                    el.style.display = "none";
+                });
+
+                var div = document.getElementById(name+"_"+inp.value);
+                div.style.display="block";
+
+            }
+
+            var total = [];
+
+
+            function showTargetTableRel(target, inp) {
+
+
+                var qwe = document.getElementsByClassName("relation_target_hide");
+                Array.prototype.forEach.call(qwe, function (el) {
+                    el.style.display = "none";
+                });
+
+                target= "relation_"+inp+target.value;
+
+                target = document.getElementById(target);
+
+                console.log(target);
+                target.style.display="block";
+
+
+
+                qwe = document.getElementsByClassName("relation_label_hide");
+                Array.prototype.forEach.call(qwe, function (el) {
+                    el.style.display = "none";
+                });
+
+                target= target.id+"_label";
+                target = document.getElementById(target);
+
+                target.style.display="block";
+
+            }
+
         </script>
         <div class="col-10">
 
@@ -218,36 +261,141 @@
                                                                                name='metadados[{{$nameTable}}][fields][{{$keyy}}][display]'
                                                                                value="no">
                                                                         <input type="checkbox"
-                                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][display]'
+                                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][display]' onchange="changeColorGreen({{$nameTable.$keyy}})"
                                                                                value="yes" checked>
                                                                     </div>
+
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail1">Required</label>
                                                                         <input type="hidden" class="form-control"
                                                                                name='metadados[{{$nameTable}}][fields][{{$keyy}}][required]'
                                                                                value="no">
                                                                         <input type="checkbox"
-                                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][required]' onchange="changeColorGreen({{$nameTable.$keyy}})"
+                                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][required]'
                                                                                value="yes" checked>
                                                                     </div>
 
 
                                                                     </div>
                                                                     <div id="{{$nameTable.$keyy}}_select" style="display: none;">
-                                                                        <select class="form-control"
-                                                                                name='metadados[{{$nameTable}}][fields][{{$keyy}}][select][type]'>
-                                                                            <option value="select">
+                                                                        <div class="form-group">
+                                                                            <label for="exampleInputEmail1">Field Name</label>
+                                                                            <input type="text" class="form-control"
+                                                                                   name='metadados[{{$nameTable}}][fields][{{$keyy}}][name]'
+                                                                                   placeholder="Nome"
+                                                                                   value="{{rtrim(ucfirst($field->Field), "s ")}}">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="exampleInputEmail1">Required</label>
+                                                                            <input type="hidden" class="form-control"
+                                                                                   name='metadados[{{$nameTable}}][fields][{{$keyy}}][required]'
+                                                                                   value="no">
+                                                                            <input type="checkbox"
+                                                                                   name='metadados[{{$nameTable}}][fields][{{$keyy}}][required]'
+                                                                                   value="yes" checked>
+                                                                        </div>
+
+                                                                        <div class="form-group">
+                                                                            <label for="exampleInputEmail1">Show in project</label>
+                                                                            <input type="hidden" class="form-control"
+                                                                                   name='metadados[{{$nameTable}}][fields][{{$keyy}}][display]'
+                                                                                   value="no">
+                                                                            <input type="checkbox"
+                                                                                   name='metadados[{{$nameTable}}][fields][{{$keyy}}][display]' onchange="changeColorGreen({{$nameTable.$keyy}})"
+                                                                                   value="yes" checked>
+                                                                        </div>
+
+                                                                        <select class="form-control" id="{{$nameTable.$keyy}}_select_in"
+                                                                                name='metadados[{{$nameTable}}][fields][{{$keyy}}][select][type]' onchange="changeSelectDiv(this,'{{$nameTable.$keyy}}')">
+
+                                                                            <option disabled selected>Select One</option>
+                                                                            <option value="enum">
                                                                                 Enum (DB)
                                                                             </option>
                                                                             <option value="custom">
                                                                                 Custom Select
                                                                             </option>
                                                                             <option value="relation">
-                                                                                Relation
+                                                                                Relation (1 to 1)
                                                                             </option>
 
 
                                                                         </select>
+
+
+                                                                        <div class="selectDivHidden" id="{{$nameTable.$keyy}}_enum" style="display: none">
+                                                                                Enum DB
+                                                                                Adicionar Codigo do Bruno
+
+
+                                                                        </div>
+
+                                                                        <div class="selectDivHidden" id="{{$nameTable.$keyy}}_custom" style="display: none">
+                                                                            <hr>
+
+                                                                            <div class="{{$nameTable.$keyy}}_custom">
+
+
+                                                                            </div>
+
+                                                                            <a class="btn btn-sm btn-light" onclick='add({{$nameTable.$keyy}}_custom, "{{$nameTable}}", "{{$keyy}}")'>+</a>
+
+                                                                            <script>
+                                                                                total[ {{$nameTable.$keyy}}_custom ]  = 0;
+
+
+                                                                            </script>
+                                                                        </div>
+
+                                                                        <div class="selectDivHidden" id="{{$nameTable.$keyy}}_relation" style="display: none">
+                                                                            <hr>
+
+                                                                            <label>Target Table</label>
+                                                                            <select id="{{$nameTable.$keyy}}_relation_class" class="form-control" onchange="showTargetTableRel(this, '{{$nameTable.$keyy}}') ">
+                                                                                @foreach($metadados as $nameTable1=>$table1)
+
+
+                                                                                    <option value="{{$nameTable1}}">{{$nameTable1}}</option>
+
+
+
+                                                                                @endforeach
+
+
+
+
+                                                                            </select>
+
+
+
+                                                                            @foreach($metadados as $nameTable1=>$table1)
+                                                                                <div id="relation_{{$nameTable.$keyy.$nameTable1}}" style="display: none;" class="relation_target_hide">
+                                                                                    <label>Foregein Key</label>
+                                                                                    <select name="metadados[{{$nameTable}}][fields][{{$keyy}}][select][foregein_key]" class="form-control">
+                                                                                        <option selected disabled>Select One</option>
+                                                                                        @foreach($table1 as $keyy1=>$field1)
+                                                                                        <option value="{{$field1->Field}}">{{$field1->Field}}</option>
+                                                                                    @endforeach
+                                                                                </select>
+                                                                                </div>
+                                                                            @endforeach
+
+
+                                                                            @foreach($metadados as $nameTable1=>$table1)
+                                                                                <div id="relation_{{$nameTable.$keyy.$nameTable1}}_label" style="display: none;" class="relation_label_hide">
+                                                                                    <label>Label to Show</label>
+
+                                                                                    <select name="metadados[{{$nameTable}}][fields][{{$keyy}}][select][label]" class="form-control">
+                                                                                        <option selected disabled>Select One</option>
+                                                                                        @foreach($table1 as $keyy1=>$field1)
+                                                                                            <option value="{{$field1->Field}}">{{$field1->Field}}</option>
+                                                                                        @endforeach
+                                                                                    </select>
+                                                                                </div>
+                                                                            @endforeach
+
+
+                                                                        </div>
                                                                     </div>
 
 
@@ -291,6 +439,30 @@
 
 
                     @endforeach
+
+                    <script>
+
+
+                        function add(name,nametable,key) {
+                            total[name]+=1;
+
+
+
+                            var input = document.createElement("input");
+                            input.type = "text";
+                            input.className = "form-control";
+                            var name1='metadados['+nametable+'][fields]['+key+'][select][custom_'+total[name]+']';
+                            input.name =name1;
+
+
+
+                            var elements = document.getElementsByClassName(name.id);
+                            var requiredElement = elements[0];
+
+                            requiredElement.appendChild(input);
+
+                        }
+                    </script>
 
 
                 </div>
