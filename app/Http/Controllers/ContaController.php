@@ -4,12 +4,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreContasRequest;
 use App\Http\Requests\UpdateContasRequest;
 
-use App\Http\Requests\StoreContasRequest;
-use App\Http\Requests\UpdateContasRequest;
-
-use App\Http\Requests\StoreContasRequest;
-use App\Http\Requests\UpdateContasRequest;
-
 
 use Illuminate\Http\Request;
 
@@ -55,10 +49,6 @@ class ContaController extends Controller
         $item->update($request->all());
         return redirect()->route('contas.index');
     }
-
-
-
-
 
 
 

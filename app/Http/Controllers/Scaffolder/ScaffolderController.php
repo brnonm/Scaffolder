@@ -19,7 +19,7 @@ class ScaffolderController extends Controller
             return redirect()->route("install.indexChooseDB");
         } else {
             $metadados = File::get($url);
-            if (strposstrpos($metadados, '"generated": "yes"') == true) {
+            if (strpos($metadados, '"generated": "yes"') == true) {
                 return redirect()->route("scaffolder.controller");
             } else {
                 return redirect()->route("install.indexChooseDB");
@@ -121,8 +121,6 @@ class ScaffolderController extends Controller
 
         $this->createByJsonObject($json);
         $this->createMenuBackOffice($json);
-        //$this->generateView1($json);
-
         $this->generateView($json);
 
         file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), json_encode($baseJson, JSON_PRETTY_PRINT));
@@ -156,7 +154,7 @@ class ScaffolderController extends Controller
                             $basedirectory = $baseViews . $key;
                             switch ($name) {
                                 case "create":
-                                    $contentView = File::get(base_path("app/Http/Controllers/Scaffolder/data/templates/view/create1.php"));
+                                    $contentView = File::get(base_path("app/Http/Controllers/Scaffolder/data/templates/view/create.php"));
                                     $this->createDir($basedirectory);
                                     $view = fopen($basedirectory . "/create.blade.php", "w") or die("Unable to open file!");
                                     $contentView = $this->changeView($contentView, $value);
@@ -164,7 +162,7 @@ class ScaffolderController extends Controller
                                     fclose($view);
                                     break;
                                 case "index":
-                                    $contentView = File::get(base_path("app/Http/Controllers/Scaffolder/data/templates/view/index1.php"));
+                                    $contentView = File::get(base_path("app/Http/Controllers/Scaffolder/data/templates/view/index.php"));
                                     $this->createDir($basedirectory);
                                     $view = fopen($basedirectory . "/index.blade.php", "w") or die("Unable to open file!");
 
@@ -174,7 +172,7 @@ class ScaffolderController extends Controller
                                     fclose($view);
                                     break;
                                 case "show":
-                                    $contentView = File::get(base_path("app/Http/Controllers/Scaffolder/data/templates/view/show1.php"));
+                                    $contentView = File::get(base_path("app/Http/Controllers/Scaffolder/data/templates/view/show.php"));
                                     $this->createDir($basedirectory);
                                     $view = fopen($basedirectory . "/show.blade.php", "w") or die("Unable to open file!");
                                     $contentView = $this->changeView($contentView, $value);
@@ -182,7 +180,7 @@ class ScaffolderController extends Controller
                                     fclose($view);
                                     break;
                                 case "update":
-                                    $contentView = File::get(base_path("app/Http/Controllers/Scaffolder/data/templates/view/update1.php"));
+                                    $contentView = File::get(base_path("app/Http/Controllers/Scaffolder/data/templates/view/update.php"));
                                     $this->createDir($basedirectory);
                                     $view = fopen($basedirectory . "/update.blade.php", "w") or die("Unable to open file!");
                                     $contentView = $this->changeView($contentView, $value);
@@ -436,6 +434,304 @@ class ScaffolderController extends Controller
         return $colum;
     }
 
+    private function readTemplatesFunction()
+    {
+
+        $urlFolder = base_path("app/Http/Controllers/Scaffolder/data/templates/function");
+
+        if (!File::exists($urlFolder)) {
+            $this->errorPage("Folder with view template functions does not find!");
+        }
+
+        $filesInFolder = File::files($urlFolder);
+        $viewTemplates = array();
+        foreach ($filesInFolder as $path) {
+            $file = pathinfo($path);
+            array_push($viewTemplates, $file);
+        }
+        return $viewTemplates;
+    }
+
+    private function getTemplatefunction($name)
+    {
+        $urlTemplate = base_path("app/Http/Controllers/Scaffolder/data/templates/function/" . $name . ".php");
+
+        if (!File::exists($urlTemplate)) {
+            $this->errorPage("File Functions does not find!");
+        }
+        return File::get($urlTemplate);;
+    }
+
+    private function createDir($dir)
+    {
+        if (!is_dir($dir)) {
+            mkdir($dir, 0755, true);
+        }
+
+    }
+
+    private function createMenuBackOffice($json)
+    {
+
+        $modelPath = base_path("resources/views/scaffolder/views/partials/menujson.blade.php");
+        $urlFunc = base_path("app/Http/Controllers/Scaffolder/data/menuTemplate.json");
+
+        if (File::exists($modelPath)) {
+            $functions = json_decode(File::get($urlFunc), true);
+            $contents = "";
+            foreach ($json as $key => $value) {
+                if (isset($value->enable)) {
+                    if ($value->enable == "yes") {
+
+                        $name = $key;
+                        $finalName = "";
+                        $contents .= "\n";
+
+                        foreach ($functions as $funcName => $func) {
+                            if (strpos($func, '$name') != false) {
+                                $changed = str_replace(['$name', '$route'], [$name, $name], $func);
+
+                                if (!(strpos($contents, $changed) > 0)) {
+
+                                    $contents .= $changed;
+                                    $contents .= "\n";
+                                }
+                                file_put_contents($modelPath, $contents);
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private function createByJsonObject($json)
+    {
+        foreach ($json as $field => $m) {
+            if ($field == "generated") {
+                $json->put($field, "yes");
+                return;
+                $json;
+            }
+            if ($m->enable == "yes") {
+                Artisan::call("make:model $m->modelName   --controller");
+                Artisan::call("make:resource $m->modelName");
+                $this->populateModel($m);
+                $this->createRequest($m);
+                $this->populateController($m);
+                $this->populateRoutes($m);
+                $this->artisanOptimize();
+            }
+        }
+    }
+
+    private function createRequest($model)
+    {
+        foreach ($model->functions as $fName => $func) {
+            if ($func->enable == "yes") {
+                $url = base_path("app/Http/Requests/");
+                $name = "";
+                switch ($fName) {
+                    case "create":
+                        $name .= "Store";
+                        $name .= ucfirst($model->modelTable);
+                        $name .= "Request";
+                        $url .= $name . ".php";
+                        Artisan::call("make:request $name");
+                        $this->populateRequest($url, $model);
+                        break;
+                    case "update":
+                        $name .= "Update";
+                        $name .= ucfirst($model->modelTable);
+                        $name .= "Request";
+                        $url .= $name . ".php";
+                        Artisan::call("make:request $name");
+                        $this->populateRequest($url, $model);
+                        break;
+                }
+            }
+        }
+    }
+
+    private function populateRequest($url, $model)
+    {
+        if (File::exists($url)) {
+            $content = File::get($url);
+            $content = str_replace(['false'], "true", $content);
+            $old = "//";
+            $new = "";
+
+
+            foreach ($model->fields as $field => $option) {
+
+                if ($option->Key == "PRI") {
+                    continue;
+                } else {
+                    $i = 0;
+                    $rules = [];
+
+                    if (isset($option->required) && $option->required == "yes") {
+                        $rules[$i] = "required";
+                        $i++;
+                    }
+                    if (isset($option->lenght) && $option->lenght != null) {
+                        $rules[$i] = "max:$option->lenght";
+                        $i++;
+                    }
+                }
+
+                for ($f = 0; $f < $i; $f++) {
+                    if ($f == 0) {
+                        $new .= "            '$field' => '";
+                    }
+                    $new .= $rules[$f];
+                    if ($f == $i - 1) {
+                        $new .= "',\n";
+                    } else {
+                        $new .= "|";
+                    }
+                }
+            }
+
+            $content = str_replace([$old], $new, $content);
+            file_put_contents($url, $content);
+        } else {
+            $this->errorPage("Directory: $url does not exists.");
+        }
+    }
+
+    private function artisanOptimize()
+    {
+        Artisan::call("storage:link");
+        Artisan::call("optimize");
+    }
+
+    private function populateRoutes($m)
+    {
+        $newRoute = 'Route::resource("' . $m->modelTable . '", "' . $m->modelName . 'Controller");';
+        $modelPath = base_path("routes/web.php");
+
+        $contents = File::get($modelPath);
+
+        if (strpos($contents, $newRoute) == false) {
+            $contents .= "\n";
+            $contents .= $newRoute;
+            file_put_contents($modelPath, $contents);
+        }
+    }
+
+    private function populateController($model)
+    {
+        $name = explode("_", $model->modelName);
+        $finalName = "";
+        foreach ($name as $part) {
+            $finalName .= ucfirst($part);
+        }
+
+
+        $modelPath = base_path("app/Http/Controllers/" . $finalName . "Controller.php");
+        $availableFunctions = $this->readTemplatesFunction();
+
+        if (File::exists($modelPath)) {
+
+            $content = File::get($modelPath);
+            $content = substr_replace($content, "", -3);
+            $content .= "\n";
+
+            $header = str_replace(['$modelName'], [$model->modelName], $this->getTemplatefunction('header'));
+            if (strpos($content, $header) == false) {
+                $content .= $header;
+                $content .= "\n";
+            }
+
+            $content .= "\n";
+            $imports = "namespace App\Http\Controllers;\n";
+
+            foreach ($model->functions as $fname => $f) {
+                if ($f->enable == "yes") {
+                    foreach ($availableFunctions as $ava) {
+                        if ($fname == $ava['filename']) {
+                            $newFunc = $this->getTemplatefunction($ava['filename']);
+
+                            switch ($ava['filename']) {
+                                case "create":
+                                    $formRequestName = "Store" . ucfirst($model->modelTable) . "Request";
+                                    explode('_',$formRequestName); //validar isto
+
+                                    $imports .= "use App\Http\Requests\\$formRequestName;\n";
+                                    break;
+                                case "update":
+                                    $formRequestName = "Update" . ucfirst($model->modelTable) . "Request";
+                                    $imports .= "use App\Http\Requests\\$formRequestName;\n";
+                                    break;
+                                default:
+                                    $formRequestName = "Request";
+                                    break;
+                            }
+                            $changed = str_replace(['$modelName', '$modelTable', '$formRequest'], [$model->modelName, $model->modelTable, $formRequestName], $newFunc);
+
+                            if (strpos($content, $changed) == false) {
+                                $content .= $changed;
+                                $content .= "\n";
+                            }
+                        }
+                    }
+                }
+            }
+            $content .= "\n\n}";
+
+
+            $content = str_replace(['namespace App\Http\Controllers;'], [$imports], $content);
+
+            file_put_contents($modelPath, $content);
+        } else {
+            $this->errorPage("File" . $finalName . "Controller.php does not found!");
+        }
+    }
+
+    private function errorPage($error)
+    {
+        return view("scaffolder.errorPage", compact("error"));
+    }
+
+    private function populateModel($m)
+    {
+        $modelPath = base_path("app/" . $m->modelName . ".php");
+
+        if (File::exists($modelPath)) {
+            $contents = File::get($modelPath);
+            $contents = substr_replace($contents, "", -3);
+            $contents .= "\n";
+            $initTable = '    protected $table = "' . $m->modelTable . '";';
+            if (strpos($contents, $initTable) == false) {
+                $contents .= $initTable;
+            }
+            $contents .= "\n";
+            $initFillable = '    protected $fillable=[';
+            $i = 0;
+            $len = 0;
+            foreach ($m->fields as $key => $field) {
+                $len++;
+            }
+            foreach ($m->fields as $key => $field) {
+                $i++;
+                if ($i == $len) {
+                    $initFillable .= '"' . $key . '"';
+                    $initFillable .= "];\n";
+                } else {
+                    $initFillable .= '"' . $key . '",';
+                }
+            }
+            if (strpos($contents, $initFillable) == false) {
+                $contents .= $initFillable;
+            }
+            $contents .= "\n}";
+            file_put_contents($modelPath, $contents);
+        } else {
+            $this->errorPage("File" . $m->modelName . "does not find!");
+        }
+    }
 
     private function generateView1($metadadosModel)
     {
@@ -553,67 +849,7 @@ class ScaffolderController extends Controller
         }
     }
 
-    private function readTemplatesView()
-    {
-
-        $urlFolder = base_path("app/Http/Controllers/Scaffolder/data/templates/view");
-
-        if (!File::exists($urlFolder)) {
-            $this->errorPage("Folder with view template View does not find!");
-        }
-
-        $filesInFolder = File::files($urlFolder);
-        $viewTemplates = array();
-        foreach ($filesInFolder as $path) {
-            $file = pathinfo($path);
-            array_push($viewTemplates, $file);
-        }
-        return $viewTemplates;
-    }
-
-    private function getTemplateView($name)
-    {
-        $urlTemplate = base_path("app/Http/Controllers/Scaffolder/data/templates/view/" . $name . ".php");
-
-        if (!File::exists($urlTemplate)) {
-            $this->errorPage("File Functions does not find!");
-        }
-
-        return File::get($urlTemplate);;
-
-    }
-
-    private function readTemplatesFunction()
-    {
-
-        $urlFolder = base_path("app/Http/Controllers/Scaffolder/data/templates/function");
-
-        if (!File::exists($urlFolder)) {
-            $this->errorPage("Folder with view template functions does not find!");
-        }
-
-        $filesInFolder = File::files($urlFolder);
-        $viewTemplates = array();
-        foreach ($filesInFolder as $path) {
-            $file = pathinfo($path);
-            array_push($viewTemplates, $file);
-        }
-        return $viewTemplates;
-    }
-
-    private function getTemplatefunction($name)
-    {
-        $urlTemplate = base_path("app/Http/Controllers/Scaffolder/data/templates/function/" . $name . ".php");
-
-        if (!File::exists($urlTemplate)) {
-            $this->errorPage("File Functions does not find!");
-        }
-        return File::get($urlTemplate);;
-    }
-
-    /*
-    private
-    function generateViewActions($name, $model)
+    private function generateViewActions($name, $model)
     {
 
         $templates = $this->readTemplatesView();
@@ -792,283 +1028,36 @@ class ScaffolderController extends Controller
         }
 
     }
-*/
-    private
-    function createDir($dir)
+
+    private function getTemplateView($name)
     {
-        if (!is_dir($dir)) {
-            mkdir($dir, 0755, true);
+        $urlTemplate = base_path("app/Http/Controllers/Scaffolder/data/templates/view/" . $name . ".php");
+
+        if (!File::exists($urlTemplate)) {
+            $this->errorPage("File Functions does not find!");
         }
 
+        return File::get($urlTemplate);;
+
     }
 
-    private
-    function createMenuBackOffice($json)
+    private function readTemplatesView()
     {
 
-        $modelPath = base_path("resources/views/scaffolder/views/partials/menujson.blade.php");
-        $urlFunc = base_path("app/Http/Controllers/Scaffolder/data/menuTemplate.json");
+        $urlFolder = base_path("app/Http/Controllers/Scaffolder/data/templates/view");
 
-        if (File::exists($modelPath)) {
-            $functions = json_decode(File::get($urlFunc), true);
-            $contents = "";
-            foreach ($json as $key => $value) {
-                if (isset($value->enable)) {
-                    if ($value->enable == "yes") {
-
-                        $name = $key;
-                        $finalName = "";
-                        $contents .= "\n";
-
-                        foreach ($functions as $funcName => $func) {
-                            if (strpos($func, '$name') != false) {
-                                $changed = str_replace(['$name', '$route'], [$name, $name], $func);
-
-                                if (!(strpos($contents, $changed) > 0)) {
-
-                                    $contents .= $changed;
-                                    $contents .= "\n";
-                                }
-                                file_put_contents($modelPath, $contents);
-                            }
-
-                        }
-                    }
-                }
-            }
+        if (!File::exists($urlFolder)) {
+            $this->errorPage("Folder with view template View does not find!");
         }
-    }
 
-    private
-    function createByJsonObject($json)
-    {
-        foreach ($json as $field => $m) {
-            if ($field == "generated") {
-                $json->put($field, "yes");
-                return;
-                $json;
-            }
-            if ($m->enable == "yes") {
-                Artisan::call("make:model $m->modelName   --controller");
-                Artisan::call("make:resource $m->modelName");
-                $this->populateModel($m);
-                $this->createRequest($m);
-                $this->populateController($m);
-                $this->populateRoutes($m);
-                $this->artisanOptimize();
-            }
+        $filesInFolder = File::files($urlFolder);
+        $viewTemplates = array();
+        foreach ($filesInFolder as $path) {
+            $file = pathinfo($path);
+            array_push($viewTemplates, $file);
         }
-    }
-
-    private function createRequest($model)
-    {
-        foreach ($model->functions as $fName => $func) {
-            if ($func->enable == "yes") {
-                $url = base_path("app/Http/Requests/");
-                $name = "";
-                switch ($fName) {
-                    case "create":
-                        $name .= "Store";
-                        $name .= ucfirst($model->modelTable);
-                        $name .= "Request";
-                        $url .= $name . ".php";
-                        Artisan::call("make:request $name");
-                        $this->populateRequest($url, $model);
-                        break;
-                    case "update":
-                        $name .= "Update";
-                        $name .= ucfirst($model->modelTable);
-                        $name .= "Request";
-                        $url .= $name . ".php";
-                        Artisan::call("make:request $name");
-                        $this->populateRequest($url, $model);
-                        break;
-                }
-            }
-        }
+        return $viewTemplates;
     }
 
 
-    private function populateRequest($url, $model)
-    {
-        if (File::exists($url)) {
-            $content = File::get($url);
-            $content = str_replace(['false'], "true", $content);
-            $old = "//";
-            $new = "";
-
-
-            foreach ($model->fields as $field => $option) {
-
-                if ($option->Key == "PRI") {
-                    continue;
-                } else {
-                    $i = 0;
-                    $rules = [];
-
-                    if (isset($option->required) && $option->required == "yes") {
-                        $rules[$i] = "required";
-                        $i++;
-                    }
-                    if (isset($option->lenght) && $option->lenght != null) {
-                        $rules[$i] = "max:$option->lenght";
-                        $i++;
-                    }
-                }
-
-                for ($f = 0; $f < $i; $f++) {
-                    if ($f == 0) {
-                        $new .= "            '$field' => '";
-                    }
-                    $new .= $rules[$f];
-                    if ($f == $i - 1) {
-                        $new .= "',\n";
-                    } else {
-                        $new .= "|";
-                    }
-                }
-            }
-
-            $content = str_replace([$old], $new, $content);
-            file_put_contents($url, $content);
-        } else {
-            $this->errorPage("Directory: $url does not exists.");
-        }
-    }
-
-
-    private
-    function artisanOptimize()
-    {
-        Artisan::call("storage:link");
-        Artisan::call("optimize");
-    }
-
-    private
-    function populateRoutes($m)
-    {
-        $newRoute = 'Route::resource("' . $m->modelTable . '", "' . $m->modelName . 'Controller");';
-        $modelPath = base_path("routes/web.php");
-
-        $contents = File::get($modelPath);
-
-        if (strpos($contents, $newRoute) == false) {
-            $contents .= "\n";
-            $contents .= $newRoute;
-            file_put_contents($modelPath, $contents);
-        }
-    }
-
-    private
-    function populateController($model)
-    {
-        $name = explode("_", $model->modelName);
-        $finalName = "";
-        foreach ($name as $part) {
-            $finalName .= ucfirst($part);
-        }
-        $modelPath = base_path("app/Http/Controllers/" . $finalName . "Controller.php");
-        $availableFunctions = $this->readTemplatesFunction();
-
-        if (File::exists($modelPath)) {
-
-            $content = File::get($modelPath);
-            $content = substr_replace($content, "", -3);
-            $content .= "\n";
-
-            $header = str_replace(['$modelName'], [$model->modelName], $this->getTemplatefunction('header'));
-            if (strpos($content, $header) == false) {
-                $content .= $header;
-                $content .= "\n";
-            }
-
-            $content .= "\n";
-            $imports = "namespace App\Http\Controllers;\n";
-
-            foreach ($model->functions as $fname => $f) {
-                if ($f->enable == "yes") {
-                    foreach ($availableFunctions as $ava) {
-                        if ($fname == $ava['filename']) {
-                            $newFunc = $this->getTemplatefunction($ava['filename']);
-
-                            switch ($ava['filename']) {
-                                case "create":
-                                    $formRequestName = "Store" . ucfirst($model->modelTable) . "Request";
-                                    $imports .= "use App\Http\Requests\\$formRequestName;\n";
-                                    break;
-                                case "update":
-                                    $formRequestName = "Update" . ucfirst($model->modelTable) . "Request";
-                                    $imports .= "use App\Http\Requests\\$formRequestName;\n";
-                                    break;
-                                default:
-                                    $formRequestName = "Request";
-                                    break;
-                            }
-
-
-                            $changed = str_replace(['$modelName', '$modelTable', '$formRequest'], [$model->modelName, $model->modelTable, $formRequestName], $newFunc);
-
-                            if (strpos($content, $changed) == false) {
-                                $content .= $changed;
-                                $content .= "\n";
-                            }
-
-                        }
-                    }
-                }
-            }
-            $content .= "\n\n}";
-
-
-            $content = str_replace(['namespace App\Http\Controllers;'], [$imports], $content);
-
-            file_put_contents($modelPath, $content);
-        } else {
-            $this->errorPage("File" . $finalName . "Controller.php does not found!");
-        }
-    }
-
-    private function errorPage($error)
-    {
-        return view("scaffolder.errorPage", compact("error"));
-    }
-
-
-    private
-    function populateModel($m)
-    {
-        $modelPath = base_path("app/" . $m->modelName . ".php");
-        if (File::exists($modelPath)) {
-            $contents = File::get($modelPath);
-            $contents = substr_replace($contents, "", -3);
-            $contents .= "\n";
-            $initTable = '    protected $table = "' . $m->modelTable . '";';
-            if (strpos($contents, $initTable) == false) {
-                $contents .= $initTable;
-            }
-            $contents .= "\n";
-            $initFillable = '    protected $fillable=[';
-            $i = 0;
-            $len = 0;
-            foreach ($m->fields as $key => $field) {
-                $len++;
-            }
-            foreach ($m->fields as $key => $field) {
-                $i++;
-                if ($i == $len) {
-                    $initFillable .= '"' . $key . '"';
-                    $initFillable .= "];\n";
-                } else {
-                    $initFillable .= '"' . $key . '",';
-                }
-            }
-            if (strpos($contents, $initFillable) == false) {
-                $contents .= $initFillable;
-            }
-            $contents .= "\n}";
-            file_put_contents($modelPath, $contents);
-        } else {
-            $this->errorPage("File" . $m->modelName . "does not find!");
-        }
-    }
 }
