@@ -50,40 +50,59 @@ class ScaffolderController extends Controller
 
     public function getSchemaDB(Request $request)
     {
-        $tables = DB::select(DB::raw("SELECT TABLE_NAME AS _table FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '$request->db'"));
-        foreach ($tables as $key => $table) {
-            $t = $table->_table;
-            $columns = DB::select(DB::raw("show fields from " . $t));
-            $atr = [];
-            foreach ($columns as $column) {
-                $f = $column->Field;
-                $atr[$f] = $column;
+        $pathEnv = base_path('.env');
+
+        if (File::exists($pathEnv)) {
+            $str = file_get_contents($pathEnv);
+            $r = explode("DB_DATABASE=", $str);
+            if (isset($r[1])) {
+                $r = explode("\n", $r[1]);
+                $r[0];
             }
-            $metadados[$t] = $atr;
-        }
 
-        //se for um enum
-        foreach ($metadados as $modelName => $models) {
-            foreach ($models as $fieldName => $field) {
-                if (strstr($field->Type, 'enum')) {
-                    $str = $field->Type;
-                    $str = explode("'", $str);
-                    $values = array();
+            if ($r[0] != $request->db) {
+                $contents = str_replace($r[0], $request->db, $str);
+                file_put_contents($pathEnv, $contents);
+                $this->artisanOptimize();
+            }
 
-                    for ($i = 1; $i < sizeof($str); $i = $i + 2) {
-                        $values[$str[$i]] = $str[$i];
+
+            $tables = DB::select(DB::raw("SELECT TABLE_NAME AS _table FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '$request->db'"));
+            foreach ($tables as $key => $table) {
+                $t = $table->_table;
+                $columns = DB::select(DB::raw("show fields from " . $t));
+                $atr = [];
+                foreach ($columns as $column) {
+                    $f = $column->Field;
+                    $atr[$f] = $column;
+                }
+                $metadados[$t] = $atr;
+            }
+
+            //se for um enum
+            foreach ($metadados as $modelName => $models) {
+                foreach ($models as $fieldName => $field) {
+                    if (strstr($field->Type, 'enum')) {
+                        $str = $field->Type;
+                        $str = explode("'", $str);
+                        $values = array();
+
+                        for ($i = 1; $i < sizeof($str); $i = $i + 2) {
+                            $values[$str[$i]] = $str[$i];
+                        }
+                        $metadados[$modelName][$fieldName] = (object)array_merge(
+                            (array)$metadados[$modelName][$fieldName], (array)['options' => $values]);
 
                     }
-
-                    $metadados[$modelName][$fieldName] = (object)array_merge(
-                        (array)$metadados[$modelName][$fieldName], (array)['options' => $values]);
-
                 }
             }
+
+            return view("scaffolder.configuretables", compact("metadados"));
+
+        } else {
+            $this->errorPage("Need generate .env file.");
         }
 
-
-        return view("scaffolder.configuretables", compact("metadados"));
     }
 
     public function tablesConfigureP1Post(Request $request)
@@ -660,7 +679,7 @@ class ScaffolderController extends Controller
             $finalName .= ucfirst($part);
         }
 
-        if($finalName != ""){
+        if ($finalName != "") {
             return $finalName;
         }
         $this->errorPage("Name verification error");
@@ -837,6 +856,7 @@ class ScaffolderController extends Controller
 
     private function errorPage($error)
     {
+        //ver o que se passa copm esta pagina nao aprece !!!!!
         return view("scaffolder.errorPage", compact("error"));
     }
 
