@@ -78,15 +78,10 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "type": "custom",
-                    "custom": {
-                        "1": "111",
-                        "2": "222"
-                    },
                     "table": "clientes"
                 },
                 "Key": "no",
-                "type": "select"
+                "type": "text"
             },
             "cdpostal": {
                 "name": "Cdpostal",

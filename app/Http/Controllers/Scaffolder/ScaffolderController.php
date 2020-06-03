@@ -642,7 +642,7 @@ class ScaffolderController extends Controller
 
                 Artisan::call("make:model $verify   --controller");
                 Artisan::call("make:resource $verify");
-                $this->populateModel($m);
+                $this->populateModel($m, $json);
                 $this->createRequest($m);
                 $this->populateController($m);
                 $this->populateRoutes($m);
