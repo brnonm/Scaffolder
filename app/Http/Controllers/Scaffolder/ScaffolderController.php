@@ -91,8 +91,6 @@ class ScaffolderController extends Controller
 
         $urlFolder = base_path('app/Http/Controllers/Scaffolder/data/templates/function');
         $json = json_encode($request->except('_token'), JSON_PRETTY_PRINT);
-        dd($json);
-
         file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), stripslashes($json));
         $metadados = collect(json_decode($json));
         $metadados = collect($metadados->first());
@@ -517,8 +515,11 @@ class ScaffolderController extends Controller
                 $json;
             }
             if ($m->enable == "yes") {
-                Artisan::call("make:model $m->modelName   --controller");
-                Artisan::call("make:resource $m->modelName");
+
+                $verify = $this->verifyName($m->modelName);
+
+                Artisan::call("make:model $verify   --controller");
+                Artisan::call("make:resource $verify");
                 $this->populateModel($m);
                 $this->createRequest($m);
                 $this->populateController($m);
@@ -526,6 +527,21 @@ class ScaffolderController extends Controller
                 $this->artisanOptimize();
             }
         }
+    }
+
+    private function verifyName($name)
+    {
+        $array = explode("_", $name);
+        $finalName = "";
+
+        foreach ($array as $part) {
+            $finalName .= ucfirst($part);
+        }
+
+        if($finalName != ""){
+            return $finalName;
+        }
+        $this->errorPage("Name verification error");
     }
 
     private function createRequest($model)
@@ -537,7 +553,8 @@ class ScaffolderController extends Controller
                 switch ($fName) {
                     case "create":
                         $name .= "Store";
-                        $name .= ucfirst($model->modelTable);
+                        //$name .= ucfirst($model->modelTable);
+                        $name .= $this->verifyName($model->modelTable);
                         $name .= "Request";
                         $url .= $name . ".php";
                         Artisan::call("make:request $name");
@@ -545,7 +562,7 @@ class ScaffolderController extends Controller
                         break;
                     case "update":
                         $name .= "Update";
-                        $name .= ucfirst($model->modelTable);
+                        $name .= $this->verifyName($model->modelTable);
                         $name .= "Request";
                         $url .= $name . ".php";
                         Artisan::call("make:request $name");
@@ -611,7 +628,13 @@ class ScaffolderController extends Controller
 
     private function populateRoutes($m)
     {
-        $newRoute = 'Route::resource("' . $m->modelTable . '", "' . $m->modelName . 'Controller");';
+
+        $controllerName = $this->verifyName($m->modelName);
+        $modelName = $this->verifyName($m->modelTable);
+
+
+        $newRoute = 'Route::resource("' . $m->modelTable . '", "' . $controllerName . 'Controller");';
+
         $modelPath = base_path("routes/web.php");
 
         $contents = File::get($modelPath);
@@ -625,12 +648,7 @@ class ScaffolderController extends Controller
 
     private function populateController($model)
     {
-        $name = explode("_", $model->modelName);
-        $finalName = "";
-        foreach ($name as $part) {
-            $finalName .= ucfirst($part);
-        }
-
+        $finalName = $this->verifyName($model->modelName);
 
         $modelPath = base_path("app/Http/Controllers/" . $finalName . "Controller.php");
         $availableFunctions = $this->readTemplatesFunction();
@@ -641,7 +659,8 @@ class ScaffolderController extends Controller
             $content = substr_replace($content, "", -3);
             $content .= "\n";
 
-            $header = str_replace(['$modelName'], [$model->modelName], $this->getTemplatefunction('header'));
+            $header = str_replace(['$modelName'], [$this->verifyName($model->modelName)], $this->getTemplatefunction('header'));
+
             if (strpos($content, $header) == false) {
                 $content .= $header;
                 $content .= "\n";
@@ -658,19 +677,21 @@ class ScaffolderController extends Controller
 
                             switch ($ava['filename']) {
                                 case "create":
-                                    $formRequestName = "Store" . ucfirst($model->modelTable) . "Request";
-                                    explode('_',$formRequestName); //validar isto
+                                    $formRequestName = "Store" . $this->verifyName($model->modelTable) . "Request";
+                                    explode('_', $formRequestName); //validar isto
 
                                     $imports .= "use App\Http\Requests\\$formRequestName;\n";
                                     break;
                                 case "update":
-                                    $formRequestName = "Update" . ucfirst($model->modelTable) . "Request";
+
+                                    $formRequestName = "Update" . $this->verifyName($model->modelTable) . "Request";
                                     $imports .= "use App\Http\Requests\\$formRequestName;\n";
                                     break;
                                 default:
                                     $formRequestName = "Request";
                                     break;
                             }
+
                             $changed = str_replace(['$modelName', '$modelTable', '$formRequest'], [$model->modelName, $model->modelTable, $formRequestName], $newFunc);
 
                             if (strpos($content, $changed) == false) {
@@ -1042,58 +1063,58 @@ class ScaffolderController extends Controller
         return File::get($urlTemplate);;
 
     }
+    /*
+        private function readTemplatesView()
+        {
 
-    private function readTemplatesView()
-    {
+            $urlFolder = base_path("app/Http/Controllers/Scaffolder/data/templates/view");
 
-        $urlFolder = base_path("app/Http/Controllers/Scaffolder/data/templates/view");
-
-            foreach ($model->fields as $field => $option) {
-                if ($option->Key == "PRI") {
-                    continue;
-                } else {
-                    $i = 0;
-                    $rules = [];
-                    if (isset($option->Null)) {
-
-                    if ($option->Null == "NO") {
-                        $rules[$i] = "required";
-                        $i++;
-                    }
-                    }
-                    if (isset($option->lenght) && $option->lenght != null) {
-                        $rules[$i] = "max:$option->lenght";
-                        $i++;
-                    }
-                }
-
-                for ($f = 0; $f < $i; $f++) {
-                    if ($f == 0) {
-                        $new .= "            '$field' => '";
-                    }
-                    $new .= $rules[$f];
-                    if ($f == $i - 1) {
-                        $new .= "',\n";
+                foreach ($model->fields as $field => $option) {
+                    if ($option->Key == "PRI") {
+                        continue;
                     } else {
-                        $new .= "|";
+                        $i = 0;
+                        $rules = [];
+                        if (isset($option->Null)) {
+
+                        if ($option->Null == "NO") {
+                            $rules[$i] = "required";
+                            $i++;
+                        }
+                        }
+                        if (isset($option->lenght) && $option->lenght != null) {
+                            $rules[$i] = "max:$option->lenght";
+                            $i++;
+                        }
+                    }
+
+                    for ($f = 0; $f < $i; $f++) {
+                        if ($f == 0) {
+                            $new .= "            '$field' => '";
+                        }
+                        $new .= $rules[$f];
+                        if ($f == $i - 1) {
+                            $new .= "',\n";
+                        } else {
+                            $new .= "|";
+                        }
                     }
                 }
+
+                $content = str_replace([$old], $new, $content);
+                file_put_contents($url, $content);
+            } else {
+                $this->err("Directory: $url does not exists.");
             }
 
-            $content = str_replace([$old], $new, $content);
-            file_put_contents($url, $content);
-        } else {
-            $this->errorPage("Directory: $url does not exists.");
+            $filesInFolder = File::files($urlFolder);
+            $viewTemplates = array();
+            foreach ($filesInFolder as $path) {
+                $file = pathinfo($path);
+                array_push($viewTemplates, $file);
+            }
+            return $viewTemplates;
         }
 
-        $filesInFolder = File::files($urlFolder);
-        $viewTemplates = array();
-        foreach ($filesInFolder as $path) {
-            $file = pathinfo($path);
-            array_push($viewTemplates, $file);
-        }
-        return $viewTemplates;
-    }
-
-
+    */
 }
