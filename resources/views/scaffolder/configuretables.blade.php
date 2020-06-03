@@ -351,7 +351,8 @@
                                                                             <hr>
 
                                                                             <label>Target Table</label>
-                                                                            <select id="{{$nameTable.$keyy}}_relation_class" class="form-control" onchange="showTargetTableRel(this, '{{$nameTable.$keyy}}') ">
+                                                                            <select id="{{$nameTable.$keyy}}_relation_class" class="form-control" onchange="showTargetTableRel(this, '{{$nameTable.$keyy}}')"
+                                                                                    name="metadados[{{$nameTable}}][fields][{{$keyy}}][select][table]">
                                                                                 @foreach($metadados as $nameTable1=>$table1)
 
 
@@ -451,7 +452,7 @@
                             var input = document.createElement("input");
                             input.type = "text";
                             input.className = "form-control";
-                            var name1='metadados['+nametable+'][fields]['+key+'][select][custom_'+total[name]+']';
+                            var name1='metadados['+nametable+'][fields]['+key+'][select][custom]['+total[name]+']';
                             input.name =name1;
 
 

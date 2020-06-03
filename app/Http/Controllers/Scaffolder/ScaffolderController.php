@@ -91,7 +91,8 @@ class ScaffolderController extends Controller
 
         $urlFolder = base_path('app/Http/Controllers/Scaffolder/data/templates/function');
         $json = json_encode($request->except('_token'), JSON_PRETTY_PRINT);
-        dd($json);
+
+
 
         file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), stripslashes($json));
         $metadados = collect(json_decode($json));
@@ -120,6 +121,7 @@ class ScaffolderController extends Controller
 
 
         $json = $this->joinJson($baseJson, $newJson);
+
 
         $this->createByJsonObject($json);
         $this->createMenuBackOffice($json);
@@ -234,6 +236,8 @@ class ScaffolderController extends Controller
     {
         $content = "";
 
+
+
         foreach ($value->fields as $name => $m) {
             $content .= "
                     <tr>
@@ -247,16 +251,16 @@ class ScaffolderController extends Controller
 
             switch ($m->type) {
                 case "text":
-                    $content .= "<td><input $showOP type=\"text\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                    $content .= "<td><input $showOP type=\"text\" name=\"$name\" value=\"{{\$item->$name}}\" class=\"form-control\"></td>";
                     break;
                 case "int":
-                    $content .= "<td><input $showOP  type=\"number\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                    $content .= "<td><input $showOP  type=\"number\" name=\"$name\" value=\"{{\$item->$name}}\" class=\"form-control\"></td>";
                     break;
                 case "image":
-                    $content .= "<td><input $showOP type=\"image\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                    $content .= "<td><input $showOP type=\"image\" name=\"$name\" value=\"{{\$item->$name}}\" class=\"form-control\"></td>";
                     break;
                 case "date":
-                    $content .= "<td><input $showOP type=\"date\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                    $content .= "<td><input $showOP type=\"date\" name=\"$name\" value=\"{{\$item->$name}}\" class=\"form-control\"></td>";
                     break;
                 case "enum":
                     if (isset($m->options)) {
@@ -272,6 +276,59 @@ class ScaffolderController extends Controller
                         $content .= "</td>";
                     }
 
+                break;
+
+                case "select":
+
+
+
+
+
+
+
+
+                    if($m->select->type=="relation"){
+
+
+                        $content.="\n";
+                        $content.="                    <td>";
+                        $content.="\n";
+                        $content.='                                <select name="'.$name.'" class="form-control">';
+                        $content.="\n";
+                        $content.='                                 @foreach($item::$'.$name.'::all() as $i)';
+                        $content.="\n";
+                        $content.='                                      <option value="{{$i->'.$m->select->foregein_key.'}}" @if($item->'.$name.'==$i->id) selected @endif>{{$i->'.$m->select->label.'}}</option>';
+                        $content.="\n";
+                        $content.='                                 @endforeach';
+                        $content.="\n";
+                        $content.='                                 </select>';
+                        $content.="\n";
+
+                        $content.="                    </td>";
+
+                    }
+                    else if($m->select->type="custom"){
+
+                        $content.="\n";
+                        $content.="                    <td>";
+                        $content.="\n";
+                        $content.='                                <select name="'.$name.'" class="form-control">';
+                        $content.="\n";
+
+                        foreach ($m->select->custom as $s){
+
+                            $content.='                                      <option value="'.$s.'" >'.$s.'</option>';
+                        }
+
+                        $content.='                                 </select>';
+                        $content.="\n";
+
+                        $content.="                    </td>";
+
+
+
+                    }
+
                     break;
             }
         }
@@ -284,6 +341,7 @@ class ScaffolderController extends Controller
         $content = "";
         foreach ($value->fields as $name => $m) {
 
+
             if (isset($m->options)) {
                 $content .= "<th> $m->name</th>";
                 $content .= "<td>\n";
@@ -294,14 +352,26 @@ class ScaffolderController extends Controller
                         $content .= "\n";
                     }
                 }
+
                 $content .= "</td> \n";
             } else {
 
                 $content .= "
                     <tr>
                                 <th> $m->name</th>
-                                <td> " . '{{$item->' . "$name}}</td>
-                            </tr>";
+                                ";
+
+                                if($m->type=="select"){
+                                    if($m->select->type=="relation"){
+                                        $content.="<td> " . '{{$item->' . $name."Rel->".$m->select->label."}}</td>";
+                                    }else{
+                                        $content.="<td> " . '{{$item->' . "$name}}</td>";
+                                    }
+                                }else{
+                                    $content.="<td> " . '{{$item->' . "$name}}</td>";
+                                }
+
+                           $content.= "</tr>";
             }
         }
 
@@ -357,6 +427,51 @@ class ScaffolderController extends Controller
                         }
                         $content .= "</td>";
                     }
+                    break;
+                case "select":
+                    if($m->select->type=="relation"){
+
+
+                    $content.="\n";
+                    $content.="                    <td>";
+                    $content.="\n";
+                    $content.='                                <select name="'.$name.'" class="form-control">';
+                    $content.="\n";
+                    $content.='                                 @foreach($item::$'.$name.'::all() as $i)';
+                    $content.="\n";
+                    $content.='                                      <option value="{{$i->'.$m->select->foregein_key.'}}" >{{$i->'.$m->select->label.'}}</option>';
+                    $content.="\n";
+                    $content.='                                 @endforeach';
+                    $content.="\n";
+                    $content.='                                 </select>';
+                    $content.="\n";
+
+                    $content.="                    </td>";
+                    }
+                    else if($m->select->type="custom"){
+
+                        $content.="\n";
+                        $content.="                    <td>";
+                        $content.="\n";
+                        $content.='                                <select name="'.$name.'" class="form-control">';
+                        $content.="\n";
+
+                        foreach ($m->select->custom as $s){
+
+                            $content.='                                      <option value="'.$s.'" >'.$s.'</option>';
+                        }
+
+                        $content.='                                 </select>';
+                        $content.="\n";
+
+                        $content.="                    </td>";
+
+
+
+                    }
+
+
+                    break;
             }
         }
 
@@ -413,14 +528,30 @@ class ScaffolderController extends Controller
                     }
                     $rows .= "</td> \n";
                 } else {
-                    if ($f->type == "photo") {
-                        $rows .= "<td><img src=\"/storage/fotos/{{ \$item->$name}}\" height=\"70px\" width=\"70px\" /></td>\n";
-                    } else {
-                        $rows .= '<td>{{$item->' . $name . "}}</td> \n";
+                    switch ($f->type){
+                        case "photo":
+                            $rows .= "<td><img src=\"/storage/fotos/{{ \$item->$name}}\" height=\"70px\" width=\"70px\" /></td>\n";
+                            break;
+                        case "select":
+
+                                if($f->select->type=="relation"){
+                                    $rows .= '<td>{{$item->' . $name . "Rel->".$f->select->label.'?? ""}}</td> '."\n";
+
+                                }else if($f->select->type=="custom"){
+                                    $rows .= '<td>{{$item->' . $name . "}}</td> \n";
+                                }
+
+
+                            break;
+                        default:
+                            $rows .= '<td>{{$item->' . $name . "}}</td> \n";
+                            break;
                     }
+
                 }
             }
         }
+
         return $rows;
     }
 
@@ -519,7 +650,7 @@ class ScaffolderController extends Controller
             if ($m->enable == "yes") {
                 Artisan::call("make:model $m->modelName   --controller");
                 Artisan::call("make:resource $m->modelName");
-                $this->populateModel($m);
+                $this->populateModel($m, $json);
                 $this->createRequest($m);
                 $this->populateController($m);
                 $this->populateRoutes($m);
@@ -697,7 +828,7 @@ class ScaffolderController extends Controller
         return view("scaffolder.errorPage", compact("error"));
     }
 
-    private function populateModel($m)
+    private function populateModel($m, $json)
     {
         $modelPath = base_path("app/" . $m->modelName . ".php");
 
@@ -728,6 +859,51 @@ class ScaffolderController extends Controller
             if (strpos($contents, $initFillable) == false) {
                 $contents .= $initFillable;
             }
+
+            $contents.="\n";
+            foreach($m->fields as $key => $field){
+                if($field->type=="select"){
+                    if($field->select->type=="relation"){
+                        $contents.="\n";
+
+
+                        $contents.='public static $'.$key.' = ';
+                        foreach ($json as $modelName => $models){
+
+                            if(isset($models->modelTable)){
+                                if($models->modelTable===$field->select->table){
+
+                                    $contents.=$models->modelName.'::class;';
+                                }
+                            }
+                        }
+
+                        $contents.="\n";
+                        $contents.="\n";
+
+                        $contents.='    public function '.$key.'Rel(){';
+                        $contents.="\n";
+                        foreach ($json as $modelName => $models){
+
+                            if(isset($models->modelTable)){
+                                if($models->modelTable===$field->select->table){
+
+                                    $contents.='        return $this->hasOne(\'App\\'.$models->modelName.'\', "'.$field->select->foregein_key.'", "'.$key.'");';
+                                }
+                            }
+                        }
+
+                        $contents.="\n    }";
+
+
+
+
+
+                    }
+
+                }
+            }
+
             $contents .= "\n}";
             file_put_contents($modelPath, $contents);
         } else {
@@ -854,6 +1030,7 @@ class ScaffolderController extends Controller
     private function generateViewActions($name, $model)
     {
 
+
         $templates = $this->readTemplatesView();
         $content = "";
 
@@ -934,6 +1111,9 @@ class ScaffolderController extends Controller
                             break;
                         case "date":
                             $generateBody .= "<td><input $showOP type=\"date\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                            break;
+                        case "select":
+                            $generateBody .= "<td><select></select></td>";
                             break;
                         case "enum":
                             if (isset($m->options)) {
@@ -1082,9 +1262,7 @@ class ScaffolderController extends Controller
 
             $content = str_replace([$old], $new, $content);
             file_put_contents($url, $content);
-        } else {
-            $this->errorPage("Directory: $url does not exists.");
-        }
+
 
         $filesInFolder = File::files($urlFolder);
         $viewTemplates = array();
