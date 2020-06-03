@@ -289,55 +289,47 @@ class ScaffolderController extends Controller
                         $content .= "</td>";
                     }
 
-                break;
+                    break;
 
                 case "select":
 
 
+                    if (isset($m->select->type) && $m->select->type == "relation") {
 
 
+                        $content .= "\n";
+                        $content .= "                    <td>";
+                        $content .= "\n";
+                        $content .= '                                <select name="' . $name . '" class="form-control">';
+                        $content .= "\n";
+                        $content .= '                                 @foreach($item::$' . $name . '::all() as $i)';
+                        $content .= "\n";
+                        $content .= '                                      <option value="{{$i->' . $m->select->foregein_key . '}}" @if($item->' . $name . '==$i->id) selected @endif>{{$i->' . $m->select->label . '}}</option>';
+                        $content .= "\n";
+                        $content .= '                                 @endforeach';
+                        $content .= "\n";
+                        $content .= '                                 </select>';
+                        $content .= "\n";
 
+                        $content .= "                    </td>";
 
+                    } else if (isset($m->select->type) && $m->select->type = "custom") {
 
+                        $content .= "\n";
+                        $content .= "                    <td>";
+                        $content .= "\n";
+                        $content .= '                                <select name="' . $name . '" class="form-control">';
+                        $content .= "\n";
 
-                    if($m->select->type=="relation"){
+                        foreach ($m->select->custom as $s) {
 
-
-                        $content.="\n";
-                        $content.="                    <td>";
-                        $content.="\n";
-                        $content.='                                <select name="'.$name.'" class="form-control">';
-                        $content.="\n";
-                        $content.='                                 @foreach($item::$'.$name.'::all() as $i)';
-                        $content.="\n";
-                        $content.='                                      <option value="{{$i->'.$m->select->foregein_key.'}}" @if($item->'.$name.'==$i->id) selected @endif>{{$i->'.$m->select->label.'}}</option>';
-                        $content.="\n";
-                        $content.='                                 @endforeach';
-                        $content.="\n";
-                        $content.='                                 </select>';
-                        $content.="\n";
-
-                        $content.="                    </td>";
-
-                    }
-                    else if($m->select->type="custom"){
-
-                        $content.="\n";
-                        $content.="                    <td>";
-                        $content.="\n";
-                        $content.='                                <select name="'.$name.'" class="form-control">';
-                        $content.="\n";
-
-                        foreach ($m->select->custom as $s){
-
-                            $content.='                                      <option value="'.$s.'" >'.$s.'</option>';
+                            $content .= '                                      <option value="' . $s . '" >' . $s . '</option>';
                         }
 
-                        $content.='                                 </select>';
-                        $content.="\n";
+                        $content .= '                                 </select>';
+                        $content .= "\n";
 
-                        $content.="                    </td>";
-
+                        $content .= "                    </td>";
 
 
                     }
@@ -372,17 +364,17 @@ class ScaffolderController extends Controller
                                 <th> $m->name</th>
                                 ";
 
-                                if($m->type=="select"){
-                                    if($m->select->type=="relation"){
-                                        $content.="<td> " . '{{$item->' . $name."Rel->".$m->select->label."}}</td>";
-                                    }else{
-                                        $content.="<td> " . '{{$item->' . "$name}}</td>";
-                                    }
-                                }else{
-                                    $content.="<td> " . '{{$item->' . "$name}}</td>";
-                                }
+                if ($m->type == "select") {
+                    if (isset($m->select->type) && $m->select->type == "relation") {
+                        $content .= "<td> " . '{{$item->' . $name . "Rel->" . $m->select->label . "}}</td>";
+                    } else {
+                        $content .= "<td> " . '{{$item->' . "$name}}</td>";
+                    }
+                } else {
+                    $content .= "<td> " . '{{$item->' . "$name}}</td>";
+                }
 
-                           $content.= "</tr>";
+                $content .= "</tr>";
             }
         }
 
@@ -440,43 +432,42 @@ class ScaffolderController extends Controller
                     }
                     break;
                 case "select":
-                    if($m->select->type=="relation"){
+
+                    if (isset($m->select->type) && $m->select->type == "relation") {
 
 
-                    $content.="\n";
-                    $content.="                    <td>";
-                    $content.="\n";
-                    $content.='                                <select name="'.$name.'" class="form-control">';
-                    $content.="\n";
-                    $content.='                                 @foreach($item::$'.$name.'::all() as $i)';
-                    $content.="\n";
-                    $content.='                                      <option value="{{$i->'.$m->select->foregein_key.'}}" >{{$i->'.$m->select->label.'}}</option>';
-                    $content.="\n";
-                    $content.='                                 @endforeach';
-                    $content.="\n";
-                    $content.='                                 </select>';
-                    $content.="\n";
+                        $content .= "\n";
+                        $content .= "                    <td>";
+                        $content .= "\n";
+                        $content .= '                                <select name="' . $name . '" class="form-control">';
+                        $content .= "\n";
+                        $content .= '                                 @foreach($item::$' . $name . '::all() as $i)';
+                        $content .= "\n";
+                        $content .= '                                      <option value="{{$i->' . $m->select->foregein_key . '}}" >{{$i->' . $m->select->label . '}}</option>';
+                        $content .= "\n";
+                        $content .= '                                 @endforeach';
+                        $content .= "\n";
+                        $content .= '                                 </select>';
+                        $content .= "\n";
 
-                    $content.="                    </td>";
-                    }
-                    else if($m->select->type="custom"){
+                        $content .= "                    </td>";
+                    } else if (isset($m->select->type) && $m->select->type = "custom") {
 
-                        $content.="\n";
-                        $content.="                    <td>";
-                        $content.="\n";
-                        $content.='                                <select name="'.$name.'" class="form-control">';
-                        $content.="\n";
+                        $content .= "\n";
+                        $content .= "                    <td>";
+                        $content .= "\n";
+                        $content .= '                                <select name="' . $name . '" class="form-control">';
+                        $content .= "\n";
 
-                        foreach ($m->select->custom as $s){
+                        foreach ($m->select->custom as $s) {
 
-                            $content.='                                      <option value="'.$s.'" >'.$s.'</option>';
+                            $content .= '                                      <option value="' . $s . '" >' . $s . '</option>';
                         }
 
-                        $content.='                                 </select>';
-                        $content.="\n";
+                        $content .= '                                 </select>';
+                        $content .= "\n";
 
-                        $content.="                    </td>";
-
+                        $content .= "                    </td>";
 
 
                     }
@@ -536,18 +527,18 @@ class ScaffolderController extends Controller
                     }
                     $rows .= "</td> \n";
                 } else {
-                    switch ($f->type){
+                    switch ($f->type) {
                         case "photo":
                             $rows .= "<td><img src=\"/storage/fotos/{{ \$item->$name}}\" height=\"70px\" width=\"70px\" /></td>\n";
                             break;
                         case "select":
 
-                                if($f->select->type=="relation"){
-                                    $rows .= '<td>{{$item->' . $name . "Rel->".$f->select->label.'?? ""}}</td> '."\n";
+                            if (isset($f->select->type) && $f->select->type == "relation") {
+                                $rows .= '<td>{{$item->' . $name . "Rel->" . $f->select->label . '?? ""}}</td> ' . "\n";
 
-                                }else if($f->select->type=="custom"){
-                                    $rows .= '<td>{{$item->' . $name . "}}</td> \n";
-                                }
+                            } else if (isset($f->select->type) && $f->select->type == "custom") {
+                                $rows .= '<td>{{$item->' . $name . "}}</td> \n";
+                            }
 
 
                             break;
@@ -815,22 +806,26 @@ class ScaffolderController extends Controller
                     foreach ($availableFunctions as $ava) {
                         if ($fname == $ava['filename']) {
                             $newFunc = $this->getTemplatefunction($ava['filename']);
-
+                            $import = "";
                             switch ($ava['filename']) {
                                 case "create":
                                     $formRequestName = "Store" . $this->verifyName($model->modelTable) . "Request";
-                                    explode('_', $formRequestName); //validar isto
 
-                                    $imports .= "use App\Http\Requests\\$formRequestName;\n";
+                                    $import .= "use App\Http\Requests\\$formRequestName;";
                                     break;
                                 case "update":
 
                                     $formRequestName = "Update" . $this->verifyName($model->modelTable) . "Request";
-                                    $imports .= "use App\Http\Requests\\$formRequestName;\n";
+                                    $import .= "use App\Http\Requests\\$formRequestName;";
                                     break;
                                 default:
                                     $formRequestName = "Request";
                                     break;
+                            }
+
+                            if (strpos($content, $header) == false) {
+                                $imports .= $import;
+                                $imports .= "\n";
                             }
 
                             $changed = str_replace(['$modelName', '$modelTable', '$formRequest'], [$model->modelName, $model->modelTable, $formRequestName], $newFunc);
@@ -892,45 +887,36 @@ class ScaffolderController extends Controller
                 $contents .= $initFillable;
             }
 
-            $contents.="\n";
-            foreach($m->fields as $key => $field){
-                if($field->type=="select"){
-                    if($field->select->type=="relation"){
-                        $contents.="\n";
+            $contents .= "\n";
+            foreach ($m->fields as $key => $field) {
+                if ($field->type == "select") {
 
+                    if (isset($field->select->type) && $field->select->type == "relation") {
+                        $contents .= "\n";
+                        $contents .= 'public static $' . $key . ' = ';
+                        foreach ($json as $modelName => $models) {
+                            if (isset($models->modelTable)) {
+                                if ($models->modelTable === $field->select->table) {
 
-                        $contents.='public static $'.$key.' = ';
-                        foreach ($json as $modelName => $models){
+                                    $contents .= $models->modelName . '::class;';
+                                }
+                            }
+                        }
+                        $contents .= "\n";
+                        $contents .= "\n";
+                        $contents .= '    public function ' . $key . 'Rel(){';
+                        $contents .= "\n";
+                        foreach ($json as $modelName => $models) {
 
-                            if(isset($models->modelTable)){
-                                if($models->modelTable===$field->select->table){
+                            if (isset($models->modelTable)) {
+                                if ($models->modelTable === $field->select->table) {
 
-                                    $contents.=$models->modelName.'::class;';
+                                    $contents .= '        return $this->hasOne(\'App\\' . $models->modelName . '\', "' . $field->select->foregein_key . '", "' . $key . '");';
                                 }
                             }
                         }
 
-                        $contents.="\n";
-                        $contents.="\n";
-
-                        $contents.='    public function '.$key.'Rel(){';
-                        $contents.="\n";
-                        foreach ($json as $modelName => $models){
-
-                            if(isset($models->modelTable)){
-                                if($models->modelTable===$field->select->table){
-
-                                    $contents.='        return $this->hasOne(\'App\\'.$models->modelName.'\', "'.$field->select->foregein_key.'", "'.$key.'");';
-                                }
-                            }
-                        }
-
-                        $contents.="\n    }";
-
-
-
-
-
+                        $contents .= "\n    }";
                     }
 
                 }
