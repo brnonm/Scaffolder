@@ -1,30 +1,35 @@
 @extends("scaffolder.views.partials.main")
 @section("container")
 
+
+
 <div>
     @csrf
-    <div class="row">
-        <div class="col-md-12" style="text-align: center">
-            <p>Update Categoria</p>
+
+    <div class="card">
+        <div class="card-header">
+            Update :$modelName
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div id="accordion">
-                <div class="card">
-                    <form action=:$routeUpdate method="POST" enctype="multipart/form-data">
-                        <table class="table">
-                            @csrf
-                            @method('PUT')
 
-                            :$fieldUpdate
 
-                        </table>
-                        <input type="submit" value="Update" class="btn btn-info col-md-12">
-                    </form>
+        <div class="card-body">
+            <form action=:$routeUpdate method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                :$fieldUpdate
+                <div>
+                    <input class="btn btn-danger" type="submit" value="Update">
                 </div>
-            </div>
+            </form>
+
+
         </div>
     </div>
+
+
+
+
 </div>
+
+
 @endsection

@@ -1,6 +1,6 @@
 {
-    "alunos": {
-        "modelName": "Aluno",
+    "clientes": {
+        "modelName": "Cliente",
         "enable": "yes",
         "fields": {
             "id": {
@@ -9,49 +9,167 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "alunos"
+                    "table": "clientes"
                 },
                 "Key": "PRI",
-                "type": "text"
+                "type": "int"
             },
-            "user_id": {
-                "name": "Nome FK",
-                "lenght": null,
+            "nome": {
+                "name": "Nome",
+                "lenght": "255",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "type": "relation",
-                    "table": "users",
-                    "foregein_key": "id",
-                    "label": "name"
-                },
-                "Key": "MUL",
-                "type": "select"
-            },
-            "numero": {
-                "name": "Numero",
-                "lenght": "20",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
+                    "table": "clientes"
                 },
                 "Key": "no",
                 "type": "text"
             },
-            "curso": {
-                "name": "Curso",
-                "lenght": "20",
+            "tipocliente": {
+                "name": "Tipocliente",
+                "lenght": "255",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "alunos"
+                    "table": "clientes"
                 },
-                "Key": "MUL",
+                "Key": "no",
                 "type": "text"
+            },
+            "contacto": {
+                "name": "Contacto",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "morada": {
+                "name": "Morada",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "ncontrib": {
+                "name": "Ncontrib",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "codigo": {
+                "name": "Codigo",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "cdpostal": {
+                "name": "Cdpostal",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "local": {
+                "name": "Local",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "email": {
+                "name": "Email",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "ncabecas": {
+                "name": "Ncabeca",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "datacri": {
+                "name": "Datacri",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "created_at": {
+                "name": "Created_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "updated_at": {
+                "name": "Updated_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "deleted_at": {
+                "name": "Deleted_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
             }
         },
-        "modelTable": "alunos",
+        "modelTable": "clientes",
         "functions": {
             "create": {
                 "enable": "yes"
@@ -70,48 +188,8 @@
             }
         }
     },
-    "alunos_disciplinas": {
-        "modelName": "Alunos_disciplina",
-        "enable": "no",
-        "fields": {
-            "aluno_id": {
-                "name": "Aluno_id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "PRI",
-                "type": "text"
-            },
-            "disciplina_id": {
-                "name": "Disciplina_id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "PRI",
-                "type": "text"
-            },
-            "repetente": {
-                "name": "Repetente",
-                "lenght": "1",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "text"
-            }
-        },
-        "modelTable": "alunos_disciplinas"
-    },
-    "candidaturas": {
-        "modelName": "Candidatura",
+    "contacts": {
+        "modelName": "Contact",
         "enable": "no",
         "fields": {
             "id": {
@@ -120,29 +198,29 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "alunos"
+                    "table": "clientes"
                 },
                 "Key": "PRI",
-                "type": "text"
+                "type": "int"
             },
-            "curso": {
-                "name": "Curso",
-                "lenght": "20",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "MUL",
-                "type": "text"
-            },
-            "nome": {
-                "name": "Nome",
+            "name": {
+                "name": "Name",
                 "lenght": "255",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "alunos"
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "subject": {
+                "name": "Subject",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
                 },
                 "Key": "no",
                 "type": "text"
@@ -153,546 +231,426 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "alunos"
+                    "table": "clientes"
                 },
                 "Key": "no",
                 "type": "text"
             },
-            "telefone1": {
-                "name": "Telefone1",
-                "lenght": "20",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "telefone2": {
-                "name": "Telefone2",
-                "lenght": "20",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "genero": {
-                "name": "Genero",
+            "message": {
+                "name": "Message",
                 "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "select"
-            },
-            "media": {
-                "name": "Media",
-                "lenght": "42",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "decimal"
-            },
-            "m23": {
-                "name": "M23",
-                "lenght": "1",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
+                    "table": "clientes"
                 },
                 "Key": "no",
                 "type": "text"
             },
-            "origem": {
-                "name": "Origem",
+            "created_at": {
+                "name": "Created_at",
                 "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "alunos"
+                    "table": "clientes"
                 },
                 "Key": "no",
-                "type": "select"
+                "type": "timestamp"
             },
-            "obs": {
-                "name": "Ob",
+            "updated_at": {
+                "name": "Updated_at",
                 "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "alunos"
+                    "table": "clientes"
                 },
                 "Key": "no",
-                "type": "text"
-            }
-        },
-        "modelTable": "candidaturas"
-    },
-    "candidaturas_estatutos": {
-        "modelName": "Candidaturas_estatuto",
-        "enable": "no",
-        "fields": {
-            "candidatura_id": {
-                "name": "Candidatura_id",
+                "type": "timestamp"
+            },
+            "deleted_at": {
+                "name": "Deleted_at",
                 "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "alunos"
-                },
-                "Key": "PRI",
-                "type": "text"
-            },
-            "estatuto": {
-                "name": "Estatuto",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "PRI",
-                "type": "select"
-            },
-            "pretende": {
-                "name": "Pretende",
-                "lenght": "1",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "text"
-            }
-        },
-        "modelTable": "candidaturas_estatutos"
-    },
-    "cursos": {
-        "modelName": "Curso",
-        "enable": "no",
-        "fields": {
-            "abreviatura": {
-                "name": "Abreviatura",
-                "lenght": "20",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "PRI",
-                "type": "text"
-            },
-            "nome": {
-                "name": "Nome",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "tipo": {
-                "name": "Tipo",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "select"
-            },
-            "semestres": {
-                "name": "Semestre",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "int"
-            },
-            "ECTS": {
-                "name": "ECTS",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "int"
-            },
-            "vagas": {
-                "name": "Vaga",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "int"
-            },
-            "contato": {
-                "name": "Contato",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "objetivos": {
-                "name": "Objetivo",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "text"
-            }
-        },
-        "modelTable": "cursos"
-    },
-    "departamentos": {
-        "modelName": "Departamento",
-        "enable": "no",
-        "fields": {
-            "abreviatura": {
-                "name": "Abreviatura",
-                "lenght": "20",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "PRI",
-                "type": "text"
-            },
-            "nome": {
-                "name": "Nome",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "text"
-            }
-        },
-        "modelTable": "departamentos"
-    },
-    "disciplinas": {
-        "modelName": "Disciplina",
-        "enable": "no",
-        "fields": {
-            "id": {
-                "name": "Id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "PRI",
-                "type": "text"
-            },
-            "curso": {
-                "name": "Curso",
-                "lenght": "20",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "MUL",
-                "type": "text"
-            },
-            "ano": {
-                "name": "Ano",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "int"
-            },
-            "semestre": {
-                "name": "Semestre",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "int"
-            },
-            "abreviatura": {
-                "name": "Abreviatura",
-                "lenght": "20",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "nome": {
-                "name": "Nome",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "ECTS": {
-                "name": "ECTS",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "int"
-            },
-            "horas": {
-                "name": "Hora",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "int"
-            },
-            "opcional": {
-                "name": "Opcional",
-                "lenght": "1",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "text"
-            }
-        },
-        "modelTable": "disciplinas"
-    },
-    "docentes": {
-        "modelName": "Docente",
-        "enable": "no",
-        "fields": {
-            "id": {
-                "name": "Id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "PRI",
-                "type": "text"
-            },
-            "user_id": {
-                "name": "User_id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "MUL",
-                "type": "text"
-            },
-            "departamento": {
-                "name": "Departamento",
-                "lenght": "20",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "MUL",
-                "type": "text"
-            },
-            "gabinete": {
-                "name": "Gabinete",
-                "lenght": "50",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "extensao": {
-                "name": "Extensao",
-                "lenght": "20",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "cacifo": {
-                "name": "Cacifo",
-                "lenght": "20",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "text"
-            }
-        },
-        "modelTable": "docentes"
-    },
-    "docentes_disciplinas": {
-        "modelName": "Docentes_disciplina",
-        "enable": "no",
-        "fields": {
-            "docente_id": {
-                "name": "Docente_id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "PRI",
-                "type": "text"
-            },
-            "disciplina_id": {
-                "name": "Disciplina_id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "PRI",
-                "type": "text"
-            },
-            "responsavel": {
-                "name": "Responsavel",
-                "lenght": "1",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "text"
-            }
-        },
-        "modelTable": "docentes_disciplinas"
-    },
-    "failed_jobs": {
-        "modelName": "Failed_job",
-        "enable": "no",
-        "fields": {
-            "id": {
-                "name": "Id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "PRI",
-                "type": "text"
-            },
-            "connection": {
-                "name": "Connection",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "queue": {
-                "name": "Queue",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "payload": {
-                "name": "Payload",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "exception": {
-                "name": "Exception",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "failed_at": {
-                "name": "Failed_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
+                    "table": "clientes"
                 },
                 "Key": "no",
                 "type": "timestamp"
             }
         },
-        "modelTable": "failed_jobs"
+        "modelTable": "contacts"
+    },
+    "criterio_valors": {
+        "modelName": "Criterio_valor",
+        "enable": "no",
+        "fields": {
+            "id": {
+                "name": "Id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "PRI",
+                "type": "int"
+            },
+            "cliente_id": {
+                "name": "Cliente_id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "int"
+            },
+            "criterio": {
+                "name": "Criterio",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "int"
+            },
+            "valor": {
+                "name": "Valor",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "created_at": {
+                "name": "Created_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "updated_at": {
+                "name": "Updated_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "deleted_at": {
+                "name": "Deleted_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            }
+        },
+        "modelTable": "criterio_valors"
+    },
+    "criterios": {
+        "modelName": "Criterio",
+        "enable": "no",
+        "fields": {
+            "id": {
+                "name": "Id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "PRI",
+                "type": "int"
+            },
+            "title": {
+                "name": "Title",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "created_at": {
+                "name": "Created_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "updated_at": {
+                "name": "Updated_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "deleted_at": {
+                "name": "Deleted_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            }
+        },
+        "modelTable": "criterios"
+    },
+    "gestao_menus": {
+        "modelName": "Gestao_menu",
+        "enable": "no",
+        "fields": {
+            "id": {
+                "name": "Id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "PRI",
+                "type": "int"
+            },
+            "class": {
+                "name": "Cla",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "active": {
+                "name": "Active",
+                "lenght": "50",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "link": {
+                "name": "Link",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "texto": {
+                "name": "Texto",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "created_at": {
+                "name": "Created_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "updated_at": {
+                "name": "Updated_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "deleted_at": {
+                "name": "Deleted_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            }
+        },
+        "modelTable": "gestao_menus"
+    },
+    "historicos": {
+        "modelName": "Historico",
+        "enable": "no",
+        "fields": {
+            "id": {
+                "name": "Id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "PRI",
+                "type": "int"
+            },
+            "cliente_id": {
+                "name": "Cliente_id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "int"
+            },
+            "tipohistorico": {
+                "name": "Tipohistorico",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "int"
+            },
+            "data": {
+                "name": "Data",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "hora": {
+                "name": "Hora",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "duracao": {
+                "name": "Duracao",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "assunto": {
+                "name": "Assunto",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "resumo": {
+                "name": "Resumo",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "created_at": {
+                "name": "Created_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "updated_at": {
+                "name": "Updated_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "deleted_at": {
+                "name": "Deleted_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            }
+        },
+        "modelTable": "historicos"
     },
     "migrations": {
         "modelName": "Migration",
@@ -704,18 +662,18 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "alunos"
+                    "table": "clientes"
                 },
                 "Key": "PRI",
                 "type": "int"
             },
             "migration": {
                 "name": "Migration",
-                "lenght": "255",
+                "lenght": "191",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "alunos"
+                    "table": "clientes"
                 },
                 "Key": "no",
                 "type": "text"
@@ -726,7 +684,7 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "alunos"
+                    "table": "clientes"
                 },
                 "Key": "no",
                 "type": "int"
@@ -734,9 +692,89 @@
         },
         "modelTable": "migrations"
     },
-    "users": {
-        "modelName": "User",
-        "enable": "yes",
+    "model_has_permissions": {
+        "modelName": "Model_has_permission",
+        "enable": "no",
+        "fields": {
+            "permission_id": {
+                "name": "Permission_id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "PRI",
+                "type": "int"
+            },
+            "model_type": {
+                "name": "Model_type",
+                "lenght": "191",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "PRI",
+                "type": "text"
+            },
+            "model_id": {
+                "name": "Model_id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "PRI",
+                "type": "text"
+            }
+        },
+        "modelTable": "model_has_permissions"
+    },
+    "model_has_roles": {
+        "modelName": "Model_has_role",
+        "enable": "no",
+        "fields": {
+            "role_id": {
+                "name": "Role_id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "PRI",
+                "type": "int"
+            },
+            "model_type": {
+                "name": "Model_type",
+                "lenght": "191",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "PRI",
+                "type": "text"
+            },
+            "model_id": {
+                "name": "Model_id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "PRI",
+                "type": "text"
+            }
+        },
+        "modelTable": "model_has_roles"
+    },
+    "multimedia": {
+        "modelName": "Multimedia",
+        "enable": "no",
         "fields": {
             "id": {
                 "name": "Id",
@@ -744,62 +782,40 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "alunos"
+                    "table": "clientes"
                 },
                 "Key": "PRI",
-                "type": "text"
+                "type": "int"
             },
-            "name": {
-                "name": "Name",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "email": {
-                "name": "Email",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "UNI",
-                "type": "text"
-            },
-            "email_verified_at": {
-                "name": "Email_verified_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "password": {
-                "name": "Password",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "alunos"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "remember_token": {
-                "name": "Remember_token",
+            "class": {
+                "name": "Cla",
                 "lenght": "100",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "alunos"
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "class_id": {
+                "name": "Class_id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "int"
+            },
+            "file": {
+                "name": "File",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
                 },
                 "Key": "no",
                 "type": "text"
@@ -810,7 +826,18 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "alunos"
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "deleted_at": {
+                "name": "Deleted_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
                 },
                 "Key": "no",
                 "type": "timestamp"
@@ -821,74 +848,893 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "alunos"
+                    "table": "clientes"
                 },
                 "Key": "no",
                 "type": "timestamp"
-            },
-            "admin": {
-                "name": "Admin",
-                "lenght": "1",
+            }
+        },
+        "modelTable": "multimedia"
+    },
+    "password_resets": {
+        "modelName": "Password_reset",
+        "enable": "no",
+        "fields": {
+            "email": {
+                "name": "Email",
+                "lenght": "191",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "alunos"
+                    "table": "clientes"
+                },
+                "Key": "MUL",
+                "type": "text"
+            },
+            "token": {
+                "name": "Token",
+                "lenght": "191",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
                 },
                 "Key": "no",
                 "type": "text"
             },
-            "tipo": {
-                "name": "Tipo",
+            "created_at": {
+                "name": "Created_at",
                 "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "alunos"
+                    "table": "clientes"
                 },
                 "Key": "no",
-                "type": "select"
-            },
-            "genero": {
-                "name": "Genero",
+                "type": "timestamp"
+            }
+        },
+        "modelTable": "password_resets"
+    },
+    "pecas": {
+        "modelName": "Peca",
+        "enable": "no",
+        "fields": {
+            "id": {
+                "name": "Id",
                 "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "alunos"
+                    "table": "clientes"
                 },
-                "Key": "no",
-                "type": "select"
+                "Key": "PRI",
+                "type": "int"
             },
-            "url_foto": {
-                "name": "Url_foto",
+            "imagem": {
+                "name": "Imagem",
                 "lenght": "255",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "alunos"
+                    "table": "clientes"
                 },
                 "Key": "no",
                 "type": "text"
+            },
+            "marca_id": {
+                "name": "Marca_id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "int"
+            },
+            "modelo": {
+                "name": "Modelo",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "valor": {
+                "name": "Valor",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "estado": {
+                "name": "Estado",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "texto": {
+                "name": "Texto",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "created_at": {
+                "name": "Created_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "updated_at": {
+                "name": "Updated_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "deleted_at": {
+                "name": "Deleted_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
             }
         },
-        "modelTable": "users",
-        "functions": {
-            "create": {
-                "enable": "yes"
+        "modelTable": "pecas"
+    },
+    "permissions": {
+        "modelName": "Permission",
+        "enable": "no",
+        "fields": {
+            "id": {
+                "name": "Id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "PRI",
+                "type": "int"
             },
-            "destroy": {
-                "enable": "yes"
+            "name": {
+                "name": "Name",
+                "lenght": "191",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
             },
-            "index": {
-                "enable": "yes"
+            "guard_name": {
+                "name": "Guard_name",
+                "lenght": "191",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
             },
-            "show": {
-                "enable": "yes"
+            "created_at": {
+                "name": "Created_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
             },
-            "update": {
-                "enable": "yes"
+            "updated_at": {
+                "name": "Updated_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
             }
-        }
+        },
+        "modelTable": "permissions"
+    },
+    "role_has_permissions": {
+        "modelName": "Role_has_permission",
+        "enable": "no",
+        "fields": {
+            "permission_id": {
+                "name": "Permission_id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "PRI",
+                "type": "int"
+            },
+            "role_id": {
+                "name": "Role_id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "PRI",
+                "type": "int"
+            }
+        },
+        "modelTable": "role_has_permissions"
+    },
+    "roles": {
+        "modelName": "Role",
+        "enable": "no",
+        "fields": {
+            "id": {
+                "name": "Id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "PRI",
+                "type": "int"
+            },
+            "name": {
+                "name": "Name",
+                "lenght": "191",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "guard_name": {
+                "name": "Guard_name",
+                "lenght": "191",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "created_at": {
+                "name": "Created_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "updated_at": {
+                "name": "Updated_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            }
+        },
+        "modelTable": "roles"
+    },
+    "tipo_clientes": {
+        "modelName": "Tipo_cliente",
+        "enable": "no",
+        "fields": {
+            "id": {
+                "name": "Id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "PRI",
+                "type": "int"
+            },
+            "title": {
+                "name": "Title",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "created_at": {
+                "name": "Created_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "updated_at": {
+                "name": "Updated_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "deleted_at": {
+                "name": "Deleted_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            }
+        },
+        "modelTable": "tipo_clientes"
+    },
+    "tipo_historicos": {
+        "modelName": "Tipo_historico",
+        "enable": "no",
+        "fields": {
+            "id": {
+                "name": "Id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "PRI",
+                "type": "int"
+            },
+            "title": {
+                "name": "Title",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "created_at": {
+                "name": "Created_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "updated_at": {
+                "name": "Updated_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "deleted_at": {
+                "name": "Deleted_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            }
+        },
+        "modelTable": "tipo_historicos"
+    },
+    "trucks": {
+        "modelName": "Truck",
+        "enable": "no",
+        "fields": {
+            "id": {
+                "name": "Id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "PRI",
+                "type": "int"
+            },
+            "imagem": {
+                "name": "Imagem",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "marca_id": {
+                "name": "Marca_id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "int"
+            },
+            "modelo": {
+                "name": "Modelo",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "km": {
+                "name": "Km",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "estado": {
+                "name": "Estado",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "int"
+            },
+            "mes": {
+                "name": "Me",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "ano": {
+                "name": "Ano",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "texto": {
+                "name": "Texto",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "valor": {
+                "name": "Valor",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "created_at": {
+                "name": "Created_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "updated_at": {
+                "name": "Updated_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "deleted_at": {
+                "name": "Deleted_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            }
+        },
+        "modelTable": "trucks"
+    },
+    "users": {
+        "modelName": "User",
+        "enable": "no",
+        "fields": {
+            "id": {
+                "name": "Id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "PRI",
+                "type": "int"
+            },
+            "name": {
+                "name": "Name",
+                "lenght": "191",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "email": {
+                "name": "Email",
+                "lenght": "191",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "password": {
+                "name": "Password",
+                "lenght": "191",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "remember_token": {
+                "name": "Remember_token",
+                "lenght": "191",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "created_at": {
+                "name": "Created_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "updated_at": {
+                "name": "Updated_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            }
+        },
+        "modelTable": "users"
+    },
+    "vendas": {
+        "modelName": "Venda",
+        "enable": "no",
+        "fields": {
+            "id": {
+                "name": "Id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "PRI",
+                "type": "int"
+            },
+            "tpdoc": {
+                "name": "Tpdoc",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "terceiro": {
+                "name": "Terceiro",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "data": {
+                "name": "Data",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "totdoc": {
+                "name": "Totdoc",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "totmerc": {
+                "name": "Totmerc",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "quant": {
+                "name": "Quant",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "created_at": {
+                "name": "Created_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "updated_at": {
+                "name": "Updated_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "deleted_at": {
+                "name": "Deleted_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            }
+        },
+        "modelTable": "vendas"
+    },
+    "works": {
+        "modelName": "Work",
+        "enable": "no",
+        "fields": {
+            "id": {
+                "name": "Id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "PRI",
+                "type": "int"
+            },
+            "title": {
+                "name": "Title",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "text": {
+                "name": "Text",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "image": {
+                "name": "Image",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "category": {
+                "name": "Category",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "int"
+            },
+            "created_at": {
+                "name": "Created_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "updated_at": {
+                "name": "Updated_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "deleted_at": {
+                "name": "Deleted_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            }
+        },
+        "modelTable": "works"
     },
     "generated": "yes"
 }

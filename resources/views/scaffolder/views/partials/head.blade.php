@@ -550,6 +550,6 @@
 
         </div>
         <div class="app-main__outer">
-            <div class="app-main__inner">
-                <div class="app-page-title">
+            <div class="app-main__inner" style="background: #f1f4f6;">
+
 

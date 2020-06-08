@@ -1,6 +1,9 @@
     public function edit($id){
         $item = self::$model::findOrFail($id);
-        return view('admin.$modelTable.update', compact('item'));
+
+        :$relationsGetData
+
+        return view('admin.$modelTable.update', compact('item':$relationsCompact));
     }
 
     public function update($id, $formRequest $request){

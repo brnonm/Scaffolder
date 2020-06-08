@@ -3,25 +3,29 @@
 
 <div>
     @csrf
-    <div class="row">
-        <div class="col-md-12" style="text-align: center">
-            <p>Create :$modelName</p>
+
+    <div class="card">
+        <div class="card-header">
+            Create :$modelName
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div id="accordion">
-                <div class="card">
-                    <form action=:$routeStore method="POST" enctype="multipart/form-data">
-                        <table class="table">
-                            @csrf
-                            :$fieldInput
-                        </table>
-                        <input type="submit" value="Create" class="btn btn-info col-md-12">
-                    </form>
-                </div>
+
+
+        <div class="card-body">
+            <form action=:$routeStore method="POST" enctype="multipart/form-data">
+            @csrf
+            :$fieldInput
+            <div>
+                <input class="btn btn-danger" type="submit" value="Create">
             </div>
+            </form>
+
+
         </div>
     </div>
+
+
+
+
 </div>
+
 @endsection

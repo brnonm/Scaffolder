@@ -251,10 +251,18 @@ class ScaffolderController extends Controller
     {
         $content = "";
 
+
+
+
+
+
+
+
+
         foreach ($value->fields as $name => $m) {
-            $content .= "
-                    <tr>
-                                <th> $m->name</th>";
+            $content .= '           <div class="form-group">';
+            $content.='<label for="exampleInputEmail1">'.$m->name.'</label>';
+
 
             if ($m->Key != 'no') {
                 $showOP = 'disabled';
@@ -264,20 +272,20 @@ class ScaffolderController extends Controller
 
             switch ($m->type) {
                 case "text":
-                    $content .= "<td><input $showOP type=\"text\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                    $content .= "<input $showOP class=\"form-control\" type=\"text\" name=\"$name\" value=\"{{\$item->$name}}\">";
                     break;
                 case "int":
-                    $content .= "<td><input $showOP  type=\"number\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                    $content .= "<input $showOP class=\"form-control\" type=\"number\" name=\"$name\" value=\"{{\$item->$name}}\">";
                     break;
                 case "image":
-                    $content .= "<td><input $showOP type=\"image\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                    $content .= "<input $showOP class=\"form-control\" type=\"image\" name=\"$name\" value=\"{{\$item->$name}}\">";
                     break;
                 case "date":
-                    $content .= "<td><input $showOP type=\"date\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
+                    $content .= "<input $showOP class=\"form-control\" type=\"date\" name=\"$name\" value=\"{{\$item->$name}}\">";
                     break;
                 case "enum":
                     if (isset($m->options)) {
-                        $content .= "<td>";
+
                         foreach ($m->options as $key => $value) {
                             if ($key != "type") {
                                 $content .= "<input type=" . $m->options->type . " name=\"$name\"  value=" . $key . " {{( \$item->$name == '$key')? 'checked': '' }}>";
@@ -286,7 +294,7 @@ class ScaffolderController extends Controller
                                 $content .= "\n";
                             }
                         }
-                        $content .= "</td>";
+
                     }
 
                     break;
@@ -298,11 +306,11 @@ class ScaffolderController extends Controller
 
 
                         $content .= "\n";
-                        $content .= "                    <td>";
+
                         $content .= "\n";
                         $content .= '                                <select name="' . $name . '" class="form-control">';
                         $content .= "\n";
-                        $content .= '                                 @foreach($item::$' . $name . '::all() as $i)';
+                        $content .= '                                 @foreach($' . $name . 'All as $i)';
                         $content .= "\n";
                         $content .= '                                      <option value="{{$i->' . $m->select->foregein_key . '}}" @if($item->' . $name . '==$i->id) selected @endif>{{$i->' . $m->select->label . '}}</option>';
                         $content .= "\n";
@@ -311,12 +319,12 @@ class ScaffolderController extends Controller
                         $content .= '                                 </select>';
                         $content .= "\n";
 
-                        $content .= "                    </td>";
+
 
                     } else if (isset($m->select->type) && $m->select->type = "custom") {
 
                         $content .= "\n";
-                        $content .= "                    <td>";
+
                         $content .= "\n";
                         $content .= '                                <select name="' . $name . '" class="form-control">';
                         $content .= "\n";
@@ -329,13 +337,15 @@ class ScaffolderController extends Controller
                         $content .= '                                 </select>';
                         $content .= "\n";
 
-                        $content .= "                    </td>";
+
 
 
                     }
 
                     break;
+
             }
+            $content.= '</div>';
         }
 
         return $content;
@@ -387,6 +397,11 @@ class ScaffolderController extends Controller
 
         foreach ($value->fields as $name => $m) {
 
+            $content .= '           <div class="form-group">';
+
+
+
+
             if ($m->Key == 'PRI') {
                 continue;
             }
@@ -395,26 +410,24 @@ class ScaffolderController extends Controller
                 continue;
             }
             if (isset($m->name)) {
-                $content .= "
-                    <tr>
-                                <th> $m->name</th>";
+                $content.='<label for="exampleInputEmail1">'.$m->name.'</label>';
             }
 
             switch ($m->type) {
                 case "text":
-                    $content .= "<td><input  type=\"text\" name=\"$name\"></td>";
+                    $content .= "<input  type=\"text\" name=\"$name\" class='form-control'>";
                     break;
                 case "int":
-                    $content .= "<td><input   type=\"number\" name=\"$name\" ></td>";
+                    $content .= "<input   type=\"number\" name=\"$name\" class='form-control'>";
                     break;
                 case "image":
-                    $content .= "<td><input  type=\"image\" name=\"$name\" ></td>";
+                    $content .= "<input  type=\"image\" name=\"$name\" class='form-control'>";
                     break;
                 case "date":
-                    $content .= "<td><input  type=\"date\" name=\"$name\" ></td>";
+                    $content .= "<input  type=\"date\" name=\"$name\" class='form-control'>";
                     break;
                 case "decimal":
-                    $content .= "<td><input  type=\"number\" name=\"$name\" ></td>";
+                    $content .= "<input  type=\"number\" name=\"$name\" class='form-control'>";
                     break;
                 case "enum":
 
@@ -441,7 +454,7 @@ class ScaffolderController extends Controller
                         $content .= "\n";
                         $content .= '                                <select name="' . $name . '" class="form-control">';
                         $content .= "\n";
-                        $content .= '                                 @foreach($item::$' . $name . '::all() as $i)';
+                        $content .= '                                 @foreach($' . $name . 'All as $i)';
                         $content .= "\n";
                         $content .= '                                      <option value="{{$i->' . $m->select->foregein_key . '}}" >{{$i->' . $m->select->label . '}}</option>';
                         $content .= "\n";
@@ -472,6 +485,7 @@ class ScaffolderController extends Controller
 
                     }
             }
+            $content.= '</div>';
         }
 
         return $content;
@@ -485,11 +499,11 @@ class ScaffolderController extends Controller
             if ($f->enable == "yes") {
                 switch ($name) {
                     case "show":
-                        $actions .= "<a type=" . '"submit"' . " class=" . '"btn btn-xs btn-info"' . " href=\"{{ route('$value->modelTable.show', " . '$item->id' . ") }}\">Show</a> ";
+                        $actions .= "<a class=" . '"btn btn-xs btn-info"' . " href=\"{{ route('$value->modelTable.show', " . '$item->id' . ") }}\">Show</a> ";
                         break;
 
                     case "update":
-                        $actions .= "<a type=" . '"submit"' . " class=" . '"btn btn-xs btn-info"' . " href=\"{{ route('$value->modelTable.edit', " . '$item->id' . ") }}\">Update</a> ";
+                        $actions .= "<a  class=" . '"btn btn-xs btn-info"' . " href=\"{{ route('$value->modelTable.edit', " . '$item->id' . ") }}\">Update</a> ";
                         break;
 
                     case "destroy":
@@ -654,7 +668,7 @@ class ScaffolderController extends Controller
                 Artisan::call("make:resource $verify");
                 $this->populateModel($m, $json);
                 $this->createRequest($m);
-                $this->populateController($m);
+                $this->populateController($m, $json);
                 $this->populateRoutes($m);
                 $this->artisanOptimize();
             }
@@ -778,7 +792,7 @@ class ScaffolderController extends Controller
         }
     }
 
-    private function populateController($model)
+    private function populateController($model, $all)
     {
         $finalName = $this->verifyName($model->modelName);
 
@@ -810,12 +824,65 @@ class ScaffolderController extends Controller
                             switch ($ava['filename']) {
                                 case "create":
                                     $formRequestName = "Store" . $this->verifyName($model->modelTable) . "Request";
+                                    $relationsGetData="";
+                                    $relationsCompact="";
+                                    foreach($model->fields as $name=>$fi){
 
+                                        if($fi->type=="select"){
+                                            if($fi->select->type=="relation"){
+
+                                                foreach ($all as $modelName => $models) {
+
+                                                    if (isset($models->modelTable)) {
+                                                        if ($models->modelTable === $fi->select->table) {
+
+                                                            $imports.="\n".'use App\\'.$models->modelName.";\n";
+                                                            $relationsGetData.="$".$name."All = $models->modelName"."::all();\n     ";
+                                                            $relationsCompact.=", '".$name."All'";
+                                                        }
+                                                    }
+                                                }
+
+
+
+
+
+                                            }
+                                        }
+                                    }
                                     $import .= "use App\Http\Requests\\$formRequestName;";
                                     break;
                                 case "update":
 
                                     $formRequestName = "Update" . $this->verifyName($model->modelTable) . "Request";
+
+                                    $relationsGetData="";
+                                    $relationsCompact="";
+                                    foreach($model->fields as $name=>$fi){
+
+                                        if($fi->type=="select"){
+                                            if($fi->select->type=="relation"){
+
+                                                foreach ($all as $modelName => $models) {
+
+                                                    if (isset($models->modelTable)) {
+                                                        if ($models->modelTable === $fi->select->table) {
+
+
+                                                            $relationsGetData.="$".$name."All = $models->modelName"."::all();\n     ";
+                                                            $relationsCompact.=", '".$name."All'";
+                                                        }
+                                                    }
+                                                }
+
+
+
+
+
+                                            }
+                                        }
+                                    }
+
                                     $import .= "use App\Http\Requests\\$formRequestName;";
                                     break;
                                 default:
@@ -829,6 +896,9 @@ class ScaffolderController extends Controller
                             }
 
                             $changed = str_replace(['$modelName', '$modelTable', '$formRequest'], [$model->modelName, $model->modelTable, $formRequestName], $newFunc);
+                            $changed = str_replace([':$relationsGetData'], [$relationsGetData], $changed);
+                            $changed = str_replace([':$relationsCompact'], [$relationsCompact], $changed);
+
 
                             if (strpos($content, $changed) == false) {
                                 $content .= $changed;
@@ -892,16 +962,7 @@ class ScaffolderController extends Controller
                 if ($field->type == "select") {
 
                     if (isset($field->select->type) && $field->select->type == "relation") {
-                        $contents .= "\n";
-                        $contents .= 'public static $' . $key . ' = ';
-                        foreach ($json as $modelName => $models) {
-                            if (isset($models->modelTable)) {
-                                if ($models->modelTable === $field->select->table) {
 
-                                    $contents .= $models->modelName . '::class;';
-                                }
-                            }
-                        }
                         $contents .= "\n";
                         $contents .= "\n";
                         $contents .= '    public function ' . $key . 'Rel(){';
@@ -951,7 +1012,7 @@ class ScaffolderController extends Controller
 
                             switch ($name) {
                                 case "show":
-                                    $actions .= "<a type=" . '"submit"' . " class=" . '"btn btn-xs btn-info"' . " href=\"{{ route('$value->modelTable.show', " . '$item->id' . ") }}\">Show</a> ";
+                                    $actions .= "<a  class=" . '"btn btn-xs btn-info"' . " href=\"{{ route('$value->modelTable.show', " . '$item->id' . ") }}\">Show</a> ";
                                     $contentPartial = $this->generateViewActions($name, $value);
                                     $viewPartial = fopen($basedirectory . "/show.blade.php", "w") or die("Unable to open file!");
                                     fwrite($viewPartial, $contentPartial);
@@ -959,7 +1020,7 @@ class ScaffolderController extends Controller
                                     break;
 
                                 case "update":
-                                    $actions .= "<a type=" . '"submit"' . " class=" . '"btn btn-xs btn-info"' . " href=\"{{ route('$value->modelTable.edit', " . '$item->id' . ") }}\">Update</a> ";
+                                    $actions .= "<a  class=" . '"btn btn-xs btn-info"' . " href=\"{{ route('$value->modelTable.edit', " . '$item->id' . ") }}\">Update</a> ";
                                     $contentPartial = $this->generateViewActions($name, $value);
                                     $viewPartial = fopen($basedirectory . "/update.blade.php", "w") or die("Unable to open file!");
                                     fwrite($viewPartial, $contentPartial);
@@ -975,7 +1036,7 @@ class ScaffolderController extends Controller
                                     break;
 
                                 case "create":
-                                    $generateBody .= "<a type=" . '"submit"' . " class=" . '"btn btn-xs btn-success"' . " href=\"{{ route('$value->modelTable.create') }}\">Create</a> ";
+                                    $generateBody .= "<a class=" . '"btn btn-xs btn-success"' . " href=\"{{ route('$value->modelTable.create') }}\">Create</a> ";
                                     $contentPartial = $this->generateViewActions($name, $value);
                                     $viewPartial = fopen($basedirectory . "/create.blade.php", "w") or die("Unable to open file!");
                                     fwrite($viewPartial, $contentPartial);

@@ -1,6 +1,9 @@
     public function create(){
+
         $item = new self::$model();
-        return view('admin.$modelTable.create', compact('item'));
+
+        :$relationsGetData
+        return view('admin.$modelTable.create', compact('item':$relationsCompact));
     }
 
     public function store($formRequest $request){
