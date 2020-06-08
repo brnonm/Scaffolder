@@ -27,3 +27,9 @@ Route::group([ 'prefix' => 'scaffolder', 'as' => 'scaffolder.'], function () {
     Route::get("/controller", "Scaffolder\ScaffolderController@backofficeController")->name("controller");
 
 });
+
+
+
+Route::resource("products", "ProductController");
+Route::resource("cursos", "CursoController");
+Route::resource("categories", "CategorieController");

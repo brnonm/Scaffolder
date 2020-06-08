@@ -13,7 +13,7 @@
             <div id="accordion">
                 <div class="card">
                     <table class="table">
-                        :$fieldShow
+                        :$templateFieldShow
                     </table>
                 </div>
             </div>

@@ -5,18 +5,22 @@
     @csrf
     <div class="row">
         <div class="col-md-12" style="text-align: center">
-            <p>Update :$modelName</p>
+            <p>Update Categorie</p>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
             <div id="accordion">
                 <div class="card">
-                    <form action=:$templateRouteUpdate method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('categories.update', $item->id) }}" method="POST" enctype="multipart/form-data">
                         <table class="table">
                             @csrf
                             @method('PUT')
-                            :$templateFieldUpdate
+                            
+                    <tr>
+                                <th> Id</th><td><input disabled  type="number" name="id" value="{{$item->id}}"></td>
+                    <tr>
+                                <th> Name</th><td><input  type="text" name="name" value="{{$item->name}}"></td>
                         </table>
                         <input type="submit" value="Update" class="btn btn-info col-md-12">
                     </form>

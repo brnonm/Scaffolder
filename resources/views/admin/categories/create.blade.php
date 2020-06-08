@@ -5,17 +5,19 @@
     @csrf
     <div class="row">
         <div class="col-md-12" style="text-align: center">
-            <p>Create :$modelName</p>
+            <p>Create Categorie</p>
         </div>
     </div>
     <div class="row">
         <div class="col-md-12">
             <div id="accordion">
                 <div class="card">
-                    <form action=:$templateRouteStore method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data">
                         <table class="table">
                             @csrf
-                            :$templateFieldInputRow
+                            
+                    <tr>
+                                <th> Name</th><td><input  type="text" name="name"></td>
                         </table>
                         <input type="submit" value="Create" class="btn btn-info col-md-12">
                     </form>

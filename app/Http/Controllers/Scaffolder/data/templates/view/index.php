@@ -11,21 +11,21 @@
         <div class="col-md-12">
             <div id="accordion">
                 <div class="card">
-                    <a type="submit" class="btn btn-xs btn-success" href=:$routeCreate>Create</a>
+                    <a type="submit" class="btn btn-xs btn-success" href=:$templateRouteCreate>Create</a>
                     <table class="table">
                         <tr>
-                            :$fieldName
-                            :$fieldButton
+                            :$templateFieldName
+                            <td>Actions</td>
                         </tr>
                         @foreach($items as $item)
                         <tr>
-                            :$fieldObject
-                            :$ButtonAction
+                            :$templateFieldObject
+                            :$templateButtonAction
                         </tr>
                         @endforeach
                     </table>
                     <div class="col">
-                        :$navLink
+                        :$templateNavLink
                     </div>
 
                 </div>
