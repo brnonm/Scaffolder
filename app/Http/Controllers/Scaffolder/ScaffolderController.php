@@ -395,93 +395,94 @@ class ScaffolderController extends Controller
 
 
 
+                if ($m->Key == 'PRI' || $m->type == "timestamp") {
+                    continue;
+                }
+                if ($m->Key == 'MUL') {
+                    //meter relaçao aqui
+                    continue;
+                }
+                if (isset($m->name)) {
+                    $content .= '<label for="exampleInputEmail1">' . $m->name . '</label>';
+                }
 
-            if ($m->Key == 'PRI') {
-            if ($m->Key == 'PRI' || $m->type =="timestamp") {
-                continue;
-            }
-            if ($m->Key == 'MUL') {
-                //meter relaçao aqui
-                continue;
-            }
-            if (isset($m->name)) {
-                $content.='<label for="exampleInputEmail1">'.$m->name.'</label>';
-            }
+                switch ($m->type) {
+                    case "text":
+                        $content .= "<input  type=\"text\" name=\"$name\" class='form-control'>";
+                        break;
+                    case "int":
+                        $content .= "<input   type=\"number\" name=\"$name\" class='form-control'>";
+                        break;
+                    case "image":
+                        $content .= "<input  type=\"image\" name=\"$name\" class='form-control'>";
+                        break;
+                    case "date":
+                        $content .= "<input  type=\"date\" name=\"$name\" class='form-control'>";
+                        break;
+                    case "decimal":
+                        $content .= "<input  type=\"number\" name=\"$name\" class='form-control'>";
+                        break;
+                    case "enum":
 
-            switch ($m->type) {
-                case "text":
-                    $content .= "<input  type=\"text\" name=\"$name\" class='form-control'>";
-                    break;
-                case "int":
-                    $content .= "<input   type=\"number\" name=\"$name\" class='form-control'>";
-                    break;
-                case "image":
-                    $content .= "<input  type=\"image\" name=\"$name\" class='form-control'>";
-                    break;
-                case "date":
-                    $content .= "<input  type=\"date\" name=\"$name\" class='form-control'>";
-                    break;
-                case "decimal":
-                    $content .= "<input  type=\"number\" name=\"$name\" class='form-control'>";
-                    break;
-                case "enum":
-
-                    if (isset($m->options)) {
-                        $content .= "<td>";
-                        foreach ($m->options as $key => $value) {
-                            if ($key != "type") {
-                                $content .= "<input  type=" . $m->options->type . " name=\"$name\"  value=" . $key . ">";
-                                $content .= "    <label>$value</label>";
-                                $content .= "<br>";
-                                $content .= "\n";
+                        if (isset($m->options)) {
+                            $content .= "<td>";
+                            foreach ($m->options as $key => $value) {
+                                if ($key != "type") {
+                                    $content .= "<input  type=" . $m->options->type . " name=\"$name\"  value=" . $key . ">";
+                                    $content .= "    <label>$value</label>";
+                                    $content .= "<br>";
+                                    $content .= "\n";
+                                }
                             }
+                            $content .= "</td>";
                         }
-                        $content .= "</td>";
-                    }
-                    break;
-                case "select":
+                        break;
+                    case "select":
 
-                    if (isset($m->select->type) && $m->select->type == "relation") {
+                        if (isset($m->select->type) && $m->select->type == "relation") {
 
 
-                        $content .= "\n";
-                        $content .= "                    <td>";
-                        $content .= "\n";
-                        $content .= '                                <select name="' . $name . '" class="form-control">';
-                        $content .= "\n";
-                        $content .= '                                 @foreach($' . $name . 'All as $i)';
-                        $content .= "\n";
-                        $content .= '                                      <option value="{{$i->' . $m->select->foregein_key . '}}" >{{$i->' . $m->select->label . '}}</option>';
-                        $content .= "\n";
-                        $content .= '                                 @endforeach';
-                        $content .= "\n";
-                        $content .= '                                 </select>';
-                        $content .= "\n";
+                            $content .= "\n";
+                            $content .= "                    <td>";
+                            $content .= "\n";
+                            $content .= '                                <select name="' . $name . '" class="form-control">';
+                            $content .= "\n";
+                            $content .= '                                 @foreach($' . $name . 'All as $i)';
+                            $content .= "\n";
+                            $content .= '                                      <option value="{{$i->' . $m->select->foregein_key . '}}" >{{$i->' . $m->select->label . '}}</option>';
+                            $content .= "\n";
+                            $content .= '                                 @endforeach';
+                            $content .= "\n";
+                            $content .= '                                 </select>';
+                            $content .= "\n";
 
-                        $content .= "                    </td>";
-                    } else if (isset($m->select->type) && $m->select->type = "custom") {
+                            $content .= "                    </td>";
+                        } else if (isset($m->select->type) && $m->select->type = "custom") {
 
-                        $content .= "\n";
-                        $content .= "                    <td>";
-                        $content .= "\n";
-                        $content .= '                                <select name="' . $name . '" class="form-control">';
-                        $content .= "\n";
+                            $content .= "\n";
+                            $content .= "                    <td>";
+                            $content .= "\n";
+                            $content .= '                                <select name="' . $name . '" class="form-control">';
+                            $content .= "\n";
 
-                        foreach ($m->select->custom as $s) {
+                            foreach ($m->select->custom as $s) {
 
-                            $content .= '                                      <option value="' . $s . '" >' . $s . '</option>';
+                                $content .= '                                      <option value="' . $s . '" >' . $s . '</option>';
+                            }
+
+                            $content .= '                                 </select>';
+                            $content .= "\n";
+
+                            $content .= "                    </td>";
+
+
                         }
-
-                        $content .= '                                 </select>';
-                        $content .= "\n";
-
-                        $content .= "                    </td>";
-
-
-                    }
+                        break;
+                }
+                $content .= '</div>';
             }
-            $content.= '</div>';
-        }
+
+
 
         return $content;
 

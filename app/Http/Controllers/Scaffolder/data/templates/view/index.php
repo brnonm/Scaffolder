@@ -3,7 +3,7 @@
 
 <div style="margin-bottom: 10px;" class="row">
     <div class="col-lg-12">
-        <a class="btn btn-success" href=:$routeCreate>Create :$modelName</a>
+        <a class="btn btn-success" href=:$templateRouteCreate>Create :$modelName</a>
     </div>
 </div>
 
