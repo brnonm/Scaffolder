@@ -339,8 +339,9 @@
                                                                         <div class="selectDivHidden" id="{{$nameTable.$keyy}}_custom" style="display: none">
                                                                             <hr>
 
-                                                                            <div class="{{$nameTable.$keyy}}_custom">
-
+                                                                            <div class="{{$nameTable.$keyy}}_custom row">
+                                                                                <div class="col-6"><b>Key</b></div>
+                                                                                <div class="col-6"><b>Value</b></div>
 
                                                                             </div>
 
@@ -455,18 +456,36 @@
 
 
 
+
+
+
                             var input = document.createElement("input");
                             input.type = "text";
                             input.className = "form-control";
-                            var name1='metadados['+nametable+'][fields]['+key+'][select][custom]['+total[name]+']';
+                            var name1='metadados['+nametable+'][fields]['+key+'][select][custom]['+total[name]+'][key]';
                             input.name =name1;
 
+                            var div1 = document.createElement("div");
+                            div1.className="col-6";
+                            div1.appendChild(input);
+
+
+                            var input2 = document.createElement("input");
+                            input2.type = "text";
+                            input2.className = "form-control";
+                            var name2='metadados['+nametable+'][fields]['+key+'][select][custom]['+total[name]+'][value]';
+                            input2.name =name2;
+
+                            var div2 = document.createElement("div");
+                            div2.className="col-6";
+                            div2.appendChild(input2);
 
 
                             var elements = document.getElementsByClassName(name.id);
                             var requiredElement = elements[0];
 
-                            requiredElement.appendChild(input);
+                            requiredElement.appendChild(div1);
+                            requiredElement.appendChild(div2);
 
                         }
                     </script>

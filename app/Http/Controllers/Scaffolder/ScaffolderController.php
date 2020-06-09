@@ -323,7 +323,7 @@ class ScaffolderController extends Controller
                                 $content .= "\n";
                                 foreach ($m->select->custom as $s) {
 
-                            $content .= '                                      <option value="' . $s . '" >' . $s . '</option>';
+                            $content .= '                                      <option value="' . $s->key . '" >' . $s->value . '</option>';
                         }
 
                         $content .= '                                 </select>';
@@ -369,9 +369,13 @@ class ScaffolderController extends Controller
                 if ($m->type == "select") {
                     if (isset($m->select->type) && $m->select->type == "relation") {
                         $content .= "<td> " . '{{$item->' . $name . "Rel->" . $m->select->label . "}}</td>";
-                    } else {
-                        $content .= "<td> " . '{{$item->' . "$name}}</td>";
+                    } else if (isset($m->select->type) && $m->select->type == "custom") {
+                        $content .= "<td> " . '{{$item->' . $name."Enum()}}</td>";
                     }
+                    else{
+                            $content .= "<td> " . '{{$item->' . "$name}}</td>";
+                        }
+
                 } else {
                     $content .= "<td> " . '{{$item->' . "$name}}</td>";
                 }
@@ -465,7 +469,7 @@ class ScaffolderController extends Controller
 
                             foreach ($m->select->custom as $s) {
 
-                                $content .= '                                      <option value="' . $s . '" >' . $s . '</option>';
+                                $content .= '                                      <option value="' . $s->key . '" >' . $s->value . '</option>';
                             }
 
                             $content .= '                                 </select>';
@@ -545,7 +549,10 @@ class ScaffolderController extends Controller
                                 $rows .= '<td>{{$item->' . $name . "Rel->" . $f->select->label . '?? ""}}</td> ' . "\n";
 
                             } else if (isset($f->select->type) && $f->select->type == "custom") {
-                                $rows .= '<td>{{$item->' . $name . "}}</td> \n";
+                                $rows .= "<td> " . '{{$item->' . $name."Enum()}}</td>";
+                            }
+                            else{
+                                $rows .= "<td> " . '{{$item->' . "$name}}</td>";
                             }
 
 
@@ -918,13 +925,18 @@ class ScaffolderController extends Controller
         $modelPath = base_path("app/" . $m->modelName . ".php");
 
         if (File::exists($modelPath)) {
+
             $contents = File::get($modelPath);
+
+
             $contents = substr_replace($contents, "", -3);
+
             $contents .= "\n";
             $initTable = '    protected $table = "' . $m->modelTable . '";';
             if (strpos($contents, $initTable) == false) {
                 $contents .= $initTable;
             }
+
             $contents .= "\n";
             $initFillable = '    protected $fillable=[';
             $i = 0;
@@ -968,10 +980,42 @@ class ScaffolderController extends Controller
                         $contents .= "\n    }";
                     }
 
+                    if (isset($field->select->type) && $field->select->type == "custom") {
+
+
+                        $contents .= "\n";
+                        $contents.='
+    private static $'.$key.'=[';
+
+                        $loop=0;
+                        foreach ($field->select->custom as $s) {
+                            if($loop>0){
+                                $contents.=",";
+                            }
+                            $contents .=  "'".$s->key."'" ."=>'". $s->value . "'";
+                            $loop++;
+                        }
+
+                        $contents.='];
+
+    public function '.$key.'Enum(){
+        return self::$'.$key.'[$this->'.$key.']??"";
+    }
+                        ';
+                        $contents .= "\n";
+                        //$contents .= '    public function ' . $key . 'Rel(){';
+                        $contents .= "\n";
+
+
+                        //$contents .= "\n    }";
+                    }
+
                 }
             }
 
+
             $contents .= "\n}";
+
             file_put_contents($modelPath, $contents);
         } else {
             $this->errorPage("File" . $m->modelName . "does not find!");

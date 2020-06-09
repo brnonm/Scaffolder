@@ -33,8 +33,14 @@
                 "select": {
                     "type": "custom",
                     "custom": {
-                        "1": "Azul",
-                        "2": "Amarelo"
+                        "1": {
+                            "key": "1",
+                            "value": "um"
+                        },
+                        "2": {
+                            "key": "2",
+                            "value": "dois"
+                        }
                     },
                     "table": "clientes"
                 },
@@ -289,7 +295,7 @@
         "modelTable": "contacts"
     },
     "criterio_valors": {
-        "modelName": "Criterio_valor",
+        "modelName": "CriterioValor",
         "enable": "no",
         "fields": {
             "id": {
@@ -435,7 +441,7 @@
         "modelTable": "criterios"
     },
     "gestao_menus": {
-        "modelName": "Gestao_menu",
+        "modelName": "GestaoMenu",
         "enable": "no",
         "fields": {
             "id": {
@@ -698,7 +704,7 @@
         "modelTable": "migrations"
     },
     "model_has_permissions": {
-        "modelName": "Model_has_permission",
+        "modelName": "ModelHasPermission",
         "enable": "no",
         "fields": {
             "permission_id": {
@@ -738,7 +744,7 @@
         "modelTable": "model_has_permissions"
     },
     "model_has_roles": {
-        "modelName": "Model_has_role",
+        "modelName": "ModelHasRole",
         "enable": "no",
         "fields": {
             "role_id": {
@@ -862,7 +868,7 @@
         "modelTable": "multimedia"
     },
     "password_resets": {
-        "modelName": "Password_reset",
+        "modelName": "PasswordReset",
         "enable": "no",
         "fields": {
             "email": {
@@ -1081,7 +1087,7 @@
         "modelTable": "permissions"
     },
     "role_has_permissions": {
-        "modelName": "Role_has_permission",
+        "modelName": "RoleHasPermission",
         "enable": "no",
         "fields": {
             "permission_id": {
@@ -1172,7 +1178,7 @@
         "modelTable": "roles"
     },
     "tipo_clientes": {
-        "modelName": "Tipo_cliente",
+        "modelName": "TipoCliente",
         "enable": "no",
         "fields": {
             "id": {
@@ -1234,7 +1240,7 @@
         "modelTable": "tipo_clientes"
     },
     "tipo_historicos": {
-        "modelName": "Tipo_historico",
+        "modelName": "TipoHistorico",
         "enable": "no",
         "fields": {
             "id": {
