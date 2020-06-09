@@ -11,9 +11,9 @@
 
 
         <div class="card-body">
-            <form action=:$routeStore method="POST" enctype="multipart/form-data">
+            <form action=:$templateRouteStore method="POST" enctype="multipart/form-data">
             @csrf
-            :$fieldInput
+            :$templateFieldInputRow
             <div>
                 <input class="btn btn-danger" type="submit" value="Create">
             </div>

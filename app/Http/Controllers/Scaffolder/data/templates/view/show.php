@@ -9,7 +9,7 @@
     <div class="card-body">
         <div class="mb-2">
             <table class="table table-bordered table-striped">
-                :$fieldShow
+                :$templateFieldShow
             </table>
             <a style="margin-top:20px;" class="btn btn-default" href="{{ url()->previous() }}">
                 Back

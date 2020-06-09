@@ -17,20 +17,24 @@
             <table class=" table table-bordered table-striped table-hover datatable datatable-Permission">
                 <thead>
                 <tr>
-                    :$fieldName
-                    :$fieldButton
+                    :$templateFieldName
+                    <td>Actions</td>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($items as $item)
                 <tr data-entry-id="{{$item->id}}">
-                    :$fieldObject
-                    :$ButtonAction
+                    :$templateFieldObject
+                    :$templateButtonAction
 
                 </tr>
                 @endforeach
                 </tbody>
             </table>
+
+        </div>
+        <div class="col">
+            :$templateNavLink
         </div>
 
 

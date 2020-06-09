@@ -224,25 +224,22 @@ class ScaffolderController extends Controller
 
 
         //table
-        $contentView = str_replace([':$fieldName'], $this->getFieldName($value), $contentView);
-        $contentView = str_replace([':$fieldButton'], "<td>Actions</td>", $contentView);
-        $contentView = str_replace([':$fieldObject'], $this->getFieldNameObject($value), $contentView);
-        $contentView = str_replace([':$ButtonAction'], $this->getButtonAction($value), $contentView);
-        $contentView = str_replace([':$navLink'], "{{ \$items->links()}}", $contentView);
-
+        $contentView = str_replace([':$templateFieldName'], $this->getFieldName($value), $contentView);
+        $contentView = str_replace([':$templateFieldObject'], $this->getFieldNameObject($value), $contentView);
+        $contentView = str_replace([':$templateButtonAction'], $this->getButtonAction($value), $contentView);
+        $contentView = str_replace([':$templateNavLink'], "{{ \$items->links()}}", $contentView);
 
         //Routes
-        $contentView = str_replace([':$routeCreate'], "\"{{ route('$value->modelTable.create') }}\"", $contentView);
-        $contentView = str_replace([':$routeUpdate'], "\"{{ route('$value->modelTable.update', " . '$item->id' . ") }}\"", $contentView);
-        $contentView = str_replace([':$routeShow'], "\"{{ route('$value->modelTable.show', " . '$item->id' . ") }}\"", $contentView);
-        $contentView = str_replace([':$routeDestroy'], "\"{{ route('$value->modelTable.destroy', " . '$item->id' . ") }}\"", $contentView);
-        $contentView = str_replace([':$routeStore'], "\"{{ route('$value->modelTable.store') }}\"", $contentView);
+        $contentView = str_replace([':$templateRouteCreate'], "\"{{ route('$value->modelTable.create') }}\"", $contentView);
+        $contentView = str_replace([':$templateRouteUpdate'], "\"{{ route('$value->modelTable.update', " . '$item->id' . ") }}\"", $contentView);
+        $contentView = str_replace([':$templateRouteShow'], "\"{{ route('$value->modelTable.show', " . '$item->id' . ") }}\"", $contentView);
+        $contentView = str_replace([':$templateRouteDestroy'], "\"{{ route('$value->modelTable.destroy', " . '$item->id' . ") }}\"", $contentView);
+        $contentView = str_replace([':$templateRouteStore'], "\"{{ route('$value->modelTable.store') }}\"", $contentView);
 
         //Fields manipulation
-
-        $contentView = str_replace([':$fieldInput'], $this->getFieldInput($value), $contentView);
-        $contentView = str_replace([':$fieldShow'], $this->getFieldShow($value), $contentView);
-        $contentView = str_replace([':$fieldUpdate'], $this->getFieldUpdate($value), $contentView);
+        $contentView = str_replace([':$templateFieldInputRow'], $this->getFieldInput($value), $contentView);
+        $contentView = str_replace([':$templateFieldShow'], $this->getFieldShow($value), $contentView);
+        $contentView = str_replace([':$templateFieldUpdate'], $this->getFieldUpdate($value), $contentView);
 
         return $contentView;
     }
@@ -251,18 +248,15 @@ class ScaffolderController extends Controller
     {
         $content = "";
 
-
-
-
-
-
-
-
-
         foreach ($value->fields as $name => $m) {
-            $content .= '           <div class="form-group">';
-            $content.='<label for="exampleInputEmail1">'.$m->name.'</label>';
 
+
+            if($m->type != "timestamp"){
+                $content .= '           <div class="form-group">';
+                $content.='<label for="exampleInputEmail1">'.$m->name.'</label>';
+
+
+            }
 
             if ($m->Key != 'no') {
                 $showOP = 'disabled';
@@ -403,6 +397,7 @@ class ScaffolderController extends Controller
 
 
             if ($m->Key == 'PRI') {
+            if ($m->Key == 'PRI' || $m->type =="timestamp") {
                 continue;
             }
             if ($m->Key == 'MUL') {
@@ -726,15 +721,13 @@ class ScaffolderController extends Controller
             $content = str_replace(['false'], "true", $content);
             $old = "//";
             $new = "";
-
-
             foreach ($model->fields as $field => $option) {
-
-                if ($option->Key == "PRI") {
+                if ($option->Key == "PRI" || !$option->type != "timestamp") {
                     continue;
                 } else {
                     $i = 0;
                     $rules = [];
+
 
                     if (isset($option->required) && $option->required == "yes") {
                         $rules[$i] = "required";
@@ -745,7 +738,6 @@ class ScaffolderController extends Controller
                         $i++;
                     }
                 }
-
                 for ($f = 0; $f < $i; $f++) {
                     if ($f == 0) {
                         $new .= "            '$field' => '";
@@ -792,7 +784,7 @@ class ScaffolderController extends Controller
         }
     }
 
-    private function populateController($model, $all)
+    private function populateController($model)
     {
         $finalName = $this->verifyName($model->modelName);
 
@@ -850,7 +842,8 @@ class ScaffolderController extends Controller
                                             }
                                         }
                                     }
-                                    $import .= "use App\Http\Requests\\$formRequestName;";
+
+                                    $imports .= "use App\Http\Requests\\$formRequestName;\n";
                                     break;
                                 case "update":
 
@@ -884,15 +877,11 @@ class ScaffolderController extends Controller
                                     }
 
                                     $import .= "use App\Http\Requests\\$formRequestName;";
+                                    $imports .= "use App\Http\Requests\\$formRequestName;\n";
                                     break;
                                 default:
                                     $formRequestName = "Request";
                                     break;
-                            }
-
-                            if (strpos($content, $header) == false) {
-                                $imports .= $import;
-                                $imports .= "\n";
                             }
 
                             $changed = str_replace(['$modelName', '$modelTable', '$formRequest'], [$model->modelName, $model->modelTable, $formRequestName], $newFunc);

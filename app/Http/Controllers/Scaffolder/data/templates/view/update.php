@@ -16,7 +16,7 @@
             <form action=:$routeUpdate method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                :$fieldUpdate
+                :$templateFieldUpdate
                 <div>
                     <input class="btn btn-danger" type="submit" value="Update">
                 </div>
