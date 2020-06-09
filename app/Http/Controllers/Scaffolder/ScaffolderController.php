@@ -282,7 +282,7 @@ class ScaffolderController extends Controller
 
                         foreach ($m->options as $key => $value) {
                             if ($key != "type") {
-                                $content .= "<input type=" . $m->options->type . " name=\"$name\"  value=" . $key . " {{( \$item->$name == '$key')? 'checked': '' }}>";
+                                $content .= "<input type=" . $m->options->type . " name=\"$name\" class=\"form-control\"  value=" . $key . "  {{( \$item->$name == '$key')? 'checked': '' }}>";
                                 $content .= "    <label>$value</label>";
                                 $content .= "<br>";
                                 $content .= "\n";
@@ -317,13 +317,11 @@ class ScaffolderController extends Controller
 
                     } else if (isset($m->select->type) && $m->select->type = "custom") {
 
-                        $content .= "\n";
-
-                        $content .= "\n";
-                        $content .= '                                <select name="' . $name . '" class="form-control">';
-                        $content .= "\n";
-
-                        foreach ($m->select->custom as $s) {
+                                $content .= "\n";
+                                $content .= "\n";
+                                $content .= '                                <select name="' . $name . '" class="form-control">';
+                                $content .= "\n";
+                                foreach ($m->select->custom as $s) {
 
                             $content .= '                                      <option value="' . $s . '" >' . $s . '</option>';
                         }
@@ -785,7 +783,7 @@ class ScaffolderController extends Controller
         }
     }
 
-    private function populateController($model)
+    private function populateController($model,  $all)
     {
         $finalName = $this->verifyName($model->modelName);
 

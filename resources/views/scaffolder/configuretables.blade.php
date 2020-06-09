@@ -135,14 +135,20 @@
 
 
                             <div class="form-group row">
-
+                                @php($nameClassInit = explode("_", $nameTable))
+                                @php($nameClass="")
+                                @foreach($nameClassInit as $c)
+                                    @php($nameClass.=ucfirst($c))
+                                @endforeach
+                                @php($nameClass=trim($nameClass, "s"))
 
                                 <label for="inputPassword" class="col-sm-2 col-form-label">Name of Class</label>
                                 <div class="col-sm-10">
                                     <input type="text" id="checkField"
                                            name="metadados[{{$nameTable}}][modelName]"
                                            class="form-control input-sm"
-                                           value="{{rtrim(ucfirst($nameTable), "s ")}}">
+                                           value="{{$nameClass}}"
+                                           >
                                 </div>
                             </div>
 

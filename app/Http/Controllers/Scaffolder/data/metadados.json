@@ -31,10 +31,15 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
+                    "type": "custom",
+                    "custom": {
+                        "1": "Azul",
+                        "2": "Amarelo"
+                    },
                     "table": "clientes"
                 },
                 "Key": "no",
-                "type": "text"
+                "type": "select"
             },
             "contacto": {
                 "name": "Contacto",
