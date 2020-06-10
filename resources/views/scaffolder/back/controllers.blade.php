@@ -45,24 +45,24 @@
                                                         <th>Function(s) name</th>
                                                         </tr>
                                                         <tr>
-                                                            <th>{{$table["modelName"]}}</th>
-                                                            <th>{{$table["modelTable"]}}</th>
+                                                            <td>{{$table["modelName"]}}</td>
+                                                            <td>{{$table["modelTable"]}}</td>
 
-                                                            <th>
+                                                            <td>
                                                                 @foreach($table["fields"] as $name=>$field)
                                                                     {{$name}}
                                                                     @if(!$loop->last)
                                                                         {{","}}
                                                                     @endif
                                                                 @endforeach
-                                                            </th>
-                                                            <th>
+                                                            </td>
+                                                            <td>
                                                                 @foreach($table["functions"] as $name=>$function)
                                                                     @if($function["enable"] == "yes")
                                                                         {{"-". $name. " "}}
                                                                     @endif
                                                                 @endforeach
-                                                            </th>
+                                                            </td>
 
                                                         </tr>
                                                     </table>

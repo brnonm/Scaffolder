@@ -8,32 +8,51 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <title>Laravel Scaffolder</title>
 </head>
 <body style="padding:20px;">
 <div class="row">
     <div class="col-md-12" style="text-align: center">
-        <h2>Laravel Scaffolder</h2>
+        <h5>Laravel Scaffolder Package</h5>
     </div>
 </div>
-@yield("content")
 
-<hr>
+
+@if($errors->any())
+<div class="row">
+    <div class="col-md-12" style="text-align: center">
+        <span class="alert-danger">{{$errors->first()}}</span>
+    </div>
+</div>
+@endif
+
+
+@yield("container")
+
+
 <!-- Footer -->
 <footer class="page-footer font-small blue pt-4">
-
+    <hr>
     <!-- Footer Links -->
 
     <!-- Footer Links -->
 
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">© 2020 Copyright:
-        <a href="#"> Bruno e Pedro</a>
+        <a href="#"> Bruno Oliveira e Pedro Carvalho</a>
     </div>
     <!-- Copyright -->
 
 </footer>
+<style>
+    footer{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+</style>
 <!-- Footer -->
 
 <!-- Optional JavaScript -->

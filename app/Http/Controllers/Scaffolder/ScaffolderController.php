@@ -11,8 +11,108 @@ use Illuminate\Support\Facades\File;
 
 class ScaffolderController extends Controller
 {
+
+    const CONFIG_PATH = "app/Http/Controllers/Scaffolder/config/auth.php";
+    const PHPINISH = "app/Http/Controllers/Scaffolder/config/./phpini.sh";
+
+
+    public function login(){
+
+        return view("scaffolder.config.login");
+    }
+
+    public function register(){
+
+        return view("scaffolder.config.register");
+    }
+
+    public function loginPost(Request $request){
+
+
+        include base_path(self::CONFIG_PATH);
+
+        if(isset($alreadyCofigured)){
+            if($alreadyCofigured==false){
+                return redirect()->route("install.login");
+            }
+        }else{
+            die("Error on installing, please contact developer");
+        }
+        if($email == $request->email && $password == $request->password ){
+            session_start();
+            $_SESSION['scaffolder'] = "logged_in";
+            return redirect()->route("install.indexChooseDB");
+
+        }else{
+            return redirect()->back()->withErrors("Wrong password or email.");
+
+        }
+    }
+
+    public function registerPost(Request $request){
+
+        $config = File::get(base_path(self::CONFIG_PATH));
+        if(!$config){
+            die("Error on installing, please contact developer");
+        }
+        $config = str_replace(['false'], "true", $config);
+        $config = str_replace([':email'], $request->email, $config);
+        $config = str_replace([':password'], $request->password, $config);
+
+
+        $view = fopen(base_path(self::CONFIG_PATH), "w") or die("Unable to open file!");
+
+        fwrite($view, $config);
+        fclose($view);
+
+        return redirect()->route("install.indexChooseDB");
+    }
+
+
+    private function checkIfLoggedIn(){
+
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        if(isset($_SESSION['scaffolder'])){
+            if($_SESSION['scaffolder'] == "logged_in"){
+
+                return false;
+            }else{
+
+                include base_path(self::CONFIG_PATH);
+                if($alreadyCofigured){
+                    return redirect()->route("install.login");
+                }else{
+                    return redirect()->route("install.register");
+                }
+
+            }
+        }else{
+
+                include base_path(self::CONFIG_PATH);
+                if($alreadyCofigured){
+
+                    return redirect()->route("install.login");
+                }else{
+                    return redirect()->route("install.register");
+                }
+
+
+        }
+
+
+    }
+
+
+
     public function selectView()
     {
+
+        if($this->checkIfLoggedIn()){
+            return $this->checkIfLoggedIn();
+        }
 
         $url = base_path('app/Http/Controllers/Scaffolder/data/metadados.json');
         if (!File::exists($url)) {
@@ -30,19 +130,26 @@ class ScaffolderController extends Controller
 
     public function backofficeController()
     {
+        if($this->checkIfLoggedIn()){
+            return $this->checkIfLoggedIn();
+        }
         $url = base_path('app/Http/Controllers/Scaffolder/data/metadados.json');
         if (File::exists($url)) {
             $json = File::get($url);
             $metadados = collect(json_decode($json, true));
             return view("scaffolder.back.controllers", compact("metadados"));
         } else {
-            $this->errorPage("metadados.jsomn does not find!");
+            $this->errorPage("metadados.json does not find!");
         }
 
     }
 
     public function indexChooseDB()
     {
+        if($this->checkIfLoggedIn()){
+            return $this->checkIfLoggedIn();
+        }
+
         $dbs = DB::select(DB::raw("SHOW DATABASES"));
 
         return view("scaffolder.choosedb", compact("dbs"));
@@ -50,6 +157,9 @@ class ScaffolderController extends Controller
 
     public function getSchemaDB(Request $request)
     {
+        if($this->checkIfLoggedIn()){
+            return $this->checkIfLoggedIn();
+        }
         $pathEnv = base_path('.env');
 
         if (File::exists($pathEnv)) {
@@ -105,14 +215,31 @@ class ScaffolderController extends Controller
 
     }
 
+
+
+
+
     public function tablesConfigureP1Post(Request $request)
     {
+        if($this->checkIfLoggedIn()){
+            return $this->checkIfLoggedIn();
+        }
+            if(ini_get("max_input_vars")<10000){
+                //$exec="bash -lc 'echo | /usr/bin/sudo -S ".base_path(self::PHPINISH)."'";
+                //exec($exec,$out);
+                die("You have to change php.ini ");
+            }
+            dd(ini_get("max_input_vars"));
 
-        $urlFolder = base_path('app/Http/Controllers/Scaffolder/data/templates/function');
-        $json = json_encode($request->except('_token'), JSON_PRETTY_PRINT);
-        file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), stripslashes($json));
-        $metadados = collect(json_decode($json));
-        $metadados = collect($metadados->first());
+            $urlFolder = base_path('app/Http/Controllers/Scaffolder/data/templates/function');
+            $json = json_encode($request->except('_token'), JSON_PRETTY_PRINT);
+            file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), stripslashes($json));
+            $metadados = collect(json_decode($json));
+            $metadados = collect($metadados->first());
+
+            dd("here");
+
+
 
 
         if (!File::exists($urlFolder)) {
@@ -127,7 +254,11 @@ class ScaffolderController extends Controller
 
     public function tablesConfigureFuncPost(Request $request)
     {
+        if($this->checkIfLoggedIn()){
+            return $this->checkIfLoggedIn();
+        }
         $baseJson = File::get(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'));
+
         $baseJson = collect(json_decode($baseJson));
         $baseJson = collect($baseJson->first());
 
