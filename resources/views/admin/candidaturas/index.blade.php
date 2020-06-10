@@ -3,13 +3,13 @@
 
 <div style="margin-bottom: 10px;" class="row">
     <div class="col-lg-12">
-        <a class="btn btn-success" href="{{ route('product_photos.create') }}">Create Product_photo</a>
+        <a class="btn btn-success" href="{{ route('candidaturas.create') }}">Create Candidatura</a>
     </div>
 </div>
 
 <div class="card">
     <div class="card-header">
-        Model: Product_photo
+        Model: Candidatura
     </div>
 
     <div class="card-body">
@@ -18,30 +18,38 @@
                 <thead>
                 <tr>
                      <th> Id </th> 
- <th> Product_id </th> 
- <th> Description </th> 
- <th> Photo </th> 
- <th> Created_at </th> 
- <th> Updated_at </th> 
+ <th> Curso </th> 
+ <th> Nome </th> 
+ <th> Email </th> 
+ <th> Telefone1 </th> 
+ <th> Telefone2 </th> 
+ <th> Genero </th> 
+ <th> Media </th> 
+ <th> M23 </th> 
+ <th> Origem </th> 
+ <th> Ob </th> 
 
-                    <td>Actions</td>
+                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($items as $item)
                 <tr data-entry-id="{{$item->id}}">
                     <td>{{$item->id}}</td> 
-<td>{{$item->product_id}}</td> 
-<td>{{$item->description}}</td> 
-<td>{{$item->photo}}</td> 
-<td>{{$item->created_at}}</td> 
-<td>{{$item->updated_at}}</td> 
+<td>{{$item->curso}}</td> 
+<td>{{$item->nome}}</td> 
+<td>{{$item->email}}</td> 
+<td>{{$item->telefone1}}</td> 
+<td>{{$item->telefone2}}</td> 
+<td> {{$item->generoEnum()}}</td><td>{{$item->media}}</td> 
+<td>{{$item->m23}}</td> 
+<td> {{$item->origemEnum()}}</td><td>{{$item->obs}}</td> 
 
-                    <td><form action="{{ route('product_photos.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Confirm delete');" style="display: inline-block;">
+                    <td><form action="{{ route('candidaturas.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Confirm delete');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="submit" class="btn btn-xs btn-danger" value="Delete">
-                                    </form><a class="btn btn-xs btn-info" href="{{ route('product_photos.show', $item->id) }}">Show</a> <a  class="btn btn-xs btn-info" href="{{ route('product_photos.edit', $item->id) }}">Update</a> </td>
+                                    </form><a class="btn btn-xs btn-info" href="{{ route('candidaturas.show', $item->id) }}">Show</a> <a  class="btn btn-xs btn-info" href="{{ route('candidaturas.edit', $item->id) }}">Update</a> </td>
 
                 </tr>
                 @endforeach

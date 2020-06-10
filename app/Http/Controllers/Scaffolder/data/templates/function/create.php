@@ -1,7 +1,5 @@
     public function create(){
-
         $item = new self::$model();
-
         :$relationsGetData
         return view('admin.$modelTable.create', compact('item':$relationsCompact));
     }

@@ -79,7 +79,6 @@ class ScaffolderController extends Controller
                 $metadados[$t] = $atr;
             }
 
-            //se for um enum
             foreach ($metadados as $modelName => $models) {
                 foreach ($models as $fieldName => $field) {
                     if (strstr($field->Type, 'enum')) {
@@ -96,6 +95,8 @@ class ScaffolderController extends Controller
                     }
                 }
             }
+
+
 
             return view("scaffolder.configuretables", compact("metadados"));
 
@@ -249,13 +250,9 @@ class ScaffolderController extends Controller
         $content = "";
 
         foreach ($value->fields as $name => $m) {
-
-
-            if($m->type != "timestamp"){
+            if ($m->type != "timestamp") {
                 $content .= '           <div class="form-group">';
-                $content.='<label for="exampleInputEmail1">'.$m->name.'</label>';
-
-
+                $content .= '<label for="exampleInputEmail1">' . $m->name . '</label>';
             }
 
             if ($m->Key != 'no') {
@@ -277,30 +274,10 @@ class ScaffolderController extends Controller
                 case "date":
                     $content .= "<input $showOP class=\"form-control\" type=\"date\" name=\"$name\" value=\"{{\$item->$name}}\">";
                     break;
-                case "enum":
-                    if (isset($m->options)) {
-
-                        foreach ($m->options as $key => $value) {
-                            if ($key != "type") {
-                                $content .= "<input type=" . $m->options->type . " name=\"$name\" class=\"form-control\"  value=" . $key . "  {{( \$item->$name == '$key')? 'checked': '' }}>";
-                                $content .= "    <label>$value</label>";
-                                $content .= "<br>";
-                                $content .= "\n";
-                            }
-                        }
-
-                    }
-
-                    break;
-
                 case "select":
-
-
                     if (isset($m->select->type) && $m->select->type == "relation") {
 
-
                         $content .= "\n";
-
                         $content .= "\n";
                         $content .= '                                <select name="' . $name . '" class="form-control">';
                         $content .= "\n";
@@ -313,15 +290,13 @@ class ScaffolderController extends Controller
                         $content .= '                                 </select>';
                         $content .= "\n";
 
+                    } else if (isset($m->select->type) && $m->select->type == "custom") {
 
-
-                    } else if (isset($m->select->type) && $m->select->type = "custom") {
-
-                                $content .= "\n";
-                                $content .= "\n";
-                                $content .= '                                <select name="' . $name . '" class="form-control">';
-                                $content .= "\n";
-                                foreach ($m->select->custom as $s) {
+                        $content .= "\n";
+                        $content .= "\n";
+                        $content .= '                                <select name="' . $name . '" class="form-control">';
+                        $content .= "\n";
+                        foreach ($m->select->custom as $s) {
 
                             $content .= '                                      <option value="' . $s->key . '" >' . $s->value . '</option>';
                         }
@@ -330,14 +305,28 @@ class ScaffolderController extends Controller
                         $content .= "\n";
 
 
+                    } else if (isset($m->select->type) && $m->select->type == "enum") {
+
+                        $content .= "\n";
+                        $content .= "\n";
+                        $content .= '                                <select name="' . $name . '" class="form-control">';
+                        $content .= "\n";
+                        foreach ($m->select->options as $s => $k) {
 
 
+                            $content .= "                            <option value=\"$s\" {{( \$item->origem == '$s')? 'selected': '' }}>$k</option>";
+
+                        }
+
+                        $content .= '                                 </select>';
+                        $content .= "\n";
                     }
 
                     break;
 
             }
-            $content.= '</div>';
+
+            $content .= '</div>';
         }
 
         return $content;
@@ -370,11 +359,12 @@ class ScaffolderController extends Controller
                     if (isset($m->select->type) && $m->select->type == "relation") {
                         $content .= "<td> " . '{{$item->' . $name . "Rel->" . $m->select->label . "}}</td>";
                     } else if (isset($m->select->type) && $m->select->type == "custom") {
-                        $content .= "<td> " . '{{$item->' . $name."Enum()}}</td>";
+                        $content .= "<td> " . '{{$item->' . $name . "Enum()}}</td>";
+                    } else if (isset($m->select->type) && $m->select->type == "enum") {
+                        $content .= "<td> " . '{{$item->' . $name . "Enum()}}</td>";
+                    } else {
+                        $content .= "<td> " . '{{$item->' . "$name}}</td>";
                     }
-                    else{
-                            $content .= "<td> " . '{{$item->' . "$name}}</td>";
-                        }
 
                 } else {
                     $content .= "<td> " . '{{$item->' . "$name}}</td>";
@@ -396,94 +386,92 @@ class ScaffolderController extends Controller
             $content .= '           <div class="form-group">';
 
 
-
-                if ($m->Key == 'PRI' || $m->type == "timestamp") {
-                    continue;
-                }
-                if ($m->Key == 'MUL') {
-                    //meter relaçao aqui
-                    continue;
-                }
-                if (isset($m->name)) {
-                    $content .= '<label for="exampleInputEmail1">' . $m->name . '</label>';
-                }
-
-                switch ($m->type) {
-                    case "text":
-                        $content .= "<input  type=\"text\" name=\"$name\" class='form-control'>";
-                        break;
-                    case "int":
-                        $content .= "<input   type=\"number\" name=\"$name\" class='form-control'>";
-                        break;
-                    case "image":
-                        $content .= "<input  type=\"image\" name=\"$name\" class='form-control'>";
-                        break;
-                    case "date":
-                        $content .= "<input  type=\"date\" name=\"$name\" class='form-control'>";
-                        break;
-                    case "decimal":
-                        $content .= "<input  type=\"number\" name=\"$name\" class='form-control'>";
-                        break;
-                    case "enum":
-
-                        if (isset($m->options)) {
-                            $content .= "<td>";
-                            foreach ($m->options as $key => $value) {
-                                if ($key != "type") {
-                                    $content .= "<input  type=" . $m->options->type . " name=\"$name\"  value=" . $key . ">";
-                                    $content .= "    <label>$value</label>";
-                                    $content .= "<br>";
-                                    $content .= "\n";
-                                }
-                            }
-                            $content .= "</td>";
-                        }
-                        break;
-                    case "select":
-
-                        if (isset($m->select->type) && $m->select->type == "relation") {
-
-
-                            $content .= "\n";
-                            $content .= "                    <td>";
-                            $content .= "\n";
-                            $content .= '                                <select name="' . $name . '" class="form-control">';
-                            $content .= "\n";
-                            $content .= '                                 @foreach($' . $name . 'All as $i)';
-                            $content .= "\n";
-                            $content .= '                                      <option value="{{$i->' . $m->select->foregein_key . '}}" >{{$i->' . $m->select->label . '}}</option>';
-                            $content .= "\n";
-                            $content .= '                                 @endforeach';
-                            $content .= "\n";
-                            $content .= '                                 </select>';
-                            $content .= "\n";
-
-                            $content .= "                    </td>";
-                        } else if (isset($m->select->type) && $m->select->type = "custom") {
-
-                            $content .= "\n";
-                            $content .= "                    <td>";
-                            $content .= "\n";
-                            $content .= '                                <select name="' . $name . '" class="form-control">';
-                            $content .= "\n";
-
-                            foreach ($m->select->custom as $s) {
-
-                                $content .= '                                      <option value="' . $s->key . '" >' . $s->value . '</option>';
-                            }
-
-                            $content .= '                                 </select>';
-                            $content .= "\n";
-
-                            $content .= "                    </td>";
-
-
-                        }
-                        break;
-                }
-                $content .= '</div>';
+            if ($m->Key == 'PRI' || $m->type == "timestamp") {
+                continue;
+            }
+            if ($m->Key == 'MUL') {
+                //meter relaçao aqui
+                continue;
+            }
+            if (isset($m->name)) {
+                $content .= '<label for="exampleInputEmail1">' . $m->name . '</label>';
             }
 
+            switch ($m->type) {
+                case "text":
+                    $content .= "<input  type=\"text\" name=\"$name\" class='form-control'>";
+                    break;
+                case "int":
+                    $content .= "<input   type=\"number\" name=\"$name\" class='form-control'>";
+                    break;
+                case "image":
+                    $content .= "<input  type=\"image\" name=\"$name\" class='form-control'>";
+                    break;
+                case "date":
+                    $content .= "<input  type=\"date\" name=\"$name\" class='form-control'>";
+                    break;
+                case "decimal":
+                    $content .= "<input  type=\"number\" name=\"$name\" class='form-control'>";
+                    break;
+                case "select":
+
+                    if (isset($m->select->type) && $m->select->type == "relation") {
+
+
+                        $content .= "\n";
+                        $content .= "                    <td>";
+                        $content .= "\n";
+                        $content .= '                                <select name="' . $name . '" class="form-control">';
+                        $content .= "\n";
+                        $content .= '                                 @foreach($' . $name . 'All as $i)';
+                        $content .= "\n";
+                        $content .= '                                      <option value="{{$i->' . $m->select->foregein_key . '}}" >{{$i->' . $m->select->label . '}}</option>';
+                        $content .= "\n";
+                        $content .= '                                 @endforeach';
+                        $content .= "\n";
+                        $content .= '                                 </select>';
+                        $content .= "\n";
+
+                        $content .= "                    </td>";
+                    } else if (isset($m->select->type) && $m->select->type == "custom") {
+
+                        $content .= "\n";
+                        $content .= "                    <td>";
+                        $content .= "\n";
+                        $content .= '                                <select name="' . $name . '" class="form-control">';
+                        $content .= "\n";
+
+                        foreach ($m->select->custom as $s) {
+
+                            $content .= '                                      <option value="' . $s->key . '" >' . $s->value . '</option>';
+                        }
+
+                        $content .= '                                 </select>';
+                        $content .= "\n";
+
+                        $content .= "                    </td>";
+
+
+                    } else if (isset($m->select->type) && $m->select->type == "enum") {
+
+                        $content .= "\n";
+                        $content .= "\n";
+                        $content .= '                                <select name="' . $name . '" class="form-control">';
+                        $content .= "\n";
+                        foreach ($m->select->options as $s => $k) {
+
+
+                            $content .= "                            <option value=\"$s\" {{( \$item->origem == '$s')? 'selected': '' }}>$k</option>";
+
+                        }
+
+                        $content .= '                                 </select>';
+                        $content .= "\n";
+                    }
+                    break;
+            }
+            $content .= '</div>';
+        }
 
 
         return $content;
@@ -524,12 +512,10 @@ class ScaffolderController extends Controller
         $rows = "";
 
         foreach ($value->fields as $name => $f) {
-
-
             if ($f->display == "yes") {
                 if (isset($f->options)) {
-
                     $rows .= "<td>\n";
+
                     foreach ($f->options as $index => $option) {
                         if ($index != "type") {
 
@@ -549,9 +535,10 @@ class ScaffolderController extends Controller
                                 $rows .= '<td>{{$item->' . $name . "Rel->" . $f->select->label . '?? ""}}</td> ' . "\n";
 
                             } else if (isset($f->select->type) && $f->select->type == "custom") {
-                                $rows .= "<td> " . '{{$item->' . $name."Enum()}}</td>";
-                            }
-                            else{
+                                $rows .= "<td> " . '{{$item->' . $name . "Enum()}}</td>";
+                            } else if (isset($f->select->options) && isset($f->select->type) && $f->select->type == "enum"){
+                                $rows .= "<td> " . '{{$item->' . $name . "Enum()}}</td>";
+                            } else {
                                 $rows .= "<td> " . '{{$item->' . "$name}}</td>";
                             }
 
@@ -790,7 +777,7 @@ class ScaffolderController extends Controller
         }
     }
 
-    private function populateController($model,  $all)
+    private function populateController($model, $all)
     {
         $finalName = $this->verifyName($model->modelName);
 
@@ -822,27 +809,24 @@ class ScaffolderController extends Controller
                             switch ($ava['filename']) {
                                 case "create":
                                     $formRequestName = "Store" . $this->verifyName($model->modelTable) . "Request";
-                                    $relationsGetData="";
-                                    $relationsCompact="";
-                                    foreach($model->fields as $name=>$fi){
+                                    $relationsGetData = "";
+                                    $relationsCompact = "";
+                                    foreach ($model->fields as $name => $fi) {
 
-                                        if($fi->type=="select"){
-                                            if($fi->select->type=="relation"){
+                                        if (isset($fi->type) && $fi->type == "select") {
+                                            if (isset($fi->select->type) && $fi->select->type == "relation") {
 
                                                 foreach ($all as $modelName => $models) {
 
                                                     if (isset($models->modelTable)) {
                                                         if ($models->modelTable === $fi->select->table) {
 
-                                                            $imports.="\n".'use App\\'.$models->modelName.";\n";
-                                                            $relationsGetData.="$".$name."All = $models->modelName"."::all();\n     ";
-                                                            $relationsCompact.=", '".$name."All'";
+                                                            $imports .= "\n" . 'use App\\' . $models->modelName . ";\n";
+                                                            $relationsGetData .= "$" . $name . "All = $models->modelName" . "::all();\n     ";
+                                                            $relationsCompact .= ", '" . $name . "All'";
                                                         }
                                                     }
                                                 }
-
-
-
 
 
                                             }
@@ -855,12 +839,12 @@ class ScaffolderController extends Controller
 
                                     $formRequestName = "Update" . $this->verifyName($model->modelTable) . "Request";
 
-                                    $relationsGetData="";
-                                    $relationsCompact="";
-                                    foreach($model->fields as $name=>$fi){
+                                    $relationsGetData = "";
+                                    $relationsCompact = "";
+                                    foreach ($model->fields as $name => $fi) {
 
-                                        if($fi->type=="select"){
-                                            if($fi->select->type=="relation"){
+                                        if (isset($fi->type) && $fi->type == "select") {
+                                            if (isset($fi->select->type) && $fi->select->type == "relation") {
 
                                                 foreach ($all as $modelName => $models) {
 
@@ -868,14 +852,11 @@ class ScaffolderController extends Controller
                                                         if ($models->modelTable === $fi->select->table) {
 
 
-                                                            $relationsGetData.="$".$name."All = $models->modelName"."::all();\n     ";
-                                                            $relationsCompact.=", '".$name."All'";
+                                                            $relationsGetData .= "$" . $name . "All = $models->modelName" . "::all();\n     ";
+                                                            $relationsCompact .= ", '" . $name . "All'";
                                                         }
                                                     }
                                                 }
-
-
-
 
 
                                             }
@@ -980,35 +961,45 @@ class ScaffolderController extends Controller
                         $contents .= "\n    }";
                     }
 
-                    if (isset($field->select->type) && $field->select->type == "custom") {
+                    if (isset($field->select->type) && ($field->select->type == "custom" || $field->select->type == "enum")) {
 
 
                         $contents .= "\n";
-                        $contents.='
-    private static $'.$key.'=[';
+                        $contents .= '
+    private static $' . $key . '=[';
+                        $loop = 0;
 
-                        $loop=0;
-                        foreach ($field->select->custom as $s) {
-                            if($loop>0){
-                                $contents.=",";
+                        if ($field->select->type == "custom") {
+                            foreach ($field->select->custom as $s) {
+                                if ($loop > 0) {
+                                    $contents .= ",";
+                                }
+                                $contents .= "'" . $s->key . "'" . "=>'" . $s->value . "'";
+                                $loop++;
                             }
-                            $contents .=  "'".$s->key."'" ."=>'". $s->value . "'";
-                            $loop++;
+                        } else if ($field->select->type == "enum") {
+
+                            foreach ($field->select->options as $s => $k) {
+                                if ($loop > 0) {
+                                    $contents .= ",";
+                                }
+                                $contents .= "'" . $s . "'" . "=>'" . $k . "'";
+                                $loop++;
+                            }
                         }
 
-                        $contents.='];
 
-    public function '.$key.'Enum(){
-        return self::$'.$key.'[$this->'.$key.']??"";
+                        $contents .= '];
+
+    public function ' . $key . 'Enum(){
+        return self::$' . $key . '[$this->' . $key . ']??"";
     }
                         ';
                         $contents .= "\n";
-                        //$contents .= '    public function ' . $key . 'Rel(){';
                         $contents .= "\n";
 
-
-                        //$contents .= "\n    }";
                     }
+
 
                 }
             }

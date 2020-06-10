@@ -28,9 +28,4 @@ Route::group([ 'prefix' => 'scaffolder', 'as' => 'scaffolder.'], function () {
 
 });
 
-Route::resource("clientes", "ClienteController");
-<<<<<<< Updated upstream
-Route::resource("tipo_clientes", "TipoClienteController");
-=======
-Route::resource("product_photos", "ProductPhotoController");
->>>>>>> Stashed changes
+Route::resource("candidaturas", "CandidaturaController");

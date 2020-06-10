@@ -9,21 +9,18 @@
             Create :$modelName
         </div>
 
-
         <div class="card-body">
             <form action=:$templateRouteStore method="POST" enctype="multipart/form-data">
-            @csrf
-            :$templateFieldInputRow
-            <div>
-                <input class="btn btn-danger" type="submit" value="Create">
-            </div>
+                @csrf
+                :$templateFieldInputRow
+                <div>
+                    <input class="btn btn-danger" type="submit" value="Create">
+                </div>
             </form>
 
 
         </div>
     </div>
-
-
 
 
 </div>

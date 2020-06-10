@@ -18,7 +18,7 @@
                 <thead>
                 <tr>
                     :$templateFieldName
-                    <td>Actions</td>
+                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>

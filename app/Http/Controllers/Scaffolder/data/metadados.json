@@ -1,7 +1,97 @@
 {
-<<<<<<< Updated upstream
-    "clientes": {
-        "modelName": "Cliente",
+    "alunos": {
+        "modelName": "Aluno",
+        "enable": "no",
+        "fields": {
+            "id": {
+                "name": "Id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "PRI",
+                "type": "text"
+            },
+            "user_id": {
+                "name": "User_id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "MUL",
+                "type": "text"
+            },
+            "numero": {
+                "name": "Numero",
+                "lenght": "20",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "curso": {
+                "name": "Curso",
+                "lenght": "20",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "MUL",
+                "type": "text"
+            }
+        },
+        "modelTable": "alunos"
+    },
+    "alunos_disciplinas": {
+        "modelName": "AlunosDisciplina",
+        "enable": "no",
+        "fields": {
+            "aluno_id": {
+                "name": "Aluno_id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "PRI",
+                "type": "text"
+            },
+            "disciplina_id": {
+                "name": "Disciplina_id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "PRI",
+                "type": "text"
+            },
+            "repetente": {
+                "name": "Repetente",
+                "lenght": "1",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "no",
+                "type": "text"
+            }
+        },
+        "modelTable": "alunos_disciplinas"
+    },
+    "candidaturas": {
+        "modelName": "Candidatura",
         "enable": "yes",
         "fields": {
             "id": {
@@ -10,10 +100,21 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "alunos"
                 },
                 "Key": "PRI",
-                "type": "int"
+                "type": "text"
+            },
+            "curso": {
+                "name": "Curso",
+                "lenght": "20",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "MUL",
+                "type": "text"
             },
             "nome": {
                 "name": "Nome",
@@ -21,95 +122,7 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "tipocliente": {
-                "name": "Tipocliente",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "type": "custom",
-                    "custom": {
-                        "1": {
-                            "key": "1",
-                            "value": "um"
-                        },
-                        "2": {
-                            "key": "2",
-                            "value": "dois"
-                        }
-                    },
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "select"
-            },
-            "contacto": {
-                "name": "Contacto",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "morada": {
-                "name": "Morada",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "ncontrib": {
-                "name": "Ncontrib",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "codigo": {
-                "name": "Codigo",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "cdpostal": {
-                "name": "Cdpostal",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "local": {
-                "name": "Local",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
+                    "table": "alunos"
                 },
                 "Key": "no",
                 "type": "text"
@@ -120,68 +133,101 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "alunos"
                 },
                 "Key": "no",
                 "type": "text"
             },
-            "ncabecas": {
-                "name": "Ncabeca",
-                "lenght": "255",
+            "telefone1": {
+                "name": "Telefone1",
+                "lenght": "20",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "alunos"
                 },
                 "Key": "no",
                 "type": "text"
             },
-            "datacri": {
-                "name": "Datacri",
-                "lenght": "255",
+            "telefone2": {
+                "name": "Telefone2",
+                "lenght": "20",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "alunos"
                 },
                 "Key": "no",
                 "type": "text"
             },
-            "created_at": {
-                "name": "Created_at",
+            "genero": {
+                "name": "Genero",
                 "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "type": "enum",
+                    "options": {
+                        "M": "M1",
+                        "F": "F1"
+                    },
+                    "table": "alunos"
                 },
                 "Key": "no",
-                "type": "timestamp"
+                "type": "select"
             },
-            "updated_at": {
-                "name": "Updated_at",
-                "lenght": null,
+            "media": {
+                "name": "Media",
+                "lenght": "42",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "alunos"
                 },
                 "Key": "no",
-                "type": "timestamp"
+                "type": "decimal"
             },
-            "deleted_at": {
-                "name": "Deleted_at",
+            "m23": {
+                "name": "M23",
+                "lenght": "1",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "origem": {
+                "name": "Origem",
                 "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "type": "enum",
+                    "options": {
+                        "P": "P1",
+                        "UE": "UE1",
+                        "O": "O1"
+                    },
+                    "table": "alunos"
                 },
                 "Key": "no",
-                "type": "timestamp"
+                "type": "select"
+            },
+            "obs": {
+                "name": "Ob",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "no",
+                "type": "text"
             }
         },
-        "modelTable": "clientes",
+        "modelTable": "candidaturas",
         "functions": {
             "create": {
                 "enable": "yes"
@@ -200,191 +246,184 @@
             }
         }
     },
-    "contacts": {
-        "modelName": "Contact",
+    "candidaturas_estatutos": {
+        "modelName": "CandidaturasEstatuto",
         "enable": "no",
         "fields": {
-            "id": {
-                "name": "Id",
+            "candidatura_id": {
+                "name": "Candidatura_id",
                 "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "alunos"
                 },
                 "Key": "PRI",
-                "type": "int"
-            },
-            "name": {
-                "name": "Name",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
                 "type": "text"
             },
-            "subject": {
-                "name": "Subject",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "email": {
-                "name": "Email",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "message": {
-                "name": "Message",
+            "estatuto": {
+                "name": "Estatuto",
                 "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "type": "enum",
+                    "options": {
+                        "TE": "TE",
+                        "NE": "NE",
+                        "E": "E"
+                    },
+                    "table": "alunos"
+                },
+                "Key": "PRI",
+                "type": "select"
+            },
+            "pretende": {
+                "name": "Pretende",
+                "lenght": "1",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
                 },
                 "Key": "no",
                 "type": "text"
-            },
-            "created_at": {
-                "name": "Created_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "updated_at": {
-                "name": "Updated_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "deleted_at": {
-                "name": "Deleted_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
             }
         },
-        "modelTable": "contacts"
+        "modelTable": "candidaturas_estatutos"
     },
-    "criterio_valors": {
-        "modelName": "CriterioValor",
+    "cursos": {
+        "modelName": "Curso",
         "enable": "no",
         "fields": {
-            "id": {
-                "name": "Id",
-                "lenght": null,
+            "abreviatura": {
+                "name": "Abreviatura",
+                "lenght": "20",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "alunos"
                 },
                 "Key": "PRI",
-                "type": "int"
+                "type": "text"
             },
-            "cliente_id": {
-                "name": "Cliente_id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "int"
-            },
-            "criterio": {
-                "name": "Criterio",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "int"
-            },
-            "valor": {
-                "name": "Valor",
+            "nome": {
+                "name": "Nome",
                 "lenght": "255",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "alunos"
                 },
                 "Key": "no",
                 "type": "text"
             },
-            "created_at": {
-                "name": "Created_at",
+            "tipo": {
+                "name": "Tipo",
                 "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "type": "enum",
+                    "options": {
+                        "Licenciatura": "Licenciatura",
+                        "Mestrado": "Mestrado",
+                        "Curso Tu00e9cnico Superior Profissional": "Curso Tu00e9cnico Superior Profissional"
+                    },
+                    "table": "alunos"
                 },
                 "Key": "no",
-                "type": "timestamp"
+                "type": "select"
             },
-            "updated_at": {
-                "name": "Updated_at",
+            "semestres": {
+                "name": "Semestre",
                 "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "alunos"
                 },
                 "Key": "no",
-                "type": "timestamp"
+                "type": "int"
             },
-            "deleted_at": {
-                "name": "Deleted_at",
+            "ECTS": {
+                "name": "ECTS",
                 "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "alunos"
                 },
                 "Key": "no",
-                "type": "timestamp"
+                "type": "int"
+            },
+            "vagas": {
+                "name": "Vaga",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "no",
+                "type": "int"
+            },
+            "contato": {
+                "name": "Contato",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "objetivos": {
+                "name": "Objetivo",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "no",
+                "type": "text"
             }
         },
-        "modelTable": "criterio_valors"
+        "modelTable": "cursos"
     },
-    "criterios": {
-        "modelName": "Criterio",
-=======
-    "adress": {
-        "modelName": "Adre",
->>>>>>> Stashed changes
+    "departamentos": {
+        "modelName": "Departamento",
+        "enable": "no",
+        "fields": {
+            "abreviatura": {
+                "name": "Abreviatura",
+                "lenght": "20",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "PRI",
+                "type": "text"
+            },
+            "nome": {
+                "name": "Nome",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "no",
+                "type": "text"
+            }
+        },
+        "modelTable": "departamentos"
+    },
+    "disciplinas": {
+        "modelName": "Disciplina",
         "enable": "no",
         "fields": {
             "id": {
@@ -393,10 +432,116 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "adress"
+                    "table": "alunos"
                 },
                 "Key": "PRI",
+                "type": "text"
+            },
+            "curso": {
+                "name": "Curso",
+                "lenght": "20",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "MUL",
+                "type": "text"
+            },
+            "ano": {
+                "name": "Ano",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "no",
                 "type": "int"
+            },
+            "semestre": {
+                "name": "Semestre",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "no",
+                "type": "int"
+            },
+            "abreviatura": {
+                "name": "Abreviatura",
+                "lenght": "20",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "nome": {
+                "name": "Nome",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "ECTS": {
+                "name": "ECTS",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "no",
+                "type": "int"
+            },
+            "horas": {
+                "name": "Hora",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "no",
+                "type": "int"
+            },
+            "opcional": {
+                "name": "Opcional",
+                "lenght": "1",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "no",
+                "type": "text"
+            }
+        },
+        "modelTable": "disciplinas"
+    },
+    "docentes": {
+        "modelName": "Docente",
+        "enable": "no",
+        "fields": {
+            "id": {
+                "name": "Id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "PRI",
+                "type": "text"
             },
             "user_id": {
                 "name": "User_id",
@@ -404,28 +549,100 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "adress"
+                    "table": "alunos"
                 },
                 "Key": "MUL",
-                "type": "int"
+                "type": "text"
             },
-            "street": {
-                "name": "Street",
-                "lenght": "255",
+            "departamento": {
+                "name": "Departamento",
+                "lenght": "20",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "adress"
+                    "table": "alunos"
+                },
+                "Key": "MUL",
+                "type": "text"
+            },
+            "gabinete": {
+                "name": "Gabinete",
+                "lenght": "50",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
                 },
                 "Key": "no",
-<<<<<<< Updated upstream
-                "type": "timestamp"
+                "type": "text"
+            },
+            "extensao": {
+                "name": "Extensao",
+                "lenght": "20",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "cacifo": {
+                "name": "Cacifo",
+                "lenght": "20",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "no",
+                "type": "text"
             }
         },
-        "modelTable": "criterios"
+        "modelTable": "docentes"
     },
-    "gestao_menus": {
-        "modelName": "GestaoMenu",
+    "docentes_disciplinas": {
+        "modelName": "DocentesDisciplina",
+        "enable": "no",
+        "fields": {
+            "docente_id": {
+                "name": "Docente_id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "PRI",
+                "type": "text"
+            },
+            "disciplina_id": {
+                "name": "Disciplina_id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "PRI",
+                "type": "text"
+            },
+            "responsavel": {
+                "name": "Responsavel",
+                "lenght": "1",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "no",
+                "type": "text"
+            }
+        },
+        "modelTable": "docentes_disciplinas"
+    },
+    "failed_jobs": {
+        "modelName": "FailedJob",
         "enable": "no",
         "fields": {
             "id": {
@@ -434,133 +651,68 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "alunos"
                 },
                 "Key": "PRI",
-                "type": "int"
-=======
-                "type": "text"
->>>>>>> Stashed changes
-            },
-            "postal_code": {
-                "name": "Postal_code",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
                 "type": "text"
             },
-            "locality": {
-                "name": "Locality",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "city": {
-                "name": "City",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "country": {
-                "name": "Country",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "created_at": {
-                "name": "Created_at",
+            "connection": {
+                "name": "Connection",
                 "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "adress"
+                    "table": "alunos"
                 },
                 "Key": "no",
-                "type": "timestamp"
+                "type": "text"
             },
-            "updated_at": {
-                "name": "Updated_at",
+            "queue": {
+                "name": "Queue",
                 "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "adress"
+                    "table": "alunos"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "payload": {
+                "name": "Payload",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "exception": {
+                "name": "Exception",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "failed_at": {
+                "name": "Failed_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
                 },
                 "Key": "no",
                 "type": "timestamp"
             }
         },
-        "modelTable": "adress"
-    },
-    "categories": {
-        "modelName": "Categorie",
-        "enable": "no",
-        "fields": {
-            "id": {
-                "name": "Id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "PRI",
-                "type": "int"
-            },
-            "name": {
-                "name": "Name",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "created_at": {
-                "name": "Created_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "updated_at": {
-                "name": "Updated_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            }
-        },
-        "modelTable": "categories"
+        "modelTable": "failed_jobs"
     },
     "migrations": {
         "modelName": "Migration",
@@ -572,7 +724,7 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "adress"
+                    "table": "alunos"
                 },
                 "Key": "PRI",
                 "type": "int"
@@ -583,7 +735,7 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "adress"
+                    "table": "alunos"
                 },
                 "Key": "no",
                 "type": "text"
@@ -594,940 +746,13 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "adress"
+                    "table": "alunos"
                 },
                 "Key": "no",
                 "type": "int"
             }
         },
         "modelTable": "migrations"
-    },
-<<<<<<< Updated upstream
-    "model_has_permissions": {
-        "modelName": "ModelHasPermission",
-        "enable": "no",
-        "fields": {
-            "permission_id": {
-                "name": "Permission_id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "PRI",
-                "type": "int"
-            },
-            "model_type": {
-                "name": "Model_type",
-                "lenght": "191",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "PRI",
-                "type": "text"
-            },
-            "model_id": {
-                "name": "Model_id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "PRI",
-                "type": "text"
-            }
-        },
-        "modelTable": "model_has_permissions"
-    },
-    "model_has_roles": {
-        "modelName": "ModelHasRole",
-        "enable": "no",
-        "fields": {
-            "role_id": {
-                "name": "Role_id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "PRI",
-                "type": "int"
-            },
-            "model_type": {
-                "name": "Model_type",
-                "lenght": "191",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "PRI",
-                "type": "text"
-            },
-            "model_id": {
-                "name": "Model_id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "PRI",
-                "type": "text"
-            }
-        },
-        "modelTable": "model_has_roles"
-    },
-    "multimedia": {
-        "modelName": "Multimedia",
-=======
-    "moviments": {
-        "modelName": "Moviment",
->>>>>>> Stashed changes
-        "enable": "no",
-        "fields": {
-            "id": {
-                "name": "Id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "PRI",
-                "type": "int"
-            },
-            "order_id": {
-                "name": "Order_id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "MUL",
-                "type": "int"
-            },
-            "type_payment": {
-                "name": "Type_payment",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "select"
-            },
-            "created_at": {
-                "name": "Created_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "updated_at": {
-                "name": "Updated_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            }
-        },
-        "modelTable": "moviments"
-    },
-<<<<<<< Updated upstream
-    "password_resets": {
-        "modelName": "PasswordReset",
-        "enable": "no",
-        "fields": {
-            "email": {
-                "name": "Email",
-                "lenght": "191",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "MUL",
-                "type": "text"
-            },
-            "token": {
-                "name": "Token",
-                "lenght": "191",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "created_at": {
-                "name": "Created_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            }
-        },
-        "modelTable": "password_resets"
-    },
-    "pecas": {
-        "modelName": "Peca",
-=======
-    "oauth_access_tokens": {
-        "modelName": "Oauth_access_token",
->>>>>>> Stashed changes
-        "enable": "no",
-        "fields": {
-            "id": {
-                "name": "Id",
-                "lenght": "100",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "PRI",
-                "type": "text"
-            },
-            "user_id": {
-                "name": "User_id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "MUL",
-                "type": "text"
-            },
-            "client_id": {
-                "name": "Client_id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "name": {
-                "name": "Name",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "scopes": {
-                "name": "Scope",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "revoked": {
-                "name": "Revoked",
-                "lenght": "1",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "created_at": {
-                "name": "Created_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "updated_at": {
-                "name": "Updated_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "expires_at": {
-                "name": "Expires_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            }
-        },
-        "modelTable": "oauth_access_tokens"
-    },
-    "oauth_auth_codes": {
-        "modelName": "Oauth_auth_code",
-        "enable": "no",
-        "fields": {
-            "id": {
-                "name": "Id",
-                "lenght": "100",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "PRI",
-                "type": "text"
-            },
-            "user_id": {
-                "name": "User_id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "MUL",
-                "type": "text"
-            },
-            "client_id": {
-                "name": "Client_id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "scopes": {
-                "name": "Scope",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-<<<<<<< Updated upstream
-                "type": "timestamp"
-            }
-        },
-        "modelTable": "permissions"
-    },
-    "role_has_permissions": {
-        "modelName": "RoleHasPermission",
-        "enable": "no",
-        "fields": {
-            "permission_id": {
-                "name": "Permission_id",
-                "lenght": null,
-=======
-                "type": "text"
-            },
-            "revoked": {
-                "name": "Revoked",
-                "lenght": "1",
->>>>>>> Stashed changes
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "expires_at": {
-                "name": "Expires_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            }
-        },
-        "modelTable": "oauth_auth_codes"
-    },
-    "oauth_clients": {
-        "modelName": "Oauth_client",
-        "enable": "no",
-        "fields": {
-            "id": {
-                "name": "Id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "PRI",
-                "type": "text"
-            },
-            "user_id": {
-                "name": "User_id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "MUL",
-                "type": "text"
-            },
-            "name": {
-                "name": "Name",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "secret": {
-                "name": "Secret",
-                "lenght": "100",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "provider": {
-                "name": "Provider",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "redirect": {
-                "name": "Redirect",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-<<<<<<< Updated upstream
-                "type": "timestamp"
-            }
-        },
-        "modelTable": "roles"
-    },
-    "tipo_clientes": {
-        "modelName": "TipoCliente",
-        "enable": "no",
-        "fields": {
-            "id": {
-                "name": "Id",
-                "lenght": null,
-=======
-                "type": "text"
-            },
-            "personal_access_client": {
-                "name": "Personal_access_client",
-                "lenght": "1",
->>>>>>> Stashed changes
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "password_client": {
-                "name": "Password_client",
-                "lenght": "1",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "revoked": {
-                "name": "Revoked",
-                "lenght": "1",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "created_at": {
-                "name": "Created_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "updated_at": {
-                "name": "Updated_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            }
-        },
-        "modelTable": "oauth_clients"
-    },
-<<<<<<< Updated upstream
-    "tipo_historicos": {
-        "modelName": "TipoHistorico",
-=======
-    "oauth_personal_access_clients": {
-        "modelName": "Oauth_personal_access_client",
->>>>>>> Stashed changes
-        "enable": "no",
-        "fields": {
-            "id": {
-                "name": "Id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "PRI",
-                "type": "text"
-            },
-            "client_id": {
-                "name": "Client_id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "created_at": {
-                "name": "Created_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "updated_at": {
-                "name": "Updated_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            }
-        },
-        "modelTable": "oauth_personal_access_clients"
-    },
-    "oauth_refresh_tokens": {
-        "modelName": "Oauth_refresh_token",
-        "enable": "no",
-        "fields": {
-            "id": {
-                "name": "Id",
-                "lenght": "100",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "PRI",
-                "type": "text"
-            },
-            "access_token_id": {
-                "name": "Access_token_id",
-                "lenght": "100",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "revoked": {
-                "name": "Revoked",
-                "lenght": "1",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "expires_at": {
-                "name": "Expires_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            }
-        },
-        "modelTable": "oauth_refresh_tokens"
-    },
-    "orders": {
-        "modelName": "Order",
-        "enable": "no",
-        "fields": {
-            "id": {
-                "name": "Id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "PRI",
-                "type": "int"
-            },
-            "user_id": {
-                "name": "User_id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "MUL",
-                "type": "int"
-            },
-            "product_id": {
-                "name": "Product_id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "MUL",
-                "type": "int"
-            },
-            "amount": {
-                "name": "Amount",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "int"
-            },
-            "status": {
-                "name": "Statu",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "select"
-            },
-            "ship_code": {
-                "name": "Ship_code",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "created_at": {
-                "name": "Created_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "updated_at": {
-                "name": "Updated_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            }
-        },
-        "modelTable": "orders"
-    },
-    "product_photos": {
-        "modelName": "Product_photo",
-        "enable": "yes",
-        "fields": {
-            "id": {
-                "name": "Id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "PRI",
-                "type": "int"
-            },
-            "product_id": {
-                "name": "Product_id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "MUL",
-                "type": "int"
-            },
-            "description": {
-                "name": "Description",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "photo": {
-                "name": "Photo",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "created_at": {
-                "name": "Created_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "updated_at": {
-                "name": "Updated_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            }
-        },
-        "modelTable": "product_photos",
-        "functions": {
-            "create": {
-                "enable": "yes"
-            },
-            "destroy": {
-                "enable": "yes"
-            },
-            "index": {
-                "enable": "yes"
-            },
-            "show": {
-                "enable": "yes"
-            },
-            "update": {
-                "enable": "yes"
-            }
-        }
-    },
-    "products": {
-        "modelName": "Product",
-        "enable": "no",
-        "fields": {
-            "id": {
-                "name": "Id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "PRI",
-                "type": "int"
-            },
-            "category_id": {
-                "name": "Category_id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "MUL",
-                "type": "int"
-            },
-            "name": {
-                "name": "Name",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "description": {
-                "name": "Description",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "stock": {
-                "name": "Stock",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "int"
-            },
-            "price": {
-                "name": "Price",
-                "lenght": "82",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "promo_price": {
-                "name": "Promo_price",
-                "lenght": "82",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "created_at": {
-                "name": "Created_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "updated_at": {
-                "name": "Updated_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            }
-        },
-        "modelTable": "products"
     },
     "users": {
         "modelName": "User",
@@ -1539,10 +764,10 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "adress"
+                    "table": "alunos"
                 },
                 "Key": "PRI",
-                "type": "int"
+                "type": "text"
             },
             "name": {
                 "name": "Name",
@@ -1550,7 +775,7 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "adress"
+                    "table": "alunos"
                 },
                 "Key": "no",
                 "type": "text"
@@ -1561,7 +786,7 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "adress"
+                    "table": "alunos"
                 },
                 "Key": "UNI",
                 "type": "text"
@@ -1572,7 +797,7 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "adress"
+                    "table": "alunos"
                 },
                 "Key": "no",
                 "type": "timestamp"
@@ -1583,51 +808,7 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "type": {
-                "name": "Type",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "select"
-            },
-            "active": {
-                "name": "Active",
-                "lenght": "1",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "photo": {
-                "name": "Photo",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "nif": {
-                "name": "Nif",
-                "lenght": "9",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "adress"
+                    "table": "alunos"
                 },
                 "Key": "no",
                 "type": "text"
@@ -1638,7 +819,7 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "adress"
+                    "table": "alunos"
                 },
                 "Key": "no",
                 "type": "text"
@@ -1649,7 +830,7 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "adress"
+                    "table": "alunos"
                 },
                 "Key": "no",
                 "type": "timestamp"
@@ -1660,10 +841,65 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "adress"
+                    "table": "alunos"
                 },
                 "Key": "no",
                 "type": "timestamp"
+            },
+            "admin": {
+                "name": "Admin",
+                "lenght": "1",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "tipo": {
+                "name": "Tipo",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "type": "enum",
+                    "options": {
+                        "D": "D",
+                        "A": "A",
+                        "O": "O"
+                    },
+                    "table": "alunos"
+                },
+                "Key": "no",
+                "type": "select"
+            },
+            "genero": {
+                "name": "Genero",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "type": "enum",
+                    "options": {
+                        "M": "M",
+                        "F": "F"
+                    },
+                    "table": "alunos"
+                },
+                "Key": "no",
+                "type": "select"
+            },
+            "url_foto": {
+                "name": "Url_foto",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "alunos"
+                },
+                "Key": "no",
+                "type": "text"
             }
         },
         "modelTable": "users"
