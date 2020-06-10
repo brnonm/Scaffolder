@@ -330,7 +330,6 @@
                                                                                    onchange="changeColorGreen({{$nameTable.$keyy}})"
                                                                                    value="yes" checked>
                                                                         </div>
-
                                                                         <select class="form-control"
                                                                                 id="{{$nameTable.$keyy}}_select_in"
                                                                                 name='metadados[{{$nameTable}}][fields][{{$keyy}}][select][type]'
@@ -348,11 +347,7 @@
                                                                             <option value="relation">
                                                                                 Relation (1 to 1)
                                                                             </option>
-
-
                                                                         </select>
-
-
                                                                         <div class="selectDivHidden"
                                                                              id="{{$nameTable.$keyy}}_enum"
                                                                              style="display: {{ (explode('(',$field->Type)[0] == 'enum')? 'block': 'none' }} ">
@@ -370,7 +365,6 @@
                                                                                            value="{{$val}}">
                                                                                 @endforeach
                                                                             @endif
-
 
                                                                         </div>
                                                                         </div>

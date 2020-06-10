@@ -297,8 +297,7 @@ class ScaffolderController extends Controller
                         $content .= '                                <select name="' . $name . '" class="form-control">';
                         $content .= "\n";
                         foreach ($m->select->custom as $s) {
-
-                            $content .= '                                      <option value="' . $s->key . '" >' . $s->value . '</option>';
+                            $content .= "                                      <option value=\"$s->key\" {{( \$item->$name == '$s->key')? 'selected': '' }}>$s->value</option>";
                         }
 
                         $content .= '                                 </select>';
@@ -306,18 +305,13 @@ class ScaffolderController extends Controller
 
 
                     } else if (isset($m->select->type) && $m->select->type == "enum") {
-
                         $content .= "\n";
                         $content .= "\n";
                         $content .= '                                <select name="' . $name . '" class="form-control">';
                         $content .= "\n";
                         foreach ($m->select->options as $s => $k) {
-
-
-                            $content .= "                            <option value=\"$s\" {{( \$item->origem == '$s')? 'selected': '' }}>$k</option>";
-
+                            $content .= "                            <option value=\"$s\" {{( \$item->$name == '$s')? 'selected': '' }}>$k</option>";
                         }
-
                         $content .= '                                 </select>';
                         $content .= "\n";
                     }
@@ -548,7 +542,6 @@ class ScaffolderController extends Controller
                             $rows .= '<td>{{$item->' . $name . "}}</td> \n";
                             break;
                     }
-
                 }
             }
         }

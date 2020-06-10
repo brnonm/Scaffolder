@@ -12,7 +12,7 @@ class Candidatura extends Model
 
 
 
-    private static $genero=['M'=>'M1','F'=>'F1'];
+    private static $genero=['M'=>'M','F'=>'F'];
 
     public function generoEnum(){
         return self::$genero[$this->genero]??"";

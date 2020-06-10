@@ -15,7 +15,7 @@
                            <div class="form-group">           <div class="form-group">           <div class="form-group"><label for="exampleInputEmail1">Nome</label><input  type="text" name="nome" class='form-control'></div>           <div class="form-group"><label for="exampleInputEmail1">Email</label><input  type="text" name="email" class='form-control'></div>           <div class="form-group"><label for="exampleInputEmail1">Telefone1</label><input  type="text" name="telefone1" class='form-control'></div>           <div class="form-group"><label for="exampleInputEmail1">Telefone2</label><input  type="text" name="telefone2" class='form-control'></div>           <div class="form-group"><label for="exampleInputEmail1">Genero</label>
 
                                 <select name="genero" class="form-control">
-                            <option value="M" {{( $item->origem == 'M')? 'selected': '' }}>M1</option>                            <option value="F" {{( $item->origem == 'F')? 'selected': '' }}>F1</option>                                 </select>
+                            <option value="M" {{( $item->origem == 'M')? 'selected': '' }}>M</option>                            <option value="F" {{( $item->origem == 'F')? 'selected': '' }}>F</option>                                 </select>
 </div>           <div class="form-group"><label for="exampleInputEmail1">Media</label><input  type="number" name="media" class='form-control'></div>           <div class="form-group"><label for="exampleInputEmail1">M23</label><input  type="text" name="m23" class='form-control'></div>           <div class="form-group"><label for="exampleInputEmail1">Origem</label>
 
                                 <select name="origem" class="form-control">

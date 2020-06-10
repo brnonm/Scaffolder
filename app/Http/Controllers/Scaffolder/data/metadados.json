@@ -168,8 +168,8 @@
                 "select": {
                     "type": "enum",
                     "options": {
-                        "M": "M1",
-                        "F": "F1"
+                        "M": "M",
+                        "F": "F"
                     },
                     "table": "alunos"
                 },
