@@ -330,8 +330,8 @@
 
 
                                                                         <div class="selectDivHidden" id="{{$nameTable.$keyy}}_enum" style="display: none">
-                                                                                Enum DB
-                                                                                Adicionar Codigo do Bruno
+
+
 
 
                                                                         </div>

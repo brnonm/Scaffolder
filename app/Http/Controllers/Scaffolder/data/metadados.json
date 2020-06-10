@@ -1,4 +1,5 @@
 {
+<<<<<<< Updated upstream
     "clientes": {
         "modelName": "Cliente",
         "enable": "yes",
@@ -380,6 +381,10 @@
     },
     "criterios": {
         "modelName": "Criterio",
+=======
+    "adress": {
+        "modelName": "Adre",
+>>>>>>> Stashed changes
         "enable": "no",
         "fields": {
             "id": {
@@ -388,53 +393,32 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "PRI",
                 "type": "int"
             },
-            "title": {
-                "name": "Title",
+            "user_id": {
+                "name": "User_id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "MUL",
+                "type": "int"
+            },
+            "street": {
+                "name": "Street",
                 "lenght": "255",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
-                "type": "text"
-            },
-            "created_at": {
-                "name": "Created_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "updated_at": {
-                "name": "Updated_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "deleted_at": {
-                "name": "Deleted_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
+<<<<<<< Updated upstream
                 "type": "timestamp"
             }
         },
@@ -454,47 +438,50 @@
                 },
                 "Key": "PRI",
                 "type": "int"
+=======
+                "type": "text"
+>>>>>>> Stashed changes
             },
-            "class": {
-                "name": "Cla",
+            "postal_code": {
+                "name": "Postal_code",
                 "lenght": "255",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "text"
             },
-            "active": {
-                "name": "Active",
-                "lenght": "50",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "link": {
-                "name": "Link",
+            "locality": {
+                "name": "Locality",
                 "lenght": "255",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "text"
             },
-            "texto": {
-                "name": "Texto",
+            "city": {
+                "name": "City",
                 "lenght": "255",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "country": {
+                "name": "Country",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "text"
@@ -505,7 +492,7 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "timestamp"
@@ -516,27 +503,16 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "deleted_at": {
-                "name": "Deleted_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "timestamp"
             }
         },
-        "modelTable": "gestao_menus"
+        "modelTable": "adress"
     },
-    "historicos": {
-        "modelName": "Historico",
+    "categories": {
+        "modelName": "Categorie",
         "enable": "no",
         "fields": {
             "id": {
@@ -545,84 +521,18 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "PRI",
                 "type": "int"
             },
-            "cliente_id": {
-                "name": "Cliente_id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "int"
-            },
-            "tipohistorico": {
-                "name": "Tipohistorico",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "int"
-            },
-            "data": {
-                "name": "Data",
+            "name": {
+                "name": "Name",
                 "lenght": "255",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "hora": {
-                "name": "Hora",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "duracao": {
-                "name": "Duracao",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "assunto": {
-                "name": "Assunto",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "resumo": {
-                "name": "Resumo",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "text"
@@ -633,7 +543,7 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "timestamp"
@@ -644,24 +554,13 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "deleted_at": {
-                "name": "Deleted_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "timestamp"
             }
         },
-        "modelTable": "historicos"
+        "modelTable": "categories"
     },
     "migrations": {
         "modelName": "Migration",
@@ -673,18 +572,18 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "PRI",
                 "type": "int"
             },
             "migration": {
                 "name": "Migration",
-                "lenght": "191",
+                "lenght": "255",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "text"
@@ -695,7 +594,7 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "int"
@@ -703,6 +602,7 @@
         },
         "modelTable": "migrations"
     },
+<<<<<<< Updated upstream
     "model_has_permissions": {
         "modelName": "ModelHasPermission",
         "enable": "no",
@@ -785,6 +685,10 @@
     },
     "multimedia": {
         "modelName": "Multimedia",
+=======
+    "moviments": {
+        "modelName": "Moviment",
+>>>>>>> Stashed changes
         "enable": "no",
         "fields": {
             "id": {
@@ -793,43 +697,32 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "PRI",
                 "type": "int"
             },
-            "class": {
-                "name": "Cla",
-                "lenght": "100",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "class_id": {
-                "name": "Class_id",
+            "order_id": {
+                "name": "Order_id",
                 "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
-                "Key": "no",
+                "Key": "MUL",
                 "type": "int"
             },
-            "file": {
-                "name": "File",
-                "lenght": "255",
+            "type_payment": {
+                "name": "Type_payment",
+                "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
-                "type": "text"
+                "type": "select"
             },
             "created_at": {
                 "name": "Created_at",
@@ -837,18 +730,7 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "deleted_at": {
-                "name": "Deleted_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "timestamp"
@@ -859,14 +741,15 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "timestamp"
             }
         },
-        "modelTable": "multimedia"
+        "modelTable": "moviments"
     },
+<<<<<<< Updated upstream
     "password_resets": {
         "modelName": "PasswordReset",
         "enable": "no",
@@ -909,154 +792,74 @@
     },
     "pecas": {
         "modelName": "Peca",
+=======
+    "oauth_access_tokens": {
+        "modelName": "Oauth_access_token",
+>>>>>>> Stashed changes
         "enable": "no",
         "fields": {
             "id": {
                 "name": "Id",
-                "lenght": null,
+                "lenght": "100",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "PRI",
-                "type": "int"
+                "type": "text"
             },
-            "imagem": {
-                "name": "Imagem",
-                "lenght": "255",
+            "user_id": {
+                "name": "User_id",
+                "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
+                },
+                "Key": "MUL",
+                "type": "text"
+            },
+            "client_id": {
+                "name": "Client_id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "text"
-            },
-            "marca_id": {
-                "name": "Marca_id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "int"
-            },
-            "modelo": {
-                "name": "Modelo",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "valor": {
-                "name": "Valor",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "estado": {
-                "name": "Estado",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "texto": {
-                "name": "Texto",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "created_at": {
-                "name": "Created_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "updated_at": {
-                "name": "Updated_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "deleted_at": {
-                "name": "Deleted_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            }
-        },
-        "modelTable": "pecas"
-    },
-    "permissions": {
-        "modelName": "Permission",
-        "enable": "no",
-        "fields": {
-            "id": {
-                "name": "Id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "PRI",
-                "type": "int"
             },
             "name": {
                 "name": "Name",
-                "lenght": "191",
+                "lenght": "255",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "text"
             },
-            "guard_name": {
-                "name": "Guard_name",
-                "lenght": "191",
+            "scopes": {
+                "name": "Scope",
+                "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "revoked": {
+                "name": "Revoked",
+                "lenght": "1",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "text"
@@ -1067,7 +870,7 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "timestamp"
@@ -1078,9 +881,72 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
+                "type": "timestamp"
+            },
+            "expires_at": {
+                "name": "Expires_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "no",
+                "type": "text"
+            }
+        },
+        "modelTable": "oauth_access_tokens"
+    },
+    "oauth_auth_codes": {
+        "modelName": "Oauth_auth_code",
+        "enable": "no",
+        "fields": {
+            "id": {
+                "name": "Id",
+                "lenght": "100",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "PRI",
+                "type": "text"
+            },
+            "user_id": {
+                "name": "User_id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "MUL",
+                "type": "text"
+            },
+            "client_id": {
+                "name": "Client_id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "scopes": {
+                "name": "Scope",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "no",
+<<<<<<< Updated upstream
                 "type": "timestamp"
             }
         },
@@ -1093,30 +959,37 @@
             "permission_id": {
                 "name": "Permission_id",
                 "lenght": null,
+=======
+                "type": "text"
+            },
+            "revoked": {
+                "name": "Revoked",
+                "lenght": "1",
+>>>>>>> Stashed changes
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
-                "Key": "PRI",
-                "type": "int"
+                "Key": "no",
+                "type": "text"
             },
-            "role_id": {
-                "name": "Role_id",
+            "expires_at": {
+                "name": "Expires_at",
                 "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
-                "Key": "PRI",
-                "type": "int"
+                "Key": "no",
+                "type": "text"
             }
         },
-        "modelTable": "role_has_permissions"
+        "modelTable": "oauth_auth_codes"
     },
-    "roles": {
-        "modelName": "Role",
+    "oauth_clients": {
+        "modelName": "Oauth_client",
         "enable": "no",
         "fields": {
             "id": {
@@ -1125,53 +998,65 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "PRI",
-                "type": "int"
+                "type": "text"
+            },
+            "user_id": {
+                "name": "User_id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "MUL",
+                "type": "text"
             },
             "name": {
                 "name": "Name",
-                "lenght": "191",
+                "lenght": "255",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "text"
             },
-            "guard_name": {
-                "name": "Guard_name",
-                "lenght": "191",
+            "secret": {
+                "name": "Secret",
+                "lenght": "100",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "text"
             },
-            "created_at": {
-                "name": "Created_at",
-                "lenght": null,
+            "provider": {
+                "name": "Provider",
+                "lenght": "255",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
-                "type": "timestamp"
+                "type": "text"
             },
-            "updated_at": {
-                "name": "Updated_at",
+            "redirect": {
+                "name": "Redirect",
                 "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
+<<<<<<< Updated upstream
                 "type": "timestamp"
             }
         },
@@ -1184,21 +1069,39 @@
             "id": {
                 "name": "Id",
                 "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "PRI",
-                "type": "int"
+=======
+                "type": "text"
             },
-            "title": {
-                "name": "Title",
-                "lenght": "255",
+            "personal_access_client": {
+                "name": "Personal_access_client",
+                "lenght": "1",
+>>>>>>> Stashed changes
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "password_client": {
+                "name": "Password_client",
+                "lenght": "1",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "revoked": {
+                "name": "Revoked",
+                "lenght": "1",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "text"
@@ -1209,7 +1112,7 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "timestamp"
@@ -1220,27 +1123,21 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "deleted_at": {
-                "name": "Deleted_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "timestamp"
             }
         },
-        "modelTable": "tipo_clientes"
+        "modelTable": "oauth_clients"
     },
+<<<<<<< Updated upstream
     "tipo_historicos": {
         "modelName": "TipoHistorico",
+=======
+    "oauth_personal_access_clients": {
+        "modelName": "Oauth_personal_access_client",
+>>>>>>> Stashed changes
         "enable": "no",
         "fields": {
             "id": {
@@ -1249,18 +1146,18 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "PRI",
-                "type": "int"
+                "type": "text"
             },
-            "title": {
-                "name": "Title",
-                "lenght": "255",
+            "client_id": {
+                "name": "Client_id",
+                "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "text"
@@ -1271,7 +1168,7 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "timestamp"
@@ -1282,27 +1179,67 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "deleted_at": {
-                "name": "Deleted_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "timestamp"
             }
         },
-        "modelTable": "tipo_historicos"
+        "modelTable": "oauth_personal_access_clients"
     },
-    "trucks": {
-        "modelName": "Truck",
+    "oauth_refresh_tokens": {
+        "modelName": "Oauth_refresh_token",
+        "enable": "no",
+        "fields": {
+            "id": {
+                "name": "Id",
+                "lenght": "100",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "PRI",
+                "type": "text"
+            },
+            "access_token_id": {
+                "name": "Access_token_id",
+                "lenght": "100",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "revoked": {
+                "name": "Revoked",
+                "lenght": "1",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "expires_at": {
+                "name": "Expires_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "no",
+                "type": "text"
+            }
+        },
+        "modelTable": "oauth_refresh_tokens"
+    },
+    "orders": {
+        "modelName": "Order",
         "enable": "no",
         "fields": {
             "id": {
@@ -1311,106 +1248,62 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "PRI",
                 "type": "int"
             },
-            "imagem": {
-                "name": "Imagem",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "marca_id": {
-                "name": "Marca_id",
+            "user_id": {
+                "name": "User_id",
                 "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
+                },
+                "Key": "MUL",
+                "type": "int"
+            },
+            "product_id": {
+                "name": "Product_id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "MUL",
+                "type": "int"
+            },
+            "amount": {
+                "name": "Amount",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "int"
             },
-            "modelo": {
-                "name": "Modelo",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "km": {
-                "name": "Km",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "estado": {
-                "name": "Estado",
+            "status": {
+                "name": "Statu",
                 "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
-                "type": "int"
+                "type": "select"
             },
-            "mes": {
-                "name": "Me",
+            "ship_code": {
+                "name": "Ship_code",
                 "lenght": "255",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "ano": {
-                "name": "Ano",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "texto": {
-                "name": "Texto",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "valor": {
-                "name": "Valor",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "text"
@@ -1421,7 +1314,7 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "timestamp"
@@ -1432,24 +1325,209 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "deleted_at": {
-                "name": "Deleted_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "timestamp"
             }
         },
-        "modelTable": "trucks"
+        "modelTable": "orders"
+    },
+    "product_photos": {
+        "modelName": "Product_photo",
+        "enable": "yes",
+        "fields": {
+            "id": {
+                "name": "Id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "PRI",
+                "type": "int"
+            },
+            "product_id": {
+                "name": "Product_id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "MUL",
+                "type": "int"
+            },
+            "description": {
+                "name": "Description",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "photo": {
+                "name": "Photo",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "created_at": {
+                "name": "Created_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "updated_at": {
+                "name": "Updated_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            }
+        },
+        "modelTable": "product_photos",
+        "functions": {
+            "create": {
+                "enable": "yes"
+            },
+            "destroy": {
+                "enable": "yes"
+            },
+            "index": {
+                "enable": "yes"
+            },
+            "show": {
+                "enable": "yes"
+            },
+            "update": {
+                "enable": "yes"
+            }
+        }
+    },
+    "products": {
+        "modelName": "Product",
+        "enable": "no",
+        "fields": {
+            "id": {
+                "name": "Id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "PRI",
+                "type": "int"
+            },
+            "category_id": {
+                "name": "Category_id",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "MUL",
+                "type": "int"
+            },
+            "name": {
+                "name": "Name",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "description": {
+                "name": "Description",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "stock": {
+                "name": "Stock",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "no",
+                "type": "int"
+            },
+            "price": {
+                "name": "Price",
+                "lenght": "82",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "promo_price": {
+                "name": "Promo_price",
+                "lenght": "82",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "created_at": {
+                "name": "Created_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "updated_at": {
+                "name": "Updated_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            }
+        },
+        "modelTable": "products"
     },
     "users": {
         "modelName": "User",
@@ -1461,51 +1539,106 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "PRI",
                 "type": "int"
             },
             "name": {
                 "name": "Name",
-                "lenght": "191",
+                "lenght": "255",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "text"
             },
             "email": {
                 "name": "Email",
-                "lenght": "191",
+                "lenght": "255",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
+                },
+                "Key": "UNI",
+                "type": "text"
+            },
+            "email_verified_at": {
+                "name": "Email_verified_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "password": {
+                "name": "Password",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "text"
             },
-            "password": {
-                "name": "Password",
-                "lenght": "191",
+            "type": {
+                "name": "Type",
+                "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
+                },
+                "Key": "no",
+                "type": "select"
+            },
+            "active": {
+                "name": "Active",
+                "lenght": "1",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "photo": {
+                "name": "Photo",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "nif": {
+                "name": "Nif",
+                "lenght": "9",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "text"
             },
             "remember_token": {
                 "name": "Remember_token",
-                "lenght": "191",
+                "lenght": "100",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "text"
@@ -1516,7 +1649,7 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "timestamp"
@@ -1527,225 +1660,13 @@
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
+                    "table": "adress"
                 },
                 "Key": "no",
                 "type": "timestamp"
             }
         },
         "modelTable": "users"
-    },
-    "vendas": {
-        "modelName": "Venda",
-        "enable": "no",
-        "fields": {
-            "id": {
-                "name": "Id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "PRI",
-                "type": "int"
-            },
-            "tpdoc": {
-                "name": "Tpdoc",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "terceiro": {
-                "name": "Terceiro",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "data": {
-                "name": "Data",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "totdoc": {
-                "name": "Totdoc",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "totmerc": {
-                "name": "Totmerc",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "quant": {
-                "name": "Quant",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "created_at": {
-                "name": "Created_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "updated_at": {
-                "name": "Updated_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "deleted_at": {
-                "name": "Deleted_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            }
-        },
-        "modelTable": "vendas"
-    },
-    "works": {
-        "modelName": "Work",
-        "enable": "no",
-        "fields": {
-            "id": {
-                "name": "Id",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "PRI",
-                "type": "int"
-            },
-            "title": {
-                "name": "Title",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "text": {
-                "name": "Text",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "image": {
-                "name": "Image",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "category": {
-                "name": "Category",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "int"
-            },
-            "created_at": {
-                "name": "Created_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "updated_at": {
-                "name": "Updated_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "deleted_at": {
-                "name": "Deleted_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            }
-        },
-        "modelTable": "works"
     },
     "generated": "yes"
 }
