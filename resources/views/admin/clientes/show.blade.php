@@ -9,7 +9,7 @@
     <div class="card-body">
         <div class="mb-2">
             <table class="table table-bordered table-striped">
-                
+
                     <tr>
                                 <th> Id</th>
                                 <td> {{$item->id}}</td></tr>
@@ -18,7 +18,7 @@
                                 <td> {{$item->nome}}</td></tr>
                     <tr>
                                 <th> Tipocliente</th>
-                                <td> {{$item->tipocliente}}</td></tr>
+                                <td> {{$item->tipoclienteRel->title??""}}</td></tr>
                     <tr>
                                 <th> Contacto</th>
                                 <td> {{$item->contacto}}</td></tr>
@@ -30,7 +30,7 @@
                                 <td> {{$item->ncontrib}}</td></tr>
                     <tr>
                                 <th> Codigo</th>
-                                <td> {{$item->codigo}}</td></tr>
+                                <td> {{$item->codigoEnum()}}</td></tr>
                     <tr>
                                 <th> Cdpostal</th>
                                 <td> {{$item->cdpostal}}</td></tr>

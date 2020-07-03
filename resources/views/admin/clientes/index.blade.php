@@ -33,7 +33,7 @@
  <th> Updated_at </th> 
  <th> Deleted_at </th> 
 
-                    <td>Actions</td>
+                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -41,12 +41,11 @@
                 <tr data-entry-id="{{$item->id}}">
                     <td>{{$item->id}}</td> 
 <td>{{$item->nome}}</td> 
-<td>{{$item->tipocliente}}</td> 
+<td>{{$item->tipoclienteRel->title?? ""}}</td> 
 <td>{{$item->contacto}}</td> 
 <td>{{$item->morada}}</td> 
 <td>{{$item->ncontrib}}</td> 
-<td>{{$item->codigo}}</td> 
-<td>{{$item->cdpostal}}</td> 
+<td> {{$item->codigoEnum()}}</td><td>{{$item->cdpostal}}</td> 
 <td>{{$item->local}}</td> 
 <td>{{$item->email}}</td> 
 <td>{{$item->ncabecas}}</td> 

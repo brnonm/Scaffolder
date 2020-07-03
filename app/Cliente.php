@@ -13,4 +13,19 @@ class Cliente extends Model
 
 
 
+
+
+
+    public function tipoclienteRel(){
+        return $this->hasOne('App\TipoCliente', "id", "tipocliente");
+    }
+
+    private static $codigo=['0'=>'Nu00e3o aceite','1'=>'Aceite'];
+
+    public function codigoEnum(){
+        return self::$codigo[$this->codigo]??"";
+    }
+                        
+
+
 }

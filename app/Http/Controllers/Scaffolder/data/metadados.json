@@ -1,832 +1,587 @@
 {
-    "metadados": {
-        "clientes": {
-            "modelName": "Cliente",
-            "enable": "yes",
-            "fields": {
-                "id": {
-                    "name": "Id",
-                    "lenght": "11",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "PRI",
-                    "type": "text"
+    "clientes": {
+        "modelName": "Cliente",
+        "enable": "yes",
+        "fields": {
+            "id": {
+                "name": "Id",
+                "lenght": "11",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
                 },
-                "nome": {
-                    "name": "Nome",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "tipocliente": {
-                    "name": "Tipocliente",
-                    "lenght": "11",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "contacto": {
-                    "name": "Contacto",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "morada": {
-                    "name": "Morada",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "ncontrib": {
-                    "name": "Ncontrib",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "codigo": {
-                    "name": "Codigo",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "cdpostal": {
-                    "name": "Cdpostal",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "local": {
-                    "name": "Local",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "email": {
-                    "name": "Email",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "ncabecas": {
-                    "name": "Ncabeca",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "datacri": {
-                    "name": "Datacri",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "created_at": {
-                    "name": "Created_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                },
-                "updated_at": {
-                    "name": "Updated_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                },
-                "deleted_at": {
-                    "name": "Deleted_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                }
+                "Key": "PRI",
+                "type": "int"
             },
-            "modelTable": "clientes"
-        },
-        "contacts": {
-            "modelName": "Contact",
-            "enable": "no",
-            "fields": {
-                "id": {
-                    "name": "Id",
-                    "lenght": "11",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "PRI",
-                    "type": "text"
+            "nome": {
+                "name": "Nome",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
                 },
-                "name": {
-                    "name": "Name",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "subject": {
-                    "name": "Subject",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "email": {
-                    "name": "Email",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "message": {
-                    "name": "Message",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "created_at": {
-                    "name": "Created_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                },
-                "updated_at": {
-                    "name": "Updated_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                },
-                "deleted_at": {
-                    "name": "Deleted_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                }
+                "Key": "no",
+                "type": "text"
             },
-            "modelTable": "contacts"
-        },
-        "criterio_valors": {
-            "modelName": "CriterioValor",
-            "enable": "no",
-            "fields": {
-                "id": {
-                    "name": "Id",
-                    "lenght": "11",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
+            "tipocliente": {
+                "name": "Tipocliente",
+                "lenght": "11",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "type": "relation",
+                    "table": "tipo_clientes",
+                    "foregein_key": "id",
+                    "label": "title"
                 },
-                "cliente_id": {
-                    "name": "Cliente_id",
-                    "lenght": "11",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "criterio": {
-                    "name": "Criterio",
-                    "lenght": "11",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "valor": {
-                    "name": "Valor",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "created_at": {
-                    "name": "Created_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                },
-                "updated_at": {
-                    "name": "Updated_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                },
-                "deleted_at": {
-                    "name": "Deleted_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                }
+                "Key": "no",
+                "type": "select"
             },
-            "modelTable": "criterio_valors"
-        },
-        "criterios": {
-            "modelName": "Criterio",
-            "enable": "no",
-            "fields": {
-                "id": {
-                    "name": "Id",
-                    "lenght": "11",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "PRI",
-                    "type": "text"
+            "contacto": {
+                "name": "Contacto",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
                 },
-                "title": {
-                    "name": "Title",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "created_at": {
-                    "name": "Created_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                },
-                "updated_at": {
-                    "name": "Updated_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                },
-                "deleted_at": {
-                    "name": "Deleted_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                }
+                "Key": "no",
+                "type": "text"
             },
-            "modelTable": "criterios"
-        },
-        "gestao_menus": {
-            "modelName": "GestaoMenu",
-            "enable": "no",
-            "fields": {
-                "id": {
-                    "name": "Id",
-                    "lenght": "11",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
+            "morada": {
+                "name": "Morada",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
                 },
-                "class": {
-                    "name": "Cla",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "active": {
-                    "name": "Active",
-                    "lenght": "50",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "link": {
-                    "name": "Link",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "texto": {
-                    "name": "Texto",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "created_at": {
-                    "name": "Created_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                },
-                "updated_at": {
-                    "name": "Updated_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                },
-                "deleted_at": {
-                    "name": "Deleted_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                }
+                "Key": "no",
+                "type": "text"
             },
-            "modelTable": "gestao_menus"
-        },
-        "historicos": {
-            "modelName": "Historico",
-            "enable": "no",
-            "fields": {
-                "id": {
-                    "name": "Id",
-                    "lenght": "11",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
+            "ncontrib": {
+                "name": "Ncontrib",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
                 },
-                "cliente_id": {
-                    "name": "Cliente_id",
-                    "lenght": "11",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "tipohistorico": {
-                    "name": "Tipohistorico",
-                    "lenght": "11",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "data": {
-                    "name": "Data",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "hora": {
-                    "name": "Hora",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "duracao": {
-                    "name": "Duracao",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "assunto": {
-                    "name": "Assunto",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "resumo": {
-                    "name": "Resumo",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "created_at": {
-                    "name": "Created_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                },
-                "updated_at": {
-                    "name": "Updated_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                },
-                "deleted_at": {
-                    "name": "Deleted_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                }
+                "Key": "no",
+                "type": "text"
             },
-            "modelTable": "historicos"
-        },
-        "migrations": {
-            "modelName": "Migration",
-            "enable": "no",
-            "fields": {
-                "id": {
-                    "name": "Id",
-                    "lenght": "10",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
+            "codigo": {
+                "name": "Codigo",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "type": "custom",
+                    "custom": {
+                        "1": {
+                            "key": "0",
+                            "value": "Nu00e3o aceite"
+                        },
+                        "2": {
+                            "key": "1",
+                            "value": "Aceite"
+                        }
                     },
-                    "Key": "no",
-                    "type": "text"
+                    "table": "clientes"
                 },
-                "migration": {
-                    "name": "Migration",
-                    "lenght": "191",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "batch": {
-                    "name": "Batch",
-                    "lenght": "11",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                }
+                "Key": "no",
+                "type": "select"
             },
-            "modelTable": "migrations"
-        },
-        "model_has_permissions": {
-            "modelName": "ModelHasPermission",
-            "enable": "no",
-            "fields": {
-                "permission_id": {
-                    "name": "Permission_id",
-                    "lenght": "10",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
+            "cdpostal": {
+                "name": "Cdpostal",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
                 },
-                "model_type": {
-                    "name": "Model_type",
-                    "lenght": "191",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "model_id": {
-                    "name": "Model_id",
-                    "lenght": "20",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                }
+                "Key": "no",
+                "type": "text"
             },
-            "modelTable": "model_has_permissions"
-        },
-        "model_has_roles": {
-            "modelName": "ModelHasRole",
-            "enable": "no",
-            "fields": {
-                "role_id": {
-                    "name": "Role_id",
-                    "lenght": "10",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
+            "local": {
+                "name": "Local",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
                 },
-                "model_type": {
-                    "name": "Model_type",
-                    "lenght": "191",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "model_id": {
-                    "name": "Model_id",
-                    "lenght": "20",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                }
+                "Key": "no",
+                "type": "text"
             },
-            "modelTable": "model_has_roles"
+            "email": {
+                "name": "Email",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "ncabecas": {
+                "name": "Ncabeca",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "datacri": {
+                "name": "Datacri",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "created_at": {
+                "name": "Created_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "updated_at": {
+                "name": "Updated_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "deleted_at": {
+                "name": "Deleted_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            }
         },
-        "multimedia": {
-            "modelName": "Multimedia",
-            "enable": "no",
-            "fields": {
-                "id": {
-                    "name": "Id",
-                    "lenght": "11",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no"
-                },
-                "class": {
-                    "name": "Cla",
-                    "lenght": "100",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no"
-                },
-                "class_id": {
-                    "name": "Class_id",
-                    "lenght": "11",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no"
-                },
-                "file": {
-                    "name": "File",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no"
-                },
-                "created_at": {
-                    "name": "Created_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no"
-                },
-                "deleted_at": {
-                    "name": "Deleted_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "clientes"
-                    },
-                    "Key": "no"
-                },
-                "updated_at": {
-                    "name": "Updated_at",
-                    "lenght": null,
-                    "display": "no",
-                    "required": "yes"
-                }
+        "modelTable": "clientes",
+        "functions": {
+            "create": {
+                "enable": "yes"
+            },
+            "destroy": {
+                "enable": "yes"
+            },
+            "index": {
+                "enable": "yes"
+            },
+            "show": {
+                "enable": "yes"
+            },
+            "update": {
+                "enable": "yes"
             }
         }
-    }
+    },
+    "criterio_valors": {
+        "modelName": "CriterioValor",
+        "enable": "no",
+        "fields": {
+            "id": {
+                "name": "Id",
+                "lenght": "11",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "cliente_id": {
+                "name": "Cliente_id",
+                "lenght": "11",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "criterio": {
+                "name": "Criterio",
+                "lenght": "11",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "valor": {
+                "name": "Valor",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "created_at": {
+                "name": "Created_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "updated_at": {
+                "name": "Updated_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "deleted_at": {
+                "name": "Deleted_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            }
+        },
+        "modelTable": "criterio_valors"
+    },
+    "multimedia": {
+        "modelName": "Multimedia",
+        "enable": "no",
+        "fields": {
+            "id": {
+                "name": "Id",
+                "lenght": "11",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "class": {
+                "name": "Cla",
+                "lenght": "100",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "class_id": {
+                "name": "Class_id",
+                "lenght": "11",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "file": {
+                "name": "File",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "created_at": {
+                "name": "Created_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "deleted_at": {
+                "name": "Deleted_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "updated_at": {
+                "name": "Updated_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            }
+        },
+        "modelTable": "multimedia"
+    },
+    "tipo_clientes": {
+        "modelName": "TipoCliente",
+        "enable": "yes",
+        "fields": {
+            "id": {
+                "name": "Id",
+                "lenght": "11",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "PRI",
+                "type": "text"
+            },
+            "title": {
+                "name": "Title",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "created_at": {
+                "name": "Created_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "updated_at": {
+                "name": "Updated_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "deleted_at": {
+                "name": "Deleted_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            }
+        },
+        "modelTable": "tipo_clientes",
+        "functions": {
+            "create": {
+                "enable": "yes"
+            },
+            "destroy": {
+                "enable": "yes"
+            },
+            "index": {
+                "enable": "yes"
+            },
+            "show": {
+                "enable": "yes"
+            },
+            "update": {
+                "enable": "yes"
+            }
+        }
+    },
+    "vendas": {
+        "modelName": "Venda",
+        "enable": "yes",
+        "fields": {
+            "id": {
+                "name": "Id",
+                "lenght": "11",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "PRI",
+                "type": "text"
+            },
+            "tpdoc": {
+                "name": "Tpdoc",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "terceiro": {
+                "name": "Terceiro",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "data": {
+                "name": "Data",
+                "lenght": "6",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "totdoc": {
+                "name": "Totdoc",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "totmerc": {
+                "name": "Totmerc",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "quant": {
+                "name": "Quant",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "created_at": {
+                "name": "Created_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "updated_at": {
+                "name": "Updated_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "deleted_at": {
+                "name": "Deleted_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            }
+        },
+        "modelTable": "vendas",
+        "functions": {
+            "create": {
+                "enable": "yes"
+            },
+            "destroy": {
+                "enable": "yes"
+            },
+            "index": {
+                "enable": "yes"
+            },
+            "show": {
+                "enable": "yes"
+            },
+            "update": {
+                "enable": "yes"
+            }
+        }
+    },
+    "generated": "yes"
 }

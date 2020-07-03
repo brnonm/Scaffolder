@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\TipoCliente;
 use App\Http\Requests\StoreClientesRequest;
 use App\Http\Requests\UpdateClientesRequest;
 
-use App\Http\Requests\StoreClientesRequest;
-use App\Http\Requests\UpdateClientesRequest;
+
 
 
 use Illuminate\Http\Request;
@@ -16,18 +17,9 @@ class ClienteController extends Controller
     protected static $model  = 'App\Cliente';
 
 
-    public function create(){
 
-        $item = new self::$model();
 
-        
-        return view('admin.clientes.create', compact('item'));
-    }
 
-    public function store(StoreClientesRequest $request){
-        self::$model::create($request->all());
-        return redirect()->route('clientes.index');
-    }
 
     public function destroy($model){
         $model=self::$model::findOrFail($model);   $model->delete();
@@ -45,12 +37,30 @@ class ClienteController extends Controller
         return view('admin.clientes.show', compact('item'));
     }
 
+
+
+
+
+
+    public function create(){
+        $item = new self::$model();
+        $tipoclienteAll = TipoCliente::all();
+
+        return view('admin.clientes.create', compact('item', 'tipoclienteAll'));
+    }
+
+    public function store(StoreClientesRequest $request){
+        self::$model::create($request->all());
+        return redirect()->route('clientes.index');
+    }
+
     public function edit($id){
         $item = self::$model::findOrFail($id);
 
-        
+        $tipoclienteAll = TipoCliente::all();
 
-        return view('admin.clientes.update', compact('item'));
+
+        return view('admin.clientes.update', compact('item', 'tipoclienteAll'));
     }
 
     public function update($id, UpdateClientesRequest $request){
@@ -58,8 +68,6 @@ class ClienteController extends Controller
         $item->update($request->all());
         return redirect()->route('clientes.index');
     }
-
-
 
 
 

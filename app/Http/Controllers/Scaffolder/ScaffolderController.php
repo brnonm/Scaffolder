@@ -228,9 +228,9 @@ class ScaffolderController extends Controller
             if(ini_get("max_input_vars")<10000){
                 //$exec="bash -lc 'echo | /usr/bin/sudo -S ".base_path(self::PHPINISH)."'";
                 //exec($exec,$out);
-                die("You have to change php.ini ");
+                die("You have to change php.ini to max_input_vars = 10000  ");
             }
-            dd(ini_get("max_input_vars"));
+
 
             $urlFolder = base_path('app/Http/Controllers/Scaffolder/data/templates/function');
             $json = json_encode($request->except('_token'), JSON_PRETTY_PRINT);
@@ -238,7 +238,7 @@ class ScaffolderController extends Controller
             $metadados = collect(json_decode($json));
             $metadados = collect($metadados->first());
 
-            dd("here");
+
 
 
 
@@ -482,7 +482,7 @@ class ScaffolderController extends Controller
 
                 if ($m->type == "select") {
                     if (isset($m->select->type) && $m->select->type == "relation") {
-                        $content .= "<td> " . '{{$item->' . $name . "Rel->" . $m->select->label . "}}</td>";
+                        $content .= "<td> " . '{{$item->' . $name . "Rel->" . $m->select->label . '??"" }}</td>';
                     } else if (isset($m->select->type) && $m->select->type == "custom") {
                         $content .= "<td> " . '{{$item->' . $name . "Enum()}}</td>";
                     } else if (isset($m->select->type) && $m->select->type == "enum") {
