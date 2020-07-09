@@ -215,6 +215,7 @@ class ScaffolderController extends Controller
         if ($this->checkIfLoggedIn()) {
             return $this->checkIfLoggedIn();
         }
+<<<<<<< HEAD
         if (ini_get("max_input_vars") < 10000) {
             //$exec="bash -lc 'echo | /usr/bin/sudo -S ".base_path(self::PHPINISH)."'";
             //exec($exec,$out);
@@ -225,6 +226,25 @@ class ScaffolderController extends Controller
         file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), stripslashes($json));
         $metadados = collect(json_decode($json));
         $metadados = collect($metadados->first());
+=======
+            if(ini_get("max_input_vars")<10000){
+                //$exec="bash -lc 'echo | /usr/bin/sudo -S ".base_path(self::PHPINISH)."'";
+                //exec($exec,$out);
+                die("You have to change php.ini to max_input_vars = 10000  ");
+            }
+
+
+            $urlFolder = base_path('app/Http/Controllers/Scaffolder/data/templates/function');
+            $json = json_encode($request->except('_token'), JSON_PRETTY_PRINT);
+            file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), stripslashes($json));
+            $metadados = collect(json_decode($json));
+            $metadados = collect($metadados->first());
+
+
+
+
+
+>>>>>>> master
 
         if (!File::exists($urlFolder)) {
             $this->errorPage("File with generic functions does not find!");
@@ -457,7 +477,7 @@ class ScaffolderController extends Controller
 
                 if ($m->type == "select") {
                     if (isset($m->select->type) && $m->select->type == "relation") {
-                        $content .= "<td> " . '{{$item->' . $name . "Rel->" . $m->select->label . "}}</td>";
+                        $content .= "<td> " . '{{$item->' . $name . "Rel->" . $m->select->label . '??"" }}</td>';
                     } else if (isset($m->select->type) && $m->select->type == "custom") {
                         $content .= "<td> " . '{{$item->' . $name . "Enum()}}</td>";
                     } else if (isset($m->select->type) && $m->select->type == "enum") {

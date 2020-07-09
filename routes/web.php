@@ -38,9 +38,14 @@ Route::group([ 'prefix' => 'scaffolder', 'as' => 'scaffolder.'], function () {
 
 Route::resource("clientes", "ClienteController");
 
+<<<<<<< HEAD
 Route::resource("alunos", "AlunoController");
 Route::resource("users", "UserController");
 Route::resource("autorizacoes_contas", "AutorizacoesContaController");
 Route::resource("contas", "ContaController");
 Route::resource("migrations", "MigrationController");
 Route::resource("movimentos", "MovimentoController");
+=======
+Route::resource("tipo_clientes", "TipoClienteController");
+Route::resource("vendas", "VendaController");
+>>>>>>> master
