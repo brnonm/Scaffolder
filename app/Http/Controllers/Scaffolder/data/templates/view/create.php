@@ -3,10 +3,9 @@
 
 <div>
     @csrf
-
     <div class="card">
         <div class="card-header">
-            Create :$modelName
+            Create :$templatemodelName
         </div>
 
         <div class="card-body">
@@ -17,12 +16,8 @@
                     <input class="btn btn-danger" type="submit" value="Create">
                 </div>
             </form>
-
-
         </div>
     </div>
-
-
 </div>
 
 @endsection

@@ -8,3 +8,7 @@
         self::$model::create($request->all());
         return redirect()->route('$modelTable.index');
     }
+
+
+
+

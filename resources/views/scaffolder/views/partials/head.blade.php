@@ -70,17 +70,12 @@
                                 <div class="btn-group">
                                     <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                        class="p-0 btn">
-                                        <img width="42" class="rounded-circle" src="/assets/images/avatars/1.jpg" alt="">
+                                        <!--<img width="42" class="rounded-circle" src="/assets/images/avatars/1.jpg" alt="">-->
                                         <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                     </a>
                                     <div tabindex="-1" role="menu" aria-hidden="true"
                                          class="dropdown-menu dropdown-menu-right">
-                                        <button type="button" tabindex="0" class="dropdown-item">User Account</button>
-                                        <button type="button" tabindex="0" class="dropdown-item">Settings</button>
-                                        <h6 tabindex="-1" class="dropdown-header">Header</h6>
-                                        <button type="button" tabindex="0" class="dropdown-item">Actions</button>
-                                        <div tabindex="-1" class="dropdown-divider"></div>
-                                        <button type="button" tabindex="0" class="dropdown-item">Dividers</button>
+                                        <button type="button" tabindex="0" class="dropdown-item">Logout</button>
                                     </div>
                                 </div>
                             </div>
@@ -88,9 +83,11 @@
                                 <div class="widget-heading">
                                     Laravel Scaffolder User
                                 </div>
+                                <!--
                                 <div class="widget-subheading">
                                     Administrador
                                 </div>
+                                -->
                             </div>
 
                         </div>
@@ -99,6 +96,7 @@
             </div>
         </div>
     </div>
+<!--
     <div class="ui-theme-settings">
         <button type="button" id="TooltipDemo" class="btn-open-options btn btn-warning">
             <i class="fa fa-cog fa-w-16 fa-spin fa-2x"></i>
@@ -465,6 +463,7 @@
             </div>
         </div>
     </div>
+    -->
     <div class="app-main">
         <div class="app-sidebar sidebar-shadow">
             <div class="app-header__logo">

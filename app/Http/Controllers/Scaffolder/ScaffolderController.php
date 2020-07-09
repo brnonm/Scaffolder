@@ -11,48 +11,50 @@ use Illuminate\Support\Facades\File;
 
 class ScaffolderController extends Controller
 {
-
     const CONFIG_PATH = "app/Http/Controllers/Scaffolder/config/auth.php";
     const PHPINISH = "app/Http/Controllers/Scaffolder/config/./phpini.sh";
 
-
-    public function login(){
+    public function login()
+    {
 
         return view("scaffolder.config.login");
     }
 
-    public function register(){
+    public function register()
+    {
 
         return view("scaffolder.config.register");
     }
 
-    public function loginPost(Request $request){
+    public function loginPost(Request $request)
+    {
 
 
         include base_path(self::CONFIG_PATH);
 
-        if(isset($alreadyCofigured)){
-            if($alreadyCofigured==false){
+        if (isset($alreadyCofigured)) {
+            if ($alreadyCofigured == false) {
                 return redirect()->route("install.login");
             }
-        }else{
+        } else {
             die("Error on installing, please contact developer");
         }
-        if($email == $request->email && $password == $request->password ){
+        if ($email == $request->email && $password == $request->password) {
             session_start();
             $_SESSION['scaffolder'] = "logged_in";
             return redirect()->route("install.indexChooseDB");
 
-        }else{
+        } else {
             return redirect()->back()->withErrors("Wrong password or email.");
 
         }
     }
 
-    public function registerPost(Request $request){
+    public function registerPost(Request $request)
+    {
 
         $config = File::get(base_path(self::CONFIG_PATH));
-        if(!$config){
+        if (!$config) {
             die("Error on installing, please contact developer");
         }
         $config = str_replace(['false'], "true", $config);
@@ -69,35 +71,36 @@ class ScaffolderController extends Controller
     }
 
 
-    private function checkIfLoggedIn(){
+    private function checkIfLoggedIn()
+    {
 
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
 
-        if(isset($_SESSION['scaffolder'])){
-            if($_SESSION['scaffolder'] == "logged_in"){
+        if (isset($_SESSION['scaffolder'])) {
+            if ($_SESSION['scaffolder'] == "logged_in") {
 
                 return false;
-            }else{
+            } else {
 
                 include base_path(self::CONFIG_PATH);
-                if($alreadyCofigured){
+                if ($alreadyCofigured) {
                     return redirect()->route("install.login");
-                }else{
+                } else {
                     return redirect()->route("install.register");
                 }
 
             }
-        }else{
+        } else {
 
-                include base_path(self::CONFIG_PATH);
-                if($alreadyCofigured){
+            include base_path(self::CONFIG_PATH);
+            if ($alreadyCofigured) {
 
-                    return redirect()->route("install.login");
-                }else{
-                    return redirect()->route("install.register");
-                }
+                return redirect()->route("install.login");
+            } else {
+                return redirect()->route("install.register");
+            }
 
 
         }
@@ -106,11 +109,10 @@ class ScaffolderController extends Controller
     }
 
 
-
     public function selectView()
     {
 
-        if($this->checkIfLoggedIn()){
+        if ($this->checkIfLoggedIn()) {
             return $this->checkIfLoggedIn();
         }
 
@@ -130,7 +132,7 @@ class ScaffolderController extends Controller
 
     public function backofficeController()
     {
-        if($this->checkIfLoggedIn()){
+        if ($this->checkIfLoggedIn()) {
             return $this->checkIfLoggedIn();
         }
         $url = base_path('app/Http/Controllers/Scaffolder/data/metadados.json');
@@ -146,22 +148,19 @@ class ScaffolderController extends Controller
 
     public function indexChooseDB()
     {
-        if($this->checkIfLoggedIn()){
+        if ($this->checkIfLoggedIn()) {
             return $this->checkIfLoggedIn();
         }
-
         $dbs = DB::select(DB::raw("SHOW DATABASES"));
-
         return view("scaffolder.choosedb", compact("dbs"));
     }
 
     public function getSchemaDB(Request $request)
     {
-        if($this->checkIfLoggedIn()){
+        if ($this->checkIfLoggedIn()) {
             return $this->checkIfLoggedIn();
         }
         $pathEnv = base_path('.env');
-
         if (File::exists($pathEnv)) {
             $str = file_get_contents($pathEnv);
             $r = explode("DB_DATABASE=", $str);
@@ -169,14 +168,11 @@ class ScaffolderController extends Controller
                 $r = explode("\n", $r[1]);
                 $r[0];
             }
-
             if ($r[0] != $request->db) {
                 $contents = str_replace($r[0], $request->db, $str);
                 file_put_contents($pathEnv, $contents);
                 $this->artisanOptimize();
             }
-
-
             $tables = DB::select(DB::raw("SELECT TABLE_NAME AS _table FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '$request->db'"));
             foreach ($tables as $key => $table) {
                 $t = $table->_table;
@@ -205,9 +201,6 @@ class ScaffolderController extends Controller
                     }
                 }
             }
-
-
-
             return view("scaffolder.configuretables", compact("metadados"));
 
         } else {
@@ -217,49 +210,36 @@ class ScaffolderController extends Controller
     }
 
 
-
-
-
     public function tablesConfigureP1Post(Request $request)
     {
-        if($this->checkIfLoggedIn()){
+        if ($this->checkIfLoggedIn()) {
             return $this->checkIfLoggedIn();
         }
-            if(ini_get("max_input_vars")<10000){
-                //$exec="bash -lc 'echo | /usr/bin/sudo -S ".base_path(self::PHPINISH)."'";
-                //exec($exec,$out);
-                die("You have to change php.ini ");
-            }
-            dd(ini_get("max_input_vars"));
-
-            $urlFolder = base_path('app/Http/Controllers/Scaffolder/data/templates/function');
-            $json = json_encode($request->except('_token'), JSON_PRETTY_PRINT);
-            file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), stripslashes($json));
-            $metadados = collect(json_decode($json));
-            $metadados = collect($metadados->first());
-
-            dd("here");
-
-
-
+        if (ini_get("max_input_vars") < 10000) {
+            //$exec="bash -lc 'echo | /usr/bin/sudo -S ".base_path(self::PHPINISH)."'";
+            //exec($exec,$out);
+            die("You have to change php.ini ");
+        }
+        $urlFolder = base_path('app/Http/Controllers/Scaffolder/data/templates/function');
+        $json = json_encode($request->except('_token'), JSON_PRETTY_PRINT);
+        file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), stripslashes($json));
+        $metadados = collect(json_decode($json));
+        $metadados = collect($metadados->first());
 
         if (!File::exists($urlFolder)) {
             $this->errorPage("File with generic functions does not find!");
         } else {
-
             $functions = $this->readTemplatesFunction();
             return view("scaffolder.configureTableController", compact("metadados", "functions"));
         }
-
     }
 
     public function tablesConfigureFuncPost(Request $request)
     {
-        if($this->checkIfLoggedIn()){
+        if ($this->checkIfLoggedIn()) {
             return $this->checkIfLoggedIn();
         }
         $baseJson = File::get(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'));
-
         $baseJson = collect(json_decode($baseJson));
         $baseJson = collect($baseJson->first());
 
@@ -267,14 +247,13 @@ class ScaffolderController extends Controller
         $newJson = collect(json_decode($newJson));
         $newJson = collect($newJson->first());
 
-
         $json = $this->joinJson($baseJson, $newJson);
-
         $this->createByJsonObject($json);
         $this->createMenuBackOffice($json);
         $this->generateView($json);
 
-        file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), json_encode($baseJson, JSON_PRETTY_PRINT));
+        file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'),
+            json_encode($baseJson, JSON_PRETTY_PRINT));
 
         return redirect()->route("scaffolder.controller");
     }
@@ -296,7 +275,6 @@ class ScaffolderController extends Controller
     private function generateView($metadadosModel)
     {
         $baseViews = base_path("resources/views/admin/");
-
         foreach ($metadadosModel as $key => $value) {
             if (isset($value->enable)) {
                 if ($value->enable == "yes") {
@@ -316,9 +294,7 @@ class ScaffolderController extends Controller
                                     $contentView = File::get(base_path("app/Http/Controllers/Scaffolder/data/templates/view/index.php"));
                                     $this->createDir($basedirectory);
                                     $view = fopen($basedirectory . "/index.blade.php", "w") or die("Unable to open file!");
-
                                     $contentView = $this->changeView($contentView, $value);
-
                                     fwrite($view, $contentView);
                                     fclose($view);
                                     break;
@@ -352,8 +328,7 @@ class ScaffolderController extends Controller
     private function changeView($contentView, $value)
     {
         //Views
-        $contentView = str_replace([':$modelName'], $value->modelName, $contentView);
-
+        $contentView = str_replace([':$templatemodelName'], $value->modelName, $contentView);
 
         //table
         $contentView = str_replace([':$templateFieldName'], $this->getFieldName($value), $contentView);
@@ -492,7 +467,12 @@ class ScaffolderController extends Controller
                     }
 
                 } else {
-                    $content .= "<td> " . '{{$item->' . "$name}}</td>";
+                    if($m->type == "image"){
+                        $content .= "<td><img src=\"/storage/fotos/{{ \$item->$name}}\" height=\"70px\" width=\"70px\" /></td>\n";
+                    }else{
+                        $content .= "<td> " . '{{$item->' . "$name}}</td>";
+                    }
+
                 }
 
                 $content .= "</tr>";
@@ -651,7 +631,7 @@ class ScaffolderController extends Controller
                     $rows .= "</td> \n";
                 } else {
                     switch ($f->type) {
-                        case "photo":
+                        case "image":
                             $rows .= "<td><img src=\"/storage/fotos/{{ \$item->$name}}\" height=\"70px\" width=\"70px\" /></td>\n";
                             break;
                         case "select":
@@ -661,7 +641,7 @@ class ScaffolderController extends Controller
 
                             } else if (isset($f->select->type) && $f->select->type == "custom") {
                                 $rows .= "<td> " . '{{$item->' . $name . "Enum()}}</td>";
-                            } else if (isset($f->select->options) && isset($f->select->type) && $f->select->type == "enum"){
+                            } else if (isset($f->select->options) && isset($f->select->type) && $f->select->type == "enum") {
                                 $rows .= "<td> " . '{{$item->' . $name . "Enum()}}</td>";
                             } else {
                                 $rows .= "<td> " . '{{$item->' . "$name}}</td>";
@@ -688,7 +668,6 @@ class ScaffolderController extends Controller
                 $colum .= " <th> $f->name </th> \n";
             }
         }
-
         return $colum;
     }
 
@@ -730,7 +709,6 @@ class ScaffolderController extends Controller
 
     private function createMenuBackOffice($json)
     {
-
         $modelPath = base_path("resources/views/scaffolder/views/partials/menujson.blade.php");
         $urlFunc = base_path("app/Http/Controllers/Scaffolder/data/menuTemplate.json");
 
@@ -740,7 +718,6 @@ class ScaffolderController extends Controller
             foreach ($json as $key => $value) {
                 if (isset($value->enable)) {
                     if ($value->enable == "yes") {
-
                         $name = $key;
                         $finalName = "";
                         $contents .= "\n";
@@ -756,7 +733,6 @@ class ScaffolderController extends Controller
                                 }
                                 file_put_contents($modelPath, $contents);
                             }
-
                         }
                     }
                 }
@@ -811,7 +787,6 @@ class ScaffolderController extends Controller
                 switch ($fName) {
                     case "create":
                         $name .= "Store";
-                        //$name .= ucfirst($model->modelTable);
                         $name .= $this->verifyName($model->modelTable);
                         $name .= "Request";
                         $url .= $name . ".php";
@@ -883,17 +858,11 @@ class ScaffolderController extends Controller
 
     private function populateRoutes($m)
     {
-
         $controllerName = $this->verifyName($m->modelName);
         $modelName = $this->verifyName($m->modelTable);
-
-
         $newRoute = 'Route::resource("' . $m->modelTable . '", "' . $controllerName . 'Controller");';
-
         $modelPath = base_path("routes/web.php");
-
         $contents = File::get($modelPath);
-
         if (strpos($contents, $newRoute) == false) {
             $contents .= "\n";
             $contents .= $newRoute;
@@ -936,12 +905,9 @@ class ScaffolderController extends Controller
                                     $relationsGetData = "";
                                     $relationsCompact = "";
                                     foreach ($model->fields as $name => $fi) {
-
                                         if (isset($fi->type) && $fi->type == "select") {
                                             if (isset($fi->select->type) && $fi->select->type == "relation") {
-
                                                 foreach ($all as $modelName => $models) {
-
                                                     if (isset($models->modelTable)) {
                                                         if ($models->modelTable === $fi->select->table) {
 
@@ -951,12 +917,9 @@ class ScaffolderController extends Controller
                                                         }
                                                     }
                                                 }
-
-
                                             }
                                         }
                                     }
-
                                     $imports .= "use App\Http\Requests\\$formRequestName;\n";
                                     break;
                                 case "update":
@@ -1009,8 +972,6 @@ class ScaffolderController extends Controller
                 }
             }
             $content .= "\n\n}";
-
-
             $content = str_replace(['namespace App\Http\Controllers;'], [$imports], $content);
 
             file_put_contents($modelPath, $content);
@@ -1032,12 +993,15 @@ class ScaffolderController extends Controller
         if (File::exists($modelPath)) {
 
             $contents = File::get($modelPath);
-
-
             $contents = substr_replace($contents, "", -3);
-
             $contents .= "\n";
             $initTable = '    protected $table = "' . $m->modelTable . '";';
+
+            if(isset($m->timeStamp)&& $m->timeStamp == "no"){
+                $contents.= '    public $timestamps = false;';
+                $contents .= "\n";
+            }
+
             if (strpos($contents, $initTable) == false) {
                 $contents .= $initTable;
             }
@@ -1061,19 +1025,15 @@ class ScaffolderController extends Controller
             if (strpos($contents, $initFillable) == false) {
                 $contents .= $initFillable;
             }
-
             $contents .= "\n";
             foreach ($m->fields as $key => $field) {
                 if ($field->type == "select") {
-
                     if (isset($field->select->type) && $field->select->type == "relation") {
-
                         $contents .= "\n";
                         $contents .= "\n";
                         $contents .= '    public function ' . $key . 'Rel(){';
                         $contents .= "\n";
                         foreach ($json as $modelName => $models) {
-
                             if (isset($models->modelTable)) {
                                 if ($models->modelTable === $field->select->table) {
 
@@ -1081,18 +1041,13 @@ class ScaffolderController extends Controller
                                 }
                             }
                         }
-
                         $contents .= "\n    }";
                     }
-
                     if (isset($field->select->type) && ($field->select->type == "custom" || $field->select->type == "enum")) {
-
-
                         $contents .= "\n";
                         $contents .= '
     private static $' . $key . '=[';
                         $loop = 0;
-
                         if ($field->select->type == "custom") {
                             foreach ($field->select->custom as $s) {
                                 if ($loop > 0) {
@@ -1102,7 +1057,6 @@ class ScaffolderController extends Controller
                                 $loop++;
                             }
                         } else if ($field->select->type == "enum") {
-
                             foreach ($field->select->options as $s => $k) {
                                 if ($loop > 0) {
                                     $contents .= ",";
@@ -1111,8 +1065,6 @@ class ScaffolderController extends Controller
                                 $loop++;
                             }
                         }
-
-
                         $contents .= '];
 
     public function ' . $key . 'Enum(){
@@ -1121,16 +1073,10 @@ class ScaffolderController extends Controller
                         ';
                         $contents .= "\n";
                         $contents .= "\n";
-
                     }
-
-
                 }
             }
-
-
             $contents .= "\n}";
-
             file_put_contents($modelPath, $contents);
         } else {
             $this->errorPage("File" . $m->modelName . "does not find!");
@@ -1324,6 +1270,8 @@ class ScaffolderController extends Controller
                         $showOP = '';
                     }
 
+
+
                     switch ($m->type) {
                         case "text":
                             $generateBody .= "<td><input $showOP type=\"text\" name=\"$name\" value=\"{{\$item->$name}}\"></td>";
@@ -1447,58 +1395,4 @@ class ScaffolderController extends Controller
         return File::get($urlTemplate);;
 
     }
-    /*
-        private function readTemplatesView()
-        {
-
-            $urlFolder = base_path("app/Http/Controllers/Scaffolder/data/templates/view");
-
-                foreach ($model->fields as $field => $option) {
-                    if ($option->Key == "PRI") {
-                        continue;
-                    } else {
-                        $i = 0;
-                        $rules = [];
-                        if (isset($option->Null)) {
-
-                        if ($option->Null == "NO") {
-                            $rules[$i] = "required";
-                            $i++;
-                        }
-                        }
-                        if (isset($option->lenght) && $option->lenght != null) {
-                            $rules[$i] = "max:$option->lenght";
-                            $i++;
-                        }
-                    }
-
-                    for ($f = 0; $f < $i; $f++) {
-                        if ($f == 0) {
-                            $new .= "            '$field' => '";
-                        }
-                        $new .= $rules[$f];
-                        if ($f == $i - 1) {
-                            $new .= "',\n";
-                        } else {
-                            $new .= "|";
-                        }
-                    }
-                }
-
-                $content = str_replace([$old], $new, $content);
-                file_put_contents($url, $content);
-            } else {
-                $this->err("Directory: $url does not exists.");
-            }
-
-            $filesInFolder = File::files($urlFolder);
-            $viewTemplates = array();
-            foreach ($filesInFolder as $path) {
-                $file = pathinfo($path);
-                array_push($viewTemplates, $file);
-            }
-            return $viewTemplates;
-        }
-
-    */
 }

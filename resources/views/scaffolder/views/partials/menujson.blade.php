@@ -1,2 +1,2 @@
 
-<li>  <a href="/candidaturas"> <i class="metismenu-icon"></i>  candidaturas </a> </li>
+<li>  <a href="/users"> <i class="metismenu-icon"></i>  users </a> </li>

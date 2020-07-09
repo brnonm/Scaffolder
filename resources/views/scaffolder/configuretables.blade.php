@@ -163,6 +163,18 @@
                                            value="yes" data-on="Yes" data-off="No">
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 col-form-label">Include TimeStamps</label>
+                                <div class="col-sm-10">
+                                    <input type="hidden" value="no"
+                                           name="metadados[{{$nameTable}}][timeStamp]">
+
+                                    <input type="checkbox" name="metadados[{{$nameTable}}][timeStamp]"
+                                           data-toggle="toggle" style="border:  border: 5px solid red;"
+                                           onchange="changeColorGreen({{$nameTable}})"
+                                           value="yes" data-on="Yes" data-off="No">
+                                </div>
+                            </div>
 
                             <div class="form-group row">
                                 <label for="inputPassword" class="col-sm-2 col-form-label">Field Configuration</label>
@@ -217,7 +229,10 @@
                                                             {{ (explode('(',$field->Type)[0] == 'decimal')? 'selected': '' }} value="decimal">
                                                             Decimal
                                                         </option>
-
+                                                        <option
+                                                            {{ (explode('(',$field->Type)[0] == 'image')? 'selected': '' }} value="image">
+                                                            Image
+                                                        </option>
 
                                                     </select>
                                                 </td>
@@ -245,13 +260,8 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-
-
                                                             <div class="row">
-
                                                                 <div class="col-md-12">
-
-
                                                                     <div id="{{$nameTable.$keyy}}_text"
                                                                          style="display: none;">
                                                                         <div class="form-group">
@@ -338,7 +348,8 @@
                                                                             <option disabled selected>Select One
                                                                             </option>
 
-                                                                            <option value="enum" {{ (explode('(',$field->Type)[0] == 'enum')? 'selected': '' }}>
+                                                                            <option
+                                                                                value="enum" {{ (explode('(',$field->Type)[0] == 'enum')? 'selected': '' }}>
                                                                                 Enum (DB)
                                                                             </option>
                                                                             <option value="custom">
@@ -353,20 +364,22 @@
                                                                              style="display: {{ (explode('(',$field->Type)[0] == 'enum')? 'block': 'none' }} ">
                                                                             <div class="row" style="padding:10px;">
 
-                                                                            <div class="col-6">Key</div>
-                                                                            <div class="col-6">Value</div>
-                                                                            @if(isset($field->options))
-                                                                                @foreach($field->options as $val=>$k)
-                                                                                    <input type="text" class="form-control col-6"
-                                                                                           name='metadados[{{$nameTable}}][fields][{{$keyy}}][select][options][{{$k}}]'
-                                                                                           value="{{$k}}" disabled>
-                                                                                    <input type="text" class="form-control col-6"
-                                                                                           name='metadados[{{$nameTable}}][fields][{{$keyy}}][select][options][{{$k}}]'
-                                                                                           value="{{$val}}">
-                                                                                @endforeach
-                                                                            @endif
+                                                                                <div class="col-6">Key</div>
+                                                                                <div class="col-6">Value</div>
+                                                                                @if(isset($field->options))
+                                                                                    @foreach($field->options as $val=>$k)
+                                                                                        <input type="text"
+                                                                                               class="form-control col-6"
+                                                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][select][options][{{$k}}]'
+                                                                                               value="{{$k}}" disabled>
+                                                                                        <input type="text"
+                                                                                               class="form-control col-6"
+                                                                                               name='metadados[{{$nameTable}}][fields][{{$keyy}}][select][options][{{$k}}]'
+                                                                                               value="{{$val}}">
+                                                                                    @endforeach
+                                                                                @endif
 
-                                                                        </div>
+                                                                            </div>
                                                                         </div>
 
                                                                         <div class="selectDivHidden"
@@ -487,26 +500,14 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-
                                         @endforeach
                                     </table>
-
-
                                 </div>
                             </div>
-
                         </div>
-
-
-
-
-
                     @endforeach
 
                     <script>
-
-
                         function add(name, nametable, key) {
                             total[name] += 1;
 
@@ -541,8 +542,6 @@
 
                         }
                     </script>
-
-
                 </div>
                 <br>
                 <input type="submit" value="Avançar" class="btn btn-info col-md-12">

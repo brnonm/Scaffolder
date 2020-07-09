@@ -1,8 +1,6 @@
     public function edit($id){
         $item = self::$model::findOrFail($id);
-
         :$relationsGetData
-
         return view('admin.$modelTable.update', compact('item':$relationsCompact));
     }
 
@@ -11,3 +9,7 @@
         $item->update($request->all());
         return redirect()->route('$modelTable.index');
     }
+
+
+
+

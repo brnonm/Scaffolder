@@ -3,13 +3,12 @@
 
 <div style="margin-bottom: 10px;" class="row">
     <div class="col-lg-12">
-        <a class="btn btn-success" href=:$templateRouteCreate>Create :$modelName</a>
+        <a class="btn btn-success" href=:$templateRouteCreate>Create :$templatemodelName</a>
     </div>
 </div>
-
 <div class="card">
     <div class="card-header">
-        Model: :$modelName
+        Model: :$templatemodelName
     </div>
 
     <div class="card-body">
@@ -26,19 +25,17 @@
                 <tr data-entry-id="{{$item->id}}">
                     :$templateFieldObject
                     :$templateButtonAction
-
                 </tr>
                 @endforeach
                 </tbody>
             </table>
-
         </div>
         <div class="col">
             :$templateNavLink
         </div>
-
-
     </div>
 </div>
 
 @endsection
+
+
