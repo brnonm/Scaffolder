@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
     "alunos": {
         "modelName": "Aluno",
         "enable": "no",
@@ -133,55 +132,10 @@
             },
             "email": {
                 "name": "Email",
-=======
-    "clientes": {
-        "modelName": "Cliente",
-        "enable": "yes",
-        "fields": {
-            "id": {
-                "name": "Id",
-                "lenght": "11",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "PRI",
-                "type": "int"
-            },
-            "nome": {
-                "name": "Nome",
                 "lenght": "255",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "tipocliente": {
-                "name": "Tipocliente",
-                "lenght": "11",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "type": "relation",
-                    "table": "tipo_clientes",
-                    "foregein_key": "id",
-                    "label": "title"
-                },
-                "Key": "no",
-                "type": "select"
-            },
-            "contacto": {
-                "name": "Contacto",
->>>>>>> master
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-<<<<<<< HEAD
                     "table": "alunos"
                 },
                 "Key": "no",
@@ -296,20 +250,10 @@
             },
             "estatuto": {
                 "name": "Estatuto",
-=======
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "morada": {
-                "name": "Morada",
->>>>>>> master
                 "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-<<<<<<< HEAD
                     "type": "enum",
                     "options": {
                         "TE": "TE",
@@ -358,14 +302,10 @@
                 "required": "yes",
                 "select": {
                     "table": "alunos"
-=======
-                    "table": "clientes"
->>>>>>> master
                 },
                 "Key": "no",
                 "type": "text"
             },
-<<<<<<< HEAD
             "tipo": {
                 "name": "Tipo",
                 "lenght": null,
@@ -379,42 +319,10 @@
                         "Curso Tu00e9cnico Superior Profissional": "Curso Tu00e9cnico Superior Profissional"
                     },
                     "table": "alunos"
-=======
-            "ncontrib": {
-                "name": "Ncontrib",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "codigo": {
-                "name": "Codigo",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "type": "custom",
-                    "custom": {
-                        "1": {
-                            "key": "0",
-                            "value": "Nu00e3o aceite"
-                        },
-                        "2": {
-                            "key": "1",
-                            "value": "Aceite"
-                        }
-                    },
-                    "table": "clientes"
->>>>>>> master
                 },
                 "Key": "no",
                 "type": "select"
             },
-<<<<<<< HEAD
             "semestres": {
                 "name": "Semestre",
                 "lenght": null,
@@ -450,57 +358,15 @@
             },
             "contato": {
                 "name": "Contato",
-=======
-            "cdpostal": {
-                "name": "Cdpostal",
                 "lenght": "255",
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "local": {
-                "name": "Local",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "email": {
-                "name": "Email",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "ncabecas": {
-                "name": "Ncabeca",
->>>>>>> master
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-<<<<<<< HEAD
                     "table": "alunos"
-=======
-                    "table": "clientes"
->>>>>>> master
                 },
                 "Key": "no",
                 "type": "text"
             },
-<<<<<<< HEAD
             "objetivos": {
                 "name": "Objetivo",
                 "lenght": null,
@@ -601,205 +467,10 @@
                 "required": "yes",
                 "select": {
                     "table": "alunos"
-=======
-            "datacri": {
-                "name": "Datacri",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
                 },
                 "Key": "no",
                 "type": "text"
             },
-            "created_at": {
-                "name": "Created_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "updated_at": {
-                "name": "Updated_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "deleted_at": {
-                "name": "Deleted_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            }
-        },
-        "modelTable": "clientes",
-        "functions": {
-            "create": {
-                "enable": "yes"
-            },
-            "destroy": {
-                "enable": "yes"
-            },
-            "index": {
-                "enable": "yes"
-            },
-            "show": {
-                "enable": "yes"
-            },
-            "update": {
-                "enable": "yes"
-            }
-        }
-    },
-    "criterio_valors": {
-        "modelName": "CriterioValor",
-        "enable": "no",
-        "fields": {
-            "id": {
-                "name": "Id",
-                "lenght": "11",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "cliente_id": {
-                "name": "Cliente_id",
-                "lenght": "11",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "criterio": {
-                "name": "Criterio",
-                "lenght": "11",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "valor": {
-                "name": "Valor",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "created_at": {
-                "name": "Created_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "updated_at": {
-                "name": "Updated_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "deleted_at": {
-                "name": "Deleted_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            }
-        },
-        "modelTable": "criterio_valors"
-    },
-    "multimedia": {
-        "modelName": "Multimedia",
-        "enable": "no",
-        "fields": {
-            "id": {
-                "name": "Id",
-                "lenght": "11",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "class": {
-                "name": "Cla",
-                "lenght": "100",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "class_id": {
-                "name": "Class_id",
-                "lenght": "11",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "file": {
-                "name": "File",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
->>>>>>> master
-                },
-                "Key": "no",
-                "type": "text"
-            },
-<<<<<<< HEAD
             "nome": {
                 "name": "Nome",
                 "lenght": "255",
@@ -813,15 +484,10 @@
             },
             "ECTS": {
                 "name": "ECTS",
-=======
-            "created_at": {
-                "name": "Created_at",
->>>>>>> master
                 "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-<<<<<<< HEAD
                     "table": "alunos"
                 },
                 "Key": "no",
@@ -829,20 +495,10 @@
             },
             "horas": {
                 "name": "Hora",
-=======
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "deleted_at": {
-                "name": "Deleted_at",
->>>>>>> master
                 "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-<<<<<<< HEAD
                     "table": "alunos"
                 },
                 "Key": "no",
@@ -874,43 +530,10 @@
                 "required": "yes",
                 "select": {
                     "table": "alunos"
-=======
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "updated_at": {
-                "name": "Updated_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            }
-        },
-        "modelTable": "multimedia"
-    },
-    "tipo_clientes": {
-        "modelName": "TipoCliente",
-        "enable": "yes",
-        "fields": {
-            "id": {
-                "name": "Id",
-                "lenght": "11",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
->>>>>>> master
                 },
                 "Key": "PRI",
                 "type": "text"
             },
-<<<<<<< HEAD
             "user_id": {
                 "name": "User_id",
                 "lenght": null,
@@ -992,88 +615,10 @@
                 "required": "yes",
                 "select": {
                     "table": "alunos"
-=======
-            "title": {
-                "name": "Title",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "text"
-            },
-            "created_at": {
-                "name": "Created_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "updated_at": {
-                "name": "Updated_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "deleted_at": {
-                "name": "Deleted_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            }
-        },
-        "modelTable": "tipo_clientes",
-        "functions": {
-            "create": {
-                "enable": "yes"
-            },
-            "destroy": {
-                "enable": "yes"
-            },
-            "index": {
-                "enable": "yes"
-            },
-            "show": {
-                "enable": "yes"
-            },
-            "update": {
-                "enable": "yes"
-            }
-        }
-    },
-    "vendas": {
-        "modelName": "Venda",
-        "enable": "yes",
-        "fields": {
-            "id": {
-                "name": "Id",
-                "lenght": "11",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
->>>>>>> master
                 },
                 "Key": "PRI",
                 "type": "text"
             },
-<<<<<<< HEAD
             "responsavel": {
                 "name": "Responsavel",
                 "lenght": "1",
@@ -1111,31 +656,10 @@
                 "required": "yes",
                 "select": {
                     "table": "alunos"
-=======
-            "tpdoc": {
-                "name": "Tpdoc",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
                 },
                 "Key": "no",
                 "type": "text"
             },
-            "terceiro": {
-                "name": "Terceiro",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
->>>>>>> master
-                },
-                "Key": "no",
-                "type": "text"
-            },
-<<<<<<< HEAD
             "queue": {
                 "name": "Queue",
                 "lenght": null,
@@ -1143,20 +667,10 @@
                 "required": "yes",
                 "select": {
                     "table": "alunos"
-=======
-            "data": {
-                "name": "Data",
-                "lenght": "6",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
->>>>>>> master
                 },
                 "Key": "no",
                 "type": "text"
             },
-<<<<<<< HEAD
             "payload": {
                 "name": "Payload",
                 "lenght": null,
@@ -1164,20 +678,10 @@
                 "required": "yes",
                 "select": {
                     "table": "alunos"
-=======
-            "totdoc": {
-                "name": "Totdoc",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
->>>>>>> master
                 },
                 "Key": "no",
                 "type": "text"
             },
-<<<<<<< HEAD
             "exception": {
                 "name": "Exception",
                 "lenght": null,
@@ -1185,74 +689,22 @@
                 "required": "yes",
                 "select": {
                     "table": "alunos"
-=======
-            "totmerc": {
-                "name": "Totmerc",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
                 },
                 "Key": "no",
                 "type": "text"
             },
-            "quant": {
-                "name": "Quant",
-                "lenght": "255",
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
->>>>>>> master
-                },
-                "Key": "no",
-                "type": "text"
-            },
-<<<<<<< HEAD
             "failed_at": {
                 "name": "Failed_at",
-=======
-            "created_at": {
-                "name": "Created_at",
                 "lenght": null,
                 "display": "yes",
                 "required": "yes",
                 "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "updated_at": {
-                "name": "Updated_at",
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-                    "table": "clientes"
-                },
-                "Key": "no",
-                "type": "timestamp"
-            },
-            "deleted_at": {
-                "name": "Deleted_at",
->>>>>>> master
-                "lenght": null,
-                "display": "yes",
-                "required": "yes",
-                "select": {
-<<<<<<< HEAD
                     "table": "alunos"
-=======
-                    "table": "clientes"
->>>>>>> master
                 },
                 "Key": "no",
                 "type": "timestamp"
             }
         },
-<<<<<<< HEAD
         "modelTable": "failed_jobs"
     },
     "migrations": {
@@ -1446,9 +898,6 @@
             }
         },
         "modelTable": "users",
-=======
-        "modelTable": "vendas",
->>>>>>> master
         "functions": {
             "create": {
                 "enable": "yes"

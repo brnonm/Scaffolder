@@ -102,7 +102,6 @@ class ScaffolderController extends Controller
                 return redirect()->route("install.register");
             }
 
-
         }
 
 
@@ -215,36 +214,20 @@ class ScaffolderController extends Controller
         if ($this->checkIfLoggedIn()) {
             return $this->checkIfLoggedIn();
         }
-<<<<<<< HEAD
+
         if (ini_get("max_input_vars") < 10000) {
             //$exec="bash -lc 'echo | /usr/bin/sudo -S ".base_path(self::PHPINISH)."'";
             //exec($exec,$out);
-            die("You have to change php.ini ");
+            die("You have to change php.ini to max_input_vars = 10000  ");
         }
+
+
         $urlFolder = base_path('app/Http/Controllers/Scaffolder/data/templates/function');
         $json = json_encode($request->except('_token'), JSON_PRETTY_PRINT);
         file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), stripslashes($json));
         $metadados = collect(json_decode($json));
         $metadados = collect($metadados->first());
-=======
-            if(ini_get("max_input_vars")<10000){
-                //$exec="bash -lc 'echo | /usr/bin/sudo -S ".base_path(self::PHPINISH)."'";
-                //exec($exec,$out);
-                die("You have to change php.ini to max_input_vars = 10000  ");
-            }
 
-
-            $urlFolder = base_path('app/Http/Controllers/Scaffolder/data/templates/function');
-            $json = json_encode($request->except('_token'), JSON_PRETTY_PRINT);
-            file_put_contents(base_path('app/Http/Controllers/Scaffolder/data/metadados.json'), stripslashes($json));
-            $metadados = collect(json_decode($json));
-            $metadados = collect($metadados->first());
-
-
-
-
-
->>>>>>> master
 
         if (!File::exists($urlFolder)) {
             $this->errorPage("File with generic functions does not find!");
@@ -487,9 +470,9 @@ class ScaffolderController extends Controller
                     }
 
                 } else {
-                    if($m->type == "image"){
+                    if ($m->type == "image") {
                         $content .= "<td><img src=\"/storage/fotos/{{ \$item->$name}}\" height=\"70px\" width=\"70px\" /></td>\n";
-                    }else{
+                    } else {
                         $content .= "<td> " . '{{$item->' . "$name}}</td>";
                     }
 
@@ -1017,8 +1000,8 @@ class ScaffolderController extends Controller
             $contents .= "\n";
             $initTable = '    protected $table = "' . $m->modelTable . '";';
 
-            if(isset($m->timeStamp)&& $m->timeStamp == "no"){
-                $contents.= '    public $timestamps = false;';
+            if (isset($m->timeStamp) && $m->timeStamp == "no") {
+                $contents .= '    public $timestamps = false;';
                 $contents .= "\n";
             }
 
@@ -1289,7 +1272,6 @@ class ScaffolderController extends Controller
                     } else {
                         $showOP = '';
                     }
-
 
 
                     switch ($m->type) {
