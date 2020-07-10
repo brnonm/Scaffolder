@@ -37,12 +37,12 @@
     8. Map the laravel project on your brand new .yalm file
         Open the homestead.yaml file (located at Homestead folder) on your prefered text editor (ex: Sublime Text)
 
-            7.1 under the section 'folders' remove the example content and add: (notice that the starting tabs are crutial and if not respected this may not work)
+            a) under the section 'folders' remove the example content and add: (notice that the starting tabs are crutial and if not respected this may not work)
      
             - map: REPLACE_BY_PATH_IN_YOUR_SYSTEM/Scaffolder
               to: /home/vagrant/Scaffolder
 
-    8.2 under the section 'sites' remove the example content and add: (notice that the starting tabs are crutial and if not respected this may not work)
+            b) Under the section 'sites' remove the example content and add: (notice that the starting tabs are crutial and if not respected this may not work)
             
             - map: scaffolder.local
               to: /home/vagrant/Scaffolder/public
@@ -63,7 +63,15 @@
     12. Create new .env file
 
             $cp .env.example .env
-    
+            
+    13. Configure .env
+            
+            DB_DATABASE= your settings
+            DB_USERNAME= your settings
+            DB_PASSWORD= your settings
+            
+            Change the values “your settings” to your own server definitions.
+                
     13. Generate new key
 
             $php artisan key:generate
@@ -93,7 +101,9 @@
     
   <a href="https://imgur.com/C7pcznQ"><img src="https://i.imgur.com/C7pcznQ.png" title="source: imgur.com" /></a>
 
-*** Additional information *** 
+
+
+###Additional information
 
 
     1. Laravel Homestead page
