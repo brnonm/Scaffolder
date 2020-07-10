@@ -4,7 +4,7 @@
 
     <div class="row">
         <div class="col-md-12" style="text-align: center">
-            <p>Gerador de projetos - Parte 2 - Escolher metodos para os controladores</p>
+            <p>Project Generator - Part 2 - Select methods for controllers</p>
         </div>
     </div>
     <hr>

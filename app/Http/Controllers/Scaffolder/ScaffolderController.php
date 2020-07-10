@@ -154,6 +154,7 @@ class ScaffolderController extends Controller
         return view("scaffolder.choosedb", compact("dbs"));
     }
 
+
     public function getSchemaDB(Request $request)
     {
         if ($this->checkIfLoggedIn()) {
@@ -172,7 +173,8 @@ class ScaffolderController extends Controller
                 file_put_contents($pathEnv, $contents);
                 $this->artisanOptimize();
             }
-            $tables = DB::select(DB::raw("SELECT TABLE_NAME AS _table FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '$request->db'"));
+            $tables = DB::select(DB::raw("SELECT TABLE_NAME AS _table FROM
+INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '$request->db'"));
             foreach ($tables as $key => $table) {
                 $t = $table->_table;
                 $columns = DB::select(DB::raw("show fields from " . $t));
@@ -332,25 +334,21 @@ class ScaffolderController extends Controller
     {
         //Views
         $contentView = str_replace([':$templatemodelName'], $value->modelName, $contentView);
-
         //table
         $contentView = str_replace([':$templateFieldName'], $this->getFieldName($value), $contentView);
         $contentView = str_replace([':$templateFieldObject'], $this->getFieldNameObject($value), $contentView);
         $contentView = str_replace([':$templateButtonAction'], $this->getButtonAction($value), $contentView);
         $contentView = str_replace([':$templateNavLink'], "{{ \$items->links()}}", $contentView);
-
         //Routes
         $contentView = str_replace([':$templateRouteCreate'], "\"{{ route('$value->modelTable.create') }}\"", $contentView);
         $contentView = str_replace([':$templateRouteUpdate'], "\"{{ route('$value->modelTable.update', " . '$item->id' . ") }}\"", $contentView);
         $contentView = str_replace([':$templateRouteShow'], "\"{{ route('$value->modelTable.show', " . '$item->id' . ") }}\"", $contentView);
         $contentView = str_replace([':$templateRouteDestroy'], "\"{{ route('$value->modelTable.destroy', " . '$item->id' . ") }}\"", $contentView);
         $contentView = str_replace([':$templateRouteStore'], "\"{{ route('$value->modelTable.store') }}\"", $contentView);
-
         //Fields manipulation
         $contentView = str_replace([':$templateFieldInputRow'], $this->getFieldInput($value), $contentView);
         $contentView = str_replace([':$templateFieldShow'], $this->getFieldShow($value), $contentView);
         $contentView = str_replace([':$templateFieldUpdate'], $this->getFieldUpdate($value), $contentView);
-
         return $contentView;
     }
 
@@ -925,6 +923,7 @@ class ScaffolderController extends Controller
                                     }
                                     $imports .= "use App\Http\Requests\\$formRequestName;\n";
                                     break;
+
                                 case "update":
 
                                     $formRequestName = "Update" . $this->verifyName($model->modelTable) . "Request";
@@ -1040,7 +1039,8 @@ class ScaffolderController extends Controller
                             if (isset($models->modelTable)) {
                                 if ($models->modelTable === $field->select->table) {
 
-                                    $contents .= '        return $this->hasOne(\'App\\' . $models->modelName . '\', "' . $field->select->foregein_key . '", "' . $key . '");';
+                                    $contents .= '        return $this->hasOne(\'App\\' . $models->modelName . '\', "' .
+                                        $field->select->foregein_key . '", "' . $key . '");';
                                 }
                             }
                         }
@@ -1086,121 +1086,6 @@ class ScaffolderController extends Controller
         }
     }
 
-    private function generateView1($metadadosModel)
-    {
-        $baseViews = base_path("resources/views/admin/");
-
-        foreach ($metadadosModel as $key => $value) {
-            if (isset($value->enable)) {
-                if ($value->enable == "yes") {
-                    $generateBody = "";
-                    $basedirectory = $baseViews . $key;
-                    $this->createDir($basedirectory);
-                    $view = fopen($basedirectory . "/index.blade.php", "w") or die("Unable to open file!");
-
-                    $contentView = File::get(base_path("app/Http/Controllers/Scaffolder/data/templates/view/index.php"));
-                    $contentView = str_replace(['$modelName'], [$value->modelName], $contentView);
-
-
-                    $actions = "";
-                    foreach ($value->functions as $name => $f) {
-                        if ($f->enable == "yes") {
-
-                            switch ($name) {
-                                case "show":
-                                    $actions .= "<a  class=" . '"btn btn-xs btn-info"' . " href=\"{{ route('$value->modelTable.show', " . '$item->id' . ") }}\">Show</a> ";
-                                    $contentPartial = $this->generateViewActions($name, $value);
-                                    $viewPartial = fopen($basedirectory . "/show.blade.php", "w") or die("Unable to open file!");
-                                    fwrite($viewPartial, $contentPartial);
-                                    fclose($viewPartial);
-                                    break;
-
-                                case "update":
-                                    $actions .= "<a  class=" . '"btn btn-xs btn-info"' . " href=\"{{ route('$value->modelTable.edit', " . '$item->id' . ") }}\">Update</a> ";
-                                    $contentPartial = $this->generateViewActions($name, $value);
-                                    $viewPartial = fopen($basedirectory . "/update.blade.php", "w") or die("Unable to open file!");
-                                    fwrite($viewPartial, $contentPartial);
-                                    fclose($viewPartial);
-                                    break;
-
-                                case "destroy":
-                                    $actions .= "<form action=\"{{ route('$value->modelTable.destroy', " . '$item->id' . ") }}\" method=\"POST\" onsubmit=\"return confirm('Confirm delete');\" style=\"display: inline-block;\">
-                                        <input type=\"hidden\" name=\"_method\" value=\"DELETE\">
-                                        <input type=\"hidden\" name=\"_token\" value=\"{{ csrf_token() }}\">
-                                        <input type=\"submit\" class=\"btn btn-xs btn-danger\" value=\"Delete\">
-                                    </form>";
-                                    break;
-
-                                case "create":
-                                    $generateBody .= "<a class=" . '"btn btn-xs btn-success"' . " href=\"{{ route('$value->modelTable.create') }}\">Create</a> ";
-                                    $contentPartial = $this->generateViewActions($name, $value);
-                                    $viewPartial = fopen($basedirectory . "/create.blade.php", "w") or die("Unable to open file!");
-                                    fwrite($viewPartial, $contentPartial);
-                                    fclose($viewPartial);
-                                    break;
-
-                            }
-                        }
-                    }
-
-                    $colum = "";
-
-                    foreach ($value->fields as $name => $f) {
-                        if ($f->display == "yes") {
-                            $colum .= " <th> $f->name </th> \n";
-                        }
-                    }
-
-                    $rows = "";
-
-                    foreach ($value->fields as $name => $f) {
-
-
-                        if ($f->display == "yes") {
-                            if (isset($f->options)) {
-
-                                $rows .= "<td>\n";
-                                foreach ($f->options as $index => $option) {
-                                    if ($index != "type") {
-
-                                        $rows .= "{{( \$item->$name == '$index')? '$option': '' }}";
-                                        $rows .= "\n";
-                                    }
-                                }
-                                $rows .= "</td> \n";
-                            } else {
-                                if ($f->type == "photo") {
-                                    $rows .= "<td><img src=\"/storage/fotos/{{ \$item->$name}}\" height=\"70px\" width=\"70px\" /></td>\n";
-                                } else {
-                                    $rows .= '<td>{{$item->' . $name . "}}</td> \n";
-                                }
-                            }
-                        }
-                    }
-                    $generateBody .= "
-                                <table class=\"table\">
-                        <tr>
-                            $colum
-                            <th>Actions</th>
-                        </tr>
-                         @foreach(" . '$items' . " as " . '$item' . ")
-                                <tr>
-                                    $rows
-                                    <td>$actions</td>
-                                </tr>
-                                @endforeach
-                    </table>
-                    <div class=\"col\">
-                        {{\$items->links()}}
-                    </div>
-                    ";
-                    $contentView = str_replace(['$generateBody'], $generateBody, $contentView);
-                    fwrite($view, $contentView);
-                    fclose($view);
-                }
-            }
-        }
-    }
 
     private function generateViewActions($name, $model)
     {

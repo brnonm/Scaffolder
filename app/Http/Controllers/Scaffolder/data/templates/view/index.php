@@ -1,3 +1,4 @@
+
 @extends("scaffolder.views.partials.main")
 @section("container")
 
@@ -37,5 +38,6 @@
 </div>
 
 @endsection
+
 
 

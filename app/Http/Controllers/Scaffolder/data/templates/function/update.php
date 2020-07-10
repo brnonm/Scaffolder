@@ -1,3 +1,4 @@
+
     public function edit($id){
         $item = self::$model::findOrFail($id);
         :$relationsGetData
