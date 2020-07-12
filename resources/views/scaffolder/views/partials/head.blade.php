@@ -76,7 +76,7 @@
                                     </a>
                                     <div tabindex="-1" role="menu" aria-hidden="true"
                                          class="dropdown-menu dropdown-menu-right">
-                                        <button type="button" tabindex="0" class="dropdown-item">Logout</button>
+                                        <a href="{{route("install.logout")}}" tabindex="0" class="dropdown-item">Logout</a>
                                     </div>
                                 </div>
                             </div>
@@ -135,7 +135,7 @@
             <div class="scrollbar-sidebar">
                 <div class="app-sidebar__inner">
                     <ul class="vertical-nav-menu">
-                        
+
                         <li class="app-sidebar__heading">Scaffolder</li>
                         <li>
                             <a href="{{route("install.indexChooseDB")}}" class="mm-active">

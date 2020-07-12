@@ -17,6 +17,7 @@ Route::get('/', "Scaffolder\ScaffolderController@selectView")->name("selectView"
 
 Route::group([ 'prefix' => 'install', 'as' => 'install.'], function () {
     Route::get('/login', "Scaffolder\ScaffolderController@login")->name("login");
+    Route::get('/logout', "Scaffolder\ScaffolderController@logout")->name("logout");
     Route::get('/register', "Scaffolder\ScaffolderController@register")->name("register");
     Route::post('/login', "Scaffolder\ScaffolderController@loginPost")->name("loginPost");
     Route::post('/register', "Scaffolder\ScaffolderController@registerPost")->name("registerPost");

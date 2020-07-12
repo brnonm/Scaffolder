@@ -20,6 +20,12 @@ class ScaffolderController extends Controller
         return view("scaffolder.config.login");
     }
 
+    public function logout(){
+        session_start();
+        session_destroy();
+        return redirect()->route("install.login");
+    }
+
     public function register()
     {
 
