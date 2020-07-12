@@ -2,19 +2,19 @@
 
 # Laravel Scaffolder
 
-#####Instalation guide for:
+### Instalation guide for Homestead
 
-* MacOs/Linux
+* MacOs/Linux and Windows with bash
 
-    1. Install  VirtualBox
+    1. Download and Install  VirtualBox
 
             https://www.virtualbox.org/wiki/Downloads
 
-    2. Install vagrant
+    2. Download and Install Vagrant
 
             https://www.vagrantup.com/downloads.html
 
-    3. Add the  'laravel/homestead' box to your Vagrant
+    3. Add the  'laravel/homestead' box to your Vagrant on terminal
 	
 	        $vagrant box add laravel/homestead
 
@@ -30,11 +30,14 @@
 
             $bash init.sh
             
-    7. Get Project Laravel Scaffolder from GitHub
+            
+### Installation guide for Laravel Scaffolder project
+            
+   1. Get Project Laravel Scaffolder from GitHub
             
             $git clone https://github.com/brnonm/Scaffolder.git
     
-    8. Map the laravel project on your brand new .yalm file
+   2. Map the laravel project on your brand new .yalm file
         Open the homestead.yaml file (located at Homestead folder) on your prefered text editor (ex: Sublime Text)
 
             a) under the section 'folders' remove the example content and add: (notice that the starting tabs are crutial and if not respected this may not work)
@@ -47,24 +50,24 @@
             - map: scaffolder.local
               to: /home/vagrant/Scaffolder/public
 
-    9. Open hosts file
+   3. Open hosts file
     
             $sudo nano /etc/hosts
     
-    10. Add the following domains
+   4. Add the following domains
 
             192.168.10.10 scaffolder.local
 
-    11. Run composer at the folder of the project (php 7.2 version needed)
+   5. Run composer at the folder of the project (php 7.2 version needed)
     
             $cd Scaffolder
             $php composer.phar install
     
-    12. Create new .env file
+   6. Create new .env file
 
             $cp .env.example .env
             
-    13. Configure .env
+   7. Configure .env
             
             DB_DATABASE= your settings
             DB_USERNAME= your settings
@@ -72,26 +75,30 @@
             
             Change the values “your settings” to your own server definitions.
                 
-    13. Generate new key
+   8. Generate new key
 
             $php artisan key:generate
     
-    14. Start homestead. At the homestead folder run
+   9. Start homestead. At the homestead folder run
 
 	        $vagrant up
 
             If the following error occurs: "Check your Homestead.yaml file, the path to your private key does not exist." run the following command and try again vagrant up
         $ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 
-    15. Go to your browser and go to the following url
+   10. Go to your browser and go to the following url
     
             * scaffolder.local
 
-    16. Now you need create a creadential to login, and enjoy it!
+   1. Now you need create a creadential to login, and enjoy it!
+   
+### Notes:
+    * You need to change php.ini in order to use bigger a database. 
+        ex: max_input_vars: from 1000 to 10000 
     
+
     
-    
-####Images from Project.
+### Images from Project.
     
   <a href="https://imgur.com/3fwqKwP"><img src="https://i.imgur.com/3fwqKwP.png" title="source: imgur.com" /></a>
   
@@ -103,7 +110,7 @@
 
 
 
-###Additional information
+### Additional information
 
 
     1. Laravel Homestead page
@@ -114,3 +121,6 @@
 
         * https://laravel.com/docs/7.x/homestead#configuring-homestead
 
+    3. Composer Documentation
+        
+        * https://getcomposer.org/
