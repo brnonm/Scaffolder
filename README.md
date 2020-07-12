@@ -86,6 +86,11 @@
             If the following error occurs: "Check your Homestead.yaml file, the path to your private key does not exist." run the following command and try again vagrant up
         $ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 
+   10. On terminal
+   
+            $composer update
+            $php artisan optimize 
+
    10. Go to your browser and go to the following url
     
             * scaffolder.local
