@@ -1,1116 +1,584 @@
 {
-    "metadados": {
-        "adress": {
-            "modelName": "Adre",
-            "enable": "no",
-            "timeStamp": "no",
-            "fields": {
-                "id": {
-                    "name": "Id",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "PRI",
-                    "type": "int"
+    "clientes": {
+        "modelName": "Cliente",
+        "enable": "yes",
+        "fields": {
+            "id": {
+                "name": "Id",
+                "lenght": "11",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
                 },
-                "user_id": {
-                    "name": "User_id",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "MUL",
-                    "type": "int"
-                },
-                "street": {
-                    "name": "Street",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "postal_code": {
-                    "name": "Postal_code",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "locality": {
-                    "name": "Locality",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "city": {
-                    "name": "City",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "country": {
-                    "name": "Country",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "created_at": {
-                    "name": "Created_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                },
-                "updated_at": {
-                    "name": "Updated_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                }
+                "Key": "PRI",
+                "type": "int"
             },
-            "modelTable": "adress"
-        },
-        "categories": {
-            "modelName": "Categorie",
-            "enable": "no",
-            "timeStamp": "no",
-            "fields": {
-                "id": {
-                    "name": "Id",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "PRI",
-                    "type": "int"
+            "nome": {
+                "name": "Nome",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
                 },
-                "name": {
-                    "name": "Name",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "created_at": {
-                    "name": "Created_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                },
-                "updated_at": {
-                    "name": "Updated_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                }
+                "Key": "no",
+                "type": "text"
             },
-            "modelTable": "categories"
-        },
-        "migrations": {
-            "modelName": "Migration",
-            "enable": "no",
-            "timeStamp": "no",
-            "fields": {
-                "id": {
-                    "name": "Id",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "PRI",
-                    "type": "int"
-                },
-                "migration": {
-                    "name": "Migration",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "batch": {
-                    "name": "Batch",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "int"
-                }
-            },
-            "modelTable": "migrations"
-        },
-        "moviments": {
-            "modelName": "Moviment",
-            "enable": "no",
-            "timeStamp": "no",
-            "fields": {
-                "id": {
-                    "name": "Id",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "PRI",
-                    "type": "int"
-                },
-                "order_id": {
-                    "name": "Order_id",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "MUL",
-                    "type": "int"
-                },
-                "type_payment": {
-                    "name": "Type_payment",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "type": "enum",
-                        "options": {
-                            "c": "c",
-                            "bt": "bt",
-                            "mb": "mb"
+            "tipocliente": {
+                "name": "Tipocliente",
+                "lenght": "11",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "type": "custom",
+                    "custom": {
+                        "1": {
+                            "key": "0",
+                            "value": "Nu00e3o aceite"
                         },
-                        "table": "adress"
+                        "2": {
+                            "key": "1",
+                            "value": "Aceite"
+                        }
                     },
-                    "Key": "no",
-                    "type": "select"
+                    "table": "clientes"
                 },
-                "created_at": {
-                    "name": "Created_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                },
-                "updated_at": {
-                    "name": "Updated_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                }
+                "Key": "no",
+                "type": "select"
             },
-            "modelTable": "moviments"
+            "contacto": {
+                "name": "Contacto",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "morada": {
+                "name": "Morada",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "ncontrib": {
+                "name": "Ncontrib",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "codigo": {
+                "name": "Codigo",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "cdpostal": {
+                "name": "Cdpostal",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "local": {
+                "name": "Local",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "email": {
+                "name": "Email",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "ncabecas": {
+                "name": "Ncabeca",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "datacri": {
+                "name": "Datacri",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "created_at": {
+                "name": "Created_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "updated_at": {
+                "name": "Updated_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "deleted_at": {
+                "name": "Deleted_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            }
         },
-        "oauth_access_tokens": {
-            "modelName": "OauthAccessToken",
-            "enable": "no",
-            "timeStamp": "no",
-            "fields": {
-                "id": {
-                    "name": "Id",
-                    "lenght": "100",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "PRI",
-                    "type": "text"
-                },
-                "user_id": {
-                    "name": "User_id",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "MUL",
-                    "type": "text"
-                },
-                "client_id": {
-                    "name": "Client_id",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "name": {
-                    "name": "Name",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "scopes": {
-                    "name": "Scope",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "revoked": {
-                    "name": "Revoked",
-                    "lenght": "1",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "created_at": {
-                    "name": "Created_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                },
-                "updated_at": {
-                    "name": "Updated_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                },
-                "expires_at": {
-                    "name": "Expires_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                }
+        "modelTable": "clientes",
+        "functions": {
+            "create": {
+                "enable": "yes"
             },
-            "modelTable": "oauth_access_tokens"
-        },
-        "oauth_auth_codes": {
-            "modelName": "OauthAuthCode",
-            "enable": "no",
-            "timeStamp": "no",
-            "fields": {
-                "id": {
-                    "name": "Id",
-                    "lenght": "100",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "PRI",
-                    "type": "text"
-                },
-                "user_id": {
-                    "name": "User_id",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "MUL",
-                    "type": "text"
-                },
-                "client_id": {
-                    "name": "Client_id",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "scopes": {
-                    "name": "Scope",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "revoked": {
-                    "name": "Revoked",
-                    "lenght": "1",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "expires_at": {
-                    "name": "Expires_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                }
+            "destroy": {
+                "enable": "yes"
             },
-            "modelTable": "oauth_auth_codes"
-        },
-        "oauth_clients": {
-            "modelName": "OauthClient",
-            "enable": "no",
-            "timeStamp": "no",
-            "fields": {
-                "id": {
-                    "name": "Id",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "PRI",
-                    "type": "text"
-                },
-                "user_id": {
-                    "name": "User_id",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "MUL",
-                    "type": "text"
-                },
-                "name": {
-                    "name": "Name",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "secret": {
-                    "name": "Secret",
-                    "lenght": "100",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "provider": {
-                    "name": "Provider",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "redirect": {
-                    "name": "Redirect",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "personal_access_client": {
-                    "name": "Personal_access_client",
-                    "lenght": "1",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "password_client": {
-                    "name": "Password_client",
-                    "lenght": "1",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "revoked": {
-                    "name": "Revoked",
-                    "lenght": "1",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "created_at": {
-                    "name": "Created_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                },
-                "updated_at": {
-                    "name": "Updated_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                }
+            "index": {
+                "enable": "yes"
             },
-            "modelTable": "oauth_clients"
-        },
-        "oauth_personal_access_clients": {
-            "modelName": "OauthPersonalAccessClient",
-            "enable": "no",
-            "timeStamp": "no",
-            "fields": {
-                "id": {
-                    "name": "Id",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "PRI",
-                    "type": "text"
-                },
-                "client_id": {
-                    "name": "Client_id",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "created_at": {
-                    "name": "Created_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                },
-                "updated_at": {
-                    "name": "Updated_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                }
+            "show": {
+                "enable": "yes"
             },
-            "modelTable": "oauth_personal_access_clients"
-        },
-        "oauth_refresh_tokens": {
-            "modelName": "OauthRefreshToken",
-            "enable": "no",
-            "timeStamp": "no",
-            "fields": {
-                "id": {
-                    "name": "Id",
-                    "lenght": "100",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "PRI",
-                    "type": "text"
-                },
-                "access_token_id": {
-                    "name": "Access_token_id",
-                    "lenght": "100",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "revoked": {
-                    "name": "Revoked",
-                    "lenght": "1",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "expires_at": {
-                    "name": "Expires_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                }
-            },
-            "modelTable": "oauth_refresh_tokens"
-        },
-        "orders": {
-            "modelName": "Order",
-            "enable": "no",
-            "timeStamp": "no",
-            "fields": {
-                "id": {
-                    "name": "Id",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "PRI",
-                    "type": "int"
-                },
-                "user_id": {
-                    "name": "User_id",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "MUL",
-                    "type": "int"
-                },
-                "product_id": {
-                    "name": "Product_id",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "MUL",
-                    "type": "int"
-                },
-                "amount": {
-                    "name": "Amount",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "int"
-                },
-                "status": {
-                    "name": "Statu",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "type": "enum",
-                        "options": {
-                            "b": "b",
-                            "c": "c",
-                            "p": "p",
-                            "s": "s"
-                        },
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "select"
-                },
-                "ship_code": {
-                    "name": "Ship_code",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "created_at": {
-                    "name": "Created_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                },
-                "updated_at": {
-                    "name": "Updated_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                }
-            },
-            "modelTable": "orders"
-        },
-        "product_photos": {
-            "modelName": "ProductPhoto",
-            "enable": "no",
-            "timeStamp": "no",
-            "fields": {
-                "id": {
-                    "name": "Id",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "PRI",
-                    "type": "int"
-                },
-                "product_id": {
-                    "name": "Product_id",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "MUL",
-                    "type": "int"
-                },
-                "description": {
-                    "name": "Description",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "photo": {
-                    "name": "Photo",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "created_at": {
-                    "name": "Created_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                },
-                "updated_at": {
-                    "name": "Updated_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                }
-            },
-            "modelTable": "product_photos"
-        },
-        "products": {
-            "modelName": "Product",
-            "enable": "no",
-            "timeStamp": "no",
-            "fields": {
-                "id": {
-                    "name": "Id",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "PRI",
-                    "type": "int"
-                },
-                "category_id": {
-                    "name": "Category_id",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "MUL",
-                    "type": "int"
-                },
-                "name": {
-                    "name": "Name",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "description": {
-                    "name": "Description",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "stock": {
-                    "name": "Stock",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "int"
-                },
-                "price": {
-                    "name": "Price",
-                    "lenght": "82",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "promo_price": {
-                    "name": "Promo_price",
-                    "lenght": "82",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "created_at": {
-                    "name": "Created_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                },
-                "updated_at": {
-                    "name": "Updated_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                }
-            },
-            "modelTable": "products"
-        },
-        "users": {
-            "modelName": "User",
-            "enable": "yes",
-            "timeStamp": "no",
-            "fields": {
-                "id": {
-                    "name": "Id",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "PRI",
-                    "type": "int"
-                },
-                "name": {
-                    "name": "Name",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "email": {
-                    "name": "Email",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "UNI",
-                    "type": "text"
-                },
-                "email_verified_at": {
-                    "name": "Email_verified_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                },
-                "password": {
-                    "name": "Password",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "type": {
-                    "name": "Type",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "type": "enum",
-                        "options": {
-                            "a": "a",
-                            "u": "u"
-                        },
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "select"
-                },
-                "active": {
-                    "name": "Active",
-                    "lenght": "1",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "photo": {
-                    "name": "Photo",
-                    "lenght": "255",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "nif": {
-                    "name": "Nif",
-                    "lenght": "9",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "remember_token": {
-                    "name": "Remember_token",
-                    "lenght": "100",
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "text"
-                },
-                "created_at": {
-                    "name": "Created_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "timestamp"
-                },
-                "updated_at": {
-                    "name": "Updated_at",
-                    "lenght": null,
-                    "display": "yes",
-                    "required": "yes",
-                    "select": {
-                        "table": "adress"
-                    },
-                    "Key": "no",
-                    "type": "image"
-                }
-            },
-            "modelTable": "users"
+            "update": {
+                "enable": "yes"
+            }
         }
-    }
+    },
+    "criterio_valors": {
+        "modelName": "CriterioValor",
+        "enable": "no",
+        "fields": {
+            "id": {
+                "name": "Id",
+                "lenght": "11",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "cliente_id": {
+                "name": "Cliente_id",
+                "lenght": "11",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "criterio": {
+                "name": "Criterio",
+                "lenght": "11",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "valor": {
+                "name": "Valor",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "created_at": {
+                "name": "Created_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "updated_at": {
+                "name": "Updated_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "deleted_at": {
+                "name": "Deleted_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            }
+        },
+        "modelTable": "criterio_valors"
+    },
+    "multimedia": {
+        "modelName": "Multimedia",
+        "enable": "no",
+        "fields": {
+            "id": {
+                "name": "Id",
+                "lenght": "11",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "class": {
+                "name": "Cla",
+                "lenght": "100",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "class_id": {
+                "name": "Class_id",
+                "lenght": "11",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "file": {
+                "name": "File",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "created_at": {
+                "name": "Created_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "deleted_at": {
+                "name": "Deleted_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "updated_at": {
+                "name": "Updated_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            }
+        },
+        "modelTable": "multimedia"
+    },
+    "tipo_clientes": {
+        "modelName": "TipoCliente",
+        "enable": "yes",
+        "fields": {
+            "id": {
+                "name": "Id",
+                "lenght": "11",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "PRI",
+                "type": "text"
+            },
+            "title": {
+                "name": "Title",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "created_at": {
+                "name": "Created_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "updated_at": {
+                "name": "Updated_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "deleted_at": {
+                "name": "Deleted_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            }
+        },
+        "modelTable": "tipo_clientes",
+        "functions": {
+            "create": {
+                "enable": "yes"
+            },
+            "destroy": {
+                "enable": "yes"
+            },
+            "index": {
+                "enable": "yes"
+            },
+            "show": {
+                "enable": "yes"
+            },
+            "update": {
+                "enable": "yes"
+            }
+        }
+    },
+    "vendas": {
+        "modelName": "Venda",
+        "enable": "yes",
+        "fields": {
+            "id": {
+                "name": "Id",
+                "lenght": "11",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "PRI",
+                "type": "text"
+            },
+            "tpdoc": {
+                "name": "Tpdoc",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "terceiro": {
+                "name": "Terceiro",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "data": {
+                "name": "Data",
+                "lenght": "6",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "totdoc": {
+                "name": "Totdoc",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "totmerc": {
+                "name": "Totmerc",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "quant": {
+                "name": "Quant",
+                "lenght": "255",
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "text"
+            },
+            "created_at": {
+                "name": "Created_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "updated_at": {
+                "name": "Updated_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            },
+            "deleted_at": {
+                "name": "Deleted_at",
+                "lenght": null,
+                "display": "yes",
+                "required": "yes",
+                "select": {
+                    "table": "clientes"
+                },
+                "Key": "no",
+                "type": "timestamp"
+            }
+        },
+        "modelTable": "vendas",
+        "functions": {
+            "create": {
+                "enable": "yes"
+            },
+            "destroy": {
+                "enable": "yes"
+            },
+            "index": {
+                "enable": "yes"
+            },
+            "show": {
+                "enable": "yes"
+            },
+            "update": {
+                "enable": "yes"
+            }
+        }
+    },
+    "generated": "yes"
 }

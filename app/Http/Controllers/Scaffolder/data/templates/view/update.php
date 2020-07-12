@@ -9,7 +9,7 @@
             Update :$templatemodelName
         </div>
         <div class="card-body">
-            <form action=:$routeUpdate method="POST" enctype="multipart/form-data">
+            <form action=:$templateRouteUpdate method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 :$templateFieldUpdate
