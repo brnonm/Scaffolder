@@ -135,7 +135,7 @@
             <div class="scrollbar-sidebar">
                 <div class="app-sidebar__inner">
                     <ul class="vertical-nav-menu">
-                        @if(request()->is('install*'))
+                        
                         <li class="app-sidebar__heading">Scaffolder</li>
                         <li>
                             <a href="{{route("install.indexChooseDB")}}" class="mm-active">
@@ -159,7 +159,7 @@
                                 </li>
                             </ul>
                         </li>
-                        @endif
+
                         <li>
                             <a href="#" class="mm-active" aria-expanded="true">
                                 <i class="metismenu-icon pe-7s-car"></i>
