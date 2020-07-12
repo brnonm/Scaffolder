@@ -1,9 +1,10 @@
 <?php
 
-    $email=":$email";
-    $password=":$password";
+$email=':$email';
+$password=':$password';
 
 
-    $alreadyCofigured=false;
+$alreadyCofigured=false;
 
 ?>
+
