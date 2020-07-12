@@ -56,8 +56,8 @@ class ScaffolderController extends Controller
             die("Error on installing, please contact developer");
         }
         $config = str_replace(['false'], "true", $config);
-        $config = str_replace([':email'], $request->email, $config);
-        $config = str_replace([':password'], $request->password, $config);
+        $config = str_replace([':$email'], $request->email, $config);
+        $config = str_replace([':$password'], $request->password, $config);
 
 
         $view = fopen(base_path(self::CONFIG_PATH), "w") or die("Unable to open file!");

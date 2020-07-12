@@ -7,4 +7,3 @@ $password=':$password';
 $alreadyCofigured=false;
 
 ?>
-
