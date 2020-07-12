@@ -1,9 +1,6 @@
 <?php
 
-$email=':$email';
-$password=':$password';
-
-
-$alreadyCofigured=false;
-
+$email='admin';
+$password='teste';
+$alreadyCofigured=true;
 ?>
