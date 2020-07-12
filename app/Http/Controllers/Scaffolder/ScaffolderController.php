@@ -28,8 +28,6 @@ class ScaffolderController extends Controller
 
     public function loginPost(Request $request)
     {
-
-
         include base_path(self::CONFIG_PATH);
 
         if (isset($alreadyCofigured)) {
