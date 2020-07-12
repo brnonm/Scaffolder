@@ -171,7 +171,6 @@
 
                                     <input type="checkbox" name="metadados[{{$nameTable}}][timeStamp]"
                                            data-toggle="toggle" style="border:  border: 5px solid red;"
-                                           onchange="changeColorGreen({{$nameTable}})"
                                            value="yes" data-on="Yes" data-off="No">
                                 </div>
                             </div>
