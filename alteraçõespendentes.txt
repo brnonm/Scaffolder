@@ -1,4 +1,0 @@
-1 - Alterar nome da coluna com metodo AS no metodo public function getSchemaDB(Request $request)
-
-
-
